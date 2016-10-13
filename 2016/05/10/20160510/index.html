@@ -74,7 +74,7 @@
 
 
 
-  <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml" />
+  <link rel="alternate" href="/atom.xml" title="Ghstart" type="application/atom+xml" />
 
 
 
@@ -91,7 +91,7 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="搭建SDK中所遇到的坑">
 <meta property="og:url" content="http://yoursite.com/2016/05/10/20160510/index.html">
-<meta property="og:site_name" content="Hexo">
+<meta property="og:site_name" content="Ghstart">
 <meta property="og:description" content="其实开始之前，我找到一篇很不错的文章，想翻译的，但是google了一下，发现已经有好多人翻译过这篇文章了，这里我就不再多说什么了，把原文的链接贴出来。https://www.raywenderlich.com/65964/create-a-framework-for-ios,这里我就说一下，我在搭建sdk的时候，遇到的坑吧。
 其实你要是能够走完上面的流程，你基本上已经完成了80%了，剩下的就是发现">
 <meta property="og:updated_time" content="2016-05-10T01:44:35.000Z">
@@ -122,7 +122,7 @@
   <link rel="canonical" href="http://yoursite.com/2016/05/10/20160510/"/>
 
 
-  <title> 搭建SDK中所遇到的坑 | Hexo </title>
+  <title> 搭建SDK中所遇到的坑 | Ghstart </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="">
@@ -153,7 +153,7 @@
   <div class="custom-logo-site-title">
     <a href="/"  class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
-      <span class="site-title">Hexo</span>
+      <span class="site-title">Ghstart</span>
       <span class="logo-line-after"><i></i></span>
     </a>
   </div>
@@ -308,9 +308,9 @@
 <ul>
 <li>这个错误可能直接就会导致app起不来，一启动就会crash，这里需要将所有你用到xib，storyboard的文件都统一作出修改。<code>其实这个问题在遇到用xib/SB创建的cell的时候、在xib/SB中添加图片的时候需要将[UIImage imageNamed:@&quot;&quot;] =======&gt; 修改为 [UIImage imageNamed:@&quot;xxxx.bundle/xxxxName&quot;]</code></li>
 </ul>
-<p></p><p class="code-caption" data-lang="" data-line_number="frontend" data-trim_indent="frontend" data-label_position="outer" data-labels_left="" data-labels_right="" data-labels_copy=""><span class="code-caption-label"></span><a class="code-caption-copy"></a></p><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">UIStoryboard *main = [UIStoryboard storyboardWithName:@&quot;xxxxName&quot; bundle:[NSBundle mainBundle]];</div><div class="line"></div><div class="line">修改为===============================</div><div class="line"></div><div class="line">UIStoryboard *main = [UIStoryboard storyboardWithName:@&quot;xxxx.bundle/xxxxName&quot; bundle:[NSBundle mainBundle]];</div></pre></td></tr></table></figure><p></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">UIStoryboard *main = [UIStoryboard storyboardWithName:@&quot;xxxxName&quot; bundle:[NSBundle mainBundle]];</div><div class="line"></div><div class="line">修改为===============================</div><div class="line"></div><div class="line">UIStoryboard *main = [UIStoryboard storyboardWithName:@&quot;xxxx.bundle/xxxxName&quot; bundle:[NSBundle mainBundle]];</div></pre></td></tr></table></figure>
 <h3 id="第二个错误"><a href="#第二个错误" class="headerlink" title="第二个错误"></a>第二个错误</h3><p><code>可能会在Iphone4的时候，直接无法build,直接报这个错： dyld: Symbol not found: ___NSDictionary0__</code></p>
-<p></p><p class="code-caption" data-lang="" data-line_number="frontend" data-trim_indent="frontend" data-label_position="outer" data-labels_left="" data-labels_right="" data-labels_copy=""><span class="code-caption-label"></span><a class="code-caption-copy"></a></p><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">需要将项目中的build Phases 中的core foundation的stastu的状态 从Required修改为Optional</div></pre></td></tr></table></figure><p></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">需要将项目中的build Phases 中的core foundation的stastu的状态 从Required修改为Optional</div></pre></td></tr></table></figure>
 <p><code>后续如果还有其他的bug，我再贴出来吧！</code></p>
 
       
