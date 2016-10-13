@@ -1,13 +1,181 @@
 <!DOCTYPE html><html><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> 学习YYModel · Hexo</title><meta name="description" content="学习YYModel - John Doe"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="short icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="http://yoursite.com/atom.xml" title="Hexo"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/favicon.png"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="http://weibo.com/sunchongsheng" target="_blank" class="nav-list-link">WEIBO</a></li><li class="nav-list-item"><a href="https://github.com/pinggod" target="_blank" class="nav-list-link">GITHUB</a></li><li class="nav-list-item"><a href="/atom.xml" target="_self" class="nav-list-link">RSS</a></li></ul></header><section class="container"><div class="post"><article class="post-block"><h1 class="post-title">学习YYModel</h1><div class="post-info">Apr 1, 2016</div><div class="post-content"><p>以YYModel的例子，它以类的方式调用</p>
-<p></p><p class="code-caption" data-lang="{bash}" data-line_number="frontend" data-trim_indent="frontend" data-label_position="outer" data-labels_left="" data-labels_right="" data-labels_copy=""><span class="code-caption-label"></span><a class="code-caption-copy"></a></p><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">+ (instancetype)yy_modelWithJSON:(id)json &#123;</div><div class="line">    NSDictionary *dic = [self _yy_dictionaryWithJSON:json];</div><div class="line">    return [self yy_modelWithDictionary:dic];</div><div class="line">&#125;</div><div class="line"></div><div class="line">&lt;!-- 1. 直接将json的格式丢给这个函数 --&gt;</div><div class="line">&lt;!-- 2. 然后调用下面的这个函数，主要是讲这个json转化为NSDictionary的格式，如果是字符串会将字符串转化为NSData,然后再转化为NSDictionary --&gt;</div></pre></td></tr></table></figure><p></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">+ (NSDictionary *)_yy_dictionaryWithJSON:(id)json &#123;</div><div class="line">&lt;p class=&quot;code-caption&quot; data-lang=&quot;&quot; data-line_number=&quot;frontend&quot; data-trim_indent=&quot;frontend&quot; data-label_position=&quot;outer&quot; data-labels_left=&quot;&quot; data-labels_right=&quot;&quot; data-labels_copy=&quot;&quot;&gt;&lt;span class=&quot;code-caption-label&quot;&gt;&lt;/span&gt;&lt;a class=&quot;code-caption-copy&quot;&gt;&lt;/a&gt;&lt;/p&gt;</div><div class="line">```  </div><div class="line"></div><div class="line">* 现在开始进入最重要的函数部分了</div><div class="line"></div><div class="line">```&#123;bash&#125;</div><div class="line">//这个函数里获取model元是通过调用下面的方法，cls是获取本类而得到的Class类型</div><div class="line">+ (instancetype)yy_modelWithDictionary:(NSDictionary *)dictionary &#123;&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">[_YYModelMeta metaWithClass:cls]</div><div class="line">&lt;p class=&quot;code-caption&quot; data-lang=&quot;&quot; data-line_number=&quot;frontend&quot; data-trim_indent=&quot;frontend&quot; data-label_position=&quot;outer&quot; data-labels_left=&quot;&quot; data-labels_right=&quot;&quot; data-labels_copy=&quot;&quot;&gt;&lt;span class=&quot;code-caption-label&quot;&gt;&lt;/span&gt;&lt;a class=&quot;code-caption-copy&quot;&gt;&lt;/a&gt;&lt;/p&gt;</div><div class="line">```  </div><div class="line"></div><div class="line">```&#123;bash&#125;</div><div class="line">+ (instancetype)metaWithClass:(Class)cls &#123;</div><div class="line">    if (!cls) return nil;</div><div class="line">    static CFMutableDictionaryRef cache;</div><div class="line">    static dispatch_once_t onceToken;</div><div class="line">    //1..</div><div class="line">    static dispatch_semaphore_t lock;</div><div class="line">    dispatch_once(&amp;onceToken, ^&#123;</div><div class="line">        cache = CFDictionaryCreateMutable(CFAllocatorGetDefault(), 0, &amp;kCFTypeDictionaryKeyCallBacks, &amp;kCFTypeDictionaryValueCallBacks);</div><div class="line">        lock = dispatch_semaphore_create(1);</div><div class="line">    &#125;);</div><div class="line">    dispatch_semaphore_wait(lock, DISPATCH_TIME_FOREVER);</div><div class="line">    _YYModelMeta *meta = CFDictionaryGetValue(cache, (__bridge const void *)(cls));</div><div class="line">    dispatch_semaphore_signal(lock);</div><div class="line">    if (!meta || meta-&gt;_classInfo.needUpdate) &#123;</div><div class="line">        meta = [[_YYModelMeta alloc] initWithClass:cls];</div><div class="line">        if (meta) &#123;</div><div class="line">            dispatch_semaphore_wait(lock, DISPATCH_TIME_FOREVER);</div><div class="line">            CFDictionarySetValue(cache, (__bridge const void *)(cls), (__bridge const void *)(meta));</div><div class="line">            dispatch_semaphore_signal(lock);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    return meta;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"> &lt;!-- //以信号量的方式保持同步，作用是为了从cache的内存中获取meta的数据是同步的。 --&gt;</div><div class="line"> dispatch_semaphore_wait(lock, DISPATCH_TIME_FOREVER);</div><div class="line">    _YYModelMeta *meta = CFDictionaryGetValue(cache, (__bridge const void *)(cls));</div><div class="line">    dispatch_semaphore_signal(lock);</div><div class="line">&lt;p class=&quot;code-caption&quot; data-lang=&quot;&quot; data-line_number=&quot;frontend&quot; data-trim_indent=&quot;frontend&quot; data-label_position=&quot;outer&quot; data-labels_left=&quot;&quot; data-labels_right=&quot;&quot; data-labels_copy=&quot;&quot;&gt;&lt;span class=&quot;code-caption-label&quot;&gt;&lt;/span&gt;&lt;a class=&quot;code-caption-copy&quot;&gt;&lt;/a&gt;&lt;/p&gt;</div><div class="line">```  </div><div class="line"></div><div class="line"></div><div class="line">```&#123;bash&#125;</div><div class="line"> &lt;!-- //或者在讲meta的值塞入内存中保持同步 --&gt;</div><div class="line"> 	    if (!meta || meta-&gt;_classInfo.needUpdate) &#123;</div><div class="line">        meta = [[_YYModelMeta alloc] initWithClass:cls];</div><div class="line">        if (meta) &#123;</div><div class="line">            dispatch_semaphore_wait(lock, DISPATCH_TIME_FOREVER);</div><div class="line">            CFDictionarySetValue(cache, (__bridge const void *)(cls), (__bridge const void *)(meta));</div><div class="line">            dispatch_semaphore_signal(lock);</div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"> &lt;!-- 其中创建meta的时候回调用 --&gt;</div><div class="line"> meta = [[_YYModelMeta alloc] initWithClass:cls];</div><div class="line"></div><div class="line"> - (instancetype)initWithClass:(Class)cls &#123;</div><div class="line">    YYClassInfo *classInfo = [YYClassInfo classInfoWithClass:cls];</div><div class="line">  	.....  </div><div class="line">  &#125;</div><div class="line">&lt;p class=&quot;code-caption&quot; data-lang=&quot;&quot; data-line_number=&quot;frontend&quot; data-trim_indent=&quot;frontend&quot; data-label_position=&quot;outer&quot; data-labels_left=&quot;&quot; data-labels_right=&quot;&quot; data-labels_copy=&quot;&quot;&gt;&lt;span class=&quot;code-caption-label&quot;&gt;&lt;/span&gt;&lt;a class=&quot;code-caption-copy&quot;&gt;&lt;/a&gt;&lt;/p&gt;</div><div class="line">```  </div><div class="line"></div><div class="line"></div><div class="line">```&#123;bash&#125;</div><div class="line"> &lt;!-- 这里涉及到YYClassInfo的实例化方法,通过runtime的一些方法，找到本类，父类，元类。 --&gt;</div><div class="line"> - (instancetype)initWithClass:(Class)cls &#123;</div><div class="line">    if (!cls) return nil;</div><div class="line">    self = [super init];</div><div class="line">    _cls = cls;</div><div class="line">    _superCls = class_getSuperclass(cls);</div><div class="line">    _isMeta = class_isMetaClass(cls);</div><div class="line">    if (!_isMeta) &#123;</div><div class="line">        _metaCls = objc_getMetaClass(class_getName(cls));</div><div class="line">    &#125;</div><div class="line">    _name = NSStringFromClass(cls);</div><div class="line">    [self _update];</div><div class="line"></div><div class="line">    _superClassInfo = [self.class classInfoWithClass:_superCls];</div><div class="line">    return self;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p></p><p class="code-caption" data-lang="{bash}" data-line_number="frontend" data-trim_indent="frontend" data-label_position="outer" data-labels_left="" data-labels_right="" data-labels_copy=""><span class="code-caption-label"></span><a class="code-caption-copy"></a></p><p></p>
+<pre><code class="{bash}">+ (instancetype)yy_modelWithJSON:(id)json {
+    NSDictionary *dic = [self _yy_dictionaryWithJSON:json];
+    return [self yy_modelWithDictionary:dic];
+}
+
+&lt;!-- 1. 直接将json的格式丢给这个函数 --&gt;
+&lt;!-- 2. 然后调用下面的这个函数，主要是讲这个json转化为NSDictionary的格式，如果是字符串会将字符串转化为NSData,然后再转化为NSDictionary --&gt;
+</code></pre>
+<pre><code class="{bash}">+ (NSDictionary *)_yy_dictionaryWithJSON:(id)json {
+&lt;p class=&quot;code-caption&quot; data-lang=&quot;&quot; data-line_number=&quot;frontend&quot; data-trim_indent=&quot;frontend&quot; data-label_position=&quot;outer&quot; data-labels_left=&quot;&quot; data-labels_right=&quot;&quot; data-labels_copy=&quot;&quot;&gt;&lt;span class=&quot;code-caption-label&quot;&gt;&lt;/span&gt;&lt;a class=&quot;code-caption-copy&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+</code></pre>
+<ul>
+<li>现在开始进入最重要的函数部分了</li>
+</ul>
+<pre><code class="{bash}">//这个函数里获取model元是通过调用下面的方法，cls是获取本类而得到的Class类型
++ (instancetype)yy_modelWithDictionary:(NSDictionary *)dictionary {}
+</code></pre>
+<pre><code class="{bash}">[_YYModelMeta metaWithClass:cls]
+&lt;p class=&quot;code-caption&quot; data-lang=&quot;&quot; data-line_number=&quot;frontend&quot; data-trim_indent=&quot;frontend&quot; data-label_position=&quot;outer&quot; data-labels_left=&quot;&quot; data-labels_right=&quot;&quot; data-labels_copy=&quot;&quot;&gt;&lt;span class=&quot;code-caption-label&quot;&gt;&lt;/span&gt;&lt;a class=&quot;code-caption-copy&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+</code></pre>
+<pre><code class="{bash}">+ (instancetype)metaWithClass:(Class)cls {
+    if (!cls) return nil;
+    static CFMutableDictionaryRef cache;
+    static dispatch_once_t onceToken;
+    //1..
+    static dispatch_semaphore_t lock;
+    dispatch_once(&amp;onceToken, ^{
+        cache = CFDictionaryCreateMutable(CFAllocatorGetDefault(), 0, &amp;kCFTypeDictionaryKeyCallBacks, &amp;kCFTypeDictionaryValueCallBacks);
+        lock = dispatch_semaphore_create(1);
+    });
+    dispatch_semaphore_wait(lock, DISPATCH_TIME_FOREVER);
+    _YYModelMeta *meta = CFDictionaryGetValue(cache, (__bridge const void *)(cls));
+    dispatch_semaphore_signal(lock);
+    if (!meta || meta-&gt;_classInfo.needUpdate) {
+        meta = [[_YYModelMeta alloc] initWithClass:cls];
+        if (meta) {
+            dispatch_semaphore_wait(lock, DISPATCH_TIME_FOREVER);
+            CFDictionarySetValue(cache, (__bridge const void *)(cls), (__bridge const void *)(meta));
+            dispatch_semaphore_signal(lock);
+        }
+    }
+    return meta;
+}
+</code></pre>
+<pre><code class="{bash}"> &lt;!-- //以信号量的方式保持同步，作用是为了从cache的内存中获取meta的数据是同步的。 --&gt;
+ dispatch_semaphore_wait(lock, DISPATCH_TIME_FOREVER);
+    _YYModelMeta *meta = CFDictionaryGetValue(cache, (__bridge const void *)(cls));
+    dispatch_semaphore_signal(lock);
+&lt;p class=&quot;code-caption&quot; data-lang=&quot;&quot; data-line_number=&quot;frontend&quot; data-trim_indent=&quot;frontend&quot; data-label_position=&quot;outer&quot; data-labels_left=&quot;&quot; data-labels_right=&quot;&quot; data-labels_copy=&quot;&quot;&gt;&lt;span class=&quot;code-caption-label&quot;&gt;&lt;/span&gt;&lt;a class=&quot;code-caption-copy&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+</code></pre>
+<pre><code class="{bash}"> &lt;!-- //或者在讲meta的值塞入内存中保持同步 --&gt;
+         if (!meta || meta-&gt;_classInfo.needUpdate) {
+        meta = [[_YYModelMeta alloc] initWithClass:cls];
+        if (meta) {
+            dispatch_semaphore_wait(lock, DISPATCH_TIME_FOREVER);
+            CFDictionarySetValue(cache, (__bridge const void *)(cls), (__bridge const void *)(meta));
+            dispatch_semaphore_signal(lock);
+        }
+    }
+</code></pre>
+<pre><code class="{bash}"> &lt;!-- 其中创建meta的时候回调用 --&gt;
+ meta = [[_YYModelMeta alloc] initWithClass:cls];
+
+ - (instancetype)initWithClass:(Class)cls {
+    YYClassInfo *classInfo = [YYClassInfo classInfoWithClass:cls];
+      .....  
+  }
+&lt;p class=&quot;code-caption&quot; data-lang=&quot;&quot; data-line_number=&quot;frontend&quot; data-trim_indent=&quot;frontend&quot; data-label_position=&quot;outer&quot; data-labels_left=&quot;&quot; data-labels_right=&quot;&quot; data-labels_copy=&quot;&quot;&gt;&lt;span class=&quot;code-caption-label&quot;&gt;&lt;/span&gt;&lt;a class=&quot;code-caption-copy&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+</code></pre>
+<pre><code class="{bash}"> &lt;!-- 这里涉及到YYClassInfo的实例化方法,通过runtime的一些方法，找到本类，父类，元类。 --&gt;
+ - (instancetype)initWithClass:(Class)cls {
+    if (!cls) return nil;
+    self = [super init];
+    _cls = cls;
+    _superCls = class_getSuperclass(cls);
+    _isMeta = class_isMetaClass(cls);
+    if (!_isMeta) {
+        _metaCls = objc_getMetaClass(class_getName(cls));
+    }
+    _name = NSStringFromClass(cls);
+    [self _update];
+
+    _superClassInfo = [self.class classInfoWithClass:_superCls];
+    return self;
+}
+</code></pre>
 <ul>
 <li>然后在_update的方法中</li>
 </ul>
-<p></p><p class="code-caption" data-lang="{bash}" data-line_number="frontend" data-trim_indent="frontend" data-label_position="outer" data-labels_left="" data-labels_right="" data-labels_copy=""><span class="code-caption-label"></span><a class="code-caption-copy"></a></p><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">&lt;!-- 这里讲model中的方法、属性，ivar以key-value的形式存放在字典中。本类调用完后会在父类中调用再调用一遍。 --&gt;</div><div class="line">  Class cls = self.cls;</div><div class="line">    unsigned int methodCount = 0;</div><div class="line">    Method *methods = class_copyMethodList(cls, &amp;methodCount);</div><div class="line">    if (methods) &#123;</div><div class="line">        NSMutableDictionary *methodInfos = [NSMutableDictionary new];</div><div class="line">        _methodInfos = methodInfos;</div><div class="line">        for (unsigned int i = 0; i &lt; methodCount; i++) &#123;</div><div class="line">            YYClassMethodInfo *info = [[YYClassMethodInfo alloc] initWithMethod:methods[i]];</div><div class="line">            if (info.name) methodInfos[info.name] = info;</div><div class="line">        &#125;</div><div class="line">        free(methods);</div><div class="line">    &#125;</div><div class="line">    unsigned int propertyCount = 0;</div><div class="line">    objc_property_t *properties = class_copyPropertyList(cls, &amp;propertyCount);</div><div class="line">    if (properties) &#123;</div><div class="line">        NSMutableDictionary *propertyInfos = [NSMutableDictionary new];</div><div class="line">        _propertyInfos = propertyInfos;</div><div class="line">        for (unsigned int i = 0; i &lt; propertyCount; i++) &#123;</div><div class="line">            YYClassPropertyInfo *info = [[YYClassPropertyInfo alloc] initWithProperty:properties[i]];</div><div class="line">            if (info.name) propertyInfos[info.name] = info;</div><div class="line">        &#125;</div><div class="line">        free(properties);</div><div class="line">    &#125;</div><div class="line">....</div></pre></td></tr></table></figure><p></p>
+<p></p><p class="code-caption" data-lang="{bash}" data-line_number="frontend" data-trim_indent="frontend" data-label_position="outer" data-labels_left="" data-labels_right="" data-labels_copy=""><span class="code-caption-label"></span><a class="code-caption-copy"></a></p><p></p>
+<pre><code class="{bash}">&lt;!-- 这里讲model中的方法、属性，ivar以key-value的形式存放在字典中。本类调用完后会在父类中调用再调用一遍。 --&gt;
+  Class cls = self.cls;
+    unsigned int methodCount = 0;
+    Method *methods = class_copyMethodList(cls, &amp;methodCount);
+    if (methods) {
+        NSMutableDictionary *methodInfos = [NSMutableDictionary new];
+        _methodInfos = methodInfos;
+        for (unsigned int i = 0; i &lt; methodCount; i++) {
+            YYClassMethodInfo *info = [[YYClassMethodInfo alloc] initWithMethod:methods[i]];
+            if (info.name) methodInfos[info.name] = info;
+        }
+        free(methods);
+    }
+    unsigned int propertyCount = 0;
+    objc_property_t *properties = class_copyPropertyList(cls, &amp;propertyCount);
+    if (properties) {
+        NSMutableDictionary *propertyInfos = [NSMutableDictionary new];
+        _propertyInfos = propertyInfos;
+        for (unsigned int i = 0; i &lt; propertyCount; i++) {
+            YYClassPropertyInfo *info = [[YYClassPropertyInfo alloc] initWithProperty:properties[i]];
+            if (info.name) propertyInfos[info.name] = info;
+        }
+        free(properties);
+    }
+....
+</code></pre>
 <hr>
-<p></p><p class="code-caption" data-lang="{bash}" data-line_number="frontend" data-trim_indent="frontend" data-label_position="outer" data-labels_left="" data-labels_right="" data-labels_copy=""><span class="code-caption-label"></span><a class="code-caption-copy"></a></p><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div></pre></td><td class="code"><pre><div class="line">&lt;!-- * 最最关键的映射来了，YYModel把这个功能用一个递归函数来实现了。 --&gt;</div><div class="line">// create mapper</div><div class="line">   NSMutableDictionary *mapper = [NSMutableDictionary new];</div><div class="line">   NSMutableArray *keyPathPropertyMetas = [NSMutableArray new];</div><div class="line">   NSMutableArray *multiKeysPropertyMetas = [NSMutableArray new];</div><div class="line"></div><div class="line">   if ([cls respondsToSelector:@selector(modelCustomPropertyMapper)]) &#123;</div><div class="line">       NSDictionary *customMapper = [(id &lt;YYModel&gt;)cls modelCustomPropertyMapper];</div><div class="line">       [customMapper enumerateKeysAndObjectsUsingBlock:^(NSString *propertyName, NSString *mappedToKey, BOOL *stop) &#123;</div><div class="line">           _YYModelPropertyMeta *propertyMeta = allPropertyMetas[propertyName];</div><div class="line">           if (!propertyMeta) return;</div><div class="line">           [allPropertyMetas removeObjectForKey:propertyName];</div><div class="line"></div><div class="line">           if ([mappedToKey isKindOfClass:[NSString class]]) &#123;</div><div class="line">               if (mappedToKey.length == 0) return;</div><div class="line"></div><div class="line">               propertyMeta-&gt;_mappedToKey = mappedToKey;</div><div class="line">               NSArray *keyPath = [mappedToKey componentsSeparatedByString:@&quot;.&quot;];</div><div class="line">               if (keyPath.count &gt; 1) &#123;</div><div class="line">                   propertyMeta-&gt;_mappedToKeyPath = keyPath;</div><div class="line">                   [keyPathPropertyMetas addObject:propertyMeta];</div><div class="line">               &#125;</div><div class="line">               propertyMeta-&gt;_next = mapper[mappedToKey] ?: nil;</div><div class="line">               mapper[mappedToKey] = propertyMeta;</div><div class="line"></div><div class="line">           &#125; else if ([mappedToKey isKindOfClass:[NSArray class]]) &#123;</div><div class="line"></div><div class="line">               NSMutableArray *mappedToKeyArray = [NSMutableArray new];</div><div class="line">               for (NSString *oneKey in ((NSArray *)mappedToKey)) &#123;</div><div class="line">                   if (![oneKey isKindOfClass:[NSString class]]) continue;</div><div class="line">                   if (oneKey.length == 0) continue;</div><div class="line"></div><div class="line">                   NSArray *keyPath = [oneKey componentsSeparatedByString:@&quot;.&quot;];</div><div class="line">                   if (keyPath.count &gt; 1) &#123;</div><div class="line">                       [mappedToKeyArray addObject:keyPath];</div><div class="line">                   &#125; else &#123;</div><div class="line">                       [mappedToKeyArray addObject:oneKey];</div><div class="line">                   &#125;</div><div class="line"></div><div class="line">                   if (!propertyMeta-&gt;_mappedToKey) &#123;</div><div class="line">                       propertyMeta-&gt;_mappedToKey = oneKey;</div><div class="line">                       propertyMeta-&gt;_mappedToKeyPath = keyPath.count &gt; 1 ? keyPath : nil;</div><div class="line">                   &#125;</div><div class="line">               &#125;</div><div class="line">               if (!propertyMeta-&gt;_mappedToKey) return;</div><div class="line"></div><div class="line">               propertyMeta-&gt;_mappedToKeyArray = mappedToKeyArray;</div><div class="line">               [multiKeysPropertyMetas addObject:propertyMeta];</div><div class="line"></div><div class="line">               propertyMeta-&gt;_next = mapper[mappedToKey] ?: nil;</div><div class="line">               mapper[mappedToKey] = propertyMeta;</div><div class="line">           &#125;</div><div class="line">       &#125;];</div><div class="line">   &#125;</div><div class="line"></div><div class="line"></div><div class="line">   &lt;!-- * 源码中就可以看出，这个映射的函数，你需要复写modelCustomPropertyMapper 这个函数</div><div class="line">   * 映射这个函数，你可以定义一个NSString的字符串，假如你得字符串中含有“.”这个的话，他就会将这个字符串以“.”分隔成NSArray,然后存入到_mappedToKeyPath 这个变量中。</div><div class="line">   * 映射也可以是一个NSArray,这样就可以实现同一个model映射到不同的key上了。 --&gt;</div></pre></td></tr></table></figure><p></p>
+<p></p><p class="code-caption" data-lang="{bash}" data-line_number="frontend" data-trim_indent="frontend" data-label_position="outer" data-labels_left="" data-labels_right="" data-labels_copy=""><span class="code-caption-label"></span><a class="code-caption-copy"></a></p><p></p>
+<pre><code class="{bash}"> &lt;!-- * 最最关键的映射来了，YYModel把这个功能用一个递归函数来实现了。 --&gt;
+ // create mapper
+    NSMutableDictionary *mapper = [NSMutableDictionary new];
+    NSMutableArray *keyPathPropertyMetas = [NSMutableArray new];
+    NSMutableArray *multiKeysPropertyMetas = [NSMutableArray new];
+
+    if ([cls respondsToSelector:@selector(modelCustomPropertyMapper)]) {
+        NSDictionary *customMapper = [(id &lt;YYModel&gt;)cls modelCustomPropertyMapper];
+        [customMapper enumerateKeysAndObjectsUsingBlock:^(NSString *propertyName, NSString *mappedToKey, BOOL *stop) {
+            _YYModelPropertyMeta *propertyMeta = allPropertyMetas[propertyName];
+            if (!propertyMeta) return;
+            [allPropertyMetas removeObjectForKey:propertyName];
+
+            if ([mappedToKey isKindOfClass:[NSString class]]) {
+                if (mappedToKey.length == 0) return;
+
+                propertyMeta-&gt;_mappedToKey = mappedToKey;
+                NSArray *keyPath = [mappedToKey componentsSeparatedByString:@&quot;.&quot;];
+                if (keyPath.count &gt; 1) {
+                    propertyMeta-&gt;_mappedToKeyPath = keyPath;
+                    [keyPathPropertyMetas addObject:propertyMeta];
+                }
+                propertyMeta-&gt;_next = mapper[mappedToKey] ?: nil;
+                mapper[mappedToKey] = propertyMeta;
+
+            } else if ([mappedToKey isKindOfClass:[NSArray class]]) {
+
+                NSMutableArray *mappedToKeyArray = [NSMutableArray new];
+                for (NSString *oneKey in ((NSArray *)mappedToKey)) {
+                    if (![oneKey isKindOfClass:[NSString class]]) continue;
+                    if (oneKey.length == 0) continue;
+
+                    NSArray *keyPath = [oneKey componentsSeparatedByString:@&quot;.&quot;];
+                    if (keyPath.count &gt; 1) {
+                        [mappedToKeyArray addObject:keyPath];
+                    } else {
+                        [mappedToKeyArray addObject:oneKey];
+                    }
+
+                    if (!propertyMeta-&gt;_mappedToKey) {
+                        propertyMeta-&gt;_mappedToKey = oneKey;
+                        propertyMeta-&gt;_mappedToKeyPath = keyPath.count &gt; 1 ? keyPath : nil;
+                    }
+                }
+                if (!propertyMeta-&gt;_mappedToKey) return;
+
+                propertyMeta-&gt;_mappedToKeyArray = mappedToKeyArray;
+                [multiKeysPropertyMetas addObject:propertyMeta];
+
+                propertyMeta-&gt;_next = mapper[mappedToKey] ?: nil;
+                mapper[mappedToKey] = propertyMeta;
+            }
+        }];
+    }
+
+
+    &lt;!-- * 源码中就可以看出，这个映射的函数，你需要复写modelCustomPropertyMapper 这个函数
+    * 映射这个函数，你可以定义一个NSString的字符串，假如你得字符串中含有“.”这个的话，他就会将这个字符串以“.”分隔成NSArray,然后存入到_mappedToKeyPath 这个变量中。
+    * 映射也可以是一个NSArray,这样就可以实现同一个model映射到不同的key上了。 --&gt;
+</code></pre>
 </div></article></div></section><footer><div class="paginator"><a href="/2016/04/19/20160418/" class="prev">PREV</a><a href="/2016/03/28/20160328/" class="next">NEXT</a></div><div class="copyright"><p>© 2015 - 2016 <a href="http://yoursite.com">John Doe</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/pinggod/hexo-theme-apollo" target="_blank">hexo-theme-apollo</a>.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create',"UA-65933410-1",'auto');ga('send','pageview');</script></body></html>

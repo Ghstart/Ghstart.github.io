@@ -2,30 +2,95 @@
 <ul>
 <li>这个库是通过Category来分别实现这些功能，首先看看UIView的Category,是怎么实现的UIView的圆角。</li>
 </ul>
-<p></p><p class="code-caption" data-lang="" data-line_number="frontend" data-trim_indent="frontend" data-label_position="outer" data-labels_left="" data-labels_right="" data-labels_copy=""><span class="code-caption-label"></span><a class="code-caption-copy"></a></p><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line"> *	使用指定的图片来填充，但是生成的是圆形图片，背景颜色为白色。</div><div class="line"> *</div><div class="line"> *	@param image			图片名称或者图片对象，甚至支持NSData</div><div class="line"> *	@param targetSize	生成指定大小的图片</div><div class="line"> *	@param isEqualScale	是否等比例缩放图片</div><div class="line"> *  @param backgroundColor 默认取最顶层父视图的背景色，若为透明，则取本身背景色，若也为透明，则取白色</div><div class="line"> *  @parma callback   只有当图片真正被裁剪成功后，才会回调，返回裁剪后的图片</div><div class="line"> *</div><div class="line"> *	@return 裁剪前的图片</div><div class="line"> */</div><div class="line"></div><div class="line">- (UIImage *)hyb_setCircleImage:(id)image</div><div class="line">                           size:(CGSize)targetSize</div><div class="line">                   isEqualScale:(BOOL)isEqualScale</div><div class="line">                 backgrounColor:(UIColor *)backgroundColor</div><div class="line">                       onCliped:(HYBClipedCallback)callback;</div></pre></td></tr></table></figure><p></p>
-<ul>
+<p></p><p class="code-caption" data-lang="" data-line_number="frontend" data-trim_indent="frontend" data-label_position="outer" data-labels_left="" data-labels_right="" data-labels_copy=""><span class="code-caption-label"></span><a class="code-caption-copy"></a></p><p></p>
+<pre><code>/**
+ *    使用指定的图片来填充，但是生成的是圆形图片，背景颜色为白色。
+ *
+ *    @param image            图片名称或者图片对象，甚至支持NSData
+ *    @param targetSize    生成指定大小的图片
+ *    @param isEqualScale    是否等比例缩放图片
+ *  @param backgroundColor 默认取最顶层父视图的背景色，若为透明，则取本身背景色，若也为透明，则取白色
+ *  @parma callback   只有当图片真正被裁剪成功后，才会回调，返回裁剪后的图片
+ *
+ *    @return 裁剪前的图片
+ */
+
+- (UIImage *)hyb_setCircleImage:(id)image
+                           size:(CGSize)targetSize
+                   isEqualScale:(BOOL)isEqualScale
+                 backgrounColor:(UIColor *)backgroundColor
+                       onCliped:(HYBClipedCallback)callback;
+</code></pre><ul>
 <li>这只是其中一种Public的方法，我是按照Demo来看的。但是无论哪一种Public的方法，最终调用的都是统一的一个Private 的方法。</li>
 </ul>
-<p></p><p class="code-caption" data-lang="" data-line_number="frontend" data-trim_indent="frontend" data-label_position="outer" data-labels_left="" data-labels_right="" data-labels_copy=""><span class="code-caption-label"></span><a class="code-caption-copy"></a></p><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">- (UIImage *)hyb_private_setImage:(id)image</div><div class="line">                             size:(CGSize)targetSize</div><div class="line">                     cornerRadius:(CGFloat)cornerRadius</div><div class="line">                      rectCorener:(UIRectCorner)rectCorner</div><div class="line">                  backgroundColor:(UIColor *)bgColor</div><div class="line">                     isEqualScale:(BOOL)isEqualScale</div><div class="line">                         isCircle:(BOOL)isCircle</div><div class="line">                         onCliped:(HYBClipedCallback)callback</div></pre></td></tr></table></figure><p></p>
-<ul>
+<p></p><p class="code-caption" data-lang="" data-line_number="frontend" data-trim_indent="frontend" data-label_position="outer" data-labels_left="" data-labels_right="" data-labels_copy=""><span class="code-caption-label"></span><a class="code-caption-copy"></a></p><p></p>
+<pre><code>- (UIImage *)hyb_private_setImage:(id)image
+                             size:(CGSize)targetSize
+                     cornerRadius:(CGFloat)cornerRadius
+                      rectCorener:(UIRectCorner)rectCorner
+                  backgroundColor:(UIColor *)bgColor
+                     isEqualScale:(BOOL)isEqualScale
+                         isCircle:(BOOL)isCircle
+                         onCliped:(HYBClipedCallback)callback
+</code></pre><ul>
 <li>里面有个这个方法：可以看出来，假如你不设置bgColor这个属性的话，他会遍历循环，一直会找到最顶层的父类，去除父类的颜色。<code>所以我觉得你要是没事话，还是自己设置一下颜色吧！这边假如层级很复杂，并且元素很多的话，这个性能可能会让你哭吧...</code></li>
 </ul>
-<p></p><p class="code-caption" data-lang="" data-line_number="frontend" data-trim_indent="frontend" data-label_position="outer" data-labels_left="" data-labels_right="" data-labels_copy=""><span class="code-caption-label"></span><a class="code-caption-copy"></a></p><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"> if (bgColor == nil || CGColorEqualToColor(bgColor.CGColor, [UIColor clearColor].CGColor)) &#123;</div><div class="line">  UIView *superview = self.superview;</div><div class="line">  while (superview.backgroundColor == nil || CGColorEqualToColor(superview.backgroundColor.CGColor, [UIColor clearColor].CGColor)) &#123;</div><div class="line">    if (!superview) &#123;</div><div class="line">      break;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    superview = [superview superview];</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  bgColor = superview.backgroundColor;</div><div class="line">&#125;</div></pre></td></tr></table></figure><p></p>
-<ul>
+<p></p><p class="code-caption" data-lang="" data-line_number="frontend" data-trim_indent="frontend" data-label_position="outer" data-labels_left="" data-labels_right="" data-labels_copy=""><span class="code-caption-label"></span><a class="code-caption-copy"></a></p><p></p>
+<pre><code>   if (bgColor == nil || CGColorEqualToColor(bgColor.CGColor, [UIColor clearColor].CGColor)) {
+    UIView *superview = self.superview;
+    while (superview.backgroundColor == nil || CGColorEqualToColor(superview.backgroundColor.CGColor, [UIColor clearColor].CGColor)) {
+      if (!superview) {
+        break;
+      }
+
+      superview = [superview superview];
+    }
+
+    bgColor = superview.backgroundColor;
+  }
+</code></pre><ul>
 <li>好吧，下面这段代码又要提到面试宝典中啥经典话题了，<code>如何在category中给现有的类添加属性呢？</code><br><a href="http://nshipster.com/associated-objects/" target="_blank" rel="external">http://nshipster.com/associated-objects/</a>Matt 大神曾经写过，你可以看一下。</li>
 </ul>
-<p></p><p class="code-caption" data-lang="" data-line_number="frontend" data-trim_indent="frontend" data-label_position="outer" data-labels_left="" data-labels_right="" data-labels_copy=""><span class="code-caption-label"></span><a class="code-caption-copy"></a></p><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">__block UIImage *clipedImage = nil;</div><div class="line">	//1.</div><div class="line">  dispatch_async(dispatch_get_global_queue(0, 0), ^&#123;</div><div class="line">  //2.</div><div class="line">    willBeClipedImage.hyb_pathColor = self.hyb_pathColor;</div><div class="line">    willBeClipedImage.hyb_pathWidth = self.hyb_pathWidth;</div><div class="line">    willBeClipedImage.hyb_borderColor = self.hyb_borderColor;</div><div class="line">    willBeClipedImage.hyb_borderWidth = self.hyb_borderWidth;</div><div class="line">  &#125;);</div></pre></td></tr></table></figure><p></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">这里涉及到的pathColor,pathWidth,borderColor,borderWidth,都是通过在runtime的特性，在已有的类中添加属性的方式来存储和使用的。</div><div class="line">- (UIColor *)hyb_pathColor &#123;</div><div class="line">  UIColor *color = objc_getAssociatedObject(self, s_hyb_image_pathColorKey);</div><div class="line"></div><div class="line">  if (color) &#123;</div><div class="line">    return color;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  return [UIColor whiteColor];</div><div class="line">&#125;</div><div class="line"></div><div class="line">//...下面都是换汤不换药的。</div><div class="line"></div><div class="line">&lt;p class=&quot;code-caption&quot; data-lang=&quot;&quot; data-line_number=&quot;frontend&quot; data-trim_indent=&quot;frontend&quot; data-label_position=&quot;outer&quot; data-labels_left=&quot;&quot; data-labels_right=&quot;&quot; data-labels_copy=&quot;&quot;&gt;&lt;span class=&quot;code-caption-label&quot;&gt;&lt;/span&gt;&lt;a class=&quot;code-caption-copy&quot;&gt;&lt;/a&gt;&lt;/p&gt;</div><div class="line">```  </div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">`下面涉及到真正的画图部分了`</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">1. 这里另起一个线程来绘制圆角。这里我有个问题：`每个图片都创建一个线程，这个是不是有点问题。而且这个dispatch_get_global_queue也有问题，Global Dispatch Queue创建的队列,其线程数目是不定的,是根据XNU内核决定的。我觉得这一点，源码中没有解释。`</div><div class="line"></div><div class="line"></div><div class="line">* 绘制圆角的核心函数是这个。</div></pre></td></tr></table></figure>
-<p>//1.</p>
+<p></p><p class="code-caption" data-lang="" data-line_number="frontend" data-trim_indent="frontend" data-label_position="outer" data-labels_left="" data-labels_right="" data-labels_copy=""><span class="code-caption-label"></span><a class="code-caption-copy"></a></p><p></p>
+<pre><code>__block UIImage *clipedImage = nil;
+    //1.
+  dispatch_async(dispatch_get_global_queue(0, 0), ^{
+  //2.
+    willBeClipedImage.hyb_pathColor = self.hyb_pathColor;
+    willBeClipedImage.hyb_pathWidth = self.hyb_pathWidth;
+    willBeClipedImage.hyb_borderColor = self.hyb_borderColor;
+    willBeClipedImage.hyb_borderWidth = self.hyb_borderWidth;
+  });
+</code></pre><pre><code>这里涉及到的pathColor,pathWidth,borderColor,borderWidth,都是通过在runtime的特性，在已有的类中添加属性的方式来存储和使用的。
+- (UIColor *)hyb_pathColor {
+  UIColor *color = objc_getAssociatedObject(self, s_hyb_image_pathColorKey);
+
+  if (color) {
+    return color;
+  }
+
+  return [UIColor whiteColor];
+}
+
+//...下面都是换汤不换药的。
+
+&lt;p class=&quot;code-caption&quot; data-lang=&quot;&quot; data-line_number=&quot;frontend&quot; data-trim_indent=&quot;frontend&quot; data-label_position=&quot;outer&quot; data-labels_left=&quot;&quot; data-labels_right=&quot;&quot; data-labels_copy=&quot;&quot;&gt;&lt;span class=&quot;code-caption-label&quot;&gt;&lt;/span&gt;&lt;a class=&quot;code-caption-copy&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+</code></pre><p><code>下面涉及到真正的画图部分了</code></p>
+<ol>
+<li>这里另起一个线程来绘制圆角。这里我有个问题：<code>每个图片都创建一个线程，这个是不是有点问题。而且这个dispatch_get_global_queue也有问题，Global Dispatch Queue创建的队列,其线程数目是不定的,是根据XNU内核决定的。我觉得这一点，源码中没有解释。</code></li>
+</ol>
+<ul>
+<li>绘制圆角的核心函数是这个。<br>```<br>//1.</li>
+</ul>
 <ul>
 <li><p>(UIImage *)hyb_private_clipImageToSize:(CGSize)targetSize</p>
-<pre><code>   cornerRadius:(CGFloat)cornerRadius
-        corners:(UIRectCorner)corners
-backgroundColor:(UIColor *)backgroundColor
-   isEqualScale:(BOOL)isEqualScale
-       isCircle:(BOOL)isCircle {}
+<pre><code>                      cornerRadius:(CGFloat)cornerRadius
+                           corners:(UIRectCorner)corners
+                   backgroundColor:(UIColor *)backgroundColor
+                      isEqualScale:(BOOL)isEqualScale
+                          isCircle:(BOOL)isCircle {}
 
-       CGContextRef ctx = UIGraphicsGetCurrentContext();
+                          CGContextRef ctx = UIGraphicsGetCurrentContext();
 </code></pre></li>
 </ul>
 <pre><code>//2.

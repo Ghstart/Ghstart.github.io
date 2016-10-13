@@ -8,7 +8,19 @@
 </code></pre><ol>
 <li>然后你就可以看到你想要的代码请求了，其实这个Android和iOS,还有点不同，Android返回的代码不是text/json,而是text/html,我在我代码中加入了代码格式的转换。</li>
 </ol>
-<p></p><p class="code-caption" data-lang="object-c" data-line_number="frontend" data-trim_indent="frontend" data-label_position="outer" data-labels_left="" data-labels_right="" data-labels_copy=""><span class="code-caption-label"></span><a class="code-caption-copy"></a></p><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">__block NSDictionary *par = @&#123;@&quot;employeeNo&quot;:pp.employeeNo,@&quot;coord&quot;:@&quot;30.249812,120.211494&quot;,@&quot;img_ids&quot;:@&quot;&quot;,@&quot;identifier&quot;: pp.identifier,@&quot;type&quot;: @&quot;0&quot;&#125;&#125;;</div><div class="line"></div><div class="line">   AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];</div><div class="line">          [manager POST:@&quot;http://xxxx/HSSCM/appmail/employeeRecordManage/sign.do&quot; parameters:par success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) &#123;</div><div class="line">              NSLog(@&quot;%@&quot;,operation);</div><div class="line">              NSLog(@&quot;%@&quot;,responseObject);</div><div class="line">          &#125; failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) &#123;</div><div class="line">              NSLog(@&quot;%@&quot;,operation);</div><div class="line">              NSLog(@&quot;%@&quot;,error);</div><div class="line">          &#125;];</div></pre></td></tr></table></figure><p></p>
+<p></p><p class="code-caption" data-lang="object-c" data-line_number="frontend" data-trim_indent="frontend" data-label_position="outer" data-labels_left="" data-labels_right="" data-labels_copy=""><span class="code-caption-label"></span><a class="code-caption-copy"></a></p><p></p>
+<pre><code class="object-c">
+     __block NSDictionary *par = @{@&quot;employeeNo&quot;:pp.employeeNo,@&quot;coord&quot;:@&quot;30.249812,120.211494&quot;,@&quot;img_ids&quot;:@&quot;&quot;,@&quot;identifier&quot;: pp.identifier,@&quot;type&quot;: @&quot;0&quot;}};
+
+     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+            [manager POST:@&quot;http://xxxx/HSSCM/appmail/employeeRecordManage/sign.do&quot; parameters:par success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+                NSLog(@&quot;%@&quot;,operation);
+                NSLog(@&quot;%@&quot;,responseObject);
+            } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
+                NSLog(@&quot;%@&quot;,operation);
+                NSLog(@&quot;%@&quot;,error);
+            }];
+</code></pre>
 <ol>
 <li>你或许已经发现了参数的规律了，这里的employeeNO就是我们之前抓包的用户唯一标示符（安卓这边还耍了个心眼，取了一个很怪的名字，视图误导我们）</li>
 <li>coord就是经纬度，用逗号链接起来的一个字符串</li>
@@ -24,35 +36,121 @@
 <li>公司的电脑、或者测试机，安装一个teamViewer，这样你就可以在家里远程操控他。</li>
 <li>公司的测试机充当服务器的功能、一直在跑，这样我需要关心的只有一件事：手机有电。</li>
 </ol>
-<p></p><p class="code-caption" data-lang="" data-line_number="frontend" data-trim_indent="frontend" data-label_position="outer" data-labels_left="" data-labels_right="" data-labels_copy=""><span class="code-caption-label"></span><a class="code-caption-copy"></a></p><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">	- (NSArray *)setUPDatas:(TypeStatus)typeStatus &#123;</div><div class="line">     NSMutableArray *datas = [NSMutableArray new];</div><div class="line"></div><div class="line">     NSArray *employeeNos = @[@&quot;31330034&quot;, @&quot;31330040&quot;, @&quot;31330035&quot;];</div><div class="line">     NSArray *identifiers = @[@&quot;05B7A575-2D2A-4006-890A-D0994EFF3DAC&quot;, @&quot;a000004f73cb94&quot;, @&quot;1B65EB63-487B-49BF-B751-F2D544175BE7&quot;];</div><div class="line">     for (int i = 0 ; i &lt; employeeNos.count ; i++) &#123;</div><div class="line">         People *people = [[People alloc] init];</div><div class="line">         people.employeeNo = employeeNos[i];</div><div class="line">         people.coord = @&quot;30.249812,120.211494&quot;;</div><div class="line">         people.img_ids = @&quot;&quot;;</div><div class="line">         people.identifier = identifiers[i];</div><div class="line">         if (typeStatus == LogIn) &#123;</div><div class="line">             people.type = @&quot;1&quot;;</div><div class="line">         &#125; else &#123;</div><div class="line">             people.type = @&quot;0&quot;;</div><div class="line">         &#125;</div><div class="line"></div><div class="line">         people.random_signInMin = [self getRandomNumber:5 to:25];</div><div class="line">         people.random_signInSec = [self getRandomNumber:1 to:59];</div><div class="line">         people.random_signOutMin = [self getRandomNumber:5 to:25];</div><div class="line">         people.random_signOutSec = [self getRandomNumber:1 to:59];</div><div class="line"></div><div class="line">         [datas addObject:people];</div><div class="line">     &#125;</div><div class="line"></div><div class="line">     return [datas copy];</div><div class="line"> 	&#125;</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"> 	- (int)getRandomNumber:(int)from to:(int)to &#123;</div><div class="line">     return (int)(from + (arc4random() % (to - from + 1)));</div><div class="line"> 	&#125;</div><div class="line"></div><div class="line">#### 我在这里实例化了用户的对象，在这个对象生成的同事，就已经确定这个对象签到的时间，和签出的时间（在某个数范围内随机生成）。</div><div class="line"></div><div class="line"></div><div class="line">if (hour == signOutHour) &#123; // 签出--0</div><div class="line"></div><div class="line">             if (self.needSignOut.count == 0) return;</div><div class="line"></div><div class="line">             for (int i = 0 ; i &lt; self.needSignOut.count; i++) &#123;</div><div class="line">                 People *pp = self.needSignOut[i];</div><div class="line"></div><div class="line">                 if (pp.random_signOutMin &lt; min || (pp.random_signOutMin == min &amp;&amp; pp.random_signOutSec &lt;= sec)) &#123;</div><div class="line">                     par = @&#123;</div><div class="line">                             @&quot;employeeNo&quot;:pp.employeeNo,</div><div class="line">                             @&quot;coord&quot;: @&quot;30.249812,120.211494&quot;,</div><div class="line">                             @&quot;img_ids&quot;:@&quot;&quot;,</div><div class="line">                             @&quot;identifier&quot;: pp.identifier,</div><div class="line">                             @&quot;type&quot;: pp.type&#125;;</div><div class="line"></div><div class="line">                     [self SignOrSignOut:par week:week time:[NSString stringWithFormat:@&quot;%ld:%ld:%ld&quot;,(long)hour,(long)min,(long)sec]];</div><div class="line">                 &#125;</div><div class="line">             &#125;</div><div class="line">            &#125;</div></pre></td></tr></table></figure><p></p>
-<hr>
-<p></p><p class="code-caption" data-lang="" data-line_number="frontend" data-trim_indent="frontend" data-label_position="outer" data-labels_left="" data-labels_right="" data-labels_copy=""><span class="code-caption-label"></span><a class="code-caption-copy"></a></p><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">- (void)needToRemove:(TypeStatus)status identifior:(NSString *)identifior realtime:(NSString *)realtime&#123;</div><div class="line"> if (status == LogIn) &#123;</div><div class="line">     for (int i = 0 ; i &lt; self.needSignIn.count; i++) &#123;</div><div class="line">         NSMutableDictionary *tempDic = [NSMutableDictionary new];</div><div class="line">         People *pp = self.needSignIn[i];</div><div class="line">         if ([pp.identifier isEqualToString:identifior] &amp;&amp; ![identifior isEqualToString:@&quot;&quot;]) &#123;</div><div class="line">             NSLog(@&quot;移除people:%@---loginMin:%ld----loginSec:%ld&quot;,pp.identifier,(long)pp.random_signInMin, (long)pp.random_signInSec);</div><div class="line"></div><div class="line">             [self.needSignIn removeObject:pp];</div><div class="line"></div><div class="line"></div><div class="line">             if (pp.identifier != nil) [tempDic setObject:pp.identifier forKey:@&quot;iden&quot;];</div><div class="line">             [tempDic setObject:[NSString stringWithFormat:@&quot;签到时间:%ld:%ld:%ld&quot;, signInHour, pp.random_signInMin, pp.random_signInSec] forKey:@&quot;time&quot;];</div><div class="line">             if (realtime != nil) [tempDic setObject:realtime forKey:@&quot;realtime&quot;];</div><div class="line"></div><div class="line">             if (tempDic != nil) [self.tableViewDatas addObject:tempDic];</div><div class="line"></div><div class="line">         &#125;</div><div class="line">     &#125;</div></pre></td></tr></table></figure><p></p>
-<ol>
+<p></p><p class="code-caption" data-lang="" data-line_number="frontend" data-trim_indent="frontend" data-label_position="outer" data-labels_left="" data-labels_right="" data-labels_copy=""><span class="code-caption-label"></span><a class="code-caption-copy"></a></p><p></p>
+<pre><code>
+    - (NSArray *)setUPDatas:(TypeStatus)typeStatus {
+     NSMutableArray *datas = [NSMutableArray new];
+
+     NSArray *employeeNos = @[@&quot;31330034&quot;, @&quot;31330040&quot;, @&quot;31330035&quot;];
+     NSArray *identifiers = @[@&quot;05B7A575-2D2A-4006-890A-D0994EFF3DAC&quot;, @&quot;a000004f73cb94&quot;, @&quot;1B65EB63-487B-49BF-B751-F2D544175BE7&quot;];
+     for (int i = 0 ; i &lt; employeeNos.count ; i++) {
+         People *people = [[People alloc] init];
+         people.employeeNo = employeeNos[i];
+         people.coord = @&quot;30.249812,120.211494&quot;;
+         people.img_ids = @&quot;&quot;;
+         people.identifier = identifiers[i];
+         if (typeStatus == LogIn) {
+             people.type = @&quot;1&quot;;
+         } else {
+             people.type = @&quot;0&quot;;
+         }
+
+         people.random_signInMin = [self getRandomNumber:5 to:25];
+         people.random_signInSec = [self getRandomNumber:1 to:59];
+         people.random_signOutMin = [self getRandomNumber:5 to:25];
+         people.random_signOutSec = [self getRandomNumber:1 to:59];
+
+         [datas addObject:people];
+     }
+
+     return [datas copy];
+     }
+
+
+
+     - (int)getRandomNumber:(int)from to:(int)to {
+     return (int)(from + (arc4random() % (to - from + 1)));
+     }
+
+#### 我在这里实例化了用户的对象，在这个对象生成的同事，就已经确定这个对象签到的时间，和签出的时间（在某个数范围内随机生成）。
+
+
+if (hour == signOutHour) { // 签出--0
+
+             if (self.needSignOut.count == 0) return;
+
+             for (int i = 0 ; i &lt; self.needSignOut.count; i++) {
+                 People *pp = self.needSignOut[i];
+
+                 if (pp.random_signOutMin &lt; min || (pp.random_signOutMin == min &amp;&amp; pp.random_signOutSec &lt;= sec)) {
+                     par = @{
+                             @&quot;employeeNo&quot;:pp.employeeNo,
+                             @&quot;coord&quot;: @&quot;30.249812,120.211494&quot;,
+                             @&quot;img_ids&quot;:@&quot;&quot;,
+                             @&quot;identifier&quot;: pp.identifier,
+                             @&quot;type&quot;: pp.type};
+
+                     [self SignOrSignOut:par week:week time:[NSString stringWithFormat:@&quot;%ld:%ld:%ld&quot;,(long)hour,(long)min,(long)sec]];
+                 }
+             }
+            }
+</code></pre><hr>
+<p></p><p class="code-caption" data-lang="" data-line_number="frontend" data-trim_indent="frontend" data-label_position="outer" data-labels_left="" data-labels_right="" data-labels_copy=""><span class="code-caption-label"></span><a class="code-caption-copy"></a></p><p></p>
+<pre><code>- (void)needToRemove:(TypeStatus)status identifior:(NSString *)identifior realtime:(NSString *)realtime{
+ if (status == LogIn) {
+     for (int i = 0 ; i &lt; self.needSignIn.count; i++) {
+         NSMutableDictionary *tempDic = [NSMutableDictionary new];
+         People *pp = self.needSignIn[i];
+         if ([pp.identifier isEqualToString:identifior] &amp;&amp; ![identifior isEqualToString:@&quot;&quot;]) {
+             NSLog(@&quot;移除people:%@---loginMin:%ld----loginSec:%ld&quot;,pp.identifier,(long)pp.random_signInMin, (long)pp.random_signInSec);
+
+             [self.needSignIn removeObject:pp];
+
+
+             if (pp.identifier != nil) [tempDic setObject:pp.identifier forKey:@&quot;iden&quot;];
+             [tempDic setObject:[NSString stringWithFormat:@&quot;签到时间:%ld:%ld:%ld&quot;, signInHour, pp.random_signInMin, pp.random_signInSec] forKey:@&quot;time&quot;];
+             if (realtime != nil) [tempDic setObject:realtime forKey:@&quot;realtime&quot;];
+
+             if (tempDic != nil) [self.tableViewDatas addObject:tempDic];
+
+         }
+     }
+</code></pre><ol>
 <li>这里你会发现我在遍历的同事，又对mutableArray对象进行的操作，开始一直crash，会报这个错：<strong>collection __nsarraym was mutated while being enumerated</strong></li>
 <li>意思就是说，你在遍历这个对象的同事，又对这个对象进行了添加、删除的操作。这里给你三种解决的思路。</li>
 </ol>
 <blockquote>
 <p>1</p>
 </blockquote>
-<p></p><p class="code-caption" data-lang="" data-line_number="frontend" data-trim_indent="frontend" data-label_position="outer" data-labels_left="" data-labels_right="" data-labels_copy=""><span class="code-caption-label"></span><a class="code-caption-copy"></a></p><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">for (int i = 0 ; i &lt; self.needSignIn.count; i++) &#123;&#125;</div></pre></td></tr></table></figure><p></p>
-<p>替换</p>
-<p></p><p class="code-caption" data-lang="" data-line_number="frontend" data-trim_indent="frontend" data-label_position="outer" data-labels_left="" data-labels_right="" data-labels_copy=""><span class="code-caption-label"></span><a class="code-caption-copy"></a></p><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">for (People *pp in self.needSignIn) &#123;&#125;</div></pre></td></tr></table></figure><p></p>
-<blockquote>
+<p></p><p class="code-caption" data-lang="" data-line_number="frontend" data-trim_indent="frontend" data-label_position="outer" data-labels_left="" data-labels_right="" data-labels_copy=""><span class="code-caption-label"></span><a class="code-caption-copy"></a></p><p></p>
+<pre><code>for (int i = 0 ; i &lt; self.needSignIn.count; i++) {}
+</code></pre><p>替换</p>
+<p></p><p class="code-caption" data-lang="" data-line_number="frontend" data-trim_indent="frontend" data-label_position="outer" data-labels_left="" data-labels_right="" data-labels_copy=""><span class="code-caption-label"></span><a class="code-caption-copy"></a></p><p></p>
+<pre><code>for (People *pp in self.needSignIn) {}
+</code></pre><blockquote>
 <p>2</p>
 </blockquote>
-<p></p><p class="code-caption" data-lang="" data-line_number="frontend" data-trim_indent="frontend" data-label_position="outer" data-labels_left="" data-labels_right="" data-labels_copy=""><span class="code-caption-label"></span><a class="code-caption-copy"></a></p><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">NSSortDescriptor *sd1 = [NSSortDescriptor sortDescriptorWithKey:nil ascending:NO];//yes升序排列，no,降序排列</div><div class="line">NSArray *myary = [ary sortedArrayUsingDescriptors:[NSArray arrayWithObjects:sd1, nil]];//注意这里的ary进行排序后会生产一个新的数组指针，myary，不能在用ary,ary还是保持不变的。</div><div class="line">for (People *pp in myary) &#123;&#125;</div></pre></td></tr></table></figure><p></p>
-<blockquote>
+<p></p><p class="code-caption" data-lang="" data-line_number="frontend" data-trim_indent="frontend" data-label_position="outer" data-labels_left="" data-labels_right="" data-labels_copy=""><span class="code-caption-label"></span><a class="code-caption-copy"></a></p><p></p>
+<pre><code>NSSortDescriptor *sd1 = [NSSortDescriptor sortDescriptorWithKey:nil ascending:NO];//yes升序排列，no,降序排列
+NSArray *myary = [ary sortedArrayUsingDescriptors:[NSArray arrayWithObjects:sd1, nil]];//注意这里的ary进行排序后会生产一个新的数组指针，myary，不能在用ary,ary还是保持不变的。
+for (People *pp in myary) {}
+</code></pre><blockquote>
 <p>3</p>
 </blockquote>
-<p></p><p class="code-caption" data-lang="" data-line_number="frontend" data-trim_indent="frontend" data-label_position="outer" data-labels_left="" data-labels_right="" data-labels_copy=""><span class="code-caption-label"></span><a class="code-caption-copy"></a></p><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">生成一个零时的数组，用来遍历，之前的数据用来操作。</div></pre></td></tr></table></figure><p></p>
-<p><strong>其实这里有个问题，想了好久才想明白：为什么正序排列不行，倒序就可以呢？？,为什么for不行，但是forin的可以呢？</strong></p>
+<p></p><p class="code-caption" data-lang="" data-line_number="frontend" data-trim_indent="frontend" data-label_position="outer" data-labels_left="" data-labels_right="" data-labels_copy=""><span class="code-caption-label"></span><a class="code-caption-copy"></a></p><p></p>
+<pre><code>生成一个零时的数组，用来遍历，之前的数据用来操作。
+</code></pre><p><strong>其实这里有个问题，想了好久才想明白：为什么正序排列不行，倒序就可以呢？？,为什么for不行，但是forin的可以呢？</strong></p>
 <p>####其实for的语句可以等同于：假如说我有10个元素，在第一个的时候，我就remove了，那是不是到了第九个的时候就越界了呢？？</p>
-<p></p><p class="code-caption" data-lang="" data-line_number="frontend" data-trim_indent="frontend" data-label_position="outer" data-labels_left="" data-labels_right="" data-labels_copy=""><span class="code-caption-label"></span><a class="code-caption-copy"></a></p><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">int count =  arr.count; for (i=0;i&lt;count;i++) &#123;&#125;</div></pre></td></tr></table></figure><p></p>
-<p><strong>倒序同样的道理：</strong></p>
-<p></p><p class="code-caption" data-lang="" data-line_number="frontend" data-trim_indent="frontend" data-label_position="outer" data-labels_left="" data-labels_right="" data-labels_copy=""><span class="code-caption-label"></span><a class="code-caption-copy"></a></p><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">int count =  arr.count;</div><div class="line">for (i = count - 1;i&gt;=0 ;i—) &#123;&#125;</div></pre></td></tr></table></figure><p></p>
-<h4 id="当我移除当前这个的时候，其实比不影响我其他的元素布局。"><a href="#当我移除当前这个的时候，其实比不影响我其他的元素布局。" class="headerlink" title="当我移除当前这个的时候，其实比不影响我其他的元素布局。"></a>当我移除当前这个的时候，其实比不影响我其他的元素布局。</h4><p><strong>但是这两种情况，假如你使用for的语句格式，就不会有问题了</strong></p>
-<p></p><p class="code-caption" data-lang="" data-line_number="frontend" data-trim_indent="frontend" data-label_position="outer" data-labels_left="" data-labels_right="" data-labels_copy=""><span class="code-caption-label"></span><a class="code-caption-copy"></a></p><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">for (int i = 0 ; i &lt; self.needSignIn.count; i++) &#123;&#125;</div></pre></td></tr></table></figure><p></p>
-<p>###总结一句话：</p>
+<p></p><p class="code-caption" data-lang="" data-line_number="frontend" data-trim_indent="frontend" data-label_position="outer" data-labels_left="" data-labels_right="" data-labels_copy=""><span class="code-caption-label"></span><a class="code-caption-copy"></a></p><p></p>
+<pre><code>int count =  arr.count; for (i=0;i&lt;count;i++) {}
+</code></pre><p><strong>倒序同样的道理：</strong></p>
+<p></p><p class="code-caption" data-lang="" data-line_number="frontend" data-trim_indent="frontend" data-label_position="outer" data-labels_left="" data-labels_right="" data-labels_copy=""><span class="code-caption-label"></span><a class="code-caption-copy"></a></p><p></p>
+<pre><code>int count =  arr.count;
+for (i = count - 1;i&gt;=0 ;i—) {}
+</code></pre><h4 id="当我移除当前这个的时候，其实比不影响我其他的元素布局。"><a href="#当我移除当前这个的时候，其实比不影响我其他的元素布局。" class="headerlink" title="当我移除当前这个的时候，其实比不影响我其他的元素布局。"></a>当我移除当前这个的时候，其实比不影响我其他的元素布局。</h4><p><strong>但是这两种情况，假如你使用for的语句格式，就不会有问题了</strong></p>
+<p></p><p class="code-caption" data-lang="" data-line_number="frontend" data-trim_indent="frontend" data-label_position="outer" data-labels_left="" data-labels_right="" data-labels_copy=""><span class="code-caption-label"></span><a class="code-caption-copy"></a></p><p></p>
+<pre><code>for (int i = 0 ; i &lt; self.needSignIn.count; i++) {}
+</code></pre><p>###总结一句话：</p>
 <ol>
 <li>当我们正序遍历时,如果删除了一个,那么没有遍历到的元素位置都会往前移动一位,这样系统就无法确定接下来遍历是从删除位置开始呢,还是从删除位置下一位开始呢</li>
 <li>对于逆序遍历就不会,因为我们逆序遍历时,遇到匹配的元素删除后,位置改变的是遍历过得元素,而没有遍历到的元素位置却没有改变,所以遍历能够正常进行.</li>

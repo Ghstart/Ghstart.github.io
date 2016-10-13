@@ -1,8 +1,18 @@
 <!DOCTYPE html><html><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> 学习React Native中 · Hexo</title><meta name="description" content="学习React Native中 - John Doe"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="short icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="http://yoursite.com/atom.xml" title="Hexo"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/favicon.png"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="http://weibo.com/sunchongsheng" target="_blank" class="nav-list-link">WEIBO</a></li><li class="nav-list-item"><a href="https://github.com/pinggod" target="_blank" class="nav-list-link">GITHUB</a></li><li class="nav-list-item"><a href="/atom.xml" target="_self" class="nav-list-link">RSS</a></li></ul></header><section class="container"><div class="post"><article class="post-block"><h1 class="post-title">学习React Native中</h1><div class="post-info">Aug 24, 2016</div><div class="post-content"><h2 id="其实从去年我就一直看学习并看React-Native-开始学习只是为了兴趣，现在项目中用到了有些更新的功能，我就是用React-native-来做的。其实还是蛮好的，但是我发现更新实在是太快了，现在官网的稳定版本是0-31版本"><a href="#其实从去年我就一直看学习并看React-Native-开始学习只是为了兴趣，现在项目中用到了有些更新的功能，我就是用React-native-来做的。其实还是蛮好的，但是我发现更新实在是太快了，现在官网的稳定版本是0-31版本" class="headerlink" title="其实从去年我就一直看学习并看React Native,开始学习只是为了兴趣，现在项目中用到了有些更新的功能，我就是用React native 来做的。其实还是蛮好的，但是我发现更新实在是太快了，现在官网的稳定版本是0.31版本"></a>其实从去年我就一直看学习并看React Native,开始学习只是为了兴趣，现在项目中用到了有些更新的功能，我就是用React native 来做的。其实还是蛮好的，但是我发现更新实在是太快了，现在官网的稳定版本是<a href="https://facebook.github.io/react-native/" target="_blank" rel="external">0.31版本</a></h2><h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><blockquote>
 <p>打开terminal, cd到某个路径下，执行命令 <code>react-native init helloworld</code>[^这里的helloword就是你创建的项目名字]<br>如果出现这样的代码就代码创建成功。</p>
 </blockquote>
-<p></p><p class="code-caption" data-lang="" data-line_number="frontend" data-trim_indent="frontend" data-label_position="outer" data-labels_left="" data-labels_right="" data-labels_copy=""><span class="code-caption-label"></span><a class="code-caption-copy"></a></p><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">To run your app on iOS:</div><div class="line">   cd /Users/gonghuan/Desktop/helloworld</div><div class="line">   react-native run-ios</div><div class="line">   - or -</div><div class="line">   Open /Users/gonghuan/Desktop/helloworld/ios/helloworld.xcodeproj in Xcode</div><div class="line">   Hit the Run button</div><div class="line">To run your app on Android:</div><div class="line">   Have an Android emulator running (quickest way to get started), or a device connected</div><div class="line">   cd /Users/gonghuan/Desktop/helloworld</div><div class="line">   react-native run-android</div></pre></td></tr></table></figure><p></p>
-<blockquote>
+<p></p><p class="code-caption" data-lang="" data-line_number="frontend" data-trim_indent="frontend" data-label_position="outer" data-labels_left="" data-labels_right="" data-labels_copy=""><span class="code-caption-label"></span><a class="code-caption-copy"></a></p><p></p>
+<pre><code>To run your app on iOS:
+   cd /Users/gonghuan/Desktop/helloworld
+   react-native run-ios
+   - or -
+   Open /Users/gonghuan/Desktop/helloworld/ios/helloworld.xcodeproj in Xcode
+   Hit the Run button
+To run your app on Android:
+   Have an Android emulator running (quickest way to get started), or a device connected
+   cd /Users/gonghuan/Desktop/helloworld
+   react-native run-android
+</code></pre><blockquote>
 <p>此时你可以通过类似<code>react-native run-ios</code>可以直接调起iOS模拟器，此时你可以看到你的终端不断在解析，然后就可以成功运行了。</p>
 <h2 id="说到这里，应该你已经可以运行你的app了，至于之前要安装-brew-node等等，我这里就不再多说了，你可以去官网上走一遍，很简单。"><a href="#说到这里，应该你已经可以运行你的app了，至于之前要安装-brew-node等等，我这里就不再多说了，你可以去官网上走一遍，很简单。" class="headerlink" title="说到这里，应该你已经可以运行你的app了，至于之前要安装 brew node等等，我这里就不再多说了，你可以去官网上走一遍，很简单。"></a>说到这里，应该你已经可以运行你的app了，至于之前要安装 brew node等等，我这里就不再多说了，你可以去官网上走一遍，很简单。</h2></blockquote>
 <h3 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h3><blockquote>
@@ -13,21 +23,61 @@
 <li>官方建议第二种方式：直接在atom-&gt;Setting Views-&gt;Manage Packages,搜索Nuclide，直接安装。</li>
 <li>第三种：通过这种方式你可以安装Themes、packages</li>
 </ol>
-<p></p><p class="code-caption" data-lang="" data-line_number="frontend" data-trim_indent="frontend" data-label_position="outer" data-labels_left="" data-labels_right="" data-labels_copy=""><span class="code-caption-label"></span><a class="code-caption-copy"></a></p><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"> cd ~/.atom/packages</div><div class="line">git clone [packgae-url] # git clone https://github.com/facebook/nuclide</div><div class="line">cd [package] #nuclide</div><div class="line">npm install</div></pre></td></tr></table></figure><p></p>
-<hr>
+<p></p><p class="code-caption" data-lang="" data-line_number="frontend" data-trim_indent="frontend" data-label_position="outer" data-labels_left="" data-labels_right="" data-labels_copy=""><span class="code-caption-label"></span><a class="code-caption-copy"></a></p><p></p>
+<pre><code> cd ~/.atom/packages
+git clone [packgae-url] # git clone https://github.com/facebook/nuclide
+cd [package] #nuclide
+npm install
+</code></pre><hr>
 <p>###好了，到目前为止，你已经可以，我们已经可以开始运行，并且可以安装自己喜欢的插件，已经修改自己喜欢的主题了。下面我们开始coding,我们先通过atom打开我们之前创建的helloworld的项目，并且找到<code>index.ios.js</code>,删除里面所有的代码，不要着急，我们会慢慢的添加进去所有的代码。</p>
-<p></p><p class="code-caption" data-lang="" data-line_number="frontend" data-trim_indent="frontend" data-label_position="outer" data-labels_left="" data-labels_right="" data-labels_copy=""><span class="code-caption-label"></span><a class="code-caption-copy"></a></p><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">class firstRN extends Component &#123;</div><div class="line">  render() &#123;</div><div class="line">    return(</div><div class="line">      &lt;Text&gt;</div><div class="line">        Hello world</div><div class="line">      &lt;/Text&gt;</div><div class="line">    );</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">AppRegistry.registerComponent(&apos;helloworld&apos;, ()=&gt;firstRN);</div></pre></td></tr></table></figure><p></p>
-<ol>
+<p></p><p class="code-caption" data-lang="" data-line_number="frontend" data-trim_indent="frontend" data-label_position="outer" data-labels_left="" data-labels_right="" data-labels_copy=""><span class="code-caption-label"></span><a class="code-caption-copy"></a></p><p></p>
+<pre><code>class firstRN extends Component {
+  render() {
+    return(
+      &lt;Text&gt;
+        Hello world
+      &lt;/Text&gt;
+    );
+  }
+}
+
+AppRegistry.registerComponent(&#39;helloworld&#39;, ()=&gt;firstRN);
+</code></pre><ol>
 <li>这里我们先创建一个firstRN的类，继承自Component对象，这里你先不要管，我们后面都会解释的。</li>
 <li>第二步，我们用AppRegistry这个注册一个对象，这个对象的名字是我们应用的名字‘helloworld’，第二个参数指向的是我们刚才创建的firstRN类。</li>
 <li>我们点击模拟器，发现报错，<code>Unhandled JS Exception:xxxx: Can&#39;t find variable: Component</code>,在文件头部添加</li>
 </ol>
-<p></p><p class="code-caption" data-lang="" data-line_number="frontend" data-trim_indent="frontend" data-label_position="outer" data-labels_left="" data-labels_right="" data-labels_copy=""><span class="code-caption-label"></span><a class="code-caption-copy"></a></p><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">import React, &#123; Component &#125; from &apos;react&apos;;</div><div class="line">import &#123; AppRegistry, Text &#125; from &apos;react-native&apos;;</div></pre></td></tr></table></figure><p></p>
-<blockquote>
+<p></p><p class="code-caption" data-lang="" data-line_number="frontend" data-trim_indent="frontend" data-label_position="outer" data-labels_left="" data-labels_right="" data-labels_copy=""><span class="code-caption-label"></span><a class="code-caption-copy"></a></p><p></p>
+<pre><code>import React, { Component } from &#39;react&#39;;
+import { AppRegistry, Text } from &#39;react-native&#39;;
+</code></pre><blockquote>
 <p>The AppRegistry just tells React Native which component is the root one for the whole application. You won’t be thinking about AppRegistry a lot - there will probably just be one call to AppRegistry.registerComponent in your whole app. It’s included in these examples so you can paste the whole thing into your index.ios.js or index.android.js file and get it running.—-这里是官方给的AppRegistry，其实AppRegistry只做了一件事情，就是告诉这个应用，谁是整个应用的根控制器，这样你可以通过修改index.ios.js来修改iOS的根控制器是啥？安卓也是一样，修改的index.android.js<br>再次刷新模拟器，就会发现左上角会出现我们写的Hello world的文字。<br>这里我们觉得样式好丑，那该怎么办，没事，RN也是可以做到修改的。</p>
 </blockquote>
-<p></p><p class="code-caption" data-lang="" data-line_number="frontend" data-trim_indent="frontend" data-label_position="outer" data-labels_left="" data-labels_right="" data-labels_copy=""><span class="code-caption-label"></span><a class="code-caption-copy"></a></p><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">import React, &#123; Component &#125; from &apos;react&apos;;</div><div class="line">import &#123; AppRegistry, Text , StyleSheet &#125; from &apos;react-native&apos;;</div><div class="line"></div><div class="line">class firstRN extends Component &#123;</div><div class="line">  render() &#123;</div><div class="line">    return(</div><div class="line">      &lt;Text style = &#123;styles.helloWorldStyle&#125;&gt;</div><div class="line">        Hello world</div><div class="line">      &lt;/Text&gt;</div><div class="line">    );</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">const styles = StyleSheet.create(&#123;</div><div class="line">  helloWorldStyle: &#123;</div><div class="line">    color:&apos;red&apos;,</div><div class="line">    fontSize:30,</div><div class="line">    fontWeight:&apos;bold&apos;</div><div class="line">  &#125;</div><div class="line">&#125;)</div><div class="line"></div><div class="line"></div><div class="line">AppRegistry.registerComponent(&apos;helloworld&apos;, ()=&gt;firstRN);</div></pre></td></tr></table></figure><p></p>
-<blockquote>
+<p></p><p class="code-caption" data-lang="" data-line_number="frontend" data-trim_indent="frontend" data-label_position="outer" data-labels_left="" data-labels_right="" data-labels_copy=""><span class="code-caption-label"></span><a class="code-caption-copy"></a></p><p></p>
+<pre><code>import React, { Component } from &#39;react&#39;;
+import { AppRegistry, Text , StyleSheet } from &#39;react-native&#39;;
+
+class firstRN extends Component {
+  render() {
+    return(
+      &lt;Text style = {styles.helloWorldStyle}&gt;
+        Hello world
+      &lt;/Text&gt;
+    );
+  }
+}
+
+const styles = StyleSheet.create({
+  helloWorldStyle: {
+    color:&#39;red&#39;,
+    fontSize:30,
+    fontWeight:&#39;bold&#39;
+  }
+})
+
+
+AppRegistry.registerComponent(&#39;helloworld&#39;, ()=&gt;firstRN);
+</code></pre><blockquote>
 <p>这里我们需要在import中导读 StyleSheet,因为我们需要在后面的设置样式的时候，用到这个类。<br>直接在text后面添加style的样式熟悉<br>直接在后面创建styles的属性，通过StyleSheet来创建。<br>再次刷新模拟器，你就可以看到效果了。</p>
 </blockquote>
 <hr>
