@@ -175,7 +175,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Home
+            Startseite
           </a>
         </li>
       
@@ -185,7 +185,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archives
+            Archiv
           </a>
         </li>
       
@@ -229,7 +229,7 @@
               
                 
                 <a class="post-title-link" href="/2016/10/17/20161017/" itemprop="url">
-                  学习React Native
+                  React Native实战(-)
                 </a>
               
             
@@ -241,7 +241,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posted on</span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
             <time itemprop="dateCreated" datetime="2016-10-17T14:53:12+08:00" content="2016-10-17">
               2016-10-17
             </time>
@@ -253,7 +253,7 @@
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              <span class="post-meta-item-text">In</span>
+              <span class="post-meta-item-text">in</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
                   <a href="/categories/日志/" itemprop="url" rel="index">
@@ -291,17 +291,28 @@
       
         
           
-            <h2 id="继续搞React-Native，这次准备花两三次博客将一个完整的项目开源出来。自己也在不断的学习，欢迎大家拍砖。"><a href="#继续搞React-Native，这次准备花两三次博客将一个完整的项目开源出来。自己也在不断的学习，欢迎大家拍砖。" class="headerlink" title="继续搞React Native，这次准备花两三次博客将一个完整的项目开源出来。自己也在不断的学习，欢迎大家拍砖。"></a>继续搞React Native，这次准备花两三次博客将一个完整的项目开源出来。自己也在不断的学习，欢迎大家拍砖。</h2><blockquote>
-<p>打开终端，找到指定的目录下，执行 <figure class="highlight plain"><figcaption><span>init LearnRN```,然后会一段漫长的等待，执行完成并且不报错的前提下，你就可以运行下一个命令```react-native run-ios``` `如果还是无法运行起来的话，你可以看我之前的那一片博客，看看是不是缺少什么组件。`</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&gt; 找到`index.ios.js`, 删除掉所有的内容, 并且用下面的代码替换</div></pre></td></tr></table></figure></p>
+            <h2 id="继续搞React-Native，这次准备花两三次博客将一个完整的项目开源出来。自己也在不断的学习，欢迎大家拍砖。"><a href="#继续搞React-Native，这次准备花两三次博客将一个完整的项目开源出来。自己也在不断的学习，欢迎大家拍砖。" class="headerlink" title="继续搞React Native，这次准备花两三次博客将一个完整的项目开源出来。自己也在不断的学习，欢迎大家拍砖。"></a>继续搞React Native，这次准备花两三次博客将一个完整的项目开源出来。自己也在不断的学习，欢迎大家拍砖。</h2><h3 id="打开终端，找到指定的目录下，执行-react-native-init-LearnRN-然后会一段漫长的等待，执行完成并且不报错的前提下，你就可以运行下一个命令react-native-run-ios-如果还是无法运行起来的话，你可以看我之前的那一片博客，看看是不是缺少什么组件。"><a href="#打开终端，找到指定的目录下，执行-react-native-init-LearnRN-然后会一段漫长的等待，执行完成并且不报错的前提下，你就可以运行下一个命令react-native-run-ios-如果还是无法运行起来的话，你可以看我之前的那一片博客，看看是不是缺少什么组件。" class="headerlink" title="打开终端，找到指定的目录下，执行 react-native init LearnRN,然后会一段漫长的等待，执行完成并且不报错的前提下，你就可以运行下一个命令react-native run-ios 如果还是无法运行起来的话，你可以看我之前的那一片博客，看看是不是缺少什么组件。"></a>打开终端，找到指定的目录下，执行 <code>react-native init LearnRN</code>,然后会一段漫长的等待，执行完成并且不报错的前提下，你就可以运行下一个命令<code>react-native run-ios</code> <code>如果还是无法运行起来的话，你可以看我之前的那一片博客，看看是不是缺少什么组件。</code></h3><h3 id="找到index-ios-js-删除掉所有的内容-并且用下面的代码替换"><a href="#找到index-ios-js-删除掉所有的内容-并且用下面的代码替换" class="headerlink" title="找到index.ios.js, 删除掉所有的内容, 并且用下面的代码替换"></a>找到<code>index.ios.js</code>, 删除掉所有的内容, 并且用下面的代码替换</h3><figure class="highlight moonscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123; AppRegistry &#125; <span class="keyword">from</span> <span class="string">'react-native'</span></div><div class="line"><span class="keyword">import</span> RRNN <span class="keyword">from</span> <span class="string">'./src/App'</span></div><div class="line">AppRegistry.registerComponent(<span class="string">'RRNN'</span>, <span class="function"><span class="params">()</span>=&gt;</span> RRNN);</div></pre></td></tr></table></figure>
+<h3 id="先不要急着command-R-现在与index-ios-js的同级目录下建立一个文件夹，名字叫做src-再在src的目录下创建文件App-js-这是个人喜好的问题，我喜欢保持入口文件保持高度的简洁"><a href="#先不要急着command-R-现在与index-ios-js的同级目录下建立一个文件夹，名字叫做src-再在src的目录下创建文件App-js-这是个人喜好的问题，我喜欢保持入口文件保持高度的简洁" class="headerlink" title="先不要急着command+R, 现在与index.ios.js的同级目录下建立一个文件夹，名字叫做src,再在src的目录下创建文件App.js  [这是个人喜好的问题，我喜欢保持入口文件保持高度的简洁]"></a>先不要急着command+R, 现在与<code>index.ios.js</code>的同级目录下建立一个文件夹，名字叫做<code>src</code>,再在<code>src</code>的目录下创建文件<code>App.js</code>  [<em>这是个人喜好的问题，我喜欢保持入口文件保持高度的简洁</em>]</h3><h3 id="在App-js的文件中，添加一下的代码"><a href="#在App-js的文件中，添加一下的代码" class="headerlink" title="在App.js的文件中，添加一下的代码"></a>在<code>App.js</code>的文件中，添加一下的代码</h3><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<blockquote>
+<p>这里你最好copy我的代码，要不要你可能会直接无法build，你有以下几点需要注意并且修改</p>
 </blockquote>
-<p>import { AppRegistry } from ‘react-native’<br>import RRNN from ‘./src/App’<br>AppRegistry.registerComponent(‘RRNN’, ()=&gt; RRNN);</p>
-<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&gt; 先不要急着command+R, 现在与`index.ios.js`的同级目录下建立一个文件夹，名字叫做`src`,再在`src`的目录下创建文件`App.js`  [*这是个人喜好的问题，我喜欢保持入口文件保持高度的简洁*]</div><div class="line">&gt; 在`App.js`的文件中，添加一下的代码</div></pre></td></tr></table></figure>
-<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">&gt; 这里你最好copy我的代码，要不要你可能会直接无法build，你有以下几点需要注意并且修改</div><div class="line"></div><div class="line"><span class="number">1</span>. 注释掉引入本地图片的功能。</div><div class="line"><span class="number">2</span>. 注释掉引入外部图片的功能。</div><div class="line"><span class="number">3</span>. 引入TabBarIOS</div><div class="line"></div><div class="line">&gt; 这里还有两件事情不得不提, 这里定义了名字为_renderContent的函数，入参数为三个值，分别是 类型为`String`的color, 类型为`Sting`的pageText, 以及类型为`number`的num, 可以看到返回一个&lt;View/&gt;,这里不了解也没事，后面还有很多关于函数的问题，这里因为出现了我就说一下。</div><div class="line">&gt;</div></pre></td></tr></table></figure>
-<p>  _renderContent = (color: string, pageText: string, num?: number) =&gt; {<br>    return (<br>      <view style="{[styles.tabContent," {backgroundcolor:="" color}]}=""><br>        <text style="{styles.tabText}">{pageText}</text><br>        <text style="{styles.tabText}">{num} re-renders of the {pageText}</text><br>      </view><br>    );<br>  };<br><figure class="highlight http"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line"><span class="coffeescript"></span></div><div class="line">&gt; 这个是js的写法，顶一个对象，当然这个对象的所有权是现在是属于App这个<span class="class"><span class="keyword">class</span>的，</span></div></pre></td></tr></table></figure></p>
-<p>  state = {<br>    selectedTab: ‘redTab’,<br>    notifCount: 0,<br>    presses: 0,<br>  };<br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="quote">&gt; 在这个App的生命周期中，可以对他进行修改，例如这样</span></div></pre></td></tr></table></figure></p>
-<p>  this.setState({<br>              selectedTab: ‘blueTab’,<br>            });<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">也可以直接取值，类似这样</div></pre></td></tr></table></figure></p>
-<pre><code>this.state.selectedTab
-</code></pre><p>```</p>
+<ol>
+<li>注释掉引入本地图片的功能。</li>
+<li>注释掉引入外部图片的功能。</li>
+<li>引入TabBarIOS</li>
+</ol>
+<blockquote>
+<p>这里还有两件事情不得不提, 这里定义了名字为_renderContent的函数，入参数为三个值，分别是 类型为<code>String</code>的color, 类型为<code>Sting</code>的pageText, 以及类型为<code>number</code>的num, 可以看到返回一个<view>,这里不了解也没事，后面还有很多关于函数的问题，这里因为出现了我就说一下。</view></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">_renderContent = <span class="function">(<span class="params">color: string, pageText: string, num?: number</span>) =&gt;</span> &#123;</div><div class="line">  <span class="keyword">return</span> (</div><div class="line">    <span class="xml"><span class="tag">&lt;<span class="name">View</span> <span class="attr">style</span>=<span class="string">&#123;[styles.tabContent,</span> &#123;<span class="attr">backgroundColor:</span> <span class="attr">color</span>&#125;]&#125;&gt;</span></span></div><div class="line">      <span class="tag">&lt;<span class="name">Text</span> <span class="attr">style</span>=<span class="string">&#123;styles.tabText&#125;</span>&gt;</span>&#123;pageText&#125;<span class="tag">&lt;/<span class="name">Text</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">Text</span> <span class="attr">style</span>=<span class="string">&#123;styles.tabText&#125;</span>&gt;</span>&#123;num&#125; re-renders of the &#123;pageText&#125;<span class="tag">&lt;/<span class="name">Text</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">View</span>&gt;</span></div><div class="line">  );</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>这个是js的写法，顶一个对象，当然这个对象的所有权是现在是属于App这个class的，</p>
+</blockquote>
+<figure class="highlight pf"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">state</span> = &#123;</div><div class="line">  selectedTab: 'redTab',</div><div class="line">  notifCount: <span class="number">0</span>,</div><div class="line">  presses: <span class="number">0</span>,</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>在这个App的生命周期中，可以对他进行修改，例如这样</p>
+</blockquote>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">this</span><span class="selector-class">.setState</span>(&#123;</div><div class="line">            <span class="attribute">selectedTab</span>: <span class="string">'blueTab'</span>,</div><div class="line">          &#125;);</div></pre></td></tr></table></figure>
+<p>也可以直接取值，类似这样</p>
+<figure class="highlight pf"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">this.<span class="keyword">state</span>.selectedTab</div></pre></td></tr></table></figure>
 <blockquote>
 <p>当你把这些都改完之后，你发现及可以开始运行了。great！</p>
 </blockquote>
@@ -369,7 +380,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posted on</span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
             <time itemprop="dateCreated" datetime="2016-08-24T14:53:12+08:00" content="2016-08-24">
               2016-08-24
             </time>
@@ -381,7 +392,7 @@
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              <span class="post-meta-item-text">In</span>
+              <span class="post-meta-item-text">in</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
                   <a href="/categories/日志/" itemprop="url" rel="index">
@@ -515,7 +526,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posted on</span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
             <time itemprop="dateCreated" datetime="2016-08-15T14:28:12+08:00" content="2016-08-15">
               2016-08-15
             </time>
@@ -527,7 +538,7 @@
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              <span class="post-meta-item-text">In</span>
+              <span class="post-meta-item-text">in</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
                   <a href="/categories/日志/" itemprop="url" rel="index">
@@ -686,7 +697,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posted on</span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
             <time itemprop="dateCreated" datetime="2016-05-10T09:41:12+08:00" content="2016-05-10">
               2016-05-10
             </time>
@@ -698,7 +709,7 @@
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              <span class="post-meta-item-text">In</span>
+              <span class="post-meta-item-text">in</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
                   <a href="/categories/日志/" itemprop="url" rel="index">
@@ -809,7 +820,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posted on</span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
             <time itemprop="dateCreated" datetime="2016-05-05T17:06:12+08:00" content="2016-05-05">
               2016-05-05
             </time>
@@ -821,7 +832,7 @@
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              <span class="post-meta-item-text">In</span>
+              <span class="post-meta-item-text">in</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
                   <a href="/categories/日志/" itemprop="url" rel="index">
@@ -962,7 +973,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posted on</span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
             <time itemprop="dateCreated" datetime="2016-04-19T11:12:12+08:00" content="2016-04-19">
               2016-04-19
             </time>
@@ -974,7 +985,7 @@
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              <span class="post-meta-item-text">In</span>
+              <span class="post-meta-item-text">in</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
                   <a href="/categories/日志/" itemprop="url" rel="index">
@@ -1111,7 +1122,7 @@ A bitmask value that identifies the corners that you want rounded. You can use t
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posted on</span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
             <time itemprop="dateCreated" datetime="2016-04-01T14:28:12+08:00" content="2016-04-01">
               2016-04-01
             </time>
@@ -1123,7 +1134,7 @@ A bitmask value that identifies the corners that you want rounded. You can use t
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              <span class="post-meta-item-text">In</span>
+              <span class="post-meta-item-text">in</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
                   <a href="/categories/日志/" itemprop="url" rel="index">
@@ -1242,7 +1253,7 @@ A bitmask value that identifies the corners that you want rounded. You can use t
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posted on</span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
             <time itemprop="dateCreated" datetime="2016-03-28T14:28:12+08:00" content="2016-03-28">
               2016-03-28
             </time>
@@ -1254,7 +1265,7 @@ A bitmask value that identifies the corners that you want rounded. You can use t
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              <span class="post-meta-item-text">In</span>
+              <span class="post-meta-item-text">in</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
                   <a href="/categories/日志/" itemprop="url" rel="index">
@@ -1364,7 +1375,7 @@ A bitmask value that identifies the corners that you want rounded. You can use t
           <div class="site-state-item site-state-posts">
             <a href="/archives">
               <span class="site-state-item-count">8</span>
-              <span class="site-state-item-name">posts</span>
+              <span class="site-state-item-name">Artikel</span>
             </a>
           </div>
 
@@ -1372,7 +1383,7 @@ A bitmask value that identifies the corners that you want rounded. You can use t
             <div class="site-state-item site-state-categories">
               
                 <span class="site-state-item-count">1</span>
-                <span class="site-state-item-name">categories</span>
+                <span class="site-state-item-name">Kategorien</span>
               
             </div>
           
@@ -1381,7 +1392,7 @@ A bitmask value that identifies the corners that you want rounded. You can use t
             <div class="site-state-item site-state-tags">
               
                 <span class="site-state-item-count">5</span>
-                <span class="site-state-item-name">tags</span>
+                <span class="site-state-item-name">Tags</span>
               
             </div>
           
@@ -1432,7 +1443,7 @@ A bitmask value that identifies the corners that you want rounded. You can use t
 </div>
 
 <div class="powered-by">
-  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">
