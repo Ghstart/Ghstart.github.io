@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-08-24T06:53:43.000Z</updated>
+  <updated>2016-10-17T09:19:18.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,46 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>学习React Native</title>
+    <link href="http://yoursite.com/2016/10/17/20161017/"/>
+    <id>http://yoursite.com/2016/10/17/20161017/</id>
+    <published>2016-10-17T06:53:12.000Z</published>
+    <updated>2016-10-17T09:19:18.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="继续搞React-Native，这次准备花两三次博客将一个完整的项目开源出来。自己也在不断的学习，欢迎大家拍砖。"><a href="#继续搞React-Native，这次准备花两三次博客将一个完整的项目开源出来。自己也在不断的学习，欢迎大家拍砖。" class="headerlink" title="继续搞React Native，这次准备花两三次博客将一个完整的项目开源出来。自己也在不断的学习，欢迎大家拍砖。"></a>继续搞React Native，这次准备花两三次博客将一个完整的项目开源出来。自己也在不断的学习，欢迎大家拍砖。</h2><blockquote>
+<p>打开终端，找到指定的目录下，执行 <figure class="highlight plain"><figcaption><span>init LearnRN```,然后会一段漫长的等待，执行完成并且不报错的前提下，你就可以运行下一个命令```react-native run-ios``` `如果还是无法运行起来的话，你可以看我之前的那一片博客，看看是不是缺少什么组件。`</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&gt; 找到`index.ios.js`, 删除掉所有的内容, 并且用下面的代码替换</div></pre></td></tr></table></figure></p>
+</blockquote>
+<p>import { AppRegistry } from ‘react-native’<br>import RRNN from ‘./src/App’<br>AppRegistry.registerComponent(‘RRNN’, ()=&gt; RRNN);</p>
+<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&gt; 先不要急着command+R, 现在与`index.ios.js`的同级目录下建立一个文件夹，名字叫做`src`,再在`src`的目录下创建文件`App.js`  [*这是个人喜好的问题，我喜欢保持入口文件保持高度的简洁*]</div><div class="line">&gt; 在`App.js`的文件中，添加一下的代码</div></pre></td></tr></table></figure>
+<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">&gt; 这里你最好copy我的代码，要不要你可能会直接无法build，你有以下几点需要注意并且修改</div><div class="line"></div><div class="line"><span class="number">1</span>. 注释掉引入本地图片的功能。</div><div class="line"><span class="number">2</span>. 注释掉引入外部图片的功能。</div><div class="line"><span class="number">3</span>. 引入TabBarIOS</div><div class="line"></div><div class="line">&gt; 这里还有两件事情不得不提, 这里定义了名字为_renderContent的函数，入参数为三个值，分别是 类型为`String`的color, 类型为`Sting`的pageText, 以及类型为`number`的num, 可以看到返回一个&lt;View/&gt;,这里不了解也没事，后面还有很多关于函数的问题，这里因为出现了我就说一下。</div><div class="line">&gt;</div></pre></td></tr></table></figure>
+<p>  _renderContent = (color: string, pageText: string, num?: number) =&gt; {<br>    return (<br>      <view style="{[styles.tabContent," {backgroundcolor:="" color}]}=""><br>        <text style="{styles.tabText}">{pageText}</text><br>        <text style="{styles.tabText}">{num} re-renders of the {pageText}</text><br>      </view><br>    );<br>  };<br><figure class="highlight http"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line"><span class="coffeescript"></span></div><div class="line">&gt; 这个是js的写法，顶一个对象，当然这个对象的所有权是现在是属于App这个<span class="class"><span class="keyword">class</span>的，</span></div></pre></td></tr></table></figure></p>
+<p>  state = {<br>    selectedTab: ‘redTab’,<br>    notifCount: 0,<br>    presses: 0,<br>  };<br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="quote">&gt; 在这个App的生命周期中，可以对他进行修改，例如这样</span></div></pre></td></tr></table></figure></p>
+<p>  this.setState({<br>              selectedTab: ‘blueTab’,<br>            });<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">也可以直接取值，类似这样</div></pre></td></tr></table></figure></p>
+<pre><code>this.state.selectedTab
+</code></pre><p>```</p>
+<blockquote>
+<p>当你把这些都改完之后，你发现及可以开始运行了。great！</p>
+</blockquote>
+<p>至于如何美化，你可以自己从网站上下载一些图片放在本地，也可以把网站上的链接直接填上去。</p>
+<hr>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;继续搞React-Native，这次准备花两三次博客将一个完整的项目开源出来。自己也在不断的学习，欢迎大家拍砖。&quot;&gt;&lt;a href=&quot;#继续搞React-Native，这次准备花两三次博客将一个完整的项目开源出来。自己也在不断的学习，欢迎大家拍砖。&quot; class=
+    
+    </summary>
+    
+      <category term="日志" scheme="http://yoursite.com/categories/%E6%97%A5%E5%BF%97/"/>
+    
+    
+      <category term="学习" scheme="http://yoursite.com/tags/%E5%AD%A6%E4%B9%A0/"/>
+    
+      <category term="React Native" scheme="http://yoursite.com/tags/React-Native/"/>
+    
+  </entry>
   
   <entry>
     <title>学习React Native中</title>
