@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-10-21T07:47:13.000Z</updated>
+  <updated>2016-10-28T03:49:57.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,70 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title></title>
+    <link href="http://yoursite.com/2016/10/28/20161028/"/>
+    <id>http://yoursite.com/2016/10/28/20161028/</id>
+    <published>2016-10-28T03:48:41.000Z</published>
+    <updated>2016-10-28T03:49:57.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>title: 创建私有的Cocoapods<br>date: 2016-10-28 11:47:12<br>tags:</p>
+<ul>
+<li>ObjC</li>
+<li>Cocoapods<br>categories: 日志</li>
+</ul>
+<h3 id="创建私有Cocoapods-最近一直想将自己的App模块化，就想就App拆成每个模块组件，比如：登录模块、网络模块、消息模块、用户中心模块…但是基于这些想法，我首先要先搞定私有化Cocoapods的问题，这样团队中新人，想调用的时候，就能够快速，便捷的调用了，只需要-pod-xxx"><a href="#创建私有Cocoapods-最近一直想将自己的App模块化，就想就App拆成每个模块组件，比如：登录模块、网络模块、消息模块、用户中心模块…但是基于这些想法，我首先要先搞定私有化Cocoapods的问题，这样团队中新人，想调用的时候，就能够快速，便捷的调用了，只需要-pod-xxx" class="headerlink" title="创建私有Cocoapods,最近一直想将自己的App模块化，就想就App拆成每个模块组件，比如：登录模块、网络模块、消息模块、用户中心模块…但是基于这些想法，我首先要先搞定私有化Cocoapods的问题，这样团队中新人，想调用的时候，就能够快速，便捷的调用了，只需要  pod xxx"></a>创建私有Cocoapods,最近一直想将自己的App模块化，就想就App拆成每个模块组件，比如：登录模块、网络模块、消息模块、用户中心模块…但是基于这些想法，我首先要先搞定私有化Cocoapods的问题，这样团队中新人，想调用的时候，就能够快速，便捷的调用了，只需要  <em>pod xxx</em></h3><blockquote>
+<p>1.先到自己的git账号，创建一个新的仓库 ，我们取名字 <em>GH</em></p>
+<p>2.开始终端，找到一个合适的位置：</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> ~/Desktop</div></pre></td></tr></table></figure>
+<blockquote>
+<p>3.初始化pod</p>
+</blockquote>
+<figure class="highlight crystal"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pod <span class="class"><span class="keyword">lib</span> <span class="title">create</span> <span class="title">GH</span></span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>4.接着系统会问一下问题，你可以自己按照项目需求来回答，也可以参照我的</p>
+</blockquote>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">What language <span class="keyword">do</span> you want <span class="keyword">to</span> <span class="keyword">use</span>?? [ Swift / ObjC ]</div><div class="line"> &gt; ObjC</div><div class="line"></div><div class="line">Would you <span class="keyword">like</span> <span class="keyword">to</span> <span class="keyword">include</span> a demo application <span class="keyword">with</span> your <span class="keyword">library</span>? [ Yes / <span class="keyword">No</span> ]</div><div class="line"> &gt; Yes</div><div class="line"></div><div class="line">Which testing frameworks will you <span class="keyword">use</span>? [ Specta / Kiwi / <span class="keyword">None</span> ]</div><div class="line"> &gt; <span class="keyword">None</span></div><div class="line"></div><div class="line">Would you <span class="keyword">like</span> <span class="keyword">to</span> <span class="keyword">do</span> <span class="keyword">view</span> based testing? [ Yes / <span class="keyword">No</span> ]</div><div class="line"> &gt; <span class="keyword">No</span></div><div class="line"></div><div class="line">What <span class="keyword">is</span> your <span class="keyword">class</span> prefix?</div><div class="line"> &gt; GG</div></pre></td></tr></table></figure>
+<blockquote>
+<p>5.修改一下pod的配置文件,pod的配置文件应该都是一样的后缀名，我这里叫 <em>Gh.podspec</em></p>
+</blockquote>
+<h3 id="stpes"><a href="#stpes" class="headerlink" title="stpes"></a>stpes</h3><h4 id="1-这里我先讲description的描述内容注释掉"><a href="#1-这里我先讲description的描述内容注释掉" class="headerlink" title="1.这里我先讲description的描述内容注释掉"></a>1.这里我先讲description的描述内容注释掉</h4><figure class="highlight vala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#s.description      = &lt;&lt;-DESC</span></div><div class="line"><span class="meta">#TODO: Add long description of the pod here.</span></div><div class="line"><span class="meta">#                        DESC</span></div></pre></td></tr></table></figure>
+<h4 id="2-修改homepage的路径，在第24行"><a href="#2-修改homepage的路径，在第24行" class="headerlink" title="2.修改homepage的路径，在第24行"></a>2.修改homepage的路径，在第24行</h4><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">s<span class="selector-class">.homepage</span>         = <span class="string">'https://github.com/Ghstart/Gh'</span></div></pre></td></tr></table></figure>
+<h4 id="3-修改git的路径，在第28行"><a href="#3-修改git的路径，在第28行" class="headerlink" title="3.修改git的路径，在第28行"></a>3.修改git的路径，在第28行</h4><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">s<span class="selector-class">.source</span>           = &#123; :git =&gt; <span class="string">'https://github.com/Ghstart/Gh.gi    t'</span>, :tag =&gt; s<span class="selector-class">.version</span><span class="selector-class">.to_s</span> &#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>5.保存好退出，再次进入到那个文件夹中，将文件内容提交到github上,我这里选择的是命令的方式，你也可以用github客户端</p>
+</blockquote>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">cd</span> Gh</div><div class="line">git init</div><div class="line">git remote <span class="built_in">add</span> origin http<span class="variable">s:</span>//github.<span class="keyword">com</span>/Ghstart/GH.git // 这个路径在你刚才新建仓库的那个页面就能找到</div><div class="line">git <span class="built_in">add</span> .</div><div class="line">git commit -<span class="keyword">m</span> <span class="string">'Gh first creats private own cocoapods'</span></div><div class="line">git <span class="keyword">tag</span> <span class="number">0.1</span>.<span class="number">0</span> // 这里的<span class="number">0.1</span>.<span class="number">0</span>在刚才的配置文件里有，对应起来就好了</div><div class="line">git push -<span class="keyword">u</span> origin master --<span class="keyword">tags</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>最后再去你刚才新建仓库的页面刷新一下，就会发现奇迹。。</p>
+</blockquote>
+<h3 id="现在开始添加自己的类"><a href="#现在开始添加自己的类" class="headerlink" title="现在开始添加自己的类"></a>现在开始添加自己的类</h3><blockquote>
+<p>找到存放类的目录下，<em>/Users/</em>自己的mac名字<em>/Desktop/Gh/Gh/Classes</em>，在这个文件夹下面，你会发现一个名字叫做<em>ReplaceMe.m</em>，这个真是太贴心了，cocoapods都已经为我们想到了，在这里你先删除这个类，然后添加自己想要的类，然后在走一下下面的命令。</p>
+<p>我觉得这里，你既然已经修改了内容，或者想发布第一版本，那么修改配置文件的tags修改为<em>0.1.1</em></p>
+</blockquote>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">git add .</div><div class="line">git commit -m<span class="string">"add files"</span></div><div class="line">git <span class="keyword">tag</span> <span class="title">0</span>.<span class="number">1.1</span></div><div class="line">git push -u origin <span class="keyword">master</span> <span class="title">--tags</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>现在到自己的github页面熟悉一下，就会发现自己创建的0.1.1的版本，以及新添加的文件。下面我们需要将我们自己创建的这个cocoapods提交给cocoapods审核，并且发布。</p>
+</blockquote>
+<figure class="highlight crystal"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">pod <span class="class"><span class="keyword">lib</span> <span class="title">lint</span> <span class="title">Gh</span>.<span class="title">podspec</span> // 认证通过</span></div><div class="line">pod trunk push    /<span class="regexp">/ 提交</span></div></pre></td></tr></table></figure>
+<p>大功告成！！<em>这里cocoapods是一个很关键的问题，尤其你刚跟新pod或者xcode，那问题会很多，建议出现一些奇葩的问题，可以先卸载cocoapods，然后再装最新的稳定版本。</em></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;title: 创建私有的Cocoapods&lt;br&gt;date: 2016-10-28 11:47:12&lt;br&gt;tags:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;ObjC&lt;/li&gt;
+&lt;li&gt;Cocoapods&lt;br&gt;categories: 日志&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;创建私
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>React-Native 实战(-)</title>
