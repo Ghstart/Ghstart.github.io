@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-11-25T08:25:48.000Z</updated>
+  <updated>2016-11-25T08:27:34.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -16,11 +16,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title></title>
+    <title>学习阿里开源项目BeeHive</title>
     <link href="http://yoursite.com/2016/11/25/20161125/"/>
     <id>http://yoursite.com/2016/11/25/20161125/</id>
-    <published>2016-11-25T08:25:34.000Z</published>
-    <updated>2016-11-25T08:25:48.000Z</updated>
+    <published>2016-11-25T08:27:12.000Z</published>
+    <updated>2016-11-25T08:27:34.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="学习阿里开源-BeeHive-每次学习别人写的框架，或者好东西都会让自己学到很多东西，废话不多说，直接扯代码。"><a href="#学习阿里开源-BeeHive-每次学习别人写的框架，或者好东西都会让自己学到很多东西，废话不多说，直接扯代码。" class="headerlink" title="学习阿里开源 BeeHive ,每次学习别人写的框架，或者好东西都会让自己学到很多东西，废话不多说，直接扯代码。"></a>学习阿里开源 <code>BeeHive</code> ,每次学习别人写的框架，或者好东西都会让自己学到很多东西，废话不多说，直接扯代码。</h2><h2 id="源码中的几个小问题："><a href="#源码中的几个小问题：" class="headerlink" title="源码中的几个小问题："></a>源码中的几个小问题：</h2><h3 id="1-在Example中，程序的入口文件TestAppDelegate-你就惊奇地发现，他不是继承了UIAppDelegate，也不是继承了UIAppDelegate的子类，而是自己写了一个-quot-AppDelegate-quot"><a href="#1-在Example中，程序的入口文件TestAppDelegate-你就惊奇地发现，他不是继承了UIAppDelegate，也不是继承了UIAppDelegate的子类，而是自己写了一个-quot-AppDelegate-quot" class="headerlink" title="1. 在Example中，程序的入口文件TestAppDelegate,你就惊奇地发现，他不是继承了UIAppDelegate，也不是继承了UIAppDelegate的子类，而是自己写了一个&quot;AppDelegate&quot;"></a>1. 在Example中，程序的入口文件<code>TestAppDelegate</code>,你就惊奇地发现，他不是继承了UIAppDelegate，也不是继承了UIAppDelegate的子类，而是自己写了一个<code>&quot;AppDelegate&quot;</code></h3><figure class="highlight ada"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">@<span class="keyword">interface</span> TestAppDelegate : <span class="type">BHAppDelegate</span> &lt;UIApplicationDelegate&gt;</div></pre></td></tr></table></figure>
 <p>在 <code>BHAppDelegate.m</code>的文件中，我们发现这个类实现了很多appDelegae的很多代理方法</p>
@@ -63,6 +63,10 @@
     
     </summary>
     
+      <category term="日志" scheme="http://yoursite.com/categories/%E6%97%A5%E5%BF%97/"/>
+    
+    
+      <category term="学习" scheme="http://yoursite.com/tags/%E5%AD%A6%E4%B9%A0/"/>
     
   </entry>
   
