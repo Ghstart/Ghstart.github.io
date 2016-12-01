@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-12-01T07:36:25.000Z</updated>
+  <updated>2016-12-01T08:31:28.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -16,14 +16,63 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>学习阿里开源项目BeeHive(三)</title>
+    <link href="http://yoursite.com/2016/12/01/20161201/"/>
+    <id>http://yoursite.com/2016/12/01/20161201/</id>
+    <published>2016-12-01T08:31:12.000Z</published>
+    <updated>2016-12-01T08:31:28.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="最后总结一下整个BeeHive项目的搭建。以及我看完之后的一些质疑和想法，有些作者以及给出了回答，会在下一版本的更新中进行修改。"><a href="#最后总结一下整个BeeHive项目的搭建。以及我看完之后的一些质疑和想法，有些作者以及给出了回答，会在下一版本的更新中进行修改。" class="headerlink" title="最后总结一下整个BeeHive项目的搭建。以及我看完之后的一些质疑和想法，有些作者以及给出了回答，会在下一版本的更新中进行修改。"></a>最后总结一下整个BeeHive项目的搭建。以及我看完之后的一些质疑和想法，有些作者以及给出了回答，会在下一版本的更新中进行修改。</h3><h4 id="先贴上我自己画的一个提纲"><a href="#先贴上我自己画的一个提纲" class="headerlink" title="先贴上我自己画的一个提纲"></a>先贴上我自己画的一个提纲</h4><img src="http://ohhvhrib5.bkt.clouddn.com/images/step1.png">
+<img src="http://ohhvhrib5.bkt.clouddn.com/images/step2.png">
+<h4 id="首先，为什么每个ViewController都需要配备一个配备一个Module的文件？"><a href="#首先，为什么每个ViewController都需要配备一个配备一个Module的文件？" class="headerlink" title="首先，为什么每个ViewController都需要配备一个配备一个Module的文件？"></a>首先，为什么每个ViewController都需要配备一个配备一个Module的文件？</h4><p>因为他需要通过<code>+(void)load{}</code>的方法，动态的将<code>moduleInfo</code>的信息存储下来，这里是存储在<code>BHModuleManager</code>文件中的<code>self.BHModules</code><em>此时这里存储的都是字符串，还没有创建为实例对象</em>。</p>
+<h4 id="为什么有些module的文件中没有load方法，但是他还是在启动之前也注册进去了呢？"><a href="#为什么有些module的文件中没有load方法，但是他还是在启动之前也注册进去了呢？" class="headerlink" title="为什么有些module的文件中没有load方法，但是他还是在启动之前也注册进去了呢？"></a>为什么有些<code>module</code>的文件中没有load方法，但是他还是在启动之前也注册进去了呢？</h4><p>因为这里作者都是通过<code>宏</code>的的形式，来快速实现加载的信息，本质上和<code>+(void)load{}</code>是一样的。</p>
+<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">BH_EXPORT_MODULE(NO)</div><div class="line"></div><div class="line">#define BH_EXPORT_MODULE(isAsync) \</div><div class="line"><span class="symbol">+ (void)load &#123; [BeeHive registerDynamicModule:</span>[self class]]<span class="comment">; &#125; \</span></div><div class="line">-(BOOL)async &#123; <span class="keyword">return</span> (BOOL)#isAsync<span class="comment">;&#125;</span></div><div class="line">```  </div><div class="line"></div><div class="line">#### 这里在官方的demo中看到TestAppDelegate进行了ModuleConfigName、ServiceConfigName的设置，不设置可以吗？</div><div class="line"></div><div class="line">可以！！这里在`BHContext`对象实例化的时候，已经默认设置了初始值了。</div><div class="line"></div><div class="line">#### 这里假如我有新的功能，我应该往哪里去添加呢？</div><div class="line"></div><div class="line">*这里只是我的猜想*-&gt;应该在`BHContext`中去添加，因为在`BHContext`实例化的时候，就顺带实例化了一系列的对象：`BHShortCutItem`、`BHOpenURLItem`、`BHNotificationItem`、`BHUserActivity`、`BHConfig`,并且这些对象都是单例，这里我保持我的态度。</div><div class="line"></div><div class="line"><span class="symbol">*这里的if调试时作者的笔误，他会在下一版本更新* `if ([BHInstance isKindOfClass:</span>[BHContext class]]) &#123;&#125;`</div></pre></td></tr></table></figure>
+<p>-(instancetype)init<br>{<br>    self = [super init];<br>    if (self) {<br>        self.modulesByName  = [[NSMutableDictionary alloc] initWithCapacity:1];<br>        self.servicesByName  = [[NSMutableDictionary alloc] initWithCapacity:1];<br>        self.moduleConfigName = @”BeeHive.bundle/BeeHive”;<br>        self.serviceConfigName = @”BeeHive.bundle/BHService”;</p>
+<p>#if __IPHONE_OS_VERSION_MAX_ALLOWED &gt; 80400<br>        self.touchShortcutItem = [BHShortcutItem new];</p>
+<p>#endif</p>
+<pre><code>    self.openURLItem = [BHOpenURLItem new];
+    self.notificationsItem = [BHNotificationsItem new];
+    self.userActivityItem = [BHUserActivityItem new];
+}
+
+return self;
+</code></pre><p>}</p>
+<p>+(instancetype) shareInstance<br>{<br>    static dispatch_once_t p;<br>    static id BHInstance = nil;</p>
+<pre><code>dispatch_once(&amp;p, ^{
+    BHInstance = [[[self class] alloc] init];
+    if ([BHInstance isKindOfClass:[BHContext class]]) {
+        ((BHContext *) BHInstance).config = [BHConfig shareInstance];
+    }
+});
+
+return BHInstance;
+</code></pre><p>}<br>```</p>
+<h4 id="系统是在什么时候载入本地的组件信息的呢？"><a href="#系统是在什么时候载入本地的组件信息的呢？" class="headerlink" title="系统是在什么时候载入本地的组件信息的呢？"></a>系统是在什么时候载入本地的组件信息的呢？</h4><p>是在哎<code>BeeHive</code>调用<code>setContext</code>对象的时候，进行调用的。并且这里通过<code>context</code>中的文件名，进行拼接，返回plist文件的信息。 <em>比起在这里将self.BHModules 文件信息换成了响应的实例对象</em></p>
+<h4 id="那看到各个Module都会调用modSetUp、modInit类似的方法，那这些方法是在什么时候调用的？"><a href="#那看到各个Module都会调用modSetUp、modInit类似的方法，那这些方法是在什么时候调用的？" class="headerlink" title="那看到各个Module都会调用modSetUp、modInit类似的方法，那这些方法是在什么时候调用的？"></a>那看到各个<code>Module</code>都会调用<code>modSetUp</code>、<code>modInit</code>类似的方法，那这些方法是在什么时候调用的？</h4><p>是在调用父类的<code>Appdelegate</code>的方法的时候调用的，</p>
+<h4 id="初了一些主动调用的上面这些方法，那什么时候才会调用系统的方法，类似进入后台、被挂起、进入前台。"><a href="#初了一些主动调用的上面这些方法，那什么时候才会调用系统的方法，类似进入后台、被挂起、进入前台。" class="headerlink" title="初了一些主动调用的上面这些方法，那什么时候才会调用系统的方法，类似进入后台、被挂起、进入前台。"></a>初了一些主动调用的上面这些方法，那什么时候才会调用系统的方法，类似进入后台、被挂起、进入前台。</h4><p>这是在appdelegate的响应方法调用的时候，也会调用。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;最后总结一下整个BeeHive项目的搭建。以及我看完之后的一些质疑和想法，有些作者以及给出了回答，会在下一版本的更新中进行修改。&quot;&gt;&lt;a href=&quot;#最后总结一下整个BeeHive项目的搭建。以及我看完之后的一些质疑和想法，有些作者以及给出了回答，会在下一版本的
+    
+    </summary>
+    
+      <category term="日志" scheme="http://yoursite.com/categories/%E6%97%A5%E5%BF%97/"/>
+    
+    
+      <category term="学习" scheme="http://yoursite.com/tags/%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
+  
+  <entry>
     <title>学习阿里开源项目BeeHive(二)</title>
     <link href="http://yoursite.com/2016/11/28/20161128/"/>
     <id>http://yoursite.com/2016/11/28/20161128/</id>
     <published>2016-11-28T10:02:12.000Z</published>
-    <updated>2016-12-01T07:36:25.000Z</updated>
+    <updated>2016-12-01T08:05:19.000Z</updated>
     
-    <content type="html"><![CDATA[<img src="http://ohhvhrib5.bkt.clouddn.com/images/step1.png">
-<h3 id="紧接着前面那篇文章，回到BHAppDelegate-m的文件里面的"><a href="#紧接着前面那篇文章，回到BHAppDelegate-m的文件里面的" class="headerlink" title="紧接着前面那篇文章，回到BHAppDelegate.m的文件里面的"></a>紧接着前面那篇文章，回到<code>BHAppDelegate.m</code>的文件里面的</h3><figure class="highlight erlang"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">- <span class="params">(BOOL)</span>application:<span class="params">(UIApplication *)</span>application didFinishLaunchingWithOptions:<span class="params">(NSDictionary *)</span>launchOptions</div></pre></td></tr></table></figure>
+    <content type="html"><![CDATA[<h3 id="紧接着前面那篇文章，回到BHAppDelegate-m的文件里面的"><a href="#紧接着前面那篇文章，回到BHAppDelegate-m的文件里面的" class="headerlink" title="紧接着前面那篇文章，回到BHAppDelegate.m的文件里面的"></a>紧接着前面那篇文章，回到<code>BHAppDelegate.m</code>的文件里面的</h3><figure class="highlight erlang"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">- <span class="params">(BOOL)</span>application:<span class="params">(UIApplication *)</span>application didFinishLaunchingWithOptions:<span class="params">(NSDictionary *)</span>launchOptions</div></pre></td></tr></table></figure>
 <p>之前已经把所有的timeProdiler的这个类的作用，实例，已经public的方法都已经说了。在这个方法的实现中，作者还做了另外一件事情。</p>
 <figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">[[<span class="keyword">BHModuleManager </span><span class="keyword">sharedManager] </span>tiggerEvent:<span class="keyword">BHMSetupEvent];</span></div><div class="line">[[<span class="keyword">BHModuleManager </span><span class="keyword">sharedManager] </span>tiggerEvent:<span class="keyword">BHMInitEvent];</span></div><div class="line"></div><div class="line"><span class="keyword">dispatch_async(dispatch_get_main_queue(), </span>^&#123;</div><div class="line">    [[<span class="keyword">BHModuleManager </span><span class="keyword">sharedManager] </span>tiggerEvent:<span class="keyword">BHMSplashEvent];</span></div><div class="line">&#125;)<span class="comment">;</span></div></pre></td></tr></table></figure>
 <ol>
@@ -114,8 +163,7 @@
     
     <summary type="html">
     
-      &lt;img src=&quot;http://ohhvhrib5.bkt.clouddn.com/images/step1.png&quot;&gt;
-&lt;h3 id=&quot;紧接着前面那篇文章，回到BHAppDelegate-m的文件里面的&quot;&gt;&lt;a href=&quot;#紧接着前面那篇文章，回到BHAppDelegate
+      &lt;h3 id=&quot;紧接着前面那篇文章，回到BHAppDelegate-m的文件里面的&quot;&gt;&lt;a href=&quot;#紧接着前面那篇文章，回到BHAppDelegate-m的文件里面的&quot; class=&quot;headerlink&quot; title=&quot;紧接着前面那篇文章，回到BHAppDelegate.
     
     </summary>
     
@@ -360,10 +408,9 @@
     <link href="http://yoursite.com/2016/08/15/20160815/"/>
     <id>http://yoursite.com/2016/08/15/20160815/</id>
     <published>2016-08-15T06:28:12.000Z</published>
-    <updated>2016-08-15T10:10:14.000Z</updated>
+    <updated>2016-12-01T08:05:30.000Z</updated>
     
-    <content type="html"><![CDATA[<p>###最近一直没啥时间来整理一些学习资料以及学习的内容，感觉这样不是很好。又由于公司要打卡了，所以我就写写我是怎么不打卡的吧！O(∩_∩)O~~~</p>
-<ol>
+    <content type="html"><![CDATA[<h3 id="最近一直没啥时间来整理一些学习资料以及学习的内容，感觉这样不是很好。又由于公司要打卡了，所以我就写写我是怎么不打卡的吧！O-∩-∩-O"><a href="#最近一直没啥时间来整理一些学习资料以及学习的内容，感觉这样不是很好。又由于公司要打卡了，所以我就写写我是怎么不打卡的吧！O-∩-∩-O" class="headerlink" title="最近一直没啥时间来整理一些学习资料以及学习的内容，感觉这样不是很好。又由于公司要打卡了，所以我就写写我是怎么不打卡的吧！O(∩_∩)O~~~"></a>最近一直没啥时间来整理一些学习资料以及学习的内容，感觉这样不是很好。又由于公司要打卡了，所以我就写写我是怎么不打卡的吧！O(∩_∩)O~~~</h3><ol>
 <li>mac电脑先安装抓包神器：Charles (网上有很多这个使用教程，我就不多说了，毕竟是工具，没啥难度)</li>
 <li>点击Help-&gt;Local IP Address,将本机的IP打印出来，然后在手机里面设置代理为相应的IP，端口为：8888</li>
 <li>此时你就可以开始看到数据的返回、和请求了。</li>
@@ -425,9 +472,7 @@
     
     <summary type="html">
     
-      &lt;p&gt;###最近一直没啥时间来整理一些学习资料以及学习的内容，感觉这样不是很好。又由于公司要打卡了，所以我就写写我是怎么不打卡的吧！O(∩_∩)O~~~&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;mac电脑先安装抓包神器：Charles (网上有很多这个使用教程，我就不多说了，毕竟是工具，没啥难
+      &lt;h3 id=&quot;最近一直没啥时间来整理一些学习资料以及学习的内容，感觉这样不是很好。又由于公司要打卡了，所以我就写写我是怎么不打卡的吧！O-∩-∩-O&quot;&gt;&lt;a href=&quot;#最近一直没啥时间来整理一些学习资料以及学习的内容，感觉这样不是很好。又由于公司要打卡了，所以我就写写我是怎
     
     </summary>
     
@@ -545,10 +590,9 @@
     <link href="http://yoursite.com/2016/04/19/20160418/"/>
     <id>http://yoursite.com/2016/04/19/20160418/</id>
     <published>2016-04-19T03:12:12.000Z</published>
-    <updated>2016-04-19T03:17:38.000Z</updated>
+    <updated>2016-12-01T08:05:36.000Z</updated>
     
-    <content type="html"><![CDATA[<p>###图片的性能问题，基本上面试的时候，都会被问到，现在在自己的app中，我也是为了解决的性能的问题，所以了解了一些关于图片性能的库，看一下源码, 现在应该有很多这种库了。我看的是这个：<a href="https://github.com/CoderJackyHuang/HYBImageCliped" target="_blank" rel="external">https://github.com/CoderJackyHuang/HYBImageCliped</a></p>
-<ul>
+    <content type="html"><![CDATA[<h3 id="图片的性能问题，基本上面试的时候，都会被问到，现在在自己的app中，我也是为了解决的性能的问题，所以了解了一些关于图片性能的库，看一下源码-现在应该有很多这种库了。我看的是这个：https-github-com-CoderJackyHuang-HYBImageCliped"><a href="#图片的性能问题，基本上面试的时候，都会被问到，现在在自己的app中，我也是为了解决的性能的问题，所以了解了一些关于图片性能的库，看一下源码-现在应该有很多这种库了。我看的是这个：https-github-com-CoderJackyHuang-HYBImageCliped" class="headerlink" title="图片的性能问题，基本上面试的时候，都会被问到，现在在自己的app中，我也是为了解决的性能的问题，所以了解了一些关于图片性能的库，看一下源码, 现在应该有很多这种库了。我看的是这个：https://github.com/CoderJackyHuang/HYBImageCliped"></a>图片的性能问题，基本上面试的时候，都会被问到，现在在自己的app中，我也是为了解决的性能的问题，所以了解了一些关于图片性能的库，看一下源码, 现在应该有很多这种库了。我看的是这个：<a href="https://github.com/CoderJackyHuang/HYBImageCliped" target="_blank" rel="external">https://github.com/CoderJackyHuang/HYBImageCliped</a></h3><ul>
 <li>这个库是通过Category来分别实现这些功能，首先看看UIView的Category,是怎么实现的UIView的圆角。</li>
 </ul>
 <figure class="highlight zephir"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> *	使用指定的图片来填充，但是生成的是圆形图片，背景颜色为白色。</div><div class="line"> *</div><div class="line"> *	<span class="doctag">@param</span> image			图片名称或者图片对象，甚至支持NSData</div><div class="line"> *	<span class="doctag">@param</span> targetSize	生成指定大小的图片</div><div class="line"> *	<span class="doctag">@param</span> isEqualScale	是否等比例缩放图片</div><div class="line"> *  <span class="doctag">@param</span> backgroundColor 默认取最顶层父视图的背景色，若为透明，则取本身背景色，若也为透明，则取白色</div><div class="line"> *  <span class="doctag">@parma</span> callback   只有当图片真正被裁剪成功后，才会回调，返回裁剪后的图片</div><div class="line"> *</div><div class="line"> *	<span class="doctag">@return</span> 裁剪前的图片</div><div class="line"> */</div><div class="line"></div><div class="line">- (UIImage *)hyb_setCircleImage:(id)image</div><div class="line">                           size:(CGSize)targetSize</div><div class="line">                   isEqualScale:(<span class="keyword">BOOL</span>)isEqualScale</div><div class="line">                 backgrounColor:(UIColor *)backgroundColor</div><div class="line">                       onCliped:(HYBClipedCallback)callback;</div></pre></td></tr></table></figure>
@@ -588,7 +632,7 @@ A bitmask value that identifies the corners that you want rounded. You can use t
     
     <summary type="html">
     
-      &lt;p&gt;###图片的性能问题，基本上面试的时候，都会被问到，现在在自己的app中，我也是为了解决的性能的问题，所以了解了一些关于图片性能的库，看一下源码, 现在应该有很多这种库了。我看的是这个：&lt;a href=&quot;https://github.com/CoderJackyHuang/
+      &lt;h3 id=&quot;图片的性能问题，基本上面试的时候，都会被问到，现在在自己的app中，我也是为了解决的性能的问题，所以了解了一些关于图片性能的库，看一下源码-现在应该有很多这种库了。我看的是这个：https-github-com-CoderJackyHuang-HYBImageCl
     
     </summary>
     
@@ -606,10 +650,9 @@ A bitmask value that identifies the corners that you want rounded. You can use t
     <link href="http://yoursite.com/2016/04/01/20160401/"/>
     <id>http://yoursite.com/2016/04/01/20160401/</id>
     <published>2016-04-01T06:28:12.000Z</published>
-    <updated>2016-10-13T02:52:56.000Z</updated>
+    <updated>2016-12-01T08:05:44.000Z</updated>
     
-    <content type="html"><![CDATA[<p>以YYModel的例子，它以类的方式调用</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">+ (instancetype)yy_modelWithJSON:(id)json &#123;</div><div class="line">    NSDictionary *dic = [self _yy_dictionaryWithJSON:json];</div><div class="line">    return [self yy_modelWithDictionary:dic];</div><div class="line">&#125;</div><div class="line"></div><div class="line">&lt;!-- 1. 直接将json的格式丢给这个函数 --&gt;</div><div class="line">&lt;!-- 2. 然后调用下面的这个函数，主要是讲这个json转化为NSDictionary的格式，如果是字符串会将字符串转化为NSData,然后再转化为NSDictionary --&gt;</div></pre></td></tr></table></figure>
+    <content type="html"><![CDATA[<h3 id="以YYModel的例子，它以类的方式调用"><a href="#以YYModel的例子，它以类的方式调用" class="headerlink" title="以YYModel的例子，它以类的方式调用"></a>以YYModel的例子，它以类的方式调用</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">+ (instancetype)yy_modelWithJSON:(id)json &#123;</div><div class="line">    NSDictionary *dic = [self _yy_dictionaryWithJSON:json];</div><div class="line">    return [self yy_modelWithDictionary:dic];</div><div class="line">&#125;</div><div class="line"></div><div class="line">&lt;!-- 1. 直接将json的格式丢给这个函数 --&gt;</div><div class="line">&lt;!-- 2. 然后调用下面的这个函数，主要是讲这个json转化为NSDictionary的格式，如果是字符串会将字符串转化为NSData,然后再转化为NSDictionary --&gt;</div></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">+ (NSDictionary *)_yy_dictionaryWithJSON:(id)json &#123;</div></pre></td></tr></table></figure>
 <ul>
 <li>现在开始进入最重要的函数部分了</li>
@@ -631,8 +674,7 @@ A bitmask value that identifies the corners that you want rounded. You can use t
     
     <summary type="html">
     
-      &lt;p&gt;以YYModel的例子，它以类的方式调用&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;
+      &lt;h3 id=&quot;以YYModel的例子，它以类的方式调用&quot;&gt;&lt;a href=&quot;#以YYModel的例子，它以类的方式调用&quot; class=&quot;headerlink&quot; title=&quot;以YYModel的例子，它以类的方式调用&quot;&gt;&lt;/a&gt;以YYModel的例子，它以类的方式调用&lt;/h3&gt;&lt;
     
     </summary>
     

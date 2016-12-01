@@ -91,8 +91,6 @@
 
 
 
-  
-
 
   <link rel="alternate" href="/atom.xml" title="Ghcoder" type="application/atom+xml" />
 
@@ -107,20 +105,18 @@
 
 
 <meta name="description" content="紧接着前面那篇文章，回到BHAppDelegate.m的文件里面的1- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-之前已经把所有的timeProdiler的这个类的作用，实例，已经public的方法都已经说了。在这个方法的实现">
+之前已经把所有的timeProdiler的这个类的作用，实例，已经public的方法都已经说了。在这个方法的实现中">
 <meta property="og:type" content="article">
 <meta property="og:title" content="学习阿里开源项目BeeHive(二)">
 <meta property="og:url" content="http://yoursite.com/2016/11/28/20161128/index.html">
 <meta property="og:site_name" content="Ghcoder">
 <meta property="og:description" content="紧接着前面那篇文章，回到BHAppDelegate.m的文件里面的1- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-之前已经把所有的timeProdiler的这个类的作用，实例，已经public的方法都已经说了。在这个方法的实现">
-<meta property="og:image" content="http://ohhvhrib5.bkt.clouddn.com/images/step1.png">
-<meta property="og:updated_time" content="2016-12-01T07:36:25.000Z">
+之前已经把所有的timeProdiler的这个类的作用，实例，已经public的方法都已经说了。在这个方法的实现中">
+<meta property="og:updated_time" content="2016-12-01T08:05:19.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="学习阿里开源项目BeeHive(二)">
 <meta name="twitter:description" content="紧接着前面那篇文章，回到BHAppDelegate.m的文件里面的1- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-之前已经把所有的timeProdiler的这个类的作用，实例，已经public的方法都已经说了。在这个方法的实现">
-<meta name="twitter:image" content="http://ohhvhrib5.bkt.clouddn.com/images/step1.png">
+之前已经把所有的timeProdiler的这个类的作用，实例，已经public的方法都已经说了。在这个方法的实现中">
 
 
 
@@ -309,8 +305,7 @@
       
 
       
-        <img src="http://ohhvhrib5.bkt.clouddn.com/images/step1.png">
-<h3 id="紧接着前面那篇文章，回到BHAppDelegate-m的文件里面的"><a href="#紧接着前面那篇文章，回到BHAppDelegate-m的文件里面的" class="headerlink" title="紧接着前面那篇文章，回到BHAppDelegate.m的文件里面的"></a>紧接着前面那篇文章，回到<code>BHAppDelegate.m</code>的文件里面的</h3><figure class="highlight erlang"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">- <span class="params">(BOOL)</span>application:<span class="params">(UIApplication *)</span>application didFinishLaunchingWithOptions:<span class="params">(NSDictionary *)</span>launchOptions</div></pre></td></tr></table></figure>
+        <h3 id="紧接着前面那篇文章，回到BHAppDelegate-m的文件里面的"><a href="#紧接着前面那篇文章，回到BHAppDelegate-m的文件里面的" class="headerlink" title="紧接着前面那篇文章，回到BHAppDelegate.m的文件里面的"></a>紧接着前面那篇文章，回到<code>BHAppDelegate.m</code>的文件里面的</h3><figure class="highlight erlang"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">- <span class="params">(BOOL)</span>application:<span class="params">(UIApplication *)</span>application didFinishLaunchingWithOptions:<span class="params">(NSDictionary *)</span>launchOptions</div></pre></td></tr></table></figure>
 <p>之前已经把所有的timeProdiler的这个类的作用，实例，已经public的方法都已经说了。在这个方法的实现中，作者还做了另外一件事情。</p>
 <figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">[[<span class="keyword">BHModuleManager </span><span class="keyword">sharedManager] </span>tiggerEvent:<span class="keyword">BHMSetupEvent];</span></div><div class="line">[[<span class="keyword">BHModuleManager </span><span class="keyword">sharedManager] </span>tiggerEvent:<span class="keyword">BHMInitEvent];</span></div><div class="line"></div><div class="line"><span class="keyword">dispatch_async(dispatch_get_main_queue(), </span>^&#123;</div><div class="line">    [[<span class="keyword">BHModuleManager </span><span class="keyword">sharedManager] </span>tiggerEvent:<span class="keyword">BHMSplashEvent];</span></div><div class="line">&#125;)<span class="comment">;</span></div></pre></td></tr></table></figure>
 <ol>
@@ -436,6 +431,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2016/12/01/20161201/" rel="prev" title="学习阿里开源项目BeeHive(三)">
+                学习阿里开源项目BeeHive(三) <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -496,7 +495,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">11</span>
+              <span class="site-state-item-count">12</span>
               <span class="site-state-item-name">Artikel</span>
             </a>
           </div>
