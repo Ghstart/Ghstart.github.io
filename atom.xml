@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-02-25T04:05:45.000Z</updated>
+  <updated>2017-02-25T04:08:37.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -16,17 +16,13 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title></title>
+    <title>尝试Swift搭建服务器-建立自己的网站</title>
     <link href="http://yoursite.com/2017/02/25/20170225/"/>
     <id>http://yoursite.com/2017/02/25/20170225/</id>
-    <published>2017-02-25T03:19:44.000Z</published>
-    <updated>2017-02-25T04:05:45.000Z</updated>
+    <published>2017-02-25T03:20:12.000Z</published>
+    <updated>2017-02-25T04:08:37.000Z</updated>
     
-    <content type="html"><![CDATA[<p>title: 尝试Swift搭建服务器-建立自己的网站<br>date: 2017-02-25 11:20:12<br>tags:</p>
-<ul>
-<li>Swift<br>categories: 日志</li>
-</ul>
-<h2 id="学习Paul大神的swift-server，我也尝试用Swift来搭建自己的网站。这里主要依赖的是IBM开源的Kitura框架。"><a href="#学习Paul大神的swift-server，我也尝试用Swift来搭建自己的网站。这里主要依赖的是IBM开源的Kitura框架。" class="headerlink" title="学习Paul大神的swift-server，我也尝试用Swift来搭建自己的网站。这里主要依赖的是IBM开源的Kitura框架。"></a>学习Paul大神的swift-server，我也尝试用Swift来搭建自己的网站。这里主要依赖的是IBM开源的Kitura框架。</h2><h3 id="环境搭建-（我这里是在mac的环境下搭建环境，至于Linux下的环境，等我搭建玩服务器的时候，再单独搞一遍博客，可能还有很多坑。）"><a href="#环境搭建-（我这里是在mac的环境下搭建环境，至于Linux下的环境，等我搭建玩服务器的时候，再单独搞一遍博客，可能还有很多坑。）" class="headerlink" title="环境搭建 （我这里是在mac的环境下搭建环境，至于Linux下的环境，等我搭建玩服务器的时候，再单独搞一遍博客，可能还有很多坑。）"></a>环境搭建 （我这里是在mac的环境下搭建环境，至于Linux下的环境，等我搭建玩服务器的时候，再单独搞一遍博客，可能还有很多坑。）</h3><ol>
+    <content type="html"><![CDATA[<h2 id="学习Paul大神的swift-server，我也尝试用Swift来搭建自己的网站。这里主要依赖的是IBM开源的Kitura框架。"><a href="#学习Paul大神的swift-server，我也尝试用Swift来搭建自己的网站。这里主要依赖的是IBM开源的Kitura框架。" class="headerlink" title="学习Paul大神的swift-server，我也尝试用Swift来搭建自己的网站。这里主要依赖的是IBM开源的Kitura框架。"></a>学习Paul大神的swift-server，我也尝试用Swift来搭建自己的网站。这里主要依赖的是IBM开源的Kitura框架。</h2><h3 id="环境搭建-（我这里是在mac的环境下搭建环境，至于Linux下的环境，等我搭建玩服务器的时候，再单独搞一遍博客，可能还有很多坑。）"><a href="#环境搭建-（我这里是在mac的环境下搭建环境，至于Linux下的环境，等我搭建玩服务器的时候，再单独搞一遍博客，可能还有很多坑。）" class="headerlink" title="环境搭建 （我这里是在mac的环境下搭建环境，至于Linux下的环境，等我搭建玩服务器的时候，再单独搞一遍博客，可能还有很多坑。）"></a>环境搭建 （我这里是在mac的环境下搭建环境，至于Linux下的环境，等我搭建玩服务器的时候，再单独搞一遍博客，可能还有很多坑。）</h3><ol>
 <li>因为我们是在自己的mac上搭建环境，所以需要下载Docker[<a href="https://docs.docker.com/docker-for-mac/" target="_blank" rel="external">https://docs.docker.com/docker-for-mac/</a>] 这个软件，这个软件的作用就相当于一台看不见的虚拟机，能够在mac上运行Linux。</li>
 <li>下载完成之后，建立根目录文件夹。</li>
 </ol>
@@ -54,14 +50,14 @@
     
     <summary type="html">
     
-      &lt;p&gt;title: 尝试Swift搭建服务器-建立自己的网站&lt;br&gt;date: 2017-02-25 11:20:12&lt;br&gt;tags:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Swift&lt;br&gt;categories: 日志&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;学习Paul大神的swift-
+      &lt;h2 id=&quot;学习Paul大神的swift-server，我也尝试用Swift来搭建自己的网站。这里主要依赖的是IBM开源的Kitura框架。&quot;&gt;&lt;a href=&quot;#学习Paul大神的swift-server，我也尝试用Swift来搭建自己的网站。这里主要依赖的是IBM开源的K
     
     </summary>
     
+      <category term="日志" scheme="http://yoursite.com/categories/%E6%97%A5%E5%BF%97/"/>
+    
+    
+      <category term="Swift" scheme="http://yoursite.com/tags/Swift/"/>
     
   </entry>
   
