@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-02-17T09:47:22.000Z</updated>
+  <updated>2017-02-25T04:05:45.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -16,31 +16,52 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>希腊之旅</title>
-    <link href="http://yoursite.com/2017/02/17/20170217/"/>
-    <id>http://yoursite.com/2017/02/17/20170217/</id>
-    <published>2017-02-17T08:31:12.000Z</published>
-    <updated>2017-02-17T09:47:22.000Z</updated>
+    <title></title>
+    <link href="http://yoursite.com/2017/02/25/20170225/"/>
+    <id>http://yoursite.com/2017/02/25/20170225/</id>
+    <published>2017-02-25T03:19:44.000Z</published>
+    <updated>2017-02-25T04:05:45.000Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="希腊行程："><a href="#希腊行程：" class="headerlink" title="希腊行程："></a>希腊行程：</h1><h3 id="删选条件-跟团-行程（9日）-出发（3-31-or-4-1）"><a href="#删选条件-跟团-行程（9日）-出发（3-31-or-4-1）" class="headerlink" title="删选条件= 跟团 + 行程（9日） + 出发（3.31 or 4.1）"></a>删选条件= 跟团 + 行程（9日） + 出发（3.31 or 4.1）</h3><hr>
-<p>[<a href="http://vacations.ctrip.com/grouptravel/p2872824s17.html?kwd=%E5%B8%8C%E8%85%8A" target="_blank" rel="external">http://vacations.ctrip.com/grouptravel/p2872824s17.html?kwd=%E5%B8%8C%E8%85%8A</a>]   ¥22900/人<br><img src="http://ohhvhrib5.bkt.clouddn.com/images/100.png"></p>
-<hr>
-<p>[<a href="http://vacations.ctrip.com/grouptravel/p13504622s17.html?kwd=%E5%B8%8C%E8%85%8A" target="_blank" rel="external">http://vacations.ctrip.com/grouptravel/p13504622s17.html?kwd=%E5%B8%8C%E8%85%8A</a>]    ¥22900/人<br><img src="http://ohhvhrib5.bkt.clouddn.com/images/101.png"></p>
-<hr>
-<p>[<a href="http://vacations.ctrip.com/grouptravel/p6662850s17.html?kwd=%E5%B8%8C%E8%85%8A" target="_blank" rel="external">http://vacations.ctrip.com/grouptravel/p6662850s17.html?kwd=%E5%B8%8C%E8%85%8A</a>]    ¥34900/人<br><img src="http://ohhvhrib5.bkt.clouddn.com/images/102.png"></p>
-<hr>
+    <content type="html"><![CDATA[<p>title: 尝试Swift搭建服务器-建立自己的网站<br>date: 2017-02-25 11:20:12<br>tags:</p>
+<ul>
+<li>Swift<br>categories: 日志</li>
+</ul>
+<h2 id="学习Paul大神的swift-server，我也尝试用Swift来搭建自己的网站。这里主要依赖的是IBM开源的Kitura框架。"><a href="#学习Paul大神的swift-server，我也尝试用Swift来搭建自己的网站。这里主要依赖的是IBM开源的Kitura框架。" class="headerlink" title="学习Paul大神的swift-server，我也尝试用Swift来搭建自己的网站。这里主要依赖的是IBM开源的Kitura框架。"></a>学习Paul大神的swift-server，我也尝试用Swift来搭建自己的网站。这里主要依赖的是IBM开源的Kitura框架。</h2><h3 id="环境搭建-（我这里是在mac的环境下搭建环境，至于Linux下的环境，等我搭建玩服务器的时候，再单独搞一遍博客，可能还有很多坑。）"><a href="#环境搭建-（我这里是在mac的环境下搭建环境，至于Linux下的环境，等我搭建玩服务器的时候，再单独搞一遍博客，可能还有很多坑。）" class="headerlink" title="环境搭建 （我这里是在mac的环境下搭建环境，至于Linux下的环境，等我搭建玩服务器的时候，再单独搞一遍博客，可能还有很多坑。）"></a>环境搭建 （我这里是在mac的环境下搭建环境，至于Linux下的环境，等我搭建玩服务器的时候，再单独搞一遍博客，可能还有很多坑。）</h3><ol>
+<li>因为我们是在自己的mac上搭建环境，所以需要下载Docker[<a href="https://docs.docker.com/docker-for-mac/" target="_blank" rel="external">https://docs.docker.com/docker-for-mac/</a>] 这个软件，这个软件的作用就相当于一台看不见的虚拟机，能够在mac上运行Linux。</li>
+<li>下载完成之后，建立根目录文件夹。</li>
+</ol>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">cd ~/Desktop</div><div class="line">mkdir server</div><div class="line">cd server</div><div class="line">docker run -itv $(pwd):/projects --name projects -w /projects -<span class="selector-tag">p</span> <span class="number">8089</span>:<span class="number">8089</span> -<span class="selector-tag">p</span> <span class="number">8090</span>:<span class="number">8090</span> -<span class="selector-tag">p</span> <span class="number">5984</span>:<span class="number">5984</span> twostraws/server-side-swift /bin/bash</div></pre></td></tr></table></figure>
+<p>3 . 这里docker开头的命令，是让doker软件来运行的，其中’/projects’ 指的是文件内建立以projects开头的文件默认指向的是当前的文件路径，并且建立的8090、5984这两个端口。</p>
+<p>4 . 建立好之后你就会看到类似如下的返回值：</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">root<span class="variable">@f2429f0045db</span><span class="symbol">:/projects</span><span class="comment">#</span></div></pre></td></tr></table></figure>
+<h3 id="建立第一个文件"><a href="#建立第一个文件" class="headerlink" title="建立第一个文件"></a>建立第一个文件</h3><ol>
+<li>运行如下命令：</li>
+</ol>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">cd</span> ~/Desktop/server</div><div class="line"><span class="built_in">mkdir</span> project1</div><div class="line"><span class="keyword">cd</span> project1</div><div class="line">swift package init --<span class="built_in">type</span> <span class="built_in">executable</span></div></pre></td></tr></table></figure>
+<h4 id="最后一行命令可能比较困惑，其实这行命令就是告诉swift-package（这里的swift-package相当于OC中的cocoapods、或者NodeJS中的npm一样）-我们需要建立一个新的项目，’–type-executable‘的意思是我们希望建立一个独立的部分。看到如下返回值就代表成功了："><a href="#最后一行命令可能比较困惑，其实这行命令就是告诉swift-package（这里的swift-package相当于OC中的cocoapods、或者NodeJS中的npm一样）-我们需要建立一个新的项目，’–type-executable‘的意思是我们希望建立一个独立的部分。看到如下返回值就代表成功了：" class="headerlink" title="最后一行命令可能比较困惑，其实这行命令就是告诉swift package（这里的swift package相当于OC中的cocoapods、或者NodeJS中的npm一样）,我们需要建立一个新的项目，’–type executable‘的意思是我们希望建立一个独立的部分。看到如下返回值就代表成功了："></a>最后一行命令可能比较困惑，其实这行命令就是告诉swift package（这里的swift package相当于OC中的cocoapods、或者NodeJS中的npm一样）,我们需要建立一个新的项目，’–type executable‘的意思是我们希望建立一个独立的部分。看到如下返回值就代表成功了：</h4><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Creating executable package: project1</div><div class="line">Creating Package<span class="selector-class">.swift</span></div><div class="line">Creating <span class="selector-class">.gitignore</span></div><div class="line">Creating Sources/</div><div class="line">Creating Sources/main<span class="selector-class">.swift</span></div><div class="line">Creating Tests/</div></pre></td></tr></table></figure>
+<p>2 .运行：</p>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">swift </span><span class="keyword">build</span></div></pre></td></tr></table></figure>
+<p>3 . 再运行</p>
+<figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="title">.build/debug/project1</span></div></pre></td></tr></table></figure>
+<p>当看到”Hello world!”就代表已经成功了。</p>
+<p>4 .再运行</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">swift <span class="keyword">package</span> <span class="keyword">generate</span>-xcodeproj</div></pre></td></tr></table></figure>
+<p>此时用Xcode打开刚刚生成的project1.xcodeproj,切换project1&gt;Sources&gt;project1,当控制台中打印“Hello world!”</p>
+<p>5 . 找到Main.swift文件，更换内容，我们引入路由模块，并且实例化，并且监听8090端口</p>
+<figure class="highlight nix"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">import</span> Kitura</div><div class="line"></div><div class="line"><span class="keyword">let</span> <span class="attr">router</span> = Router()</div><div class="line"></div><div class="line">Kitura.addHTTPServer(onPort: <span class="number">8090</span>, <span class="keyword">with</span>: router)</div><div class="line">Kitura.run()</div></pre></td></tr></table></figure>
+<p>此时打开浏览器”<a href="http://localhost:8090&quot;,大功告成！！！" target="_blank" rel="external">http://localhost:8090&quot;,大功告成！！！</a></p>
 ]]></content>
     
     <summary type="html">
     
-      &lt;h1 id=&quot;希腊行程：&quot;&gt;&lt;a href=&quot;#希腊行程：&quot; class=&quot;headerlink&quot; title=&quot;希腊行程：&quot;&gt;&lt;/a&gt;希腊行程：&lt;/h1&gt;&lt;h3 id=&quot;删选条件-跟团-行程（9日）-出发（3-31-or-4-1）&quot;&gt;&lt;a href=&quot;#删选条件-跟团-行程（
+      &lt;p&gt;title: 尝试Swift搭建服务器-建立自己的网站&lt;br&gt;date: 2017-02-25 11:20:12&lt;br&gt;tags:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Swift&lt;br&gt;categories: 日志&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;学习Paul大神的swift-
     
     </summary>
     
-      <category term="耍" scheme="http://yoursite.com/categories/%E8%80%8D/"/>
-    
-    
-      <category term="旅游" scheme="http://yoursite.com/tags/%E6%97%85%E6%B8%B8/"/>
     
   </entry>
   
