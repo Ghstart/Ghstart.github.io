@@ -118,7 +118,7 @@
 2.开始终端，找到一个合适的位置：
 
 1cd ~/">
-<meta property="og:updated_time" content="2016-10-28T06:28:19.000Z">
+<meta property="og:updated_time" content="2017-05-05T06:58:44.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="创建私有的Cocoapods">
 <meta name="twitter:description" content="创建私有Cocoapods,最近一直想将自己的App模块化，就想就App拆成每个模块组件，比如：登录模块、网络模块、消息模块、用户中心模块…但是基于这些想法，我首先要先搞定私有化Cocoapods的问题，这样团队中新人，想调用的时候，就能够快速，便捷的调用了，只需要  pod xxx
@@ -349,6 +349,8 @@
 <p>现在到自己的github页面熟悉一下，就会发现自己创建的0.1.1的版本，以及新添加的文件。下面我们需要将我们自己创建的这个cocoapods提交给cocoapods审核，并且发布。</p>
 </blockquote>
 <figure class="highlight crystal"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">pod <span class="class"><span class="keyword">lib</span> <span class="title">lint</span> <span class="title">Gh</span>.<span class="title">podspec</span> // 认证通过</span></div><div class="line">pod trunk push    /<span class="regexp">/ 提交</span></div></pre></td></tr></table></figure>
+<figure class="highlight livescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">在最后 pod trunk push 时候如果报错 如：</div><div class="line">[!] Authentication token <span class="keyword">is</span> invalid <span class="keyword">or</span> unverified. Either verify <span class="literal">it</span> <span class="keyword">with</span> the email <span class="literal">that</span> was sent <span class="keyword">or</span> register a <span class="keyword">new</span> session.</div><div class="line"></div><div class="line">这说明你之前的认证token已经失效了，重新注册一下就好了，输入以下命令：</div><div class="line">          pod trunk register gonghuan2020@gmail.com <span class="string">'gonghuan'</span></div><div class="line">然后在重新  pod trunk push 就可以了。</div></pre></td></tr></table></figure>
+<figure class="highlight crystal"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">如果弹 [!] The spec did not pass validation, due to <span class="number">1</span> warning (but you can use <span class="string">`--allow-warnings`</span> to ignore it).</div><div class="line"></div><div class="line">pod trunk push --allow-warnings</div><div class="line"></div><div class="line">如果弹 You can use the <span class="string">`--no-clean`</span> option to inspect any issue.</div><div class="line">pod <span class="class"><span class="keyword">lib</span> <span class="title">lint</span> <span class="title">GateWayObject</span>.<span class="title">podspec</span> --<span class="title">allow</span>-<span class="title">warnings</span> --<span class="title">no</span>-<span class="title">clean</span></span></div></pre></td></tr></table></figure>
 <p>大功告成！！<em>这里cocoapods是一个很关键的问题，尤其你刚跟新pod或者xcode，那问题会很多，建议出现一些奇葩的问题，可以先卸载cocoapods，然后再装最新的稳定版本。</em></p>
 
       
@@ -455,7 +457,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">15</span>
+              <span class="site-state-item-count">16</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
