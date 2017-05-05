@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-05-05T07:01:26.000Z</updated>
+  <updated>2017-05-05T07:04:24.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -16,13 +16,13 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title></title>
+    <title>Object-C 网管、以及切换AppDelegate的RootViewCtroller</title>
     <link href="http://yoursite.com/2017/05/05/20170505/"/>
     <id>http://yoursite.com/2017/05/05/20170505/</id>
-    <published>2017-05-05T06:59:19.000Z</published>
-    <updated>2017-05-05T07:01:26.000Z</updated>
+    <published>2017-05-05T07:04:12.000Z</published>
+    <updated>2017-05-05T07:04:24.000Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="Object-C-网管、以及切换AppDelegate的RootViewCtroller"><a href="#Object-C-网管、以及切换AppDelegate的RootViewCtroller" class="headerlink" title="Object-C 网管、以及切换AppDelegate的RootViewCtroller"></a>Object-C 网管、以及切换AppDelegate的RootViewCtroller</h2><h2 id="昨天将最新版1-9-5发布上线。总结一下这一版本中踩过的坑。"><a href="#昨天将最新版1-9-5发布上线。总结一下这一版本中踩过的坑。" class="headerlink" title="昨天将最新版1.9.5发布上线。总结一下这一版本中踩过的坑。"></a>昨天将最新版1.9.5发布上线。总结一下这一版本中踩过的坑。</h2><h3 id="产品的需求："><a href="#产品的需求：" class="headerlink" title="产品的需求："></a>产品的需求：</h3><ol>
+    <content type="html"><![CDATA[<h2 id="昨天将最新版1-9-5发布上线。总结一下这一版本中踩过的坑。"><a href="#昨天将最新版1-9-5发布上线。总结一下这一版本中踩过的坑。" class="headerlink" title="昨天将最新版1.9.5发布上线。总结一下这一版本中踩过的坑。"></a>昨天将最新版1.9.5发布上线。总结一下这一版本中踩过的坑。</h2><h3 id="产品的需求："><a href="#产品的需求：" class="headerlink" title="产品的需求："></a>产品的需求：</h3><ol>
 <li>app中默认是游客身份，随着不同身份的切换，可能需要切换不同的网管。(假如请求的url为: <code>http://www.siji.com/a.php</code>,那么随着身份的切换的话，可能 <code>http://www.siji.com</code>需要修改为<code>http://www.chengke.com</code>)，并且有些请求，是不需要依赖身份的：(比如登录部分请求就是<code>http://www.login.com/login.php</code>、支付部分的请求就是<code>http://www.pay.com/pay.php</code>)。</li>
 <li>app中需要区分两种身份(例如 1.司机身份 2.乘客身份)，未来可能还需要更多身份去切换，伴随着身份切换，可能UI上会发生重大的改变，例如：司机身份是UITabBarController为rootViewController的，乘客身份只是(UIViewController+UISlideViewController)侧滑的样式。</li>
 </ol>
@@ -38,10 +38,14 @@
     
     <summary type="html">
     
-      &lt;h2 id=&quot;Object-C-网管、以及切换AppDelegate的RootViewCtroller&quot;&gt;&lt;a href=&quot;#Object-C-网管、以及切换AppDelegate的RootViewCtroller&quot; class=&quot;headerlink&quot; title=&quot;Obje
+      &lt;h2 id=&quot;昨天将最新版1-9-5发布上线。总结一下这一版本中踩过的坑。&quot;&gt;&lt;a href=&quot;#昨天将最新版1-9-5发布上线。总结一下这一版本中踩过的坑。&quot; class=&quot;headerlink&quot; title=&quot;昨天将最新版1.9.5发布上线。总结一下这一版本中踩过的坑。&quot;&gt;
     
     </summary>
     
+      <category term="日志" scheme="http://yoursite.com/categories/%E6%97%A5%E5%BF%97/"/>
+    
+    
+      <category term="Object-c" scheme="http://yoursite.com/tags/Object-c/"/>
     
   </entry>
   
