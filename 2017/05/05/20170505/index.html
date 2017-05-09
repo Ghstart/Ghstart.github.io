@@ -289,6 +289,13 @@ app中默认是游客身份，随">
 
           
             
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/05/05/20170505/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/05/05/20170505/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
           
 
           
@@ -387,6 +394,13 @@ app中默认是游客身份，随">
 
           
   <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
     
   </div>
 
@@ -582,6 +596,32 @@ app中默认是游客身份，随">
 
 
 
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'ghcoder';
+      var disqus_identifier = '2017/05/05/20170505/';
+      var disqus_title = "Object-C 网管、以及切换AppDelegate的RootViewCtroller";
+      var disqus_url = 'http://yoursite.com/2017/05/05/20170505/';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        var disqus_config = function () {
+            this.page.url = disqus_url;
+            this.page.identifier = disqus_identifier;
+            this.page.title = disqus_title;
+        };
+        run_disqus_script('embed.js');
+      
+    </script>
   
 
 
