@@ -5,11 +5,14 @@
   
 
 
-<html class="theme-next mist use-motion">
+<html class="theme-next muse use-motion" lang="">
 <head>
   <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
 
 
 
@@ -27,9 +30,12 @@
 
 
 
+
+
+
   
   
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
@@ -37,43 +43,25 @@
   
   
   
-  
-
-  
-    
-    
-  
-
-  
-    
-      
-    
-
-    
-  
-
-  
-
-  
-    
-      
-    
-
-    
-  
-
-  
-    
-      
-    
-
-    
   
 
   
     
     
-    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
   
 
 
@@ -81,9 +69,9 @@
 
 
 
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
   <meta name="keywords" content="学习," />
@@ -97,7 +85,7 @@
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
 
 
 
@@ -123,32 +111,46 @@
 
 
 
-<script type="text/javascript" id="hexo.configuration">
+<script type="text/javascript" id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
-    scheme: 'Mist',
-    sidebar: {"position":"left","display":"post"},
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
     fancybox: true,
     motion: true,
     duoshuo: {
       userId: '0',
-      author: 'Gh'
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     }
   };
 </script>
 
 
 
-
   <link rel="canonical" href="http://www.ghcoder.com/2016/12/01/20161201/"/>
 
 
-  <title> 学习阿里开源项目BeeHive(三) | Ghcoder </title>
+
+
+
+  <title>学习阿里开源项目BeeHive(三) | Ghcoder</title>
 </head>
-<script id="dsq-count-scr" src="//ghcoder2020.disqus.com/count.js" async></script>
-<body itemscope itemtype="//schema.org/WebPage" lang="">
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
 
   
+
+
+
+
 
 
 
@@ -164,29 +166,33 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left page-post-detail ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
-      <div class="header-inner"><div class="site-meta ">
-  
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
 
-  <div class="custom-logo-site-title">
-    <a href="/"  class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <span class="site-title">Ghcoder</span>
-      <span class="logo-line-after"><i></i></span>
-    </a>
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Ghcoder</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
   </div>
-  <p class="site-subtitle"></p>
-</div>
 
-<div class="site-nav-toggle">
-  <button>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-  </button>
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
 </div>
 
 <nav class="site-nav">
@@ -199,7 +205,9 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-            Home
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Startseite
           </a>
         </li>
       
@@ -207,7 +215,19 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-            Archives
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archiv
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
           </a>
         </li>
       
@@ -218,6 +238,8 @@
 
   
 </nav>
+
+
 
  </div>
     </header>
@@ -232,49 +254,64 @@
     
 
   
-  
 
   
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://www.ghcoder.com/2016/12/01/20161201/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ghcoder">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ghcoder">
+    </span>
 
     
       <header class="post-header">
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                学习阿里开源项目BeeHive(三)
-              
-            
-          </h1>
+          <h1 class="post-title" itemprop="name headline">学习阿里开源项目BeeHive(三)</h1>
         
 
         <div class="post-meta">
           <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2016-12-01T16:31:12+08:00" content="2016-12-01">
-              2016-12-01
-            </time>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-12-01T16:31:12+08:00">
+                2016-12-01
+              </time>
+            
+
+            
+
+            
           </span>
 
           
             <span class="post-category" >
-              &nbsp; | &nbsp;
+            
+              <span class="post-meta-divider">|</span>
+            
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              <span class="post-meta-item-text">In</span>
               
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <span class="post-meta-item-text">in</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/日志/" itemprop="url" rel="index">
                     <span itemprop="name">日志</span>
                   </a>
@@ -282,32 +319,26 @@
 
                 
                 
-
               
             </span>
           
 
           
             
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/12/01/20161201/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/12/01/20161201/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
           
 
           
           
 
           
+
+          
+
+          
+
         </div>
       </header>
     
-
 
     <div class="post-body" itemprop="articleBody">
 
@@ -340,13 +371,24 @@
       
     </div>
 
+    <div>
+      
+        
+
+      
+    </div>
+
     <footer class="post-footer">
       
         <div class="post-tags">
           
-            <a href="/tags/学习/" rel="tag">#学习</a>
+            <a href="/tags/学习/" rel="tag"># 学习</a>
           
         </div>
+      
+
+      
+        
       
 
       
@@ -358,6 +400,8 @@
               </a>
             
           </div>
+
+          <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
@@ -387,11 +431,22 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
+
         </div>
         
           
   
-
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
 
   <aside id="sidebar" class="sidebar">
     <div class="sidebar-inner">
@@ -401,44 +456,53 @@
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            Table of Contents
+            Inhaltsverzeichnis
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
-            Overview
+            Übersicht
           </li>
         </ul>
       
 
-      <section class="site-overview sidebar-panel ">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
-               alt="[object Object]" />
-          <p class="site-author-name" itemprop="name">[object Object]</p>
-          <p class="site-description motion-element" itemprop="description"></p>
+               alt="Ghcoder" />
+          <p class="site-author-name" itemprop="name">Ghcoder</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
         </div>
         <nav class="site-state motion-element">
-          <div class="site-state-item site-state-posts">
-            <a href="/archives">
-              <span class="site-state-item-count">17</span>
-              <span class="site-state-item-name">posts</span>
-            </a>
-          </div>
 
           
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-name">Artikel</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
             <div class="site-state-item site-state-categories">
               
                 <span class="site-state-item-count">1</span>
-                <span class="site-state-item-name">categories</span>
+                <span class="site-state-item-name">Kategorien</span>
               
             </div>
           
 
           
+            
+            
             <div class="site-state-item site-state-tags">
               
                 <span class="site-state-item-count">11</span>
-                <span class="site-state-item-name">tags</span>
+                <span class="site-state-item-name">Tags</span>
               
             </div>
           
@@ -464,19 +528,29 @@
         
         
 
+        
+
+
       </section>
 
       
+      <!--noindex-->
         <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
           <div class="post-toc">
+
             
               
             
+
             
               <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#最后总结一下整个BeeHive项目的搭建。以及我看完之后的一些质疑和想法，有些作者以及给出了回答，会在下一版本的更新中进行修改。"><span class="nav-number">1.</span> <span class="nav-text">最后总结一下整个BeeHive项目的搭建。以及我看完之后的一些质疑和想法，有些作者以及给出了回答，会在下一版本的更新中进行修改。</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#先贴上我自己画的一个提纲"><span class="nav-number">1.1.</span> <span class="nav-text">先贴上我自己画的一个提纲</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number"></span> <span class="nav-text">  </span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#-1"><span class="nav-number"></span> <span class="nav-text"></span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#首先，为什么每个ViewController都需要配备一个配备一个Module的文件？"><span class="nav-number">0.1.</span> <span class="nav-text">首先，为什么每个ViewController都需要配备一个配备一个Module的文件？</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#因为他需要通过-void-load-的方法，动态的将moduleInfo的信息存储下来，这里是存储在BHModuleManager文件中的self-BHModules此时这里存储的都是字符串，还没有创建为实例对象。"><span class="nav-number"></span> <span class="nav-text">因为他需要通过+(void)load{}的方法，动态的将moduleInfo的信息存储下来，这里是存储在BHModuleManager文件中的self.BHModules此时这里存储的都是字符串，还没有创建为实例对象。</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#为什么有些module的文件中没有load方法，但是他还是在启动之前也注册进去了呢？答：因为这里作者都是通过宏的的形式，来快速实现加载的信息，本质上和-void-load-是一样的。"><span class="nav-number">0.1.</span> <span class="nav-text">为什么有些module的文件中没有load方法，但是他还是在启动之前也注册进去了呢？答：因为这里作者都是通过宏的的形式，来快速实现加载的信息，本质上和+(void)load{}是一样的。</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BH-EXPORT-MODULE-NO"><span class="nav-number"></span> <span class="nav-text">BH_EXPORT_MODULE(NO)  </span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#这里在官方的demo中看到TestAppDelegate进行了ModuleConfigName、ServiceConfigName的设置，不设置可以吗？答：可以！！这里在BHContext对象实例化的时候，已经默认设置了初始值了。"><span class="nav-number">0.1.</span> <span class="nav-text">这里在官方的demo中看到TestAppDelegate进行了ModuleConfigName、ServiceConfigName的设置，不设置可以吗？答：可以！！这里在BHContext对象实例化的时候，已经默认设置了初始值了。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#这里假如我有新的功能，我应该往哪里去添加呢？答：这里只是我的猜想-gt-应该在BHContext中去添加，因为在BHContext实例化的时候，就顺带实例化了一系列的对象：BHShortCutItem、BHOpenURLItem、BHNotificationItem、BHUserActivity、BHConfig-并且这些对象都是单例，这里我保持我的态度。这里的if调试时作者的笔误，他会在下一版本更新-if-BHInstance-isKindOfClass-BHContext-class"><span class="nav-number">0.2.</span> <span class="nav-text">这里假如我有新的功能，我应该往哪里去添加呢？答：这里只是我的猜想->应该在BHContext中去添加，因为在BHContext实例化的时候，就顺带实例化了一系列的对象：BHShortCutItem、BHOpenURLItem、BHNotificationItem、BHUserActivity、BHConfig,并且这些对象都是单例，这里我保持我的态度。这里的if调试时作者的笔误，他会在下一版本更新 if ([BHInstance isKindOfClass:[BHContext class]]) {}</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#系统是在什么时候载入本地的组件信息的呢？答：是在哎BeeHive调用setContext对象的时候，进行调用的。并且这里通过context中的文件名，进行拼接，返回plist文件的信息。-比起在这里将self-BHModules-文件信息换成了响应的实例对象"><span class="nav-number">0.3.</span> <span class="nav-text">系统是在什么时候载入本地的组件信息的呢？答：是在哎BeeHive调用setContext对象的时候，进行调用的。并且这里通过context中的文件名，进行拼接，返回plist文件的信息。 比起在这里将self.BHModules 文件信息换成了响应的实例对象</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#那看到各个Module都会调用modSetUp、modInit类似的方法，那这些方法是在什么时候调用的？答：是在调用父类的Appdelegate的方法的时候调用的，"><span class="nav-number">0.4.</span> <span class="nav-text">那看到各个Module都会调用modSetUp、modInit类似的方法，那这些方法是在什么时候调用的？答：是在调用父类的Appdelegate的方法的时候调用的，</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#初了一些主动调用的上面这些方法，那什么时候才会调用系统的方法，类似进入后台、被挂起、进入前台。答：这是在appdelegate的响应方法调用的时候，也会调用。"><span class="nav-number">0.5.</span> <span class="nav-text">初了一些主动调用的上面这些方法，那什么时候才会调用系统的方法，类似进入后台、被挂起、进入前台。答：这是在appdelegate的响应方法调用的时候，也会调用。</span></a></li></ol></li></ol></div>
             
+
           </div>
         </section>
+      <!--/noindex-->
+      
+
       
 
     </div>
@@ -486,12 +560,12 @@
         
       </div>
     </main>
-    
+
     <footer id="footer" class="footer">
       <div class="footer-inner">
         <div class="copyright" >
   
-  &copy;  2015 - 
+  &copy; 
   <span itemprop="copyrightYear">2017</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
@@ -499,15 +573,32 @@
   <span class="author" itemprop="copyrightHolder">Ghcoder</span>
 </div>
 
+
+<div class="powered-by">
+  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
         
 
         
       </div>
     </footer>
 
-    <div class="back-to-top">
-      <i class="fa fa-arrow-up"></i>
-    </div>
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
   </div>
 
   
@@ -530,87 +621,85 @@
 
 
 
-  
-  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
-
-  
-  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  
-  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
 
 
 
-  
-  
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
 
 
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
-
-
-
-  
-
-
-
-  
-
-    <script type="text/javascript">
-      var disqus_shortname = 'ghcoder1024';
-      var disqus_identifier = '2016/12/01/20161201/';
-      var disqus_title = "学习阿里开源项目BeeHive(三)";
-      var disqus_url = 'http://www.ghcoder.com/2016/12/01/20161201/';
-
-      function run_disqus_script(disqus_script){
-        var dsq = document.createElement('script');
-        dsq.type = 'text/javascript';
-        dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-      }
-
-      run_disqus_script('count.js');
-      
-        var disqus_config = function () {
-            this.page.url = disqus_url;
-            this.page.identifier = disqus_identifier;
-            this.page.title = disqus_title;
-        };
-        run_disqus_script('embed.js');
-      
-    </script>
-  
 
 
 
 
   
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
   
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
 
   
 
@@ -620,6 +709,7 @@
 
   
 
+  
 
 </body>
 </html>
