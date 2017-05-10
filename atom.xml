@@ -4,9 +4,9 @@
   
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://yoursite.com/"/>
+  <link href="http://ghcoder.com/"/>
   <updated>2017-05-09T07:43:29.000Z</updated>
-  <id>http://yoursite.com/</id>
+  <id>http://ghcoder.com/</id>
   
   <author>
     <name>Ghcoder</name>
@@ -17,8 +17,8 @@
   
   <entry>
     <title>用Python的Django框架搭建前后台</title>
-    <link href="http://yoursite.com/2017/05/09/20170509/"/>
-    <id>http://yoursite.com/2017/05/09/20170509/</id>
+    <link href="http://ghcoder.com/2017/05/09/20170509/"/>
+    <id>http://ghcoder.com/2017/05/09/20170509/</id>
     <published>2017-05-09T07:36:12.000Z</published>
     <updated>2017-05-09T07:43:29.000Z</updated>
     
@@ -75,17 +75,17 @@
     
     </summary>
     
-      <category term="日志" scheme="http://yoursite.com/categories/%E6%97%A5%E5%BF%97/"/>
+      <category term="日志" scheme="http://ghcoder.com/categories/%E6%97%A5%E5%BF%97/"/>
     
     
-      <category term="Python、Django" scheme="http://yoursite.com/tags/Python%E3%80%81Django/"/>
+      <category term="Python、Django" scheme="http://ghcoder.com/tags/Python%E3%80%81Django/"/>
     
   </entry>
   
   <entry>
     <title>Object-C 网管、以及切换AppDelegate的RootViewCtroller</title>
-    <link href="http://yoursite.com/2017/05/05/20170505/"/>
-    <id>http://yoursite.com/2017/05/05/20170505/</id>
+    <link href="http://ghcoder.com/2017/05/05/20170505/"/>
+    <id>http://ghcoder.com/2017/05/05/20170505/</id>
     <published>2017-05-05T07:04:12.000Z</published>
     <updated>2017-05-09T07:43:26.000Z</updated>
     
@@ -110,17 +110,17 @@
     
     </summary>
     
-      <category term="日志" scheme="http://yoursite.com/categories/%E6%97%A5%E5%BF%97/"/>
+      <category term="日志" scheme="http://ghcoder.com/categories/%E6%97%A5%E5%BF%97/"/>
     
     
-      <category term="Object-c" scheme="http://yoursite.com/tags/Object-c/"/>
+      <category term="Object-c" scheme="http://ghcoder.com/tags/Object-c/"/>
     
   </entry>
   
   <entry>
     <title>关于PHP7的新坑</title>
-    <link href="http://yoursite.com/2017/03/27/20170327/"/>
-    <id>http://yoursite.com/2017/03/27/20170327/</id>
+    <link href="http://ghcoder.com/2017/03/27/20170327/"/>
+    <id>http://ghcoder.com/2017/03/27/20170327/</id>
     <published>2017-03-27T09:27:12.000Z</published>
     <updated>2017-03-27T10:07:34.000Z</updated>
     
@@ -136,17 +136,17 @@
     
     </summary>
     
-      <category term="日志" scheme="http://yoursite.com/categories/%E6%97%A5%E5%BF%97/"/>
+      <category term="日志" scheme="http://ghcoder.com/categories/%E6%97%A5%E5%BF%97/"/>
     
     
-      <category term="PHP" scheme="http://yoursite.com/tags/PHP/"/>
+      <category term="PHP" scheme="http://ghcoder.com/tags/PHP/"/>
     
   </entry>
   
   <entry>
     <title>更新Reveal2的一些问题</title>
-    <link href="http://yoursite.com/2017/03/15/20170315/"/>
-    <id>http://yoursite.com/2017/03/15/20170315/</id>
+    <link href="http://ghcoder.com/2017/03/15/20170315/"/>
+    <id>http://ghcoder.com/2017/03/15/20170315/</id>
     <published>2017-03-15T01:27:12.000Z</published>
     <updated>2017-03-15T02:00:39.000Z</updated>
     
@@ -180,17 +180,17 @@
     
     </summary>
     
-      <category term="日志" scheme="http://yoursite.com/categories/%E6%97%A5%E5%BF%97/"/>
+      <category term="日志" scheme="http://ghcoder.com/categories/%E6%97%A5%E5%BF%97/"/>
     
     
-      <category term="Reveal" scheme="http://yoursite.com/tags/Reveal/"/>
+      <category term="Reveal" scheme="http://ghcoder.com/tags/Reveal/"/>
     
   </entry>
   
   <entry>
     <title>尝试Swift搭建服务器-建立自己的网站</title>
-    <link href="http://yoursite.com/2017/02/25/20170225/"/>
-    <id>http://yoursite.com/2017/02/25/20170225/</id>
+    <link href="http://ghcoder.com/2017/02/25/20170225/"/>
+    <id>http://ghcoder.com/2017/02/25/20170225/</id>
     <published>2017-02-25T03:20:12.000Z</published>
     <updated>2017-03-10T01:47:25.000Z</updated>
     
@@ -239,17 +239,17 @@
     
     </summary>
     
-      <category term="日志" scheme="http://yoursite.com/categories/%E6%97%A5%E5%BF%97/"/>
+      <category term="日志" scheme="http://ghcoder.com/categories/%E6%97%A5%E5%BF%97/"/>
     
     
-      <category term="Swift" scheme="http://yoursite.com/tags/Swift/"/>
+      <category term="Swift" scheme="http://ghcoder.com/tags/Swift/"/>
     
   </entry>
   
   <entry>
     <title>学习阿里开源项目BeeHive(三)</title>
-    <link href="http://yoursite.com/2016/12/01/20161201/"/>
-    <id>http://yoursite.com/2016/12/01/20161201/</id>
+    <link href="http://ghcoder.com/2016/12/01/20161201/"/>
+    <id>http://ghcoder.com/2016/12/01/20161201/</id>
     <published>2016-12-01T08:31:12.000Z</published>
     <updated>2017-03-15T01:47:47.000Z</updated>
     
@@ -268,17 +268,17 @@
     
     </summary>
     
-      <category term="日志" scheme="http://yoursite.com/categories/%E6%97%A5%E5%BF%97/"/>
+      <category term="日志" scheme="http://ghcoder.com/categories/%E6%97%A5%E5%BF%97/"/>
     
     
-      <category term="学习" scheme="http://yoursite.com/tags/%E5%AD%A6%E4%B9%A0/"/>
+      <category term="学习" scheme="http://ghcoder.com/tags/%E5%AD%A6%E4%B9%A0/"/>
     
   </entry>
   
   <entry>
     <title>学习阿里开源项目BeeHive(二)</title>
-    <link href="http://yoursite.com/2016/11/28/20161128/"/>
-    <id>http://yoursite.com/2016/11/28/20161128/</id>
+    <link href="http://ghcoder.com/2016/11/28/20161128/"/>
+    <id>http://ghcoder.com/2016/11/28/20161128/</id>
     <published>2016-11-28T10:02:12.000Z</published>
     <updated>2016-12-01T08:05:19.000Z</updated>
     
@@ -377,17 +377,17 @@
     
     </summary>
     
-      <category term="日志" scheme="http://yoursite.com/categories/%E6%97%A5%E5%BF%97/"/>
+      <category term="日志" scheme="http://ghcoder.com/categories/%E6%97%A5%E5%BF%97/"/>
     
     
-      <category term="学习" scheme="http://yoursite.com/tags/%E5%AD%A6%E4%B9%A0/"/>
+      <category term="学习" scheme="http://ghcoder.com/tags/%E5%AD%A6%E4%B9%A0/"/>
     
   </entry>
   
   <entry>
     <title>学习阿里开源项目BeeHive(-)</title>
-    <link href="http://yoursite.com/2016/11/25/20161125/"/>
-    <id>http://yoursite.com/2016/11/25/20161125/</id>
+    <link href="http://ghcoder.com/2016/11/25/20161125/"/>
+    <id>http://ghcoder.com/2016/11/25/20161125/</id>
     <published>2016-11-25T08:27:12.000Z</published>
     <updated>2016-11-25T08:28:53.000Z</updated>
     
@@ -432,17 +432,17 @@
     
     </summary>
     
-      <category term="日志" scheme="http://yoursite.com/categories/%E6%97%A5%E5%BF%97/"/>
+      <category term="日志" scheme="http://ghcoder.com/categories/%E6%97%A5%E5%BF%97/"/>
     
     
-      <category term="学习" scheme="http://yoursite.com/tags/%E5%AD%A6%E4%B9%A0/"/>
+      <category term="学习" scheme="http://ghcoder.com/tags/%E5%AD%A6%E4%B9%A0/"/>
     
   </entry>
   
   <entry>
     <title>创建私有的Cocoapods</title>
-    <link href="http://yoursite.com/2016/10/28/20161028/"/>
-    <id>http://yoursite.com/2016/10/28/20161028/</id>
+    <link href="http://ghcoder.com/2016/10/28/20161028/"/>
+    <id>http://ghcoder.com/2016/10/28/20161028/</id>
     <published>2016-10-28T03:53:12.000Z</published>
     <updated>2017-05-05T06:58:44.000Z</updated>
     
@@ -492,19 +492,19 @@
     
     </summary>
     
-      <category term="日志" scheme="http://yoursite.com/categories/%E6%97%A5%E5%BF%97/"/>
+      <category term="日志" scheme="http://ghcoder.com/categories/%E6%97%A5%E5%BF%97/"/>
     
     
-      <category term="学习" scheme="http://yoursite.com/tags/%E5%AD%A6%E4%B9%A0/"/>
+      <category term="学习" scheme="http://ghcoder.com/tags/%E5%AD%A6%E4%B9%A0/"/>
     
-      <category term="Cocoapods" scheme="http://yoursite.com/tags/Cocoapods/"/>
+      <category term="Cocoapods" scheme="http://ghcoder.com/tags/Cocoapods/"/>
     
   </entry>
   
   <entry>
     <title>React-Native 实战(-)</title>
-    <link href="http://yoursite.com/2016/10/21/20161021/"/>
-    <id>http://yoursite.com/2016/10/21/20161021/</id>
+    <link href="http://ghcoder.com/2016/10/21/20161021/"/>
+    <id>http://ghcoder.com/2016/10/21/20161021/</id>
     <published>2016-10-21T07:47:12.000Z</published>
     <updated>2016-10-21T07:47:13.000Z</updated>
     
@@ -548,19 +548,19 @@
     
     </summary>
     
-      <category term="日志" scheme="http://yoursite.com/categories/%E6%97%A5%E5%BF%97/"/>
+      <category term="日志" scheme="http://ghcoder.com/categories/%E6%97%A5%E5%BF%97/"/>
     
     
-      <category term="学习" scheme="http://yoursite.com/tags/%E5%AD%A6%E4%B9%A0/"/>
+      <category term="学习" scheme="http://ghcoder.com/tags/%E5%AD%A6%E4%B9%A0/"/>
     
-      <category term="React Native" scheme="http://yoursite.com/tags/React-Native/"/>
+      <category term="React Native" scheme="http://ghcoder.com/tags/React-Native/"/>
     
   </entry>
   
   <entry>
     <title>学习React Native中</title>
-    <link href="http://yoursite.com/2016/08/24/20160824/"/>
-    <id>http://yoursite.com/2016/08/24/20160824/</id>
+    <link href="http://ghcoder.com/2016/08/24/20160824/"/>
+    <id>http://ghcoder.com/2016/08/24/20160824/</id>
     <published>2016-08-24T06:53:12.000Z</published>
     <updated>2016-08-24T06:53:43.000Z</updated>
     
@@ -606,19 +606,19 @@
     
     </summary>
     
-      <category term="日志" scheme="http://yoursite.com/categories/%E6%97%A5%E5%BF%97/"/>
+      <category term="日志" scheme="http://ghcoder.com/categories/%E6%97%A5%E5%BF%97/"/>
     
     
-      <category term="学习" scheme="http://yoursite.com/tags/%E5%AD%A6%E4%B9%A0/"/>
+      <category term="学习" scheme="http://ghcoder.com/tags/%E5%AD%A6%E4%B9%A0/"/>
     
-      <category term="React Native" scheme="http://yoursite.com/tags/React-Native/"/>
+      <category term="React Native" scheme="http://ghcoder.com/tags/React-Native/"/>
     
   </entry>
   
   <entry>
     <title>因为我不想打卡，不要问我为什么？？</title>
-    <link href="http://yoursite.com/2016/08/15/20160815/"/>
-    <id>http://yoursite.com/2016/08/15/20160815/</id>
+    <link href="http://ghcoder.com/2016/08/15/20160815/"/>
+    <id>http://ghcoder.com/2016/08/15/20160815/</id>
     <published>2016-08-15T06:28:12.000Z</published>
     <updated>2016-12-01T08:05:30.000Z</updated>
     
@@ -688,19 +688,19 @@
     
     </summary>
     
-      <category term="日志" scheme="http://yoursite.com/categories/%E6%97%A5%E5%BF%97/"/>
+      <category term="日志" scheme="http://ghcoder.com/categories/%E6%97%A5%E5%BF%97/"/>
     
     
-      <category term="学习" scheme="http://yoursite.com/tags/%E5%AD%A6%E4%B9%A0/"/>
+      <category term="学习" scheme="http://ghcoder.com/tags/%E5%AD%A6%E4%B9%A0/"/>
     
-      <category term="Obeject-c" scheme="http://yoursite.com/tags/Obeject-c/"/>
+      <category term="Obeject-c" scheme="http://ghcoder.com/tags/Obeject-c/"/>
     
   </entry>
   
   <entry>
     <title>搭建SDK中所遇到的坑</title>
-    <link href="http://yoursite.com/2016/05/10/20160510/"/>
-    <id>http://yoursite.com/2016/05/10/20160510/</id>
+    <link href="http://ghcoder.com/2016/05/10/20160510/"/>
+    <id>http://ghcoder.com/2016/05/10/20160510/</id>
     <published>2016-05-10T01:41:12.000Z</published>
     <updated>2016-05-10T01:44:35.000Z</updated>
     
@@ -723,19 +723,19 @@
     
     </summary>
     
-      <category term="日志" scheme="http://yoursite.com/categories/%E6%97%A5%E5%BF%97/"/>
+      <category term="日志" scheme="http://ghcoder.com/categories/%E6%97%A5%E5%BF%97/"/>
     
     
-      <category term="Obeject-c" scheme="http://yoursite.com/tags/Obeject-c/"/>
+      <category term="Obeject-c" scheme="http://ghcoder.com/tags/Obeject-c/"/>
     
-      <category term="项目" scheme="http://yoursite.com/tags/%E9%A1%B9%E7%9B%AE/"/>
+      <category term="项目" scheme="http://ghcoder.com/tags/%E9%A1%B9%E7%9B%AE/"/>
     
   </entry>
   
   <entry>
     <title>关于学习UITableViewCell的高度计算的框架-UITableView-FDTemplateLayoutCell。</title>
-    <link href="http://yoursite.com/2016/05/05/20160505/"/>
-    <id>http://yoursite.com/2016/05/05/20160505/</id>
+    <link href="http://ghcoder.com/2016/05/05/20160505/"/>
+    <id>http://ghcoder.com/2016/05/05/20160505/</id>
     <published>2016-05-05T09:06:12.000Z</published>
     <updated>2016-05-06T06:39:23.000Z</updated>
     
@@ -788,19 +788,19 @@
     
     </summary>
     
-      <category term="日志" scheme="http://yoursite.com/categories/%E6%97%A5%E5%BF%97/"/>
+      <category term="日志" scheme="http://ghcoder.com/categories/%E6%97%A5%E5%BF%97/"/>
     
     
-      <category term="学习" scheme="http://yoursite.com/tags/%E5%AD%A6%E4%B9%A0/"/>
+      <category term="学习" scheme="http://ghcoder.com/tags/%E5%AD%A6%E4%B9%A0/"/>
     
-      <category term="Obeject-c" scheme="http://yoursite.com/tags/Obeject-c/"/>
+      <category term="Obeject-c" scheme="http://ghcoder.com/tags/Obeject-c/"/>
     
   </entry>
   
   <entry>
     <title>关于图片圆角的功能学习。</title>
-    <link href="http://yoursite.com/2016/04/19/20160418/"/>
-    <id>http://yoursite.com/2016/04/19/20160418/</id>
+    <link href="http://ghcoder.com/2016/04/19/20160418/"/>
+    <id>http://ghcoder.com/2016/04/19/20160418/</id>
     <published>2016-04-19T03:12:12.000Z</published>
     <updated>2016-12-01T08:05:36.000Z</updated>
     
@@ -848,19 +848,19 @@ A bitmask value that identifies the corners that you want rounded. You can use t
     
     </summary>
     
-      <category term="日志" scheme="http://yoursite.com/categories/%E6%97%A5%E5%BF%97/"/>
+      <category term="日志" scheme="http://ghcoder.com/categories/%E6%97%A5%E5%BF%97/"/>
     
     
-      <category term="学习" scheme="http://yoursite.com/tags/%E5%AD%A6%E4%B9%A0/"/>
+      <category term="学习" scheme="http://ghcoder.com/tags/%E5%AD%A6%E4%B9%A0/"/>
     
-      <category term="Obeject-c" scheme="http://yoursite.com/tags/Obeject-c/"/>
+      <category term="Obeject-c" scheme="http://ghcoder.com/tags/Obeject-c/"/>
     
   </entry>
   
   <entry>
     <title>学习YYModel</title>
-    <link href="http://yoursite.com/2016/04/01/20160401/"/>
-    <id>http://yoursite.com/2016/04/01/20160401/</id>
+    <link href="http://ghcoder.com/2016/04/01/20160401/"/>
+    <id>http://ghcoder.com/2016/04/01/20160401/</id>
     <published>2016-04-01T06:28:12.000Z</published>
     <updated>2016-12-01T08:05:44.000Z</updated>
     
@@ -890,19 +890,19 @@ A bitmask value that identifies the corners that you want rounded. You can use t
     
     </summary>
     
-      <category term="日志" scheme="http://yoursite.com/categories/%E6%97%A5%E5%BF%97/"/>
+      <category term="日志" scheme="http://ghcoder.com/categories/%E6%97%A5%E5%BF%97/"/>
     
     
-      <category term="学习" scheme="http://yoursite.com/tags/%E5%AD%A6%E4%B9%A0/"/>
+      <category term="学习" scheme="http://ghcoder.com/tags/%E5%AD%A6%E4%B9%A0/"/>
     
-      <category term="Obeject-c" scheme="http://yoursite.com/tags/Obeject-c/"/>
+      <category term="Obeject-c" scheme="http://ghcoder.com/tags/Obeject-c/"/>
     
   </entry>
   
   <entry>
     <title>新的开始</title>
-    <link href="http://yoursite.com/2016/03/28/20160328/"/>
-    <id>http://yoursite.com/2016/03/28/20160328/</id>
+    <link href="http://ghcoder.com/2016/03/28/20160328/"/>
+    <id>http://ghcoder.com/2016/03/28/20160328/</id>
     <published>2016-03-28T06:28:12.000Z</published>
     <updated>2016-10-13T02:53:14.000Z</updated>
     
@@ -916,12 +916,12 @@ A bitmask value that identifies the corners that you want rounded. You can use t
     
     </summary>
     
-      <category term="日志" scheme="http://yoursite.com/categories/%E6%97%A5%E5%BF%97/"/>
+      <category term="日志" scheme="http://ghcoder.com/categories/%E6%97%A5%E5%BF%97/"/>
     
     
-      <category term="学习" scheme="http://yoursite.com/tags/%E5%AD%A6%E4%B9%A0/"/>
+      <category term="学习" scheme="http://ghcoder.com/tags/%E5%AD%A6%E4%B9%A0/"/>
     
-      <category term="我" scheme="http://yoursite.com/tags/%E6%88%91/"/>
+      <category term="我" scheme="http://ghcoder.com/tags/%E6%88%91/"/>
     
   </entry>
   
