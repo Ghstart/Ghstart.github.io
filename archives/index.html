@@ -872,21 +872,7 @@
           
 
 
-          <div id="container"></div>
-<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
-<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
-<script>
-var gitment = new Gitment({
-  id: "", // 可选。默认为 location.href
-  owner: 'Ghstart',
-  repo: 'Ghstart/Ghstart.github.io',
-  oauth: {
-    client_id: '991dce1240695ff40a75',
-    client_secret: 'bad8be6101e03bfbc8e9db63f880768c69d22a59',
-  },
-})
-gitment.render('container')
-</script>
+          
 
 
         </div>
@@ -968,6 +954,22 @@ gitment.render('container')
         
       </div>
     </main>
+    
+    <div id="container"></div>
+    <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+    <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+    <script>
+    var gitment = new Gitment({
+      id: "", // 可选。默认为 location.href
+      owner: 'Ghstart',
+      repo: 'Ghstart/Ghstart.github.io',
+      oauth: {
+        client_id: '991dce1240695ff40a75',
+        client_secret: 'bad8be6101e03bfbc8e9db63f880768c69d22a59',
+      },
+    })
+    gitment.render('container')
+    </script>
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
