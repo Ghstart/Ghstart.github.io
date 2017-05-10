@@ -1,0 +1,706 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Python、Django," />
+
+
+
+
+  
+
+
+  <link rel="alternate" href="/atom.xml" title="Ghcoder" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="人生苦短，我用Python–不管你之前写过多少其他语言，当你有一天回来写python的时候，你就会觉得“世界是那么的美好！”今天我就来讲讲我是如何用Python的django[https://docs.djangoproject.com] 来搭建后台的：
+我是在mac的环境下搭建的，linux也试过，其实搭建环境来说，都差不多,这里就以mac为例子
+首先mac或者linux的话，应该是自带pyth">
+<meta property="og:type" content="article">
+<meta property="og:title" content="用Python的Django框架搭建前后台">
+<meta property="og:url" content="http://www.ghcoder.com/2017/05/09/20170509/index.html">
+<meta property="og:site_name" content="Ghcoder">
+<meta property="og:description" content="人生苦短，我用Python–不管你之前写过多少其他语言，当你有一天回来写python的时候，你就会觉得“世界是那么的美好！”今天我就来讲讲我是如何用Python的django[https://docs.djangoproject.com] 来搭建后台的：
+我是在mac的环境下搭建的，linux也试过，其实搭建环境来说，都差不多,这里就以mac为例子
+首先mac或者linux的话，应该是自带pyth">
+<meta property="og:updated_time" content="2017-05-09T07:43:29.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="用Python的Django框架搭建前后台">
+<meta name="twitter:description" content="人生苦短，我用Python–不管你之前写过多少其他语言，当你有一天回来写python的时候，你就会觉得“世界是那么的美好！”今天我就来讲讲我是如何用Python的django[https://docs.djangoproject.com] 来搭建后台的：
+我是在mac的环境下搭建的，linux也试过，其实搭建环境来说，都差不多,这里就以mac为例子
+首先mac或者linux的话，应该是自带pyth">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Gh'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://www.ghcoder.com/2017/05/09/20170509/"/>
+
+
+  <title> 用Python的Django框架搭建前后台 | Ghcoder </title>
+</head>
+<script id="dsq-count-scr" src="//ghcoder2020.disqus.com/count.js" async></script>
+<body itemscope itemtype="//schema.org/WebPage" lang="">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Ghcoder</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+            列表
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                用Python的Django框架搭建前后台
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发布于</span>
+            <time itemprop="dateCreated" datetime="2017-05-09T15:36:12+08:00" content="2017-05-09">
+              2017-05-09
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">in</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/日志/" itemprop="url" rel="index">
+                    <span itemprop="name">日志</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/05/09/20170509/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/05/09/20170509/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="人生苦短，我用Python–不管你之前写过多少其他语言，当你有一天回来写python的时候，你就会觉得“世界是那么的美好！”"><a href="#人生苦短，我用Python–不管你之前写过多少其他语言，当你有一天回来写python的时候，你就会觉得“世界是那么的美好！”" class="headerlink" title="人生苦短，我用Python–不管你之前写过多少其他语言，当你有一天回来写python的时候，你就会觉得“世界是那么的美好！”"></a>人生苦短，我用Python–不管你之前写过多少其他语言，当你有一天回来写python的时候，你就会觉得“世界是那么的美好！”</h3><h4 id="今天我就来讲讲我是如何用Python的django-https-docs-djangoproject-com-来搭建后台的："><a href="#今天我就来讲讲我是如何用Python的django-https-docs-djangoproject-com-来搭建后台的：" class="headerlink" title="今天我就来讲讲我是如何用Python的django[https://docs.djangoproject.com] 来搭建后台的："></a>今天我就来讲讲我是如何用<code>Python</code>的<code>django</code>[<a href="https://docs.djangoproject.com" target="_blank" rel="external">https://docs.djangoproject.com</a>] 来搭建后台的：</h4><ol>
+<li>我是在mac的环境下搭建的，linux也试过，其实搭建环境来说，都差不多,这里就以mac为例子</li>
+<li>首先mac或者linux的话，应该是自带python的，如果是win系统的话，你可以自己去下载[<a href="https://www.python.org/" target="_blank" rel="external">https://www.python.org/</a>]</li>
+<li>数据库（database）也是很重要的，因为我们想做的是一个健全的前后台系统、后期还需要给移动端提供数据来源，所以我这里选用mysql，我这里偷懒就用了<code>MAMP</code>一键安装，在linux下也有相应的叫<code>LAMP</code>,一步步点击下一步之后就完成了，这里我用的是<code>Apache+Mysql</code>。安装完成之后，你就可以看到mysql的端口、密码、用户名啥的（这里可能有些坑，需要自己去踩，这里就不说了，自行google),这里要弄好，因为我们后续在配置django的时候需要配置。</li>
+<li>下面进入正式安装jdango，官方建议通过pip去安装。</li>
+</ol>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pip <span class="keyword">install</span> -U pip</div></pre></td></tr></table></figure>
+<h5 id="如果报错就执行下面的命令："><a href="#如果报错就执行下面的命令：" class="headerlink" title="如果报错就执行下面的命令："></a>如果报错就执行下面的命令：</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pip <span class="keyword">install</span> <span class="comment">--upgrade pip</span></div></pre></td></tr></table></figure>
+<h5 id="不出意外的话，此时你的pip，应该已经安装好了。下面来安装环境，这里环境，官方的意见是安装virtualenv或者virtualenvwrapper-这里其实我都试过，你也可以试试，这里就用virtualenv-https-virtualenv-pypa-io-en-stable-你也可以自己参考一下virtualenv的官方介绍-https-virtualenv-pypa-io-en-stable-installation"><a href="#不出意外的话，此时你的pip，应该已经安装好了。下面来安装环境，这里环境，官方的意见是安装virtualenv或者virtualenvwrapper-这里其实我都试过，你也可以试试，这里就用virtualenv-https-virtualenv-pypa-io-en-stable-你也可以自己参考一下virtualenv的官方介绍-https-virtualenv-pypa-io-en-stable-installation" class="headerlink" title="不出意外的话，此时你的pip，应该已经安装好了。下面来安装环境，这里环境，官方的意见是安装virtualenv或者virtualenvwrapper,这里其实我都试过，你也可以试试，这里就用virtualenv [https://virtualenv.pypa.io/en/stable/] , 你也可以自己参考一下virtualenv的官方介绍 [https://virtualenv.pypa.io/en/stable/installation/] :"></a>不出意外的话，此时你的pip，应该已经安装好了。下面来安装环境，这里环境，官方的意见是安装<code>virtualenv</code>或者<code>virtualenvwrapper</code>,这里其实我都试过，你也可以试试，这里就用<code>virtualenv</code> [<a href="https://virtualenv.pypa.io/en/stable/" target="_blank" rel="external">https://virtualenv.pypa.io/en/stable/</a>] , 你也可以自己参考一下virtualenv的官方介绍 [<a href="https://virtualenv.pypa.io/en/stable/installation/" target="_blank" rel="external">https://virtualenv.pypa.io/en/stable/installation/</a>] :</h5><figure class="highlight accesslog"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="string">[sudo]</span> pip install virtualenv</div></pre></td></tr></table></figure>
+<h5 id="最后执行安装django的命令："><a href="#最后执行安装django的命令：" class="headerlink" title="最后执行安装django的命令："></a>最后执行安装<code>django</code>的命令：</h5><figure class="highlight cmake"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pip <span class="keyword">install</span> Django</div></pre></td></tr></table></figure>
+<h5 id="官方给出了严重你是否安装成功，以及安装的版本-当成功打印的时候，就代表已经成功安装了。"><a href="#官方给出了严重你是否安装成功，以及安装的版本-当成功打印的时候，就代表已经成功安装了。" class="headerlink" title="官方给出了严重你是否安装成功，以及安装的版本,当成功打印的时候，就代表已经成功安装了。"></a>官方给出了严重你是否安装成功，以及安装的版本,当成功打印的时候，就代表已经成功安装了。</h5><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;</span>&gt; import django</div><div class="line"><span class="meta">&gt;&gt;</span>&gt; print(django.get_version())</div><div class="line"><span class="number">1.11</span></div></pre></td></tr></table></figure>
+<h5 id="也可以直接在终端输入"><a href="#也可以直接在终端输入" class="headerlink" title="也可以直接在终端输入"></a>也可以直接在终端输入</h5><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">python</span> -<span class="keyword">m</span> django --<span class="keyword">version</span></div></pre></td></tr></table></figure>
+<h4 id="直接开始项目："><a href="#直接开始项目：" class="headerlink" title="直接开始项目："></a>直接开始项目：</h4><ol>
+<li>直接在终端输入：此时在当前路径下就会看到我们创建的<code>GhCoder_Site</code>文件夹：</li>
+</ol>
+<figure class="highlight nsis"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">django-<span class="literal">admin</span> startproject GhCoder_Site</div></pre></td></tr></table></figure>
+<ol>
+<li>文件夹的结构：</li>
+</ol>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">├── GhCoder_Site</div><div class="line">│   ├── __init__<span class="selector-class">.py</span></div><div class="line">│   ├── settings<span class="selector-class">.py</span></div><div class="line">│   ├── urls<span class="selector-class">.py</span></div><div class="line">│   └── wsgi<span class="selector-class">.py</span></div><div class="line">└── manage.py</div></pre></td></tr></table></figure>
+<h4 id="这里官方给了一些解释，我觉得很好，有助于我们的理解-其实我之前都是写php的，深有感触–note"><a href="#这里官方给了一些解释，我觉得很好，有助于我们的理解-其实我之前都是写php的，深有感触–note" class="headerlink" title="这里官方给了一些解释，我觉得很好，有助于我们的理解, 其实我之前都是写php的，深有感触–note:"></a>这里官方给了一些解释，我觉得很好，有助于我们的理解, 其实我之前都是写php的，深有感触–note:</h4><blockquote>
+<p>If your background is in plain old PHP (with no use of modern frameworks), you’re probably used to putting code under the Web server’s document root (in a place such as /var/www). With Django, you don’t do that. It’s not a good idea to put any of this Python code within your Web server’s document root, because it risks the possibility that people may be able to view your code over the Web. That’s not good for security.<br>Put your code in some directory outside of the document root, such as /home/mycode.</p>
+</blockquote>
+<h4 id="官方对于每个文件夹以及文件的作用都做了一定的解释，这里我就不解释了很通俗易懂："><a href="#官方对于每个文件夹以及文件的作用都做了一定的解释，这里我就不解释了很通俗易懂：" class="headerlink" title="官方对于每个文件夹以及文件的作用都做了一定的解释，这里我就不解释了很通俗易懂："></a>官方对于每个文件夹以及文件的作用都做了一定的解释，这里我就不解释了很通俗易懂：</h4><ul>
+<li>The outer GhCoder_Site/ root directory is just a container for your project. Its name doesn’t matter to Django; you can rename it to anything you like.</li>
+<li>manage.py: A command-line utility that lets you interact with this Django project in various ways. You can read all the details about manage.py in django-admin and manage.py.</li>
+<li>The inner GhCoder_Site/ directory is the actual Python package for your project. Its name is the Python package name you’ll need to use to import anything inside it (e.g. GhCoder_Site.urls).</li>
+<li>GhCoder_Site/<strong>init</strong>.py: An empty file that tells Python that this directory should be considered a Python package. If you’re a Python beginner, read more about packages in the official Python docs.</li>
+<li>GhCoder_Site/settings.py: Settings/configuration for this Django project. Django settings will tell you all about how settings work.</li>
+<li>GhCoder_Site/urls.py: The URL declarations for this Django project; a “table of contents” of your Django-powered site. You can read more about URLs in URL dispatcher.</li>
+<li>GhCoder_Site/wsgi.py: An entry-point for WSGI-compatible web servers to serve your project. See How to deploy with WSGI for more details.</li>
+</ul>
+<h4 id="下面直接运行下面的命令："><a href="#下面直接运行下面的命令：" class="headerlink" title="下面直接运行下面的命令："></a>下面直接运行下面的命令：</h4><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">python manage<span class="selector-class">.py</span> runserver</div></pre></td></tr></table></figure>
+<h4 id="你会得到这样的反馈："><a href="#你会得到这样的反馈：" class="headerlink" title="你会得到这样的反馈："></a>你会得到这样的反馈：</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">Performing system checks...</div><div class="line"></div><div class="line">System <span class="keyword">check</span> <span class="keyword">identified</span> <span class="keyword">no</span> issues (<span class="number">0</span> silenced).</div><div class="line"></div><div class="line">//请忽略这里</div><div class="line">You have <span class="number">13</span> unapplied <span class="keyword">migration</span>(s). Your <span class="keyword">project</span> may <span class="keyword">not</span> <span class="keyword">work</span> properly <span class="keyword">until</span> you <span class="keyword">apply</span> the migrations <span class="keyword">for</span> app(s): <span class="keyword">admin</span>, auth, contenttypes, sessions.</div><div class="line">Run <span class="string">'python manage.py migrate'</span> <span class="keyword">to</span> <span class="keyword">apply</span> them.</div><div class="line"></div><div class="line">May <span class="number">09</span>, <span class="number">2017</span> - <span class="number">07</span>:<span class="number">08</span>:<span class="number">16</span></div><div class="line">Django <span class="keyword">version</span> <span class="number">1.11</span>, <span class="keyword">using</span> <span class="keyword">settings</span> <span class="string">'GhCoder_Site.settings'</span></div><div class="line"><span class="keyword">Starting</span> development <span class="keyword">server</span> <span class="keyword">at</span> <span class="keyword">http</span>://<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">8000</span>/</div><div class="line">Quit the <span class="keyword">server</span> <span class="keyword">with</span> CONTROL-C.</div></pre></td></tr></table></figure>
+<h4 id="此时打开浏览器，输入http-127-0-0-1-8000-，你就会看到Welcome-to-Django”-page-in-pleasant-light-blue-pastel-It-worked-，就代表成功了。"><a href="#此时打开浏览器，输入http-127-0-0-1-8000-，你就会看到Welcome-to-Django”-page-in-pleasant-light-blue-pastel-It-worked-，就代表成功了。" class="headerlink" title="此时打开浏览器，输入http://127.0.0.1:8000/，你就会看到Welcome to Django” page, in pleasant, light-blue pastel. It worked!，就代表成功了。"></a>此时打开浏览器，输入<code>http://127.0.0.1:8000/</code>，你就会看到<code>Welcome to Django” page, in pleasant, light-blue pastel. It worked!</code>，就代表成功了。</h4><h4 id="切换端口："><a href="#切换端口：" class="headerlink" title="切换端口："></a>切换端口：</h4><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">python manage<span class="selector-class">.py</span> runserver <span class="number">8080</span></div></pre></td></tr></table></figure>
+<h4 id="切换ip、监听所有的ip"><a href="#切换ip、监听所有的ip" class="headerlink" title="切换ip、监听所有的ip"></a>切换ip、监听所有的ip</h4><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">python</span> <span class="selector-tag">manage</span><span class="selector-class">.py</span> <span class="selector-tag">runserver</span> 0<span class="selector-pseudo">:8000</span></div></pre></td></tr></table></figure>
+<h3 id="Django的开发模式都是依赖于一个个app，这一点我非常喜欢，后期就算项目很大，也不会很乱，创建第一个app"><a href="#Django的开发模式都是依赖于一个个app，这一点我非常喜欢，后期就算项目很大，也不会很乱，创建第一个app" class="headerlink" title="Django的开发模式都是依赖于一个个app，这一点我非常喜欢，后期就算项目很大，也不会很乱，创建第一个app:"></a>Django的开发模式都是依赖于一个个app，这一点我非常喜欢，后期就算项目很大，也不会很乱，创建第一个app:</h3><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">python manage<span class="selector-class">.py</span> startapp polls</div></pre></td></tr></table></figure>
+<h3 id="结构如下："><a href="#结构如下：" class="headerlink" title="结构如下："></a>结构如下：</h3><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">.</div><div class="line">├── db<span class="selector-class">.sqlite3</span></div><div class="line">├── GhCoder_Site</div><div class="line">│   ├── __init__<span class="selector-class">.py</span></div><div class="line">│   ├── __init__<span class="selector-class">.pyc</span></div><div class="line">│   ├── settings<span class="selector-class">.py</span></div><div class="line">│   ├── settings<span class="selector-class">.pyc</span></div><div class="line">│   ├── urls<span class="selector-class">.py</span></div><div class="line">│   ├── urls<span class="selector-class">.pyc</span></div><div class="line">│   ├── wsgi<span class="selector-class">.py</span></div><div class="line">│   └── wsgi<span class="selector-class">.pyc</span></div><div class="line">├── manage<span class="selector-class">.py</span></div><div class="line">└── polls</div><div class="line">    ├── admin<span class="selector-class">.py</span></div><div class="line">    ├── apps<span class="selector-class">.py</span></div><div class="line">    ├── __init__<span class="selector-class">.py</span></div><div class="line">    ├── migrations</div><div class="line">    │   └── __init__<span class="selector-class">.py</span></div><div class="line">    ├── models<span class="selector-class">.py</span></div><div class="line">    ├── tests<span class="selector-class">.py</span></div><div class="line">    └── views.py</div></pre></td></tr></table></figure>
+<h4 id="创建第一个views-打开polls-views-py-输入："><a href="#创建第一个views-打开polls-views-py-输入：" class="headerlink" title="创建第一个views,打开polls/views.py,输入："></a>创建第一个views,打开<code>polls/views.py</code>,输入：</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">index</span><span class="params">(resquest)</span>:</span></div><div class="line">      <span class="keyword">return</span> HttpResponse(<span class="string">"Hello, world, You are in polls app"</span>)</div></pre></td></tr></table></figure>
+<h4 id="现在配置一下路由-到文件polls-创建一个名为urls-py的文件。将之前写的view和这个url对应上："><a href="#现在配置一下路由-到文件polls-创建一个名为urls-py的文件。将之前写的view和这个url对应上：" class="headerlink" title="现在配置一下路由,到文件polls,创建一个名为urls.py的文件。将之前写的view和这个url对应上："></a>现在配置一下路由,到文件<code>polls</code>,创建一个名为<code>urls.py</code>的文件。将之前写的view和这个url对应上：</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> django.conf.urls <span class="keyword">import</span> url                                                                                                                      </div><div class="line"><span class="keyword">from</span> . <span class="keyword">import</span> views</div><div class="line">   </div><div class="line">urlpatterns = [</div><div class="line">               url(<span class="string">r'^$'</span>, views.index, name=<span class="string">'index'</span>)</div><div class="line">           ]</div></pre></td></tr></table></figure>
+<h4 id="最后将app的url，写到项目中的urls-py的文件里面去，到GhCoder-Site-urls-py文件里面，添加如下代码："><a href="#最后将app的url，写到项目中的urls-py的文件里面去，到GhCoder-Site-urls-py文件里面，添加如下代码：" class="headerlink" title="最后将app的url，写到项目中的urls.py的文件里面去，到GhCoder_Site/urls.py文件里面，添加如下代码："></a>最后将app的url，写到项目中的urls.py的文件里面去，到<code>GhCoder_Site/urls.py</code>文件里面，添加如下代码：</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> django.conf.urls <span class="keyword">import</span> include, url</div><div class="line"><span class="keyword">from</span> django.contrib <span class="keyword">import</span> admin</div><div class="line"></div><div class="line">urlpatterns = [</div><div class="line">    url(<span class="string">r'^polls/'</span>, include(<span class="string">'polls.urls'</span>)),</div><div class="line">    url(<span class="string">r'^admin/'</span>, admin.site.urls),</div><div class="line">]</div></pre></td></tr></table></figure>
+<h4 id="这里关于include的官方介绍："><a href="#这里关于include的官方介绍：" class="headerlink" title="这里关于include的官方介绍："></a>这里关于include的官方介绍：</h4><blockquote>
+<p>The include() function allows referencing other URLconfs. Note that the regular expressions for the include() function doesn’t have a $ (end-of-string match character) but rather a trailing slash. Whenever Django encounters include(), it chops off whatever part of the URL matched up to that point and sends the remaining string to the included URLconf for further processing.</p>
+<p>The idea behind include() is to make it easy to plug-and-play URLs. Since polls are in their own URLconf (polls/urls.py), they can be placed under “/polls/”, or under “/fun_polls/”, or under “/content/polls/”, or any other path root, and the app will still work.</p>
+</blockquote>
+<h4 id="此时你访问http-127-0-0-1-8000-polls-就看到你刚才写的view以及url"><a href="#此时你访问http-127-0-0-1-8000-polls-就看到你刚才写的view以及url" class="headerlink" title="此时你访问http://127.0.0.1:8000/polls/就看到你刚才写的view以及url"></a>此时你访问<code>http://127.0.0.1:8000/polls/</code>就看到你刚才写的view以及url</h4>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Python、Django/" rel="tag">#Python、Django</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/05/05/20170505/" rel="next" title="Object-C 网管、以及切换AppDelegate的RootViewCtroller">
+                <i class="fa fa-chevron-left"></i> Object-C 网管、以及切换AppDelegate的RootViewCtroller
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+<div id="disqus_thread"></div>
+
+
+
+<script type="text/javascript">
+  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+  var disqus_shortname = 'ghcoder2014';
+  var disqus_identifier = "2017/05/09/20170509/";
+  var disqus_title = "用Python的Django框架搭建前后台";
+  var disqus_url = "http://www.ghcoder.com";
+
+  function run_disqus_script(disqus_script){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  }
+
+  run_disqus_script('count.js');
+  
+    run_disqus_script('embed.js');
+  
+</script>
+
+
+
+
+
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+
+
+        </div>
+        
+          
+  
+
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Ghcoder" />
+          <p class="site-author-name" itemprop="name">Ghcoder</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">17</span>
+              <span class="site-state-item-name">Artikel</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">Kategorien</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">Tags</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#人生苦短，我用Python–不管你之前写过多少其他语言，当你有一天回来写python的时候，你就会觉得“世界是那么的美好！”"><span class="nav-number">1.</span> <span class="nav-text">人生苦短，我用Python–不管你之前写过多少其他语言，当你有一天回来写python的时候，你就会觉得“世界是那么的美好！”</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#今天我就来讲讲我是如何用Python的django-https-docs-djangoproject-com-来搭建后台的："><span class="nav-number">1.1.</span> <span class="nav-text">今天我就来讲讲我是如何用Python的django[https://docs.djangoproject.com] 来搭建后台的：</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#如果报错就执行下面的命令："><span class="nav-number">1.1.1.</span> <span class="nav-text">如果报错就执行下面的命令：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#不出意外的话，此时你的pip，应该已经安装好了。下面来安装环境，这里环境，官方的意见是安装virtualenv或者virtualenvwrapper-这里其实我都试过，你也可以试试，这里就用virtualenv-https-virtualenv-pypa-io-en-stable-你也可以自己参考一下virtualenv的官方介绍-https-virtualenv-pypa-io-en-stable-installation"><span class="nav-number">1.1.2.</span> <span class="nav-text">不出意外的话，此时你的pip，应该已经安装好了。下面来安装环境，这里环境，官方的意见是安装virtualenv或者virtualenvwrapper,这里其实我都试过，你也可以试试，这里就用virtualenv [https://virtualenv.pypa.io/en/stable/] , 你也可以自己参考一下virtualenv的官方介绍 [https://virtualenv.pypa.io/en/stable/installation/] :</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#最后执行安装django的命令："><span class="nav-number">1.1.3.</span> <span class="nav-text">最后执行安装django的命令：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#官方给出了严重你是否安装成功，以及安装的版本-当成功打印的时候，就代表已经成功安装了。"><span class="nav-number">1.1.4.</span> <span class="nav-text">官方给出了严重你是否安装成功，以及安装的版本,当成功打印的时候，就代表已经成功安装了。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#也可以直接在终端输入"><span class="nav-number">1.1.5.</span> <span class="nav-text">也可以直接在终端输入</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#直接开始项目："><span class="nav-number">1.2.</span> <span class="nav-text">直接开始项目：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#这里官方给了一些解释，我觉得很好，有助于我们的理解-其实我之前都是写php的，深有感触–note"><span class="nav-number">1.3.</span> <span class="nav-text">这里官方给了一些解释，我觉得很好，有助于我们的理解, 其实我之前都是写php的，深有感触–note:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#官方对于每个文件夹以及文件的作用都做了一定的解释，这里我就不解释了很通俗易懂："><span class="nav-number">1.4.</span> <span class="nav-text">官方对于每个文件夹以及文件的作用都做了一定的解释，这里我就不解释了很通俗易懂：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#下面直接运行下面的命令："><span class="nav-number">1.5.</span> <span class="nav-text">下面直接运行下面的命令：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#你会得到这样的反馈："><span class="nav-number">1.6.</span> <span class="nav-text">你会得到这样的反馈：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#此时打开浏览器，输入http-127-0-0-1-8000-，你就会看到Welcome-to-Django”-page-in-pleasant-light-blue-pastel-It-worked-，就代表成功了。"><span class="nav-number">1.7.</span> <span class="nav-text">此时打开浏览器，输入http://127.0.0.1:8000/，你就会看到Welcome to Django” page, in pleasant, light-blue pastel. It worked!，就代表成功了。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#切换端口："><span class="nav-number">1.8.</span> <span class="nav-text">切换端口：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#切换ip、监听所有的ip"><span class="nav-number">1.9.</span> <span class="nav-text">切换ip、监听所有的ip</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Django的开发模式都是依赖于一个个app，这一点我非常喜欢，后期就算项目很大，也不会很乱，创建第一个app"><span class="nav-number">2.</span> <span class="nav-text">Django的开发模式都是依赖于一个个app，这一点我非常喜欢，后期就算项目很大，也不会很乱，创建第一个app:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#结构如下："><span class="nav-number">3.</span> <span class="nav-text">结构如下：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#创建第一个views-打开polls-views-py-输入："><span class="nav-number">3.1.</span> <span class="nav-text">创建第一个views,打开polls/views.py,输入：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#现在配置一下路由-到文件polls-创建一个名为urls-py的文件。将之前写的view和这个url对应上："><span class="nav-number">3.2.</span> <span class="nav-text">现在配置一下路由,到文件polls,创建一个名为urls.py的文件。将之前写的view和这个url对应上：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#最后将app的url，写到项目中的urls-py的文件里面去，到GhCoder-Site-urls-py文件里面，添加如下代码："><span class="nav-number">3.3.</span> <span class="nav-text">最后将app的url，写到项目中的urls.py的文件里面去，到GhCoder_Site/urls.py文件里面，添加如下代码：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#这里关于include的官方介绍："><span class="nav-number">3.4.</span> <span class="nav-text">这里关于include的官方介绍：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#此时你访问http-127-0-0-1-8000-polls-就看到你刚才写的view以及url"><span class="nav-number">3.5.</span> <span class="nav-text">此时你访问http://127.0.0.1:8000/polls/就看到你刚才写的view以及url</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ghcoder</span>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'ghcoder1024';
+      var disqus_identifier = '2017/05/09/20170509/';
+      var disqus_title = "用Python的Django框架搭建前后台";
+      var disqus_url = 'http://www.ghcoder.com/2017/05/09/20170509/';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        var disqus_config = function () {
+            this.page.url = disqus_url;
+            this.page.identifier = disqus_identifier;
+            this.page.title = disqus_title;
+        };
+        run_disqus_script('embed.js');
+      
+    </script>
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

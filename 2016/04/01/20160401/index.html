@@ -1,0 +1,677 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="学习,Obeject-c," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Ghcoder" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="以YYModel的例子，它以类的方式调用1234567+ (instancetype)yy_modelWithJSON:(id)json &amp;#123;    NSDictionary *dic = [self _yy_dictionaryWithJSON:json];    return [self yy_modelWithDictionary:dic];&amp;#125;&amp;lt;!-- 1. 直接将j">
+<meta property="og:type" content="article">
+<meta property="og:title" content="学习YYModel">
+<meta property="og:url" content="http://www.ghcoder.com/2016/04/01/20160401/index.html">
+<meta property="og:site_name" content="Ghcoder">
+<meta property="og:description" content="以YYModel的例子，它以类的方式调用1234567+ (instancetype)yy_modelWithJSON:(id)json &amp;#123;    NSDictionary *dic = [self _yy_dictionaryWithJSON:json];    return [self yy_modelWithDictionary:dic];&amp;#125;&amp;lt;!-- 1. 直接将j">
+<meta property="og:updated_time" content="2016-12-01T08:05:44.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="学习YYModel">
+<meta name="twitter:description" content="以YYModel的例子，它以类的方式调用1234567+ (instancetype)yy_modelWithJSON:(id)json &amp;#123;    NSDictionary *dic = [self _yy_dictionaryWithJSON:json];    return [self yy_modelWithDictionary:dic];&amp;#125;&amp;lt;!-- 1. 直接将j">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Gh'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://www.ghcoder.com/2016/04/01/20160401/"/>
+
+
+  <title> 学习YYModel | Ghcoder </title>
+</head>
+<script id="dsq-count-scr" src="//ghcoder2020.disqus.com/count.js" async></script>
+<body itemscope itemtype="//schema.org/WebPage" lang="">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Ghcoder</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+            列表
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                学习YYModel
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发布于</span>
+            <time itemprop="dateCreated" datetime="2016-04-01T14:28:12+08:00" content="2016-04-01">
+              2016-04-01
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">in</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/日志/" itemprop="url" rel="index">
+                    <span itemprop="name">日志</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/04/01/20160401/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/04/01/20160401/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="以YYModel的例子，它以类的方式调用"><a href="#以YYModel的例子，它以类的方式调用" class="headerlink" title="以YYModel的例子，它以类的方式调用"></a>以YYModel的例子，它以类的方式调用</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">+ (instancetype)yy_modelWithJSON:(id)json &#123;</div><div class="line">    NSDictionary *dic = [self _yy_dictionaryWithJSON:json];</div><div class="line">    return [self yy_modelWithDictionary:dic];</div><div class="line">&#125;</div><div class="line"></div><div class="line">&lt;!-- 1. 直接将json的格式丢给这个函数 --&gt;</div><div class="line">&lt;!-- 2. 然后调用下面的这个函数，主要是讲这个json转化为NSDictionary的格式，如果是字符串会将字符串转化为NSData,然后再转化为NSDictionary --&gt;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">+ (NSDictionary *)_yy_dictionaryWithJSON:(id)json &#123;</div></pre></td></tr></table></figure>
+<ul>
+<li>现在开始进入最重要的函数部分了</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">//这个函数里获取model元是通过调用下面的方法，cls是获取本类而得到的Class类型</div><div class="line">+ (instancetype)yy_modelWithDictionary:(NSDictionary *)dictionary &#123;&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[_YYModelMeta metaWithClass:cls]</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">+ (instancetype)metaWithClass:(Class)cls &#123;</div><div class="line">    if (!cls) return nil;</div><div class="line">    static CFMutableDictionaryRef cache;</div><div class="line">    static dispatch_once_t onceToken;</div><div class="line">    //1..</div><div class="line">    static dispatch_semaphore_t lock;</div><div class="line">    dispatch_once(&amp;onceToken, ^&#123;</div><div class="line">        cache = CFDictionaryCreateMutable(CFAllocatorGetDefault(), 0, &amp;kCFTypeDictionaryKeyCallBacks, &amp;kCFTypeDictionaryValueCallBacks);</div><div class="line">        lock = dispatch_semaphore_create(1);</div><div class="line">    &#125;);</div><div class="line">    dispatch_semaphore_wait(lock, DISPATCH_TIME_FOREVER);</div><div class="line">    _YYModelMeta *meta = CFDictionaryGetValue(cache, (__bridge const void *)(cls));</div><div class="line">    dispatch_semaphore_signal(lock);</div><div class="line">    if (!meta || meta-&gt;_classInfo.needUpdate) &#123;</div><div class="line">        meta = [[_YYModelMeta alloc] initWithClass:cls];</div><div class="line">        if (meta) &#123;</div><div class="line">            dispatch_semaphore_wait(lock, DISPATCH_TIME_FOREVER);</div><div class="line">            CFDictionarySetValue(cache, (__bridge const void *)(cls), (__bridge const void *)(meta));</div><div class="line">            dispatch_semaphore_signal(lock);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    return meta;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;!-- //以信号量的方式保持同步，作用是为了从cache的内存中获取meta的数据是同步的。 --&gt;</div><div class="line">dispatch_semaphore_wait(lock, DISPATCH_TIME_FOREVER);</div><div class="line">   _YYModelMeta *meta = CFDictionaryGetValue(cache, (__bridge const void *)(cls));</div><div class="line">   dispatch_semaphore_signal(lock);</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&lt;!-- //或者在讲meta的值塞入内存中保持同步 --&gt;</div><div class="line">	    if (!meta || meta-&gt;_classInfo.needUpdate) &#123;</div><div class="line">       meta = [[_YYModelMeta alloc] initWithClass:cls];</div><div class="line">       if (meta) &#123;</div><div class="line">           dispatch_semaphore_wait(lock, DISPATCH_TIME_FOREVER);</div><div class="line">           CFDictionarySetValue(cache, (__bridge const void *)(cls), (__bridge const void *)(meta));</div><div class="line">           dispatch_semaphore_signal(lock);</div><div class="line">       &#125;</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;!-- 其中创建meta的时候回调用 --&gt;</div><div class="line">meta = [[_YYModelMeta alloc] initWithClass:cls];</div><div class="line"></div><div class="line">- (instancetype)initWithClass:(Class)cls &#123;</div><div class="line">   YYClassInfo *classInfo = [YYClassInfo classInfoWithClass:cls];</div><div class="line"> 	.....  </div><div class="line"> &#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"> &lt;!-- 这里涉及到YYClassInfo的实例化方法,通过runtime的一些方法，找到本类，父类，元类。 --&gt;</div><div class="line"> - (instancetype)initWithClass:(Class)cls &#123;</div><div class="line">    if (!cls) return nil;</div><div class="line">    self = [super init];</div><div class="line">    _cls = cls;</div><div class="line">    _superCls = class_getSuperclass(cls);</div><div class="line">    _isMeta = class_isMetaClass(cls);</div><div class="line">    if (!_isMeta) &#123;</div><div class="line">        _metaCls = objc_getMetaClass(class_getName(cls));</div><div class="line">    &#125;</div><div class="line">    _name = NSStringFromClass(cls);</div><div class="line">    [self _update];</div><div class="line"></div><div class="line">    _superClassInfo = [self.class classInfoWithClass:_superCls];</div><div class="line">    return self;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>然后在_update的方法中</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">&lt;!-- 这里讲model中的方法、属性，ivar以key-value的形式存放在字典中。本类调用完后会在父类中调用再调用一遍。 --&gt;</div><div class="line">  Class cls = self.cls;</div><div class="line">    unsigned int methodCount = 0;</div><div class="line">    Method *methods = class_copyMethodList(cls, &amp;methodCount);</div><div class="line">    if (methods) &#123;</div><div class="line">        NSMutableDictionary *methodInfos = [NSMutableDictionary new];</div><div class="line">        _methodInfos = methodInfos;</div><div class="line">        for (unsigned int i = 0; i &lt; methodCount; i++) &#123;</div><div class="line">            YYClassMethodInfo *info = [[YYClassMethodInfo alloc] initWithMethod:methods[i]];</div><div class="line">            if (info.name) methodInfos[info.name] = info;</div><div class="line">        &#125;</div><div class="line">        free(methods);</div><div class="line">    &#125;</div><div class="line">    unsigned int propertyCount = 0;</div><div class="line">    objc_property_t *properties = class_copyPropertyList(cls, &amp;propertyCount);</div><div class="line">    if (properties) &#123;</div><div class="line">        NSMutableDictionary *propertyInfos = [NSMutableDictionary new];</div><div class="line">        _propertyInfos = propertyInfos;</div><div class="line">        for (unsigned int i = 0; i &lt; propertyCount; i++) &#123;</div><div class="line">            YYClassPropertyInfo *info = [[YYClassPropertyInfo alloc] initWithProperty:properties[i]];</div><div class="line">            if (info.name) propertyInfos[info.name] = info;</div><div class="line">        &#125;</div><div class="line">        free(properties);</div><div class="line">    &#125;</div><div class="line">....</div></pre></td></tr></table></figure>
+<hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div></pre></td><td class="code"><pre><div class="line">&lt;!-- * 最最关键的映射来了，YYModel把这个功能用一个递归函数来实现了。 --&gt;</div><div class="line">// create mapper</div><div class="line">   NSMutableDictionary *mapper = [NSMutableDictionary new];</div><div class="line">   NSMutableArray *keyPathPropertyMetas = [NSMutableArray new];</div><div class="line">   NSMutableArray *multiKeysPropertyMetas = [NSMutableArray new];</div><div class="line"></div><div class="line">   if ([cls respondsToSelector:@selector(modelCustomPropertyMapper)]) &#123;</div><div class="line">       NSDictionary *customMapper = [(id &lt;YYModel&gt;)cls modelCustomPropertyMapper];</div><div class="line">       [customMapper enumerateKeysAndObjectsUsingBlock:^(NSString *propertyName, NSString *mappedToKey, BOOL *stop) &#123;</div><div class="line">           _YYModelPropertyMeta *propertyMeta = allPropertyMetas[propertyName];</div><div class="line">           if (!propertyMeta) return;</div><div class="line">           [allPropertyMetas removeObjectForKey:propertyName];</div><div class="line"></div><div class="line">           if ([mappedToKey isKindOfClass:[NSString class]]) &#123;</div><div class="line">               if (mappedToKey.length == 0) return;</div><div class="line"></div><div class="line">               propertyMeta-&gt;_mappedToKey = mappedToKey;</div><div class="line">               NSArray *keyPath = [mappedToKey componentsSeparatedByString:@&quot;.&quot;];</div><div class="line">               if (keyPath.count &gt; 1) &#123;</div><div class="line">                   propertyMeta-&gt;_mappedToKeyPath = keyPath;</div><div class="line">                   [keyPathPropertyMetas addObject:propertyMeta];</div><div class="line">               &#125;</div><div class="line">               propertyMeta-&gt;_next = mapper[mappedToKey] ?: nil;</div><div class="line">               mapper[mappedToKey] = propertyMeta;</div><div class="line"></div><div class="line">           &#125; else if ([mappedToKey isKindOfClass:[NSArray class]]) &#123;</div><div class="line"></div><div class="line">               NSMutableArray *mappedToKeyArray = [NSMutableArray new];</div><div class="line">               for (NSString *oneKey in ((NSArray *)mappedToKey)) &#123;</div><div class="line">                   if (![oneKey isKindOfClass:[NSString class]]) continue;</div><div class="line">                   if (oneKey.length == 0) continue;</div><div class="line"></div><div class="line">                   NSArray *keyPath = [oneKey componentsSeparatedByString:@&quot;.&quot;];</div><div class="line">                   if (keyPath.count &gt; 1) &#123;</div><div class="line">                       [mappedToKeyArray addObject:keyPath];</div><div class="line">                   &#125; else &#123;</div><div class="line">                       [mappedToKeyArray addObject:oneKey];</div><div class="line">                   &#125;</div><div class="line"></div><div class="line">                   if (!propertyMeta-&gt;_mappedToKey) &#123;</div><div class="line">                       propertyMeta-&gt;_mappedToKey = oneKey;</div><div class="line">                       propertyMeta-&gt;_mappedToKeyPath = keyPath.count &gt; 1 ? keyPath : nil;</div><div class="line">                   &#125;</div><div class="line">               &#125;</div><div class="line">               if (!propertyMeta-&gt;_mappedToKey) return;</div><div class="line"></div><div class="line">               propertyMeta-&gt;_mappedToKeyArray = mappedToKeyArray;</div><div class="line">               [multiKeysPropertyMetas addObject:propertyMeta];</div><div class="line"></div><div class="line">               propertyMeta-&gt;_next = mapper[mappedToKey] ?: nil;</div><div class="line">               mapper[mappedToKey] = propertyMeta;</div><div class="line">           &#125;</div><div class="line">       &#125;];</div><div class="line">   &#125;</div><div class="line"></div><div class="line"></div><div class="line">   &lt;!-- * 源码中就可以看出，这个映射的函数，你需要复写modelCustomPropertyMapper 这个函数</div><div class="line">   * 映射这个函数，你可以定义一个NSString的字符串，假如你得字符串中含有“.”这个的话，他就会将这个字符串以“.”分隔成NSArray,然后存入到_mappedToKeyPath 这个变量中。</div><div class="line">   * 映射也可以是一个NSArray,这样就可以实现同一个model映射到不同的key上了。 --&gt;</div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/学习/" rel="tag">#学习</a>
+          
+            <a href="/tags/Obeject-c/" rel="tag">#Obeject-c</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/03/28/20160328/" rel="next" title="新的开始">
+                <i class="fa fa-chevron-left"></i> 新的开始
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/04/19/20160418/" rel="prev" title="关于图片圆角的功能学习。">
+                关于图片圆角的功能学习。 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+<div id="disqus_thread"></div>
+
+
+
+<script type="text/javascript">
+  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+  var disqus_shortname = 'ghcoder2014';
+  var disqus_identifier = "2016/04/01/20160401/";
+  var disqus_title = "学习YYModel";
+  var disqus_url = "http://www.ghcoder.com";
+
+  function run_disqus_script(disqus_script){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  }
+
+  run_disqus_script('count.js');
+  
+    run_disqus_script('embed.js');
+  
+</script>
+
+
+
+
+
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+
+
+        </div>
+        
+          
+  
+
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Ghcoder" />
+          <p class="site-author-name" itemprop="name">Ghcoder</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">17</span>
+              <span class="site-state-item-name">Artikel</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">Kategorien</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">Tags</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#以YYModel的例子，它以类的方式调用"><span class="nav-number">1.</span> <span class="nav-text">以YYModel的例子，它以类的方式调用</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ghcoder</span>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'ghcoder1024';
+      var disqus_identifier = '2016/04/01/20160401/';
+      var disqus_title = "学习YYModel";
+      var disqus_url = 'http://www.ghcoder.com/2016/04/01/20160401/';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        var disqus_config = function () {
+            this.page.url = disqus_url;
+            this.page.identifier = disqus_identifier;
+            this.page.title = disqus_title;
+        };
+        run_disqus_script('embed.js');
+      
+    </script>
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

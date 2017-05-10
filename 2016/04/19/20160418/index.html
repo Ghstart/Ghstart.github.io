@@ -1,0 +1,698 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="学习,Obeject-c," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Ghcoder" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="图片的性能问题，基本上面试的时候，都会被问到，现在在自己的app中，我也是为了解决的性能的问题，所以了解了一些关于图片性能的库，看一下源码, 现在应该有很多这种库了。我看的是这个：https://github.com/CoderJackyHuang/HYBImageCliped
+这个库是通过Category来分别实现这些功能，首先看看UIView的Category,是怎么实现的UIView的圆角。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关于图片圆角的功能学习。">
+<meta property="og:url" content="http://www.ghcoder.com/2016/04/19/20160418/index.html">
+<meta property="og:site_name" content="Ghcoder">
+<meta property="og:description" content="图片的性能问题，基本上面试的时候，都会被问到，现在在自己的app中，我也是为了解决的性能的问题，所以了解了一些关于图片性能的库，看一下源码, 现在应该有很多这种库了。我看的是这个：https://github.com/CoderJackyHuang/HYBImageCliped
+这个库是通过Category来分别实现这些功能，首先看看UIView的Category,是怎么实现的UIView的圆角。">
+<meta property="og:updated_time" content="2016-12-01T08:05:36.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="关于图片圆角的功能学习。">
+<meta name="twitter:description" content="图片的性能问题，基本上面试的时候，都会被问到，现在在自己的app中，我也是为了解决的性能的问题，所以了解了一些关于图片性能的库，看一下源码, 现在应该有很多这种库了。我看的是这个：https://github.com/CoderJackyHuang/HYBImageCliped
+这个库是通过Category来分别实现这些功能，首先看看UIView的Category,是怎么实现的UIView的圆角。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Gh'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://www.ghcoder.com/2016/04/19/20160418/"/>
+
+
+  <title> 关于图片圆角的功能学习。 | Ghcoder </title>
+</head>
+<script id="dsq-count-scr" src="//ghcoder2020.disqus.com/count.js" async></script>
+<body itemscope itemtype="//schema.org/WebPage" lang="">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Ghcoder</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+            列表
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                关于图片圆角的功能学习。
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发布于</span>
+            <time itemprop="dateCreated" datetime="2016-04-19T11:12:12+08:00" content="2016-04-19">
+              2016-04-19
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">in</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/日志/" itemprop="url" rel="index">
+                    <span itemprop="name">日志</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/04/19/20160418/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/04/19/20160418/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="图片的性能问题，基本上面试的时候，都会被问到，现在在自己的app中，我也是为了解决的性能的问题，所以了解了一些关于图片性能的库，看一下源码-现在应该有很多这种库了。我看的是这个：https-github-com-CoderJackyHuang-HYBImageCliped"><a href="#图片的性能问题，基本上面试的时候，都会被问到，现在在自己的app中，我也是为了解决的性能的问题，所以了解了一些关于图片性能的库，看一下源码-现在应该有很多这种库了。我看的是这个：https-github-com-CoderJackyHuang-HYBImageCliped" class="headerlink" title="图片的性能问题，基本上面试的时候，都会被问到，现在在自己的app中，我也是为了解决的性能的问题，所以了解了一些关于图片性能的库，看一下源码, 现在应该有很多这种库了。我看的是这个：https://github.com/CoderJackyHuang/HYBImageCliped"></a>图片的性能问题，基本上面试的时候，都会被问到，现在在自己的app中，我也是为了解决的性能的问题，所以了解了一些关于图片性能的库，看一下源码, 现在应该有很多这种库了。我看的是这个：<a href="https://github.com/CoderJackyHuang/HYBImageCliped" target="_blank" rel="external">https://github.com/CoderJackyHuang/HYBImageCliped</a></h3><ul>
+<li>这个库是通过Category来分别实现这些功能，首先看看UIView的Category,是怎么实现的UIView的圆角。</li>
+</ul>
+<figure class="highlight zephir"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> *	使用指定的图片来填充，但是生成的是圆形图片，背景颜色为白色。</div><div class="line"> *</div><div class="line"> *	<span class="doctag">@param</span> image			图片名称或者图片对象，甚至支持NSData</div><div class="line"> *	<span class="doctag">@param</span> targetSize	生成指定大小的图片</div><div class="line"> *	<span class="doctag">@param</span> isEqualScale	是否等比例缩放图片</div><div class="line"> *  <span class="doctag">@param</span> backgroundColor 默认取最顶层父视图的背景色，若为透明，则取本身背景色，若也为透明，则取白色</div><div class="line"> *  <span class="doctag">@parma</span> callback   只有当图片真正被裁剪成功后，才会回调，返回裁剪后的图片</div><div class="line"> *</div><div class="line"> *	<span class="doctag">@return</span> 裁剪前的图片</div><div class="line"> */</div><div class="line"></div><div class="line">- (UIImage *)hyb_setCircleImage:(id)image</div><div class="line">                           size:(CGSize)targetSize</div><div class="line">                   isEqualScale:(<span class="keyword">BOOL</span>)isEqualScale</div><div class="line">                 backgrounColor:(UIColor *)backgroundColor</div><div class="line">                       onCliped:(HYBClipedCallback)callback;</div></pre></td></tr></table></figure>
+<ul>
+<li>这只是其中一种Public的方法，我是按照Demo来看的。但是无论哪一种Public的方法，最终调用的都是统一的一个Private 的方法。</li>
+</ul>
+<figure class="highlight erlang"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">- <span class="params">(UIImage *)</span>hyb_private_setImage:<span class="params">(id)</span>image</div><div class="line">                             size:<span class="params">(CGSize)</span>targetSize</div><div class="line">                     cornerRadius:<span class="params">(CGFloat)</span>cornerRadius</div><div class="line">                      rectCorener:<span class="params">(UIRectCorner)</span>rectCorner</div><div class="line">                  backgroundColor:<span class="params">(UIColor *)</span>bgColor</div><div class="line">                     isEqualScale:<span class="params">(BOOL)</span>isEqualScale</div><div class="line">                         isCircle:<span class="params">(BOOL)</span>isCircle</div><div class="line">                         onCliped:<span class="params">(HYBClipedCallback)</span>callback</div></pre></td></tr></table></figure>
+<ul>
+<li><p>里面有个这个方法：可以看出来，假如你不设置bgColor这个属性的话，他会遍历循环，一直会找到最顶层的父类，去除父类的颜色。<code>所以我觉得你要是没事话，还是自己设置一下颜色吧！这边假如层级很复杂，并且元素很多的话，这个性能可能会让你哭吧...</code></p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"> <span class="keyword">if</span> (bgColor == <span class="literal">nil</span> || <span class="built_in">CGColorEqualToColor</span>(bgColor.CGColor, [<span class="built_in">UIColor</span> clearColor].CGColor)) &#123;</div><div class="line">  <span class="built_in">UIView</span> *superview = <span class="keyword">self</span>.superview;</div><div class="line">  <span class="keyword">while</span> (superview.backgroundColor == <span class="literal">nil</span> || <span class="built_in">CGColorEqualToColor</span>(superview.backgroundColor.CGColor, [<span class="built_in">UIColor</span> clearColor].CGColor)) &#123;</div><div class="line">    <span class="keyword">if</span> (!superview) &#123;</div><div class="line">      <span class="keyword">break</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    superview = [superview superview];</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  bgColor = superview.backgroundColor;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>好吧，下面这段代码又要提到面试宝典中啥经典话题了，<code>如何在category中给现有的类添加属性呢？</code><br><a href="http://nshipster.com/associated-objects/" target="_blank" rel="external">http://nshipster.com/associated-objects/</a>Matt 大神曾经写过，你可以看一下。</p>
+</li>
+</ul>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">__block <span class="built_in">UIImage</span> *clipedImage = <span class="literal">nil</span>;</div><div class="line">	<span class="comment">//1.</span></div><div class="line">  <span class="built_in">dispatch_async</span>(dispatch_get_global_queue(<span class="number">0</span>, <span class="number">0</span>), ^&#123;</div><div class="line">  <span class="comment">//2.</span></div><div class="line">    willBeClipedImage.hyb_pathColor = <span class="keyword">self</span>.hyb_pathColor;</div><div class="line">    willBeClipedImage.hyb_pathWidth = <span class="keyword">self</span>.hyb_pathWidth;</div><div class="line">    willBeClipedImage.hyb_borderColor = <span class="keyword">self</span>.hyb_borderColor;</div><div class="line">    willBeClipedImage.hyb_borderWidth = <span class="keyword">self</span>.hyb_borderWidth;</div><div class="line">  &#125;);</div></pre></td></tr></table></figure>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">这里涉及到的pathColor,pathWidth,borderColor,borderWidth,都是通过在runtime的特性，在已有的类中添加属性的方式来存储和使用的。</div><div class="line">- (<span class="built_in">UIColor</span> *)hyb_pathColor &#123;</div><div class="line">  <span class="built_in">UIColor</span> *color = objc_getAssociatedObject(<span class="keyword">self</span>, s_hyb_image_pathColorKey);</div><div class="line"></div><div class="line">  <span class="keyword">if</span> (color) &#123;</div><div class="line">    <span class="keyword">return</span> color;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">return</span> [<span class="built_in">UIColor</span> whiteColor];</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//...下面都是换汤不换药的。</span></div></pre></td></tr></table></figure>
+<p><code>下面涉及到真正的画图部分了</code></p>
+<ol>
+<li>这里另起一个线程来绘制圆角。这里我有个问题：<code>每个图片都创建一个线程，这个是不是有点问题。而且这个dispatch_get_global_queue也有问题，Global Dispatch Queue创建的队列,其线程数目是不定的,是根据XNU内核决定的。我觉得这一点，源码中没有解释。</code></li>
+</ol>
+<ul>
+<li>绘制圆角的核心函数是这个。</li>
+</ul>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//1.</span></div><div class="line">- (<span class="built_in">UIImage</span> *)hyb_private_clipImageToSize:(<span class="built_in">CGSize</span>)targetSize</div><div class="line">                            cornerRadius:(<span class="built_in">CGFloat</span>)cornerRadius</div><div class="line">                                 corners:(<span class="built_in">UIRectCorner</span>)corners</div><div class="line">                         backgroundColor:(<span class="built_in">UIColor</span> *)backgroundColor</div><div class="line">                            isEqualScale:(<span class="built_in">BOOL</span>)isEqualScale</div><div class="line">                                isCircle:(<span class="built_in">BOOL</span>)isCircle &#123;&#125;</div><div class="line"></div><div class="line">                                <span class="built_in">CGContextRef</span> ctx = <span class="built_in">UIGraphicsGetCurrentContext</span>();</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">//2.</span></div><div class="line">    <span class="keyword">if</span> (isCircle) &#123;</div><div class="line">      <span class="built_in">CGContextAddEllipseInRect</span>(ctx, rect);</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">      <span class="built_in">CGContextAddRect</span>(ctx, rect);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="built_in">CGContextClip</span>(ctx);</div><div class="line">    [<span class="keyword">self</span> drawInRect:rectImage];</div><div class="line"></div><div class="line">    <span class="comment">//3.</span></div><div class="line"></div><div class="line">        <span class="built_in">CGContextSetStrokeColorWithColor</span>(ctx, [borderColor <span class="built_in">CGColor</span>]);</div><div class="line">    <span class="built_in">CGContextSetLineWidth</span>(ctx, borderWidth);</div><div class="line"></div><div class="line">    <span class="keyword">if</span> (isCircle) &#123;</div><div class="line">      <span class="built_in">CGContextStrokeEllipseInRect</span>(ctx, rectImage);</div><div class="line">      <span class="built_in">CGContextStrokeEllipseInRect</span>(ctx, rect);</div><div class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (cornerRadius == <span class="number">0</span>) &#123;</div><div class="line">      <span class="built_in">CGContextStrokeRect</span>(ctx, rectImage);</div><div class="line">      <span class="built_in">CGContextStrokeRect</span>(ctx, rect);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">//4.</span></div><div class="line">     <span class="built_in">UIBezierPath</span> *path2 = [<span class="built_in">UIBezierPath</span> bezierPathWithRoundedRect:rect</div><div class="line">                                                byRoundingCorners:corners</div><div class="line">                                                      cornerRadii:<span class="built_in">CGSizeMake</span>(cornerRadius + minusPath1 ,cornerRadius + minusPath1)];</div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">//5.</span></div><div class="line">    <span class="built_in">UIImage</span> *finalImage = <span class="built_in">UIGraphicsGetImageFromCurrentImageContext</span>();</div><div class="line"></div><div class="line">    <span class="keyword">return</span> finalImage;</div></pre></td></tr></table></figure>
+<ol>
+<li>里面更新size做了一些文章。是到底要做截成一个正圆，还是只截在哪个角的圆。</li>
+<li>如果是正圆、并且不带圆角的话，就用core graphic来画。</li>
+<li>内线和外线的绘制、以及粗细、颜色。</li>
+<li><p>如果不是正圆、带圆角的多边形的图形，用UIBezierPath 曲线来绘制。关键是第二个参数，是一个枚举类型，代表哪一个或者哪一些圆角需要绘制、苹果官方的文档为<code>corners:
+A bitmask value that identifies the corners that you want rounded. You can use this parameter to round only a subset of the corners of the rectangle.</code></p>
+</li>
+<li><p>最后直接将绘制的图形返回出来。</p>
+</li>
+<li>最后说一点、无论是UIbutton、UIImage、还是什么、笔者的思路都是先在UIView中添加方法、再在UIImage添加方法、并且进行调用、绘制图形，并且返回。</li>
+</ol>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/学习/" rel="tag">#学习</a>
+          
+            <a href="/tags/Obeject-c/" rel="tag">#Obeject-c</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/04/01/20160401/" rel="next" title="学习YYModel">
+                <i class="fa fa-chevron-left"></i> 学习YYModel
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/05/05/20160505/" rel="prev" title="关于学习UITableViewCell的高度计算的框架-UITableView-FDTemplateLayoutCell。">
+                关于学习UITableViewCell的高度计算的框架-UITableView-FDTemplateLayoutCell。 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+<div id="disqus_thread"></div>
+
+
+
+<script type="text/javascript">
+  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+  var disqus_shortname = 'ghcoder2014';
+  var disqus_identifier = "2016/04/19/20160418/";
+  var disqus_title = "关于图片圆角的功能学习。";
+  var disqus_url = "http://www.ghcoder.com";
+
+  function run_disqus_script(disqus_script){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  }
+
+  run_disqus_script('count.js');
+  
+    run_disqus_script('embed.js');
+  
+</script>
+
+
+
+
+
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+
+
+        </div>
+        
+          
+  
+
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Ghcoder" />
+          <p class="site-author-name" itemprop="name">Ghcoder</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">17</span>
+              <span class="site-state-item-name">Artikel</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">Kategorien</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">Tags</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#图片的性能问题，基本上面试的时候，都会被问到，现在在自己的app中，我也是为了解决的性能的问题，所以了解了一些关于图片性能的库，看一下源码-现在应该有很多这种库了。我看的是这个：https-github-com-CoderJackyHuang-HYBImageCliped"><span class="nav-number">1.</span> <span class="nav-text">图片的性能问题，基本上面试的时候，都会被问到，现在在自己的app中，我也是为了解决的性能的问题，所以了解了一些关于图片性能的库，看一下源码, 现在应该有很多这种库了。我看的是这个：https://github.com/CoderJackyHuang/HYBImageCliped</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ghcoder</span>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'ghcoder1024';
+      var disqus_identifier = '2016/04/19/20160418/';
+      var disqus_title = "关于图片圆角的功能学习。";
+      var disqus_url = 'http://www.ghcoder.com/2016/04/19/20160418/';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        var disqus_config = function () {
+            this.page.url = disqus_url;
+            this.page.identifier = disqus_identifier;
+            this.page.title = disqus_title;
+        };
+        run_disqus_script('embed.js');
+      
+    </script>
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

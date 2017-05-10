@@ -1,0 +1,726 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="学习,Obeject-c," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Ghcoder" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="最近一直没啥时间来整理一些学习资料以及学习的内容，感觉这样不是很好。又由于公司要打卡了，所以我就写写我是怎么不打卡的吧！O(∩_∩)O~~~
+mac电脑先安装抓包神器：Charles (网上有很多这个使用教程，我就不多说了，毕竟是工具，没啥难度)
+点击Help-&amp;gt;Local IP Address,将本机的IP打印出来，然后在手机里面设置代理为相应的IP，端口为：8888
+此时你就可以开始看到">
+<meta property="og:type" content="article">
+<meta property="og:title" content="因为我不想打卡，不要问我为什么？？">
+<meta property="og:url" content="http://www.ghcoder.com/2016/08/15/20160815/index.html">
+<meta property="og:site_name" content="Ghcoder">
+<meta property="og:description" content="最近一直没啥时间来整理一些学习资料以及学习的内容，感觉这样不是很好。又由于公司要打卡了，所以我就写写我是怎么不打卡的吧！O(∩_∩)O~~~
+mac电脑先安装抓包神器：Charles (网上有很多这个使用教程，我就不多说了，毕竟是工具，没啥难度)
+点击Help-&amp;gt;Local IP Address,将本机的IP打印出来，然后在手机里面设置代理为相应的IP，端口为：8888
+此时你就可以开始看到">
+<meta property="og:updated_time" content="2016-12-01T08:05:30.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="因为我不想打卡，不要问我为什么？？">
+<meta name="twitter:description" content="最近一直没啥时间来整理一些学习资料以及学习的内容，感觉这样不是很好。又由于公司要打卡了，所以我就写写我是怎么不打卡的吧！O(∩_∩)O~~~
+mac电脑先安装抓包神器：Charles (网上有很多这个使用教程，我就不多说了，毕竟是工具，没啥难度)
+点击Help-&amp;gt;Local IP Address,将本机的IP打印出来，然后在手机里面设置代理为相应的IP，端口为：8888
+此时你就可以开始看到">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Gh'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://www.ghcoder.com/2016/08/15/20160815/"/>
+
+
+  <title> 因为我不想打卡，不要问我为什么？？ | Ghcoder </title>
+</head>
+<script id="dsq-count-scr" src="//ghcoder2020.disqus.com/count.js" async></script>
+<body itemscope itemtype="//schema.org/WebPage" lang="">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Ghcoder</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+            列表
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                因为我不想打卡，不要问我为什么？？
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发布于</span>
+            <time itemprop="dateCreated" datetime="2016-08-15T14:28:12+08:00" content="2016-08-15">
+              2016-08-15
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">in</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/日志/" itemprop="url" rel="index">
+                    <span itemprop="name">日志</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/15/20160815/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/08/15/20160815/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="最近一直没啥时间来整理一些学习资料以及学习的内容，感觉这样不是很好。又由于公司要打卡了，所以我就写写我是怎么不打卡的吧！O-∩-∩-O"><a href="#最近一直没啥时间来整理一些学习资料以及学习的内容，感觉这样不是很好。又由于公司要打卡了，所以我就写写我是怎么不打卡的吧！O-∩-∩-O" class="headerlink" title="最近一直没啥时间来整理一些学习资料以及学习的内容，感觉这样不是很好。又由于公司要打卡了，所以我就写写我是怎么不打卡的吧！O(∩_∩)O~~~"></a>最近一直没啥时间来整理一些学习资料以及学习的内容，感觉这样不是很好。又由于公司要打卡了，所以我就写写我是怎么不打卡的吧！O(∩_∩)O~~~</h3><ol>
+<li>mac电脑先安装抓包神器：Charles (网上有很多这个使用教程，我就不多说了，毕竟是工具，没啥难度)</li>
+<li>点击Help-&gt;Local IP Address,将本机的IP打印出来，然后在手机里面设置代理为相应的IP，端口为：8888</li>
+<li>此时你就可以开始看到数据的返回、和请求了。</li>
+</ol>
+<pre><code>![1.pi](media/14712518179704/1.pic.jpg)
+</code></pre><ol>
+<li>然后你就可以看到你想要的代码请求了，其实这个Android和iOS,还有点不同，Android返回的代码不是text/json,而是text/html,我在我代码中加入了代码格式的转换。</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">__block NSDictionary *par = @&#123;@&quot;employeeNo&quot;:pp.employeeNo,@&quot;coord&quot;:@&quot;30.249812,120.211494&quot;,@&quot;img_ids&quot;:@&quot;&quot;,@&quot;identifier&quot;: pp.identifier,@&quot;type&quot;: @&quot;0&quot;&#125;&#125;;</div><div class="line"></div><div class="line">   AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];</div><div class="line">          [manager POST:@&quot;http://xxxx/HSSCM/appmail/employeeRecordManage/sign.do&quot; parameters:par success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) &#123;</div><div class="line">              NSLog(@&quot;%@&quot;,operation);</div><div class="line">              NSLog(@&quot;%@&quot;,responseObject);</div><div class="line">          &#125; failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) &#123;</div><div class="line">              NSLog(@&quot;%@&quot;,operation);</div><div class="line">              NSLog(@&quot;%@&quot;,error);</div><div class="line">          &#125;];</div></pre></td></tr></table></figure>
+<ol>
+<li>你或许已经发现了参数的规律了，这里的employeeNO就是我们之前抓包的用户唯一标示符（安卓这边还耍了个心眼，取了一个很怪的名字，视图误导我们）</li>
+<li>coord就是经纬度，用逗号链接起来的一个字符串</li>
+<li>img_ids我不知道是个什么东西，反正可有可无</li>
+<li>identifior是手机的udid（iOS中这样称呼吧）,这里我猜想他的employeeNO与手机identifior是一一对应的，<strong>所以这也就解释了为什么我在换手机的时候，会报错</strong></li>
+<li>type:0–就是签出，1–就是签到</li>
+</ol>
+<hr>
+<p>##现在问题都已经分析完了，我们该用什么对策来自动帮我们打卡呢。</p>
+<p>####由于必须需要内网才能打卡，我们不能外网或者4G的条件下打卡，折让我们很蛋疼，这里我想到几个解决方案：</p>
+<ol>
+<li>安卓的手机，可以借用一款叫做&lt;按键精灵&gt;的app,但是有个条件就是你必须拿到root权限，这样就可以录制你按键的动作，你可以指定时间执行。</li>
+<li>公司的电脑、或者测试机，安装一个teamViewer，这样你就可以在家里远程操控他。</li>
+<li>公司的测试机充当服务器的功能、一直在跑，这样我需要关心的只有一件事：手机有电。</li>
+</ol>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">	- (<span class="built_in">NSArray</span> *)setUPDatas:(TypeStatus)typeStatus &#123;</div><div class="line">     <span class="built_in">NSMutableArray</span> *datas = [<span class="built_in">NSMutableArray</span> new];</div><div class="line"></div><div class="line">     <span class="built_in">NSArray</span> *employeeNos = @[<span class="string">@"31330034"</span>, <span class="string">@"31330040"</span>, <span class="string">@"31330035"</span>];</div><div class="line">     <span class="built_in">NSArray</span> *identifiers = @[<span class="string">@"05B7A575-2D2A-4006-890A-D0994EFF3DAC"</span>, <span class="string">@"a000004f73cb94"</span>, <span class="string">@"1B65EB63-487B-49BF-B751-F2D544175BE7"</span>];</div><div class="line">     <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; employeeNos.count ; i++) &#123;</div><div class="line">         People *people = [[People alloc] init];</div><div class="line">         people.employeeNo = employeeNos[i];</div><div class="line">         people.coord = <span class="string">@"30.249812,120.211494"</span>;</div><div class="line">         people.img_ids = <span class="string">@""</span>;</div><div class="line">         people.identifier = identifiers[i];</div><div class="line">         <span class="keyword">if</span> (typeStatus == LogIn) &#123;</div><div class="line">             people.type = <span class="string">@"1"</span>;</div><div class="line">         &#125; <span class="keyword">else</span> &#123;</div><div class="line">             people.type = <span class="string">@"0"</span>;</div><div class="line">         &#125;</div><div class="line"></div><div class="line">         people.random_signInMin = [<span class="keyword">self</span> getRandomNumber:<span class="number">5</span> to:<span class="number">25</span>];</div><div class="line">         people.random_signInSec = [<span class="keyword">self</span> getRandomNumber:<span class="number">1</span> to:<span class="number">59</span>];</div><div class="line">         people.random_signOutMin = [<span class="keyword">self</span> getRandomNumber:<span class="number">5</span> to:<span class="number">25</span>];</div><div class="line">         people.random_signOutSec = [<span class="keyword">self</span> getRandomNumber:<span class="number">1</span> to:<span class="number">59</span>];</div><div class="line"></div><div class="line">         [datas addObject:people];</div><div class="line">     &#125;</div><div class="line"></div><div class="line">     <span class="keyword">return</span> [datas <span class="keyword">copy</span>];</div><div class="line"> 	&#125;</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"> 	- (<span class="keyword">int</span>)getRandomNumber:(<span class="keyword">int</span>)from to:(<span class="keyword">int</span>)to &#123;</div><div class="line">     <span class="keyword">return</span> (<span class="keyword">int</span>)(from + (arc4random() % (to - from + <span class="number">1</span>)));</div><div class="line"> 	&#125;</div><div class="line"></div><div class="line"><span class="meta">#### 我在这里实例化了用户的对象，在这个对象生成的同事，就已经确定这个对象签到的时间，和签出的时间（在某个数范围内随机生成）。</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">if</span> (hour == signOutHour) &#123; <span class="comment">// 签出--0</span></div><div class="line"></div><div class="line">             <span class="keyword">if</span> (<span class="keyword">self</span>.needSignOut.count == <span class="number">0</span>) <span class="keyword">return</span>;</div><div class="line"></div><div class="line">             <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; <span class="keyword">self</span>.needSignOut.count; i++) &#123;</div><div class="line">                 People *pp = <span class="keyword">self</span>.needSignOut[i];</div><div class="line"></div><div class="line">                 <span class="keyword">if</span> (pp.random_signOutMin &lt; min || (pp.random_signOutMin == min &amp;&amp; pp.random_signOutSec &lt;= sec)) &#123;</div><div class="line">                     par = @&#123;</div><div class="line">                             <span class="string">@"employeeNo"</span>:pp.employeeNo,</div><div class="line">                             <span class="string">@"coord"</span>: <span class="string">@"30.249812,120.211494"</span>,</div><div class="line">                             <span class="string">@"img_ids"</span>:<span class="string">@""</span>,</div><div class="line">                             <span class="string">@"identifier"</span>: pp.identifier,</div><div class="line">                             <span class="string">@"type"</span>: pp.type&#125;;</div><div class="line"></div><div class="line">                     [<span class="keyword">self</span> SignOrSignOut:par week:week time:[<span class="built_in">NSString</span> stringWithFormat:<span class="string">@"%ld:%ld:%ld"</span>,(<span class="keyword">long</span>)hour,(<span class="keyword">long</span>)min,(<span class="keyword">long</span>)sec]];</div><div class="line">                 &#125;</div><div class="line">             &#125;</div><div class="line">            &#125;</div></pre></td></tr></table></figure>
+<hr>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">- (<span class="keyword">void</span>)<span class="string">needToRemove:</span>(TypeStatus)status <span class="string">identifior:</span>(NSString *)identifior <span class="string">realtime:</span>(NSString *)realtime&#123;</div><div class="line"> <span class="keyword">if</span> (status == LogIn) &#123;</div><div class="line">     <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; self.needSignIn.count; i++) &#123;</div><div class="line">         NSMutableDictionary *tempDic = [NSMutableDictionary <span class="keyword">new</span>];</div><div class="line">         People *pp = self.needSignIn[i];</div><div class="line">         <span class="keyword">if</span> ([pp.identifier <span class="string">isEqualToString:</span>identifior] &amp;&amp; ![identifior <span class="string">isEqualToString:</span>@<span class="string">""</span>]) &#123;</div><div class="line">             NSLog(@<span class="string">"移除people:%@---loginMin:%ld----loginSec:%ld"</span>,pp.identifier,(<span class="keyword">long</span>)pp.random_signInMin, (<span class="keyword">long</span>)pp.random_signInSec);</div><div class="line"></div><div class="line">             [self.needSignIn <span class="string">removeObject:</span>pp];</div><div class="line"></div><div class="line"></div><div class="line">             <span class="keyword">if</span> (pp.identifier != nil) [tempDic <span class="string">setObject:</span>pp.identifier <span class="string">forKey:</span>@<span class="string">"iden"</span>];</div><div class="line">             [tempDic <span class="string">setObject:</span>[NSString <span class="string">stringWithFormat:</span>@<span class="string">"签到时间:%ld:%ld:%ld"</span>, signInHour, pp.random_signInMin, pp.random_signInSec] <span class="string">forKey:</span>@<span class="string">"time"</span>];</div><div class="line">             <span class="keyword">if</span> (realtime != nil) [tempDic <span class="string">setObject:</span>realtime <span class="string">forKey:</span>@<span class="string">"realtime"</span>];</div><div class="line"></div><div class="line">             <span class="keyword">if</span> (tempDic != nil) [self.tableViewDatas <span class="string">addObject:</span>tempDic];</div><div class="line"></div><div class="line">         &#125;</div><div class="line">     &#125;</div></pre></td></tr></table></figure>
+<ol>
+<li>这里你会发现我在遍历的同事，又对mutableArray对象进行的操作，开始一直crash，会报这个错：<strong>collection __nsarraym was mutated while being enumerated</strong></li>
+<li>意思就是说，你在遍历这个对象的同事，又对这个对象进行了添加、删除的操作。这里给你三种解决的思路。</li>
+</ol>
+<blockquote>
+<p>1</p>
+</blockquote>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> (int <span class="built_in">i</span> = <span class="number">0</span> ; <span class="built_in">i</span> &lt; self.needSignIn.count; <span class="built_in">i</span>++) &#123;&#125;</div></pre></td></tr></table></figure>
+<p>替换</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> (People *pp <span class="keyword">in</span> <span class="keyword">self</span>.needSignIn) &#123;&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>2</p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">NSSortDescriptor</span> *sd1 = [<span class="built_in">NSSortDescriptor</span> sortDescriptorWithKey:<span class="literal">nil</span> ascending:<span class="literal">NO</span>];<span class="comment">//yes升序排列，no,降序排列</span></div><div class="line"><span class="built_in">NSArray</span> *myary = [ary sortedArrayUsingDescriptors:[<span class="built_in">NSArray</span> arrayWithObjects:sd1, <span class="literal">nil</span>]];<span class="comment">//注意这里的ary进行排序后会生产一个新的数组指针，myary，不能在用ary,ary还是保持不变的。</span></div><div class="line"><span class="keyword">for</span> (People *pp <span class="keyword">in</span> myary) &#123;&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>3</p>
+</blockquote>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">生成一个零时的数组，用来遍历，之前的数据用来操作。</div></pre></td></tr></table></figure>
+<p><strong>其实这里有个问题，想了好久才想明白：为什么正序排列不行，倒序就可以呢？？,为什么for不行，但是forin的可以呢？</strong></p>
+<p>####其实for的语句可以等同于：假如说我有10个元素，在第一个的时候，我就remove了，那是不是到了第九个的时候就越界了呢？？</p>
+<figure class="highlight axapta"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> <span class="keyword">count</span> =  arr.<span class="keyword">count</span>; <span class="keyword">for</span> (i=<span class="number">0</span>;i&lt;<span class="keyword">count</span>;i++) &#123;&#125;</div></pre></td></tr></table></figure>
+<p><strong>倒序同样的道理：</strong></p>
+<figure class="highlight axapta"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> <span class="keyword">count</span> =  arr.<span class="keyword">count</span>;</div><div class="line"><span class="keyword">for</span> (i = <span class="keyword">count</span> - <span class="number">1</span>;i&gt;=<span class="number">0</span> ;i—) &#123;&#125;</div></pre></td></tr></table></figure>
+<h4 id="当我移除当前这个的时候，其实比不影响我其他的元素布局。"><a href="#当我移除当前这个的时候，其实比不影响我其他的元素布局。" class="headerlink" title="当我移除当前这个的时候，其实比不影响我其他的元素布局。"></a>当我移除当前这个的时候，其实比不影响我其他的元素布局。</h4><p><strong>但是这两种情况，假如你使用for的语句格式，就不会有问题了</strong></p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> (int <span class="built_in">i</span> = <span class="number">0</span> ; <span class="built_in">i</span> &lt; self.needSignIn.count; <span class="built_in">i</span>++) &#123;&#125;</div></pre></td></tr></table></figure>
+<p>###总结一句话：</p>
+<ol>
+<li>当我们正序遍历时,如果删除了一个,那么没有遍历到的元素位置都会往前移动一位,这样系统就无法确定接下来遍历是从删除位置开始呢,还是从删除位置下一位开始呢</li>
+<li>对于逆序遍历就不会,因为我们逆序遍历时,遇到匹配的元素删除后,位置改变的是遍历过得元素,而没有遍历到的元素位置却没有改变,所以遍历能够正常进行.</li>
+</ol>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/学习/" rel="tag">#学习</a>
+          
+            <a href="/tags/Obeject-c/" rel="tag">#Obeject-c</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/05/10/20160510/" rel="next" title="搭建SDK中所遇到的坑">
+                <i class="fa fa-chevron-left"></i> 搭建SDK中所遇到的坑
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/08/24/20160824/" rel="prev" title="学习React Native中">
+                学习React Native中 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+<div id="disqus_thread"></div>
+
+
+
+<script type="text/javascript">
+  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+  var disqus_shortname = 'ghcoder2014';
+  var disqus_identifier = "2016/08/15/20160815/";
+  var disqus_title = "因为我不想打卡，不要问我为什么？？";
+  var disqus_url = "http://www.ghcoder.com";
+
+  function run_disqus_script(disqus_script){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  }
+
+  run_disqus_script('count.js');
+  
+    run_disqus_script('embed.js');
+  
+</script>
+
+
+
+
+
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+
+
+        </div>
+        
+          
+  
+
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Ghcoder" />
+          <p class="site-author-name" itemprop="name">Ghcoder</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">17</span>
+              <span class="site-state-item-name">Artikel</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">Kategorien</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">Tags</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#最近一直没啥时间来整理一些学习资料以及学习的内容，感觉这样不是很好。又由于公司要打卡了，所以我就写写我是怎么不打卡的吧！O-∩-∩-O"><span class="nav-number">1.</span> <span class="nav-text">最近一直没啥时间来整理一些学习资料以及学习的内容，感觉这样不是很好。又由于公司要打卡了，所以我就写写我是怎么不打卡的吧！O(∩_∩)O~~~</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#当我移除当前这个的时候，其实比不影响我其他的元素布局。"><span class="nav-number">1.1.</span> <span class="nav-text">当我移除当前这个的时候，其实比不影响我其他的元素布局。</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ghcoder</span>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'ghcoder1024';
+      var disqus_identifier = '2016/08/15/20160815/';
+      var disqus_title = "因为我不想打卡，不要问我为什么？？";
+      var disqus_url = 'http://www.ghcoder.com/2016/08/15/20160815/';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        var disqus_config = function () {
+            this.page.url = disqus_url;
+            this.page.identifier = disqus_identifier;
+            this.page.title = disqus_title;
+        };
+        run_disqus_script('embed.js');
+      
+    </script>
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
