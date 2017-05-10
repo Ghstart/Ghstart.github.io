@@ -2253,9 +2253,18 @@ mac电脑先安装抓包神器：Charles (网上有很多这个使用教程，�
           
 
 
-          
-
-
+          <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+<script src="https://img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
+<script>
+var cloudTieConfig = {
+	url: document.location.href, 
+	sourceId: "",
+	productKey: "990f4b0230da45e8bcfd6d453f653d8c",
+	target: "cloud-tie-wrapper"
+};
+var yunManualLoad = true;
+Tie.loader("aHR0cHM6Ly9hcGkuZ2VudGllLjE2My5jb20vcGMvbGl2ZXNjcmlwdC5odG1s", true);
+</script>
         </div>
         
           
@@ -2336,22 +2345,6 @@ mac电脑先安装抓包神器：Charles (网上有很多这个使用教程，�
       </div>
     </main>
     
-    <div id="container"></div>
-    <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
-    <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
-    <script>
-    var gitment = new Gitment({
-      id: "", // 可选。默认为 location.href
-      owner: 'Ghstart',
-      repo: 'Ghstart/Ghstart.github.io',
-      oauth: {
-        client_id: '991dce1240695ff40a75',
-        client_secret: 'bad8be6101e03bfbc8e9db63f880768c69d22a59',
-      },
-    })
-    gitment.render('container')
-    </script>
-
     <footer id="footer" class="footer">
       <div class="footer-inner">
         <div class="copyright" >
