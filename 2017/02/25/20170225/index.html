@@ -289,13 +289,6 @@
 
           
             
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2017/02/25/20170225/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/02/25/20170225/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
           
 
           
@@ -419,39 +412,25 @@
           
   <div class="comments" id="comments">
     
-      <div id="disqus_thread">
-        <noscript>
-          Please enable JavaScript to view the
-          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
-        </noscript>
-      </div>
-    
   </div>
-<div id="disqus_thread"></div>
+  
+<noscript>Please enable JavaScript to view the comment form powered by <a href="https://commentit.io/">Comm(ent|it)</a></noscript>
+<div id="commentit"></div>
+<script type="text/javascript">
+  /** CONFIGURATION VARIABLES **/
+  var commentitUsername = 'Ghstart';
+  var commentitRepo = 'Ghstart/Ghstart.github.io';
+  var commentitPath = '2017/02/25/20170225/';
 
-
-
-<script>
-
-/**
-*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
-/*
-var disqus_config = function () {
-this.page.url = "2017/02/25/20170225/";  // Replace PAGE_URL with your page's canonical URL variable
-this.page.identifier = "尝试Swift搭建服务器-建立自己的网站"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-};
-*/
-(function() { // DON'T EDIT BELOW THIS LINE
-var d = document, s = d.createElement('script');
-s.src = 'https://ghcoder1024.disqus.com/embed.js';
-s.setAttribute('data-timestamp', +new Date());
-(d.head || d.body).appendChild(s);
-})();
+  /** DON'T EDIT FOLLOWING LINES **/
+  (function() {
+      var commentit = document.createElement('script');
+      commentit.type = 'text/javascript';
+      commentit.async = true;
+      commentit.src = 'https://commentit.io/static/embed/dist/commentit.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(commentit);
+  })();
 </script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-
-
 
 
 
@@ -646,32 +625,6 @@ s.setAttribute('data-timestamp', +new Date());
 
 
 
-  
-
-    <script type="text/javascript">
-      var disqus_shortname = 'ghcoder1024';
-      var disqus_identifier = '2017/02/25/20170225/';
-      var disqus_title = "尝试Swift搭建服务器-建立自己的网站";
-      var disqus_url = 'http://www.ghcoder.com/2017/02/25/20170225/';
-
-      function run_disqus_script(disqus_script){
-        var dsq = document.createElement('script');
-        dsq.type = 'text/javascript';
-        dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-      }
-
-      run_disqus_script('count.js');
-      
-        var disqus_config = function () {
-            this.page.url = disqus_url;
-            this.page.identifier = disqus_identifier;
-            this.page.title = disqus_title;
-        };
-        run_disqus_script('embed.js');
-      
-    </script>
   
 
 
