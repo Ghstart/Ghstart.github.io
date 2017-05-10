@@ -412,23 +412,22 @@ A bitmask value that identifies the corners that you want rounded. You can use t
     
   </div>
   
-<noscript>Please enable JavaScript to view the comment form powered by <a href="https://commentit.io/">Comm(ent|it)</a></noscript>
-<div id="commentit"></div>
-<script type="text/javascript">
-  /** CONFIGURATION VARIABLES **/
-  var commentitUsername = 'Ghstart';
-  var commentitRepo = 'Ghstart/Ghstart.github.io';
-  var commentitPath = '2016/04/19/20160418/';
-
-  /** DON'T EDIT FOLLOWING LINES **/
-  (function() {
-      var commentit = document.createElement('script');
-      commentit.type = 'text/javascript';
-      commentit.async = true;
-      commentit.src = 'https://commentit.io/static/embed/dist/commentit.js';
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(commentit);
-  })();
+<div id="container"></div>
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+  id: "", // 可选。默认为 location.href
+  owner: 'Ghstart',
+  repo: 'Ghstart/Ghstart.github.io',
+  oauth: {
+    client_id: '991dce1240695ff40a75',
+    client_secret: 'bad8be6101e03bfbc8e9db63f880768c69d22a59',
+  },
+})
+gitment.render('container')
 </script>
+
 
 
 
