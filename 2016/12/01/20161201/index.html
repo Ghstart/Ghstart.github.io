@@ -116,7 +116,7 @@
   var CONFIG = {
     root: '/',
     scheme: 'Muse',
-    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    sidebar: {"position":"left","display":"remove","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
     fancybox: true,
     motion: true,
     duoshuo: {
@@ -221,16 +221,6 @@
           </a>
         </li>
       
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
-            
-            Tags
-          </a>
-        </li>
-      
 
       
     </ul>
@@ -265,7 +255,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Ghcoder">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="https://avatars3.githubusercontent.com/u/5730023?v=3&s=460">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -437,126 +427,6 @@
 
 
         </div>
-        
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
-
-  <aside id="sidebar" class="sidebar">
-    <div class="sidebar-inner">
-
-      
-
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            Inhaltsverzeichnis
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            Übersicht
-          </li>
-        </ul>
-      
-
-      <section class="site-overview sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/images/avatar.gif"
-               alt="Ghcoder" />
-          <p class="site-author-name" itemprop="name">Ghcoder</p>
-           
-              <p class="site-description motion-element" itemprop="description"></p>
-          
-        </div>
-        <nav class="site-state motion-element">
-
-          
-            <div class="site-state-item site-state-posts">
-              <a href="/archives">
-                <span class="site-state-item-count">17</span>
-                <span class="site-state-item-name">Artikel</span>
-              </a>
-            </div>
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-categories">
-              
-                <span class="site-state-item-count">1</span>
-                <span class="site-state-item-name">Kategorien</span>
-              
-            </div>
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-tags">
-              
-                <span class="site-state-item-count">11</span>
-                <span class="site-state-item-name">Tags</span>
-              
-            </div>
-          
-
-        </nav>
-
-        
-          <div class="feed-link motion-element">
-            <a href="/atom.xml" rel="alternate">
-              <i class="fa fa-rss"></i>
-              RSS
-            </a>
-          </div>
-        
-
-        <div class="links-of-author motion-element">
-          
-        </div>
-
-        
-        
-
-        
-        
-
-        
-
-
-      </section>
-
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#最后总结一下整个BeeHive项目的搭建。以及我看完之后的一些质疑和想法，有些作者以及给出了回答，会在下一版本的更新中进行修改。"><span class="nav-number">1.</span> <span class="nav-text">最后总结一下整个BeeHive项目的搭建。以及我看完之后的一些质疑和想法，有些作者以及给出了回答，会在下一版本的更新中进行修改。</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#先贴上我自己画的一个提纲"><span class="nav-number">1.1.</span> <span class="nav-text">先贴上我自己画的一个提纲</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number"></span> <span class="nav-text">  </span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#-1"><span class="nav-number"></span> <span class="nav-text"></span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#首先，为什么每个ViewController都需要配备一个配备一个Module的文件？"><span class="nav-number">0.1.</span> <span class="nav-text">首先，为什么每个ViewController都需要配备一个配备一个Module的文件？</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#因为他需要通过-void-load-的方法，动态的将moduleInfo的信息存储下来，这里是存储在BHModuleManager文件中的self-BHModules此时这里存储的都是字符串，还没有创建为实例对象。"><span class="nav-number"></span> <span class="nav-text">因为他需要通过+(void)load{}的方法，动态的将moduleInfo的信息存储下来，这里是存储在BHModuleManager文件中的self.BHModules此时这里存储的都是字符串，还没有创建为实例对象。</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#为什么有些module的文件中没有load方法，但是他还是在启动之前也注册进去了呢？答：因为这里作者都是通过宏的的形式，来快速实现加载的信息，本质上和-void-load-是一样的。"><span class="nav-number">0.1.</span> <span class="nav-text">为什么有些module的文件中没有load方法，但是他还是在启动之前也注册进去了呢？答：因为这里作者都是通过宏的的形式，来快速实现加载的信息，本质上和+(void)load{}是一样的。</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BH-EXPORT-MODULE-NO"><span class="nav-number"></span> <span class="nav-text">BH_EXPORT_MODULE(NO)  </span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#这里在官方的demo中看到TestAppDelegate进行了ModuleConfigName、ServiceConfigName的设置，不设置可以吗？答：可以！！这里在BHContext对象实例化的时候，已经默认设置了初始值了。"><span class="nav-number">0.1.</span> <span class="nav-text">这里在官方的demo中看到TestAppDelegate进行了ModuleConfigName、ServiceConfigName的设置，不设置可以吗？答：可以！！这里在BHContext对象实例化的时候，已经默认设置了初始值了。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#这里假如我有新的功能，我应该往哪里去添加呢？答：这里只是我的猜想-gt-应该在BHContext中去添加，因为在BHContext实例化的时候，就顺带实例化了一系列的对象：BHShortCutItem、BHOpenURLItem、BHNotificationItem、BHUserActivity、BHConfig-并且这些对象都是单例，这里我保持我的态度。这里的if调试时作者的笔误，他会在下一版本更新-if-BHInstance-isKindOfClass-BHContext-class"><span class="nav-number">0.2.</span> <span class="nav-text">这里假如我有新的功能，我应该往哪里去添加呢？答：这里只是我的猜想->应该在BHContext中去添加，因为在BHContext实例化的时候，就顺带实例化了一系列的对象：BHShortCutItem、BHOpenURLItem、BHNotificationItem、BHUserActivity、BHConfig,并且这些对象都是单例，这里我保持我的态度。这里的if调试时作者的笔误，他会在下一版本更新 if ([BHInstance isKindOfClass:[BHContext class]]) {}</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#系统是在什么时候载入本地的组件信息的呢？答：是在哎BeeHive调用setContext对象的时候，进行调用的。并且这里通过context中的文件名，进行拼接，返回plist文件的信息。-比起在这里将self-BHModules-文件信息换成了响应的实例对象"><span class="nav-number">0.3.</span> <span class="nav-text">系统是在什么时候载入本地的组件信息的呢？答：是在哎BeeHive调用setContext对象的时候，进行调用的。并且这里通过context中的文件名，进行拼接，返回plist文件的信息。 比起在这里将self.BHModules 文件信息换成了响应的实例对象</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#那看到各个Module都会调用modSetUp、modInit类似的方法，那这些方法是在什么时候调用的？答：是在调用父类的Appdelegate的方法的时候调用的，"><span class="nav-number">0.4.</span> <span class="nav-text">那看到各个Module都会调用modSetUp、modInit类似的方法，那这些方法是在什么时候调用的？答：是在调用父类的Appdelegate的方法的时候调用的，</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#初了一些主动调用的上面这些方法，那什么时候才会调用系统的方法，类似进入后台、被挂起、进入前台。答：这是在appdelegate的响应方法调用的时候，也会调用。"><span class="nav-number">0.5.</span> <span class="nav-text">初了一些主动调用的上面这些方法，那什么时候才会调用系统的方法，类似进入后台、被挂起、进入前台。答：这是在appdelegate的响应方法调用的时候，也会调用。</span></a></li></ol></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
-      
-
-      
-
-    </div>
-  </aside>
-
-
         
       </div>
     </main>
