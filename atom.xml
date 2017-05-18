@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.ghcoder.com/"/>
-  <updated>2017-05-17T10:40:27.000Z</updated>
+  <updated>2017-05-18T02:38:07.000Z</updated>
   <id>http://www.ghcoder.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://www.ghcoder.com/2017/05/17/20170517/"/>
     <id>http://www.ghcoder.com/2017/05/17/20170517/</id>
     <published>2017-05-17T10:37:12.000Z</published>
-    <updated>2017-05-17T10:40:27.000Z</updated>
+    <updated>2017-05-18T02:38:07.000Z</updated>
     
     <content type="html"><![CDATA[<h3 id="经过前四部分的学习，此时我们已经创建了我们第一个app：polls-并且根据我们自己的需求，修改了url，修改了对应的view函数，连接数据库，插入数据库相应的数据，并将数据库里的数据捞出来，显示在模板上，这似乎就是我们在前四部分做的事情，说起来简单，但是做好、做精细却不容易。下面我们会为我们的app提供测试的功能。"><a href="#经过前四部分的学习，此时我们已经创建了我们第一个app：polls-并且根据我们自己的需求，修改了url，修改了对应的view函数，连接数据库，插入数据库相应的数据，并将数据库里的数据捞出来，显示在模板上，这似乎就是我们在前四部分做的事情，说起来简单，但是做好、做精细却不容易。下面我们会为我们的app提供测试的功能。" class="headerlink" title="经过前四部分的学习，此时我们已经创建了我们第一个app：polls, 并且根据我们自己的需求，修改了url，修改了对应的view函数，连接数据库，插入数据库相应的数据，并将数据库里的数据捞出来，显示在模板上，这似乎就是我们在前四部分做的事情，说起来简单，但是做好、做精细却不容易。下面我们会为我们的app提供测试的功能。"></a>经过前四部分的学习，此时我们已经创建了我们第一个app：polls, 并且根据我们自己的需求，修改了url，修改了对应的view函数，连接数据库，插入数据库相应的数据，并将数据库里的数据捞出来，显示在模板上，这似乎就是我们在前四部分做的事情，说起来简单，但是做好、做精细却不容易。下面我们会为我们的app提供测试的功能。</h3><h4 id="1-1-什么是自动测试"><a href="#1-1-什么是自动测试" class="headerlink" title="1.1 什么是自动测试"></a>1.1 什么是自动测试</h4><ul>
 <li>测试是对代码对好检测，测试能够针对不同层面进行测试(1.对某个特定的方法是否按照预期返回都能够进行测试。2.有的人会对整个项目的整体操作做相应的测试<code>用户输入具体的某些值，得到预期的一些值</code>)，其实这里的测试与第二部分运用<code>shell</code>的操作是差不多的。</li>
@@ -112,6 +112,25 @@
 <li><code>Selenium</code>[<a href="http://seleniumhq.org/" target="_blank" rel="external">http://seleniumhq.org/</a>]</li>
 <li><code>LiveServerTestCase</code> [<a href="https://docs.djangoproject.com/en/1.11/topics/testing/tools/#django.test.LiveServerTestCase" target="_blank" rel="external">https://docs.djangoproject.com/en/1.11/topics/testing/tools/#django.test.LiveServerTestCase</a>]</li>
 </ol>
+<h5 id="1-5-5-自定义项目app"><a href="#1-5-5-自定义项目app" class="headerlink" title="1.5.5 自定义项目app"></a>1.5.5 自定义项目app</h5><p>1.添加<code>css</code>样式：</p>
+<ul>
+<li>在创建项目的时候，项目中的<code>HTML</code>/<code>JavaScript</code>/<code>CSS</code>都是用来呈现页面以及布局的时候需要用到，我们应该把这些文件统一放到<code>static files</code>的文件里面去。这里<code>django.contrib.staticfiles</code>替我们都做好了。</li>
+<li>首先在<code>polls</code>的目录中添加<code>static</code>的文件夹，Django将会自动去找<code>static</code>文件夹中的文件。</li>
+<li>在<code>static</code>下面在添加<code>polls</code>文件夹，再在<code>polls</code>文件夹里面再添加<code>style.css</code>,里面添加如下的操作：</li>
+</ul>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">li</span> <span class="selector-tag">a</span> &#123;</div><div class="line">    <span class="attribute">color</span>: green;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>然后在<code>polls/templates/polls/index.html</code>文件里面添加如下的代码：</li>
+</ul>
+<figure class="highlight dust"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="xml"></span><span class="template-variable">&#123; % load static % &#125;</span><span class="xml"></span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">type</span>=<span class="string">"text/css"</span> <span class="attr">href</span>=<span class="string">"</span></span><span class="template-variable">&#123; % static 'polls/style.css' % &#125;</span><span class="xml"><span class="tag"><span class="string">"</span> /&gt;</span></span></div></pre></td></tr></table></figure>
+<ul>
+<li><code>{ % static % }</code>tag能够生成static文件夹的绝对url。</li>
+</ul>
+<p>2.添加图片的样式</p>
+<ul>
+<li>创建一个<code>images</code>文件夹，路径为<code>polls/static/polls/images/xxx.png</code>,然后就可以在<code>css</code>的文件中添加如下的代码</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">body</span> &#123;</div><div class="line">    <span class="attribute">background</span>: white <span class="built_in">url</span>(<span class="string">"images/xxx.png"</span>) no-repeat right bottom;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 ]]></content>
     
     <summary type="html">
