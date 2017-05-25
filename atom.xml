@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.ghcoder.com/"/>
-  <updated>2017-05-25T02:40:36.000Z</updated>
+  <updated>2017-05-25T02:43:50.000Z</updated>
   <id>http://www.ghcoder.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://www.ghcoder.com/2017/05/25/20170525/"/>
     <id>http://www.ghcoder.com/2017/05/25/20170525/</id>
     <published>2017-05-25T02:37:12.000Z</published>
-    <updated>2017-05-25T02:40:36.000Z</updated>
+    <updated>2017-05-25T02:43:50.000Z</updated>
     
     <content type="html"><![CDATA[<h4 id="1-学习爬虫框架-Scrapy"><a href="#1-学习爬虫框架-Scrapy" class="headerlink" title="1.学习爬虫框架 Scrapy"></a>1.学习爬虫框架 Scrapy</h4><ul>
 <li>前几天一直在正Django的框架，现在基本上已经ok了，如果我们需要自己创建属于自己的网站、需要前台展示数据，后台可以编辑数据，可以插入到数据库，可以建立自己的数据类型，使用Django已经够了，那么现在有一个很重要的难题：数据从哪里来？怎么获取？如何存取？-&gt; <code>Scrapy</code>能够很好满足我们这些需求。</li>
@@ -29,20 +29,22 @@
 <h4 id="1-1-什么是Scrapy"><a href="#1-1-什么是Scrapy" class="headerlink" title="1.1 什么是Scrapy"></a>1.1 什么是Scrapy</h4><ul>
 <li><code>scrapy</code>是一个web端抓取网站数据的框架，可以用来数据挖掘，信息处理等等</li>
 </ul>
+<a id="more"></a>
 <h4 id="1-2-安装Scrapy"><a href="#1-2-安装Scrapy" class="headerlink" title="1.2 安装Scrapy"></a>1.2 安装Scrapy</h4><ul>
-<li><p>安装scrapy官网建议两种途径：</p>
-</li>
-<li><p>使用<code>conda</code>: <code>conda install -c conda-forge scrapy</code></p>
-</li>
+<li>安装scrapy官网建议两种途径：</li>
 </ul>
+<ol>
+<li>使用<code>conda</code>: <figure class="highlight cmake"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">conda <span class="keyword">install</span> -c conda-forge scrapy</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<ol>
+<li>使用<code>pip</code>: </li>
+</ol>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">pip <span class="keyword">install</span> Scrapy</div></pre></td></tr></table></figure>
 <ul>
-<li><p>使用<code>pip</code>: <code>pip install Scrapy</code></p>
-</li>
-<li><p>官方建议，我们在安装<code>Scrapy</code>的时候，最好安装自己创建的虚拟环境中<code>a dedicated virtualenv</code>，这样治好不会与系统的包产生冲突。</p>
-</li>
+<li>官方建议，我们在安装<code>Scrapy</code>的时候，最好安装自己创建的虚拟环境中<code>a dedicated virtualenv</code>，这样治好不会与系统的包产生冲突。</li>
 <li><code>virtualenv</code>的安装网址为：[<a href="http://sourabhbajaj.com/mac-setup/Python/virtualenv.html" target="_blank" rel="external">http://sourabhbajaj.com/mac-setup/Python/virtualenv.html</a>]</li>
 </ul>
-<a id="more"></a>
 <figure class="highlight dts"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//1.</span></div><div class="line">cd myproject/</div><div class="line"><span class="comment">//2.</span></div><div class="line">virtualenv venv </div><div class="line"><span class="comment">// 如果你的系统已经安装了python2已经python3，但是你现在想建立一个python3的环境</span></div><div class="line"><span class="comment">// virtualenv -p python3 envname</span></div><div class="line"><span class="comment">//3.</span></div><div class="line">source venv<span class="meta-keyword">/bin/</span>activate</div><div class="line"><span class="comment">//4.</span></div><div class="line">pip install Scrapy</div></pre></td></tr></table></figure>
 <ul>
 <li>执行完上面的4行命令，此时应该就可以安装好了<code>Scrapy</code>了。</li>
@@ -215,19 +217,6 @@
 &lt;/ul&gt;
 &lt;h4 id=&quot;1-1-什么是Scrapy&quot;&gt;&lt;a href=&quot;#1-1-什么是Scrapy&quot; class=&quot;headerlink&quot; title=&quot;1.1 什么是Scrapy&quot;&gt;&lt;/a&gt;1.1 什么是Scrapy&lt;/h4&gt;&lt;ul&gt;
 &lt;li&gt;&lt;code&gt;scrapy&lt;/code&gt;是一个web端抓取网站数据的框架，可以用来数据挖掘，信息处理等等&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h4 id=&quot;1-2-安装Scrapy&quot;&gt;&lt;a href=&quot;#1-2-安装Scrapy&quot; class=&quot;headerlink&quot; title=&quot;1.2 安装Scrapy&quot;&gt;&lt;/a&gt;1.2 安装Scrapy&lt;/h4&gt;&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;安装scrapy官网建议两种途径：&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;使用&lt;code&gt;conda&lt;/code&gt;: &lt;code&gt;conda install -c conda-forge scrapy&lt;/code&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;使用&lt;code&gt;pip&lt;/code&gt;: &lt;code&gt;pip install Scrapy&lt;/code&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;官方建议，我们在安装&lt;code&gt;Scrapy&lt;/code&gt;的时候，最好安装自己创建的虚拟环境中&lt;code&gt;a dedicated virtualenv&lt;/code&gt;，这样治好不会与系统的包产生冲突。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;virtualenv&lt;/code&gt;的安装网址为：[&lt;a href=&quot;http://sourabhbajaj.com/mac-setup/Python/virtualenv.html&quot;&gt;http://sourabhbajaj.com/mac-setup/Python/virtualenv.html&lt;/a&gt;]&lt;/li&gt;
 &lt;/ul&gt;
     
     </summary>
