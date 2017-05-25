@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.ghcoder.com/"/>
-  <updated>2017-05-25T02:50:33.000Z</updated>
+  <updated>2017-05-25T02:55:42.000Z</updated>
   <id>http://www.ghcoder.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://www.ghcoder.com/2017/05/25/20170525/"/>
     <id>http://www.ghcoder.com/2017/05/25/20170525/</id>
     <published>2017-05-25T02:37:12.000Z</published>
-    <updated>2017-05-25T02:50:33.000Z</updated>
+    <updated>2017-05-25T02:55:42.000Z</updated>
     
     <content type="html"><![CDATA[<h4 id="1-学习爬虫框架-Scrapy"><a href="#1-学习爬虫框架-Scrapy" class="headerlink" title="1.学习爬虫框架 Scrapy"></a>1.学习爬虫框架 Scrapy</h4><ul>
 <li>前几天一直在正Django的框架，现在基本上已经ok了，如果我们需要自己创建属于自己的网站、需要前台展示数据，后台可以编辑数据，可以插入到数据库，可以建立自己的数据类型，使用Django已经够了，那么现在有一个很重要的难题：数据从哪里来？怎么获取？如何存取？-&gt; <code>Scrapy</code>能够很好满足我们这些需求。</li>
@@ -37,7 +37,7 @@
 <p>2.使用<code>pip</code>: </p>
 <figure class="highlight cmake"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">pip <span class="keyword">install</span> Scrapy</div></pre></td></tr></table></figure>
 <ul>
-<li>官方建议，我们在安装<code>Scrapy</code>的时候，最好安装自己创建的虚拟环境中<code>a dedicated virtualenv</code>，这样治好不会与系统的包产生冲突。</li>
+<li>官方建议，我们在安装<code>Scrapy</code>的时候，最好安装自己创建的虚拟环境中<code>a dedicated virtualenv</code>，这样至少不会与系统的包产生冲突。</li>
 <li><code>virtualenv</code>的安装网址为：[<a href="http://sourabhbajaj.com/mac-setup/Python/virtualenv.html" target="_blank" rel="external">http://sourabhbajaj.com/mac-setup/Python/virtualenv.html</a>]</li>
 </ul>
 <figure class="highlight dts"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//1.</span></div><div class="line">cd myproject/</div><div class="line"><span class="comment">//2.</span></div><div class="line">virtualenv venv </div><div class="line"><span class="comment">// 如果你的系统已经安装了python2已经python3，但是你现在想建立一个python3的环境</span></div><div class="line"><span class="comment">// virtualenv -p python3 envname</span></div><div class="line"><span class="comment">//3.</span></div><div class="line">source venv<span class="meta-keyword">/bin/</span>activate</div><div class="line"><span class="comment">//4.</span></div><div class="line">pip install Scrapy</div></pre></td></tr></table></figure>
