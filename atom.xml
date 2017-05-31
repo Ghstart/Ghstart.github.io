@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.ghcoder.com/"/>
-  <updated>2017-05-25T02:55:42.000Z</updated>
+  <updated>2017-05-31T09:56:02.000Z</updated>
   <id>http://www.ghcoder.com/</id>
   
   <author>
@@ -14,6 +14,88 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>学习爬虫Android基础笔记Tips[官网教程]</title>
+    <link href="http://www.ghcoder.com/2017/05/31/20170531/"/>
+    <id>http://www.ghcoder.com/2017/05/31/20170531/</id>
+    <published>2017-05-31T09:55:12.000Z</published>
+    <updated>2017-05-31T09:56:02.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="学习Android-最近正好有时间，可以系统的看看Android的系统开发，记录下学习的笔记，供今后参考。"><a href="#学习Android-最近正好有时间，可以系统的看看Android的系统开发，记录下学习的笔记，供今后参考。" class="headerlink" title="学习Android, 最近正好有时间，可以系统的看看Android的系统开发，记录下学习的笔记，供今后参考。"></a>学习Android, 最近正好有时间，可以系统的看看Android的系统开发，记录下学习的笔记，供今后参考。</h3><h4 id="1-1-基础环境："><a href="#1-1-基础环境：" class="headerlink" title="1.1 基础环境："></a>1.1 基础环境：</h4><ol>
+<li>使用的IDE为：Android Studio.</li>
+<li>SDK 最低的版本为：Android 4.1.</li>
+</ol>
+<ul>
+<li><code>LinearLayout</code>是布局组件，可以从继承关系上看出关系, 继承自View的子类<code>ViewGroup</code>，并且<code>FrameLayout</code>,<code>TableLayout</code>,<code>RelativeLayout</code>他们都是继承自<code>ViewGroup</code></li>
+</ul>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 继承关系</span></div><div class="line">public <span class="class"><span class="keyword">class</span> <span class="title">LinearLayout</span> <span class="keyword">extends</span> <span class="title">ViewGroup</span></span></div><div class="line"></div><div class="line">public <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">ViewGroup</span> <span class="keyword">extends</span> <span class="title">View</span> <span class="title">implements</span> <span class="title">ViewParent</span>, <span class="title">ViewManager</span></span></div></pre></td></tr></table></figure>
+<a id="more"></a>
+<h4 id="1-2-UI属性"><a href="#1-2-UI属性" class="headerlink" title="1.2 UI属性:"></a>1.2 UI属性:</h4><figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="string">match_parent:</span> 视图与其父视图大小相同</div><div class="line"><span class="string">wrap_content:</span> 视图将根据展示的内容自动调整大小</div><div class="line"><span class="string">android:</span><span class="string">orientation:</span> LinearLayout 具有的属性，决定子组件是“水平”还是“垂直”排列</div></pre></td></tr></table></figure>
+<ul>
+<li>字符串，对某个组件setString的时候，你会发现是这样写的：<code>@string/xxxx</code>, 这里需要注意一下：<code>android:text属性值不是字符串值，而是对字符串资源的应用</code>，其实这时候你setString的时候，实际上是去<code>app/res/values</code>的文件夹中查找<code>strings.xml</code>。</li>
+</ul>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;<span class="built_in">string</span> <span class="built_in">name</span>=<span class="string">"xxxx"</span>&gt;YYYYYY&lt;/<span class="built_in">string</span>&gt;</div></pre></td></tr></table></figure>
+<ul>
+<li>随意创建一个文件，系统会默认给我们创建一些代码：</li>
+<li>这里的<code>R.java</code>文件是在代码编译的时候创建的:</li>
+</ul>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">public <span class="class"><span class="keyword">class</span> <span class="title">QuizActivity</span> <span class="keyword">extends</span> <span class="title">AppCompatActivity</span> </span>&#123;</div><div class="line">		</div><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="keyword">protected</span> void onCreate(<span class="type">Bundle</span> savedInstanceState) &#123;</div><div class="line">    <span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">    setContentView(<span class="type">R</span>.layout.activity_quiz);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li><code>AppCompatActivity</code>是<code>Activity</code>的子类</li>
+<li><code>activity</code>创建完后，需要获取自己的界面：</li>
+</ul>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">public</span> <span class="selector-tag">void</span> <span class="selector-tag">setContentView</span>(<span class="variable">@LayoutRes</span> int layoutResID) &#123;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>这里的<code>layoutResID</code>就是要在资源中来寻找相应的资源。资源文件需要从<code>app/res</code>目录下寻找，和<code>TextView</code>中获取字符串的方法是一样的，需要去<code>app/res/values</code>中的<code>strings.xml</code>中去寻找：</li>
+</ul>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">public</span> <span class="selector-tag">final</span> <span class="selector-tag">void</span> <span class="selector-tag">setText</span>(<span class="variable">@StringRes</span> int resid) &#123;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="1-3-按钮的点击："><a href="#1-3-按钮的点击：" class="headerlink" title="1.3 按钮的点击："></a>1.3 按钮的点击：</h4><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">mNextButton = (Button) findViewById(R.id.next_button);</div><div class="line">     mNextButton.setOnClickListener(<span class="keyword">new</span> View.OnClickListener() &#123;</div><div class="line">         <span class="meta">@Override</span></div><div class="line">         <span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>&#123;</div><div class="line">          </div><div class="line">         &#125;</div><div class="line">     &#125;);</div></pre></td></tr></table></figure>
+<h4 id="1-4-Toast的提示信息："><a href="#1-4-Toast的提示信息：" class="headerlink" title="1.4 Toast的提示信息："></a>1.4 Toast的提示信息：</h4><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">Toast</span><span class="selector-class">.makeText</span>(<span class="selector-tag">CurrentActivity</span><span class="selector-class">.this</span>, <span class="selector-tag">R</span><span class="selector-class">.string</span><span class="selector-class">.xxx</span>, <span class="selector-tag">Toast</span><span class="selector-class">.LENGTH_SHORT</span>)<span class="selector-class">.show</span>();</div></pre></td></tr></table></figure>
+<h4 id="1-5-生命周期"><a href="#1-5-生命周期" class="headerlink" title="1.5 生命周期"></a>1.5 生命周期</h4><ol>
+<li>不存在 -&gt;(onCreate)-&gt; 停止（不可见）-&gt;(onStart)-&gt;暂停（可见）-&gt; (onResume) 运行（可见 &amp; 在前台）</li>
+<li>运行（可见 &amp; 在前台）-&gt;(onPause)-&gt; 暂停（可见 -&gt;(onStop)-&gt; 停止（不可见 -&gt;(onDestory)-&gt; 不存在</li>
+</ol>
+<ul>
+<li><p>在创建了Activity之后，并且此实例出现在屏幕之前会调用<code>onCreate</code>的方法</p>
+</li>
+<li><p>转屏幕的时候，生命周期的改变：</p>
+</li>
+</ul>
+<ol>
+<li>当屏幕发生转动的时候，Activity的生命周期会从新再走一遍，也就是 上面的会先按照 2 -&gt; 1,每次转屏都会这样。</li>
+</ol>
+<ul>
+<li>想要在转屏的时候，保存数据，可以调用下面<code>onSaveInstanceState</code>的方法来保存数据，下次在需要的时候，可以获取数据：</li>
+</ul>
+<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="keyword">protected</span> <span class="function"><span class="keyword">void</span> <span class="title">onSaveInstanceState</span><span class="params">(Bundle outState)</span> </span>&#123;</div><div class="line">     <span class="keyword">super</span>.onSaveInstanceState(outState);</div><div class="line">     outState.putInt(KEY_INDEX, mCurrentIndex);</div><div class="line">&#125;</div><div class="line">   </div><div class="line">   </div><div class="line">  <span class="meta">@Override</span></div><div class="line">   <span class="keyword">protected</span> <span class="function"><span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">       <span class="keyword">super</span>.onCreate(savedInstanceState); </div><div class="line">   	   <span class="keyword">if</span> (savedInstanceState != <span class="keyword">null</span>) &#123;</div><div class="line">           mCurrentIndex = savedInstanceState.getInt(KEY_INDEX);</div><div class="line">       &#125;</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>但是转屏并且保存数据的生命周期方法的调用顺序为：</li>
+</ul>
+<ol>
+<li><code>onPause()</code> -&gt; <code>onSaveInstanceState()</code> -&gt; <code>onStop()</code> -&gt; <code>onDestory()</code></li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;学习Android-最近正好有时间，可以系统的看看Android的系统开发，记录下学习的笔记，供今后参考。&quot;&gt;&lt;a href=&quot;#学习Android-最近正好有时间，可以系统的看看Android的系统开发，记录下学习的笔记，供今后参考。&quot; class=&quot;headerlink&quot; title=&quot;学习Android, 最近正好有时间，可以系统的看看Android的系统开发，记录下学习的笔记，供今后参考。&quot;&gt;&lt;/a&gt;学习Android, 最近正好有时间，可以系统的看看Android的系统开发，记录下学习的笔记，供今后参考。&lt;/h3&gt;&lt;h4 id=&quot;1-1-基础环境：&quot;&gt;&lt;a href=&quot;#1-1-基础环境：&quot; class=&quot;headerlink&quot; title=&quot;1.1 基础环境：&quot;&gt;&lt;/a&gt;1.1 基础环境：&lt;/h4&gt;&lt;ol&gt;
+&lt;li&gt;使用的IDE为：Android Studio.&lt;/li&gt;
+&lt;li&gt;SDK 最低的版本为：Android 4.1.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;LinearLayout&lt;/code&gt;是布局组件，可以从继承关系上看出关系, 继承自View的子类&lt;code&gt;ViewGroup&lt;/code&gt;，并且&lt;code&gt;FrameLayout&lt;/code&gt;,&lt;code&gt;TableLayout&lt;/code&gt;,&lt;code&gt;RelativeLayout&lt;/code&gt;他们都是继承自&lt;code&gt;ViewGroup&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&quot;highlight scala&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;// 继承关系&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;public &lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;LinearLayout&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;ViewGroup&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;public &lt;span class=&quot;keyword&quot;&gt;abstract&lt;/span&gt; &lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;ViewGroup&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;View&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;ViewParent&lt;/span&gt;, &lt;span class=&quot;title&quot;&gt;ViewManager&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+    
+    </summary>
+    
+      <category term="日志" scheme="http://www.ghcoder.com/categories/%E6%97%A5%E5%BF%97/"/>
+    
+    
+      <category term="Android" scheme="http://www.ghcoder.com/tags/Android/"/>
+    
+  </entry>
   
   <entry>
     <title>学习爬虫Scrapy[官网教程]</title>
@@ -663,7 +745,7 @@
     <link href="http://www.ghcoder.com/2017/05/09/20170509/"/>
     <id>http://www.ghcoder.com/2017/05/09/20170509/</id>
     <published>2017-05-09T07:36:12.000Z</published>
-    <updated>2017-05-14T03:32:17.000Z</updated>
+    <updated>2017-05-25T06:14:20.000Z</updated>
     
     <content type="html"><![CDATA[<h3 id="人生苦短，我用Python–不管你之前写过多少其他语言，当你有一天回来写python的时候，你就会觉得“世界是那么的美好！”"><a href="#人生苦短，我用Python–不管你之前写过多少其他语言，当你有一天回来写python的时候，你就会觉得“世界是那么的美好！”" class="headerlink" title="人生苦短，我用Python–不管你之前写过多少其他语言，当你有一天回来写python的时候，你就会觉得“世界是那么的美好！”"></a>人生苦短，我用Python–不管你之前写过多少其他语言，当你有一天回来写python的时候，你就会觉得“世界是那么的美好！”</h3><h4 id="今天我就来讲讲我是如何用Python的django-https-docs-djangoproject-com-来搭建后台的："><a href="#今天我就来讲讲我是如何用Python的django-https-docs-djangoproject-com-来搭建后台的：" class="headerlink" title="今天我就来讲讲我是如何用Python的django[https://docs.djangoproject.com] 来搭建后台的："></a>今天我就来讲讲我是如何用<code>Python</code>的<code>django</code>[<a href="https://docs.djangoproject.com" target="_blank" rel="external">https://docs.djangoproject.com</a>] 来搭建后台的：</h4><a id="more"></a>
 <ol>
@@ -704,7 +786,7 @@
 <h4 id="切换ip、监听所有的ip"><a href="#切换ip、监听所有的ip" class="headerlink" title="切换ip、监听所有的ip"></a>切换ip、监听所有的ip</h4><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">python</span> <span class="selector-tag">manage</span><span class="selector-class">.py</span> <span class="selector-tag">runserver</span> 0<span class="selector-pseudo">:8000</span></div></pre></td></tr></table></figure>
 <h3 id="Django的开发模式都是依赖于一个个app，这一点我非常喜欢，后期就算项目很大，也不会很乱，创建第一个app"><a href="#Django的开发模式都是依赖于一个个app，这一点我非常喜欢，后期就算项目很大，也不会很乱，创建第一个app" class="headerlink" title="Django的开发模式都是依赖于一个个app，这一点我非常喜欢，后期就算项目很大，也不会很乱，创建第一个app:"></a>Django的开发模式都是依赖于一个个app，这一点我非常喜欢，后期就算项目很大，也不会很乱，创建第一个app:</h3><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">python manage<span class="selector-class">.py</span> startapp polls</div></pre></td></tr></table></figure>
 <h3 id="结构如下："><a href="#结构如下：" class="headerlink" title="结构如下："></a>结构如下：</h3><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">.</div><div class="line">├── db<span class="selector-class">.sqlite3</span></div><div class="line">├── GhCoder_Site</div><div class="line">│   ├── __init__<span class="selector-class">.py</span></div><div class="line">│   ├── __init__<span class="selector-class">.pyc</span></div><div class="line">│   ├── settings<span class="selector-class">.py</span></div><div class="line">│   ├── settings<span class="selector-class">.pyc</span></div><div class="line">│   ├── urls<span class="selector-class">.py</span></div><div class="line">│   ├── urls<span class="selector-class">.pyc</span></div><div class="line">│   ├── wsgi<span class="selector-class">.py</span></div><div class="line">│   └── wsgi<span class="selector-class">.pyc</span></div><div class="line">├── manage<span class="selector-class">.py</span></div><div class="line">└── polls</div><div class="line">    ├── admin<span class="selector-class">.py</span></div><div class="line">    ├── apps<span class="selector-class">.py</span></div><div class="line">    ├── __init__<span class="selector-class">.py</span></div><div class="line">    ├── migrations</div><div class="line">    │   └── __init__<span class="selector-class">.py</span></div><div class="line">    ├── models<span class="selector-class">.py</span></div><div class="line">    ├── tests<span class="selector-class">.py</span></div><div class="line">    └── views.py</div></pre></td></tr></table></figure>
-<h4 id="创建第一个views-打开polls-views-py-输入："><a href="#创建第一个views-打开polls-views-py-输入：" class="headerlink" title="创建第一个views,打开polls/views.py,输入："></a>创建第一个views,打开<code>polls/views.py</code>,输入：</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">index</span><span class="params">(resquest)</span>:</span></div><div class="line">      <span class="keyword">return</span> HttpResponse(<span class="string">"Hello, world, You are in polls app"</span>)</div></pre></td></tr></table></figure>
+<h4 id="创建第一个views-打开polls-views-py-输入："><a href="#创建第一个views-打开polls-views-py-输入：" class="headerlink" title="创建第一个views,打开polls/views.py,输入："></a>创建第一个views,打开<code>polls/views.py</code>,输入：</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">index</span><span class="params">(request)</span>:</span></div><div class="line">      <span class="keyword">return</span> HttpResponse(<span class="string">"Hello, world, You are in polls app"</span>)</div></pre></td></tr></table></figure>
 <h4 id="现在配置一下路由-到文件polls-创建一个名为urls-py的文件。将之前写的view和这个url对应上："><a href="#现在配置一下路由-到文件polls-创建一个名为urls-py的文件。将之前写的view和这个url对应上：" class="headerlink" title="现在配置一下路由,到文件polls,创建一个名为urls.py的文件。将之前写的view和这个url对应上："></a>现在配置一下路由,到文件<code>polls</code>,创建一个名为<code>urls.py</code>的文件。将之前写的view和这个url对应上：</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> django.conf.urls <span class="keyword">import</span> url                                                                                                                      </div><div class="line"><span class="keyword">from</span> . <span class="keyword">import</span> views</div><div class="line">   </div><div class="line">urlpatterns = [</div><div class="line">               url(<span class="string">r'^$'</span>, views.index, name=<span class="string">'index'</span>)</div><div class="line">           ]</div></pre></td></tr></table></figure>
 <h4 id="最后将app的url，写到项目中的urls-py的文件里面去，到GhCoder-Site-urls-py文件里面，添加如下代码："><a href="#最后将app的url，写到项目中的urls-py的文件里面去，到GhCoder-Site-urls-py文件里面，添加如下代码：" class="headerlink" title="最后将app的url，写到项目中的urls.py的文件里面去，到GhCoder_Site/urls.py文件里面，添加如下代码："></a>最后将app的url，写到项目中的urls.py的文件里面去，到<code>GhCoder_Site/urls.py</code>文件里面，添加如下代码：</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> django.conf.urls <span class="keyword">import</span> include, url</div><div class="line"><span class="keyword">from</span> django.contrib <span class="keyword">import</span> admin</div><div class="line"></div><div class="line">urlpatterns = [</div><div class="line">    url(<span class="string">r'^polls/'</span>, include(<span class="string">'polls.urls'</span>)),</div><div class="line">    url(<span class="string">r'^admin/'</span>, admin.site.urls),</div><div class="line">]</div></pre></td></tr></table></figure>
 <h4 id="这里关于include的官方介绍："><a href="#这里关于include的官方介绍：" class="headerlink" title="这里关于include的官方介绍："></a>这里关于include的官方介绍：</h4><blockquote>
@@ -1446,67 +1528,6 @@
     <summary type="html">
     
       &lt;h2 id=&quot;学习UITableView的高度计算的框架&quot;&gt;&lt;a href=&quot;#学习UITableView的高度计算的框架&quot; class=&quot;headerlink&quot; title=&quot;学习UITableView的高度计算的框架&quot;&gt;&lt;/a&gt;学习UITableView的高度计算的框架&lt;/h2&gt;
-    
-    </summary>
-    
-      <category term="日志" scheme="http://www.ghcoder.com/categories/%E6%97%A5%E5%BF%97/"/>
-    
-    
-      <category term="学习" scheme="http://www.ghcoder.com/tags/%E5%AD%A6%E4%B9%A0/"/>
-    
-      <category term="Obeject-c" scheme="http://www.ghcoder.com/tags/Obeject-c/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>关于图片圆角的功能学习。</title>
-    <link href="http://www.ghcoder.com/2016/04/19/20160418/"/>
-    <id>http://www.ghcoder.com/2016/04/19/20160418/</id>
-    <published>2016-04-19T03:12:12.000Z</published>
-    <updated>2017-05-10T10:06:43.000Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="图片的性能问题，基本上面试的时候，都会被问到，现在在自己的app中，我也是为了解决的性能的问题，所以了解了一些关于图片性能的库，看一下源码-现在应该有很多这种库了。我看的是这个：https-github-com-CoderJackyHuang-HYBImageCliped"><a href="#图片的性能问题，基本上面试的时候，都会被问到，现在在自己的app中，我也是为了解决的性能的问题，所以了解了一些关于图片性能的库，看一下源码-现在应该有很多这种库了。我看的是这个：https-github-com-CoderJackyHuang-HYBImageCliped" class="headerlink" title="图片的性能问题，基本上面试的时候，都会被问到，现在在自己的app中，我也是为了解决的性能的问题，所以了解了一些关于图片性能的库，看一下源码, 现在应该有很多这种库了。我看的是这个：https://github.com/CoderJackyHuang/HYBImageCliped"></a>图片的性能问题，基本上面试的时候，都会被问到，现在在自己的app中，我也是为了解决的性能的问题，所以了解了一些关于图片性能的库，看一下源码, 现在应该有很多这种库了。我看的是这个：<a href="https://github.com/CoderJackyHuang/HYBImageCliped" target="_blank" rel="external">https://github.com/CoderJackyHuang/HYBImageCliped</a></h3><a id="more"></a>
-<ul>
-<li>这个库是通过Category来分别实现这些功能，首先看看UIView的Category,是怎么实现的UIView的圆角。</li>
-</ul>
-<figure class="highlight zephir"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> *	使用指定的图片来填充，但是生成的是圆形图片，背景颜色为白色。</div><div class="line"> *</div><div class="line"> *	<span class="doctag">@param</span> image			图片名称或者图片对象，甚至支持NSData</div><div class="line"> *	<span class="doctag">@param</span> targetSize	生成指定大小的图片</div><div class="line"> *	<span class="doctag">@param</span> isEqualScale	是否等比例缩放图片</div><div class="line"> *  <span class="doctag">@param</span> backgroundColor 默认取最顶层父视图的背景色，若为透明，则取本身背景色，若也为透明，则取白色</div><div class="line"> *  <span class="doctag">@parma</span> callback   只有当图片真正被裁剪成功后，才会回调，返回裁剪后的图片</div><div class="line"> *</div><div class="line"> *	<span class="doctag">@return</span> 裁剪前的图片</div><div class="line"> */</div><div class="line"></div><div class="line">- (UIImage *)hyb_setCircleImage:(id)image</div><div class="line">                           size:(CGSize)targetSize</div><div class="line">                   isEqualScale:(<span class="keyword">BOOL</span>)isEqualScale</div><div class="line">                 backgrounColor:(UIColor *)backgroundColor</div><div class="line">                       onCliped:(HYBClipedCallback)callback;</div></pre></td></tr></table></figure>
-<ul>
-<li>这只是其中一种Public的方法，我是按照Demo来看的。但是无论哪一种Public的方法，最终调用的都是统一的一个Private 的方法。</li>
-</ul>
-<figure class="highlight erlang"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">- <span class="params">(UIImage *)</span>hyb_private_setImage:<span class="params">(id)</span>image</div><div class="line">                             size:<span class="params">(CGSize)</span>targetSize</div><div class="line">                     cornerRadius:<span class="params">(CGFloat)</span>cornerRadius</div><div class="line">                      rectCorener:<span class="params">(UIRectCorner)</span>rectCorner</div><div class="line">                  backgroundColor:<span class="params">(UIColor *)</span>bgColor</div><div class="line">                     isEqualScale:<span class="params">(BOOL)</span>isEqualScale</div><div class="line">                         isCircle:<span class="params">(BOOL)</span>isCircle</div><div class="line">                         onCliped:<span class="params">(HYBClipedCallback)</span>callback</div></pre></td></tr></table></figure>
-<ul>
-<li><p>里面有个这个方法：可以看出来，假如你不设置bgColor这个属性的话，他会遍历循环，一直会找到最顶层的父类，去除父类的颜色。<code>所以我觉得你要是没事话，还是自己设置一下颜色吧！这边假如层级很复杂，并且元素很多的话，这个性能可能会让你哭吧...</code></p>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"> <span class="keyword">if</span> (bgColor == <span class="literal">nil</span> || <span class="built_in">CGColorEqualToColor</span>(bgColor.CGColor, [<span class="built_in">UIColor</span> clearColor].CGColor)) &#123;</div><div class="line">  <span class="built_in">UIView</span> *superview = <span class="keyword">self</span>.superview;</div><div class="line">  <span class="keyword">while</span> (superview.backgroundColor == <span class="literal">nil</span> || <span class="built_in">CGColorEqualToColor</span>(superview.backgroundColor.CGColor, [<span class="built_in">UIColor</span> clearColor].CGColor)) &#123;</div><div class="line">    <span class="keyword">if</span> (!superview) &#123;</div><div class="line">      <span class="keyword">break</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    superview = [superview superview];</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  bgColor = superview.backgroundColor;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p>好吧，下面这段代码又要提到面试宝典中啥经典话题了，<code>如何在category中给现有的类添加属性呢？</code><br><a href="http://nshipster.com/associated-objects/" target="_blank" rel="external">http://nshipster.com/associated-objects/</a>Matt 大神曾经写过，你可以看一下。</p>
-</li>
-</ul>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">__block <span class="built_in">UIImage</span> *clipedImage = <span class="literal">nil</span>;</div><div class="line">	<span class="comment">//1.</span></div><div class="line">  <span class="built_in">dispatch_async</span>(dispatch_get_global_queue(<span class="number">0</span>, <span class="number">0</span>), ^&#123;</div><div class="line">  <span class="comment">//2.</span></div><div class="line">    willBeClipedImage.hyb_pathColor = <span class="keyword">self</span>.hyb_pathColor;</div><div class="line">    willBeClipedImage.hyb_pathWidth = <span class="keyword">self</span>.hyb_pathWidth;</div><div class="line">    willBeClipedImage.hyb_borderColor = <span class="keyword">self</span>.hyb_borderColor;</div><div class="line">    willBeClipedImage.hyb_borderWidth = <span class="keyword">self</span>.hyb_borderWidth;</div><div class="line">  &#125;);</div></pre></td></tr></table></figure>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">这里涉及到的pathColor,pathWidth,borderColor,borderWidth,都是通过在runtime的特性，在已有的类中添加属性的方式来存储和使用的。</div><div class="line">- (<span class="built_in">UIColor</span> *)hyb_pathColor &#123;</div><div class="line">  <span class="built_in">UIColor</span> *color = objc_getAssociatedObject(<span class="keyword">self</span>, s_hyb_image_pathColorKey);</div><div class="line"></div><div class="line">  <span class="keyword">if</span> (color) &#123;</div><div class="line">    <span class="keyword">return</span> color;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">return</span> [<span class="built_in">UIColor</span> whiteColor];</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//...下面都是换汤不换药的。</span></div></pre></td></tr></table></figure>
-<p><code>下面涉及到真正的画图部分了</code></p>
-<ol>
-<li>这里另起一个线程来绘制圆角。这里我有个问题：<code>每个图片都创建一个线程，这个是不是有点问题。而且这个dispatch_get_global_queue也有问题，Global Dispatch Queue创建的队列,其线程数目是不定的,是根据XNU内核决定的。我觉得这一点，源码中没有解释。</code></li>
-</ol>
-<ul>
-<li>绘制圆角的核心函数是这个。</li>
-</ul>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//1.</span></div><div class="line">- (<span class="built_in">UIImage</span> *)hyb_private_clipImageToSize:(<span class="built_in">CGSize</span>)targetSize</div><div class="line">                            cornerRadius:(<span class="built_in">CGFloat</span>)cornerRadius</div><div class="line">                                 corners:(<span class="built_in">UIRectCorner</span>)corners</div><div class="line">                         backgroundColor:(<span class="built_in">UIColor</span> *)backgroundColor</div><div class="line">                            isEqualScale:(<span class="built_in">BOOL</span>)isEqualScale</div><div class="line">                                isCircle:(<span class="built_in">BOOL</span>)isCircle &#123;&#125;</div><div class="line"></div><div class="line">                                <span class="built_in">CGContextRef</span> ctx = <span class="built_in">UIGraphicsGetCurrentContext</span>();</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">//2.</span></div><div class="line">    <span class="keyword">if</span> (isCircle) &#123;</div><div class="line">      <span class="built_in">CGContextAddEllipseInRect</span>(ctx, rect);</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">      <span class="built_in">CGContextAddRect</span>(ctx, rect);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="built_in">CGContextClip</span>(ctx);</div><div class="line">    [<span class="keyword">self</span> drawInRect:rectImage];</div><div class="line"></div><div class="line">    <span class="comment">//3.</span></div><div class="line"></div><div class="line">        <span class="built_in">CGContextSetStrokeColorWithColor</span>(ctx, [borderColor <span class="built_in">CGColor</span>]);</div><div class="line">    <span class="built_in">CGContextSetLineWidth</span>(ctx, borderWidth);</div><div class="line"></div><div class="line">    <span class="keyword">if</span> (isCircle) &#123;</div><div class="line">      <span class="built_in">CGContextStrokeEllipseInRect</span>(ctx, rectImage);</div><div class="line">      <span class="built_in">CGContextStrokeEllipseInRect</span>(ctx, rect);</div><div class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (cornerRadius == <span class="number">0</span>) &#123;</div><div class="line">      <span class="built_in">CGContextStrokeRect</span>(ctx, rectImage);</div><div class="line">      <span class="built_in">CGContextStrokeRect</span>(ctx, rect);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">//4.</span></div><div class="line">     <span class="built_in">UIBezierPath</span> *path2 = [<span class="built_in">UIBezierPath</span> bezierPathWithRoundedRect:rect</div><div class="line">                                                byRoundingCorners:corners</div><div class="line">                                                      cornerRadii:<span class="built_in">CGSizeMake</span>(cornerRadius + minusPath1 ,cornerRadius + minusPath1)];</div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">//5.</span></div><div class="line">    <span class="built_in">UIImage</span> *finalImage = <span class="built_in">UIGraphicsGetImageFromCurrentImageContext</span>();</div><div class="line"></div><div class="line">    <span class="keyword">return</span> finalImage;</div></pre></td></tr></table></figure>
-<ol>
-<li>里面更新size做了一些文章。是到底要做截成一个正圆，还是只截在哪个角的圆。</li>
-<li>如果是正圆、并且不带圆角的话，就用core graphic来画。</li>
-<li>内线和外线的绘制、以及粗细、颜色。</li>
-<li><p>如果不是正圆、带圆角的多边形的图形，用UIBezierPath 曲线来绘制。关键是第二个参数，是一个枚举类型，代表哪一个或者哪一些圆角需要绘制、苹果官方的文档为<code>corners:
-A bitmask value that identifies the corners that you want rounded. You can use this parameter to round only a subset of the corners of the rectangle.</code></p>
-</li>
-<li><p>最后直接将绘制的图形返回出来。</p>
-</li>
-<li>最后说一点、无论是UIbutton、UIImage、还是什么、笔者的思路都是先在UIView中添加方法、再在UIImage添加方法、并且进行调用、绘制图形，并且返回。</li>
-</ol>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;图片的性能问题，基本上面试的时候，都会被问到，现在在自己的app中，我也是为了解决的性能的问题，所以了解了一些关于图片性能的库，看一下源码-现在应该有很多这种库了。我看的是这个：https-github-com-CoderJackyHuang-HYBImageCliped&quot;&gt;&lt;a href=&quot;#图片的性能问题，基本上面试的时候，都会被问到，现在在自己的app中，我也是为了解决的性能的问题，所以了解了一些关于图片性能的库，看一下源码-现在应该有很多这种库了。我看的是这个：https-github-com-CoderJackyHuang-HYBImageCliped&quot; class=&quot;headerlink&quot; title=&quot;图片的性能问题，基本上面试的时候，都会被问到，现在在自己的app中，我也是为了解决的性能的问题，所以了解了一些关于图片性能的库，看一下源码, 现在应该有很多这种库了。我看的是这个：https://github.com/CoderJackyHuang/HYBImageCliped&quot;&gt;&lt;/a&gt;图片的性能问题，基本上面试的时候，都会被问到，现在在自己的app中，我也是为了解决的性能的问题，所以了解了一些关于图片性能的库，看一下源码, 现在应该有很多这种库了。我看的是这个：&lt;a href=&quot;https://github.com/CoderJackyHuang/HYBImageCliped&quot;&gt;https://github.com/CoderJackyHuang/HYBImageCliped&lt;/a&gt;&lt;/h3&gt;
     
     </summary>
     
