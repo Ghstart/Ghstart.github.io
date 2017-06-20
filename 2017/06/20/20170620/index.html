@@ -92,10 +92,12 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Android," />
+  <meta name="keywords" content="算法," />
 
 
 
+
+  
 
 
   <link rel="alternate" href="/atom.xml" title="Ghcoder" type="application/atom+xml" />
@@ -110,31 +112,19 @@
 
 
 
-<meta name="description" content="学习Android, 最近正好有时间，可以系统的看看Android的系统开发，记录下学习的笔记，供今后参考。1.1 基础环境：
-使用的IDE为：Android Studio.
-SDK 最低的版本为：Android 4.1.
-
-
-LinearLayout是布局组件，可以从继承关系上看出关系, 继承自View的子类ViewGroup，并且FrameLayout,TableLayout,Relative">
+<meta name="description" content="前两天闲来无事有重新温习了一下算法，用Swift3重写了一下算法：今天先写一下O(n^2)的两种算法：选择排序、插入排序
+项目我已经丢到github上了，可以自己去下载： [https://github.com/Ghstart/play_with_algorithm]">
 <meta property="og:type" content="article">
-<meta property="og:title" content="学习Android开发基础笔记Tips">
-<meta property="og:url" content="http://www.ghcoder.com/2017/05/31/20170531/index.html">
+<meta property="og:title" content="学习算法">
+<meta property="og:url" content="http://www.ghcoder.com/2017/06/20/20170620/index.html">
 <meta property="og:site_name" content="Ghcoder">
-<meta property="og:description" content="学习Android, 最近正好有时间，可以系统的看看Android的系统开发，记录下学习的笔记，供今后参考。1.1 基础环境：
-使用的IDE为：Android Studio.
-SDK 最低的版本为：Android 4.1.
-
-
-LinearLayout是布局组件，可以从继承关系上看出关系, 继承自View的子类ViewGroup，并且FrameLayout,TableLayout,Relative">
-<meta property="og:updated_time" content="2017-05-31T09:59:51.000Z">
+<meta property="og:description" content="前两天闲来无事有重新温习了一下算法，用Swift3重写了一下算法：今天先写一下O(n^2)的两种算法：选择排序、插入排序
+项目我已经丢到github上了，可以自己去下载： [https://github.com/Ghstart/play_with_algorithm]">
+<meta property="og:updated_time" content="2017-06-20T04:11:31.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="学习Android开发基础笔记Tips">
-<meta name="twitter:description" content="学习Android, 最近正好有时间，可以系统的看看Android的系统开发，记录下学习的笔记，供今后参考。1.1 基础环境：
-使用的IDE为：Android Studio.
-SDK 最低的版本为：Android 4.1.
-
-
-LinearLayout是布局组件，可以从继承关系上看出关系, 继承自View的子类ViewGroup，并且FrameLayout,TableLayout,Relative">
+<meta name="twitter:title" content="学习算法">
+<meta name="twitter:description" content="前两天闲来无事有重新温习了一下算法，用Swift3重写了一下算法：今天先写一下O(n^2)的两种算法：选择排序、插入排序
+项目我已经丢到github上了，可以自己去下载： [https://github.com/Ghstart/play_with_algorithm]">
 
 
 
@@ -162,13 +152,13 @@ LinearLayout是布局组件，可以从继承关系上看出关系, 继承自Vie
 
 
 
-  <link rel="canonical" href="http://www.ghcoder.com/2017/05/31/20170531/"/>
+  <link rel="canonical" href="http://www.ghcoder.com/2017/06/20/20170620/"/>
 
 
 
 
 
-  <title>学习Android开发基础笔记Tips | Ghcoder</title>
+  <title>学习算法 | Ghcoder</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -311,7 +301,7 @@ LinearLayout是布局组件，可以从继承关系上看出关系, 继承自Vie
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://www.ghcoder.com/2017/05/31/20170531/">
+    <link itemprop="mainEntityOfPage" href="http://www.ghcoder.com/2017/06/20/20170620/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Ghcoder">
@@ -328,7 +318,7 @@ LinearLayout是布局组件，可以从继承关系上看出关系, 继承自Vie
 
         
         
-          <h1 class="post-title" itemprop="name headline">学习Android开发基础笔记Tips</h1>
+          <h1 class="post-title" itemprop="name headline">学习算法</h1>
         
 
         <div class="post-meta">
@@ -340,8 +330,8 @@ LinearLayout是布局组件，可以从继承关系上看出关系, 继承自Vie
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-31T17:55:12+08:00">
-                2017-05-31
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-20T17:55:12+08:00">
+                2017-06-20
               </time>
             
 
@@ -381,9 +371,9 @@ LinearLayout是布局组件，可以从继承关系上看出关系, 继承自Vie
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/05/31/20170531/#comments" itemprop="discussionUrl">
+                <a href="/2017/06/20/20170620/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/05/31/20170531/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2017/06/20/20170620/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -408,59 +398,38 @@ LinearLayout是布局组件，可以从继承关系上看出关系, 继承自Vie
       
 
       
-        <h3 id="学习Android-最近正好有时间，可以系统的看看Android的系统开发，记录下学习的笔记，供今后参考。"><a href="#学习Android-最近正好有时间，可以系统的看看Android的系统开发，记录下学习的笔记，供今后参考。" class="headerlink" title="学习Android, 最近正好有时间，可以系统的看看Android的系统开发，记录下学习的笔记，供今后参考。"></a>学习Android, 最近正好有时间，可以系统的看看Android的系统开发，记录下学习的笔记，供今后参考。</h3><h4 id="1-1-基础环境："><a href="#1-1-基础环境：" class="headerlink" title="1.1 基础环境："></a>1.1 基础环境：</h4><ol>
-<li>使用的IDE为：Android Studio.</li>
-<li>SDK 最低的版本为：Android 4.1.</li>
-</ol>
-<ul>
-<li><code>LinearLayout</code>是布局组件，可以从继承关系上看出关系, 继承自View的子类<code>ViewGroup</code>，并且<code>FrameLayout</code>,<code>TableLayout</code>,<code>RelativeLayout</code>他们都是继承自<code>ViewGroup</code></li>
+        <h3 id="前两天闲来无事有重新温习了一下算法，用Swift3重写了一下算法：今天先写一下O-n-2-的两种算法：选择排序、插入排序"><a href="#前两天闲来无事有重新温习了一下算法，用Swift3重写了一下算法：今天先写一下O-n-2-的两种算法：选择排序、插入排序" class="headerlink" title="前两天闲来无事有重新温习了一下算法，用Swift3重写了一下算法：今天先写一下O(n^2)的两种算法：选择排序、插入排序"></a>前两天闲来无事有重新温习了一下算法，用<code>Swift3</code>重写了一下算法：今天先写一下<code>O(n^2)</code>的两种算法：<code>选择排序</code>、<code>插入排序</code></h3><ul>
+<li>项目我已经丢到github上了，可以自己去下载： [<a href="https://github.com/Ghstart/play_with_algorithm" target="_blank" rel="external">https://github.com/Ghstart/play_with_algorithm</a>]</li>
 </ul>
-<figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 继承关系</span></div><div class="line">public <span class="class"><span class="keyword">class</span> <span class="title">LinearLayout</span> <span class="keyword">extends</span> <span class="title">ViewGroup</span></span></div><div class="line"></div><div class="line">public <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">ViewGroup</span> <span class="keyword">extends</span> <span class="title">View</span> <span class="title">implements</span> <span class="title">ViewParent</span>, <span class="title">ViewManager</span></span></div></pre></td></tr></table></figure>
 <a id="more"></a>
-<h4 id="1-2-UI属性"><a href="#1-2-UI属性" class="headerlink" title="1.2 UI属性:"></a>1.2 UI属性:</h4><figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="string">match_parent:</span> 视图与其父视图大小相同</div><div class="line"><span class="string">wrap_content:</span> 视图将根据展示的内容自动调整大小</div><div class="line"><span class="string">android:</span><span class="string">orientation:</span> LinearLayout 具有的属性，决定子组件是“水平”还是“垂直”排列</div></pre></td></tr></table></figure>
-<ul>
-<li>字符串，对某个组件setString的时候，你会发现是这样写的：<code>@string/xxxx</code>, 这里需要注意一下：<code>android:text属性值不是字符串值，而是对字符串资源的应用</code>，其实这时候你setString的时候，实际上是去<code>app/res/values</code>的文件夹中查找<code>strings.xml</code>。</li>
+<h4 id="1-1-准备工作"><a href="#1-1-准备工作" class="headerlink" title="1.1 准备工作"></a>1.1 准备工作</h4><ul>
+<li>首先写算法，我需要有准备为我产生测试用例的方法，因此我定义了了一个类<code>Helper</code>,并且写静态方法：</li>
 </ul>
-<figure class="highlight applescript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;<span class="built_in">string</span> <span class="built_in">name</span>=<span class="string">"xxxx"</span>&gt;YYYYYY&lt;/<span class="built_in">string</span>&gt;</div></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">static</span> <span class="function"><span class="keyword">func</span> <span class="title">generateSources</span><span class="params">(<span class="built_in">count</span>: Int)</span></span> -&gt; [<span class="type">Int</span>] &#123;</div><div class="line">      <span class="keyword">var</span> sources: [<span class="type">Int</span>] = [<span class="type">Int</span>]()</div><div class="line">      <span class="keyword">for</span> <span class="number">_</span> <span class="keyword">in</span> <span class="number">1</span>...<span class="built_in">count</span> &#123;</div><div class="line">          <span class="keyword">let</span> randomNum: <span class="type">UInt32</span> = arc4random_uniform(<span class="number">1_000_000</span>)</div><div class="line">          sources.append(<span class="type">Int</span>(randomNum))</div><div class="line">      &#125;</div><div class="line">      <span class="keyword">return</span> sources</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
 <ul>
-<li>随意创建一个文件，系统会默认给我们创建一些代码：</li>
-<li>这里的<code>R.java</code>文件是在代码编译的时候创建的:</li>
+<li>学习算法必不可少的，就是需要去验证我的算法，是否正确，这里我写了一个静态方法去验证我的算法是否排序正确：</li>
 </ul>
-<figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">public <span class="class"><span class="keyword">class</span> <span class="title">QuizActivity</span> <span class="keyword">extends</span> <span class="title">AppCompatActivity</span> </span>&#123;</div><div class="line">		</div><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="keyword">protected</span> void onCreate(<span class="type">Bundle</span> savedInstanceState) &#123;</div><div class="line">    <span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">    setContentView(<span class="type">R</span>.layout.activity_quiz);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">static</span> <span class="function"><span class="keyword">func</span> <span class="title">isSorted</span><span class="params">(testSources: [Int])</span></span> -&gt; <span class="type">Bool</span> &#123;</div><div class="line">       </div><div class="line">       <span class="keyword">if</span> testSources.<span class="built_in">count</span> &lt; <span class="number">3</span> &#123;</div><div class="line">           <span class="built_in">assert</span>(<span class="literal">true</span>, <span class="string">"你逗我呢？？就几个自己数"</span>)</div><div class="line">           <span class="keyword">return</span> <span class="literal">false</span></div><div class="line">       &#125;</div><div class="line">       </div><div class="line">       </div><div class="line">       <span class="keyword">for</span> i <span class="keyword">in</span> <span class="number">0</span>...testSources.<span class="built_in">count</span> - <span class="number">2</span> &#123;</div><div class="line">           <span class="keyword">if</span> testSources[i] &gt; testSources[i + <span class="number">1</span>] &#123;</div><div class="line">               <span class="keyword">return</span> <span class="literal">false</span></div><div class="line">           &#125;</div><div class="line">       &#125;</div><div class="line">       </div><div class="line">       <span class="keyword">return</span> <span class="literal">true</span></div><div class="line">   &#125;</div></pre></td></tr></table></figure>
 <ul>
-<li><code>AppCompatActivity</code>是<code>Activity</code>的子类</li>
-<li><code>activity</code>创建完后，需要获取自己的界面：</li>
+<li>写算法，我必须要去计算每个算法所执行的时间，通过<code>Unit Test</code>的<code>measure</code>可以来看出每个方法执行的时间，这里我也写了一个静态方法：</li>
 </ul>
-<figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">public</span> <span class="selector-tag">void</span> <span class="selector-tag">setContentView</span>(<span class="variable">@LayoutRes</span> int layoutResID) &#123;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight livescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">static func executeTime<span class="function"><span class="params">(whichFunctionName: String, testSources: [Int], operation: ([Int]) -&gt; ([Int]))</span> &#123;</span></div><div class="line">      <span class="title">let</span> <span class="title">methodStart</span> = <span class="title">Date</span><span class="params">()</span></div><div class="line">      <span class="title">let</span> <span class="title">tt</span> = <span class="title">operation</span><span class="params">(testSources)</span></div><div class="line">      <span class="title">let</span> <span class="title">methodFinished</span> = <span class="title">Date</span><span class="params">()</span></div><div class="line">      <span class="title">let</span> <span class="title">executionTime</span> = <span class="title">methodFinished</span>.<span class="title">timeIntervalSince</span><span class="params">(methodStart)</span></div><div class="line">      <span class="title">print</span><span class="params">(String(format:<span class="string">"执行%@花费%.9fs"</span>, whichFunctionName, executionTime))</span></div><div class="line">      <span class="title">assert</span><span class="params">(Helper.isSorted(testSources: tt), <span class="string">"排序后还是存在问题！！"</span>)</span></div><div class="line">  &#125;</div></pre></td></tr></table></figure>
+<h4 id="1-2-开始coding"><a href="#1-2-开始coding" class="headerlink" title="1.2 开始coding"></a>1.2 开始coding</h4><ul>
+<li>选择排序，其实说白了，就找<code>索引</code>, 从当前位置一直往后找，并且判断，如果小，就找出他的索引，再继续往后找，直到到最后一位, <code>这里注意，它是不能提前结束的，所以这就是为什么说他会比插入排序慢了</code>：</li>
+</ul>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line">     * 选择排序</div><div class="line">     */</div><div class="line">    func selectionSort(sources: [Int]) -&gt; [Int] &#123;</div><div class="line">        </div><div class="line">        <span class="selector-tag">var</span> sources = sources</div><div class="line">        </div><div class="line">        <span class="keyword">for</span> <span class="selector-tag">i</span> <span class="keyword">in</span> <span class="number">0</span>..&lt;sources<span class="selector-class">.count</span> &#123;</div><div class="line">            </div><div class="line">            <span class="selector-tag">var</span> minIndex = <span class="selector-tag">i</span></div><div class="line">            </div><div class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> i+<span class="number">1</span>..&lt;sources<span class="selector-class">.count</span>  &#123;</div><div class="line">                </div><div class="line">                <span class="keyword">if</span> sources[j] &lt; sources[minIndex] &#123;</div><div class="line">                    </div><div class="line">                    minIndex = j</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            </div><div class="line">            <span class="keyword">if</span> minIndex != <span class="selector-tag">i</span> &#123;</div><div class="line">                swap(&amp;sources[minIndex], &amp;sources[i])</div><div class="line">            &#125;</div><div class="line">           </div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        return sources</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
 <ul>
-<li>这里的<code>layoutResID</code>就是要在资源中来寻找相应的资源。资源文件需要从<code>app/res</code>目录下寻找，和<code>TextView</code>中获取字符串的方法是一样的，需要去<code>app/res/values</code>中的<code>strings.xml</code>中去寻找：</li>
+<li>插入排序，是从第二个位置开始往前找，判断前面的是否比他大，比他大的话，就将前面的数字往后挪，因此类推：</li>
 </ul>
-<figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">public</span> <span class="selector-tag">final</span> <span class="selector-tag">void</span> <span class="selector-tag">setText</span>(<span class="variable">@StringRes</span> int resid) &#123;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h4 id="1-3-按钮的点击："><a href="#1-3-按钮的点击：" class="headerlink" title="1.3 按钮的点击："></a>1.3 按钮的点击：</h4><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">mNextButton = (Button) findViewById(R.id.next_button);</div><div class="line">     mNextButton.setOnClickListener(<span class="keyword">new</span> View.OnClickListener() &#123;</div><div class="line">         <span class="meta">@Override</span></div><div class="line">         <span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>&#123;</div><div class="line">          </div><div class="line">         &#125;</div><div class="line">     &#125;);</div></pre></td></tr></table></figure>
-<h4 id="1-4-Toast的提示信息："><a href="#1-4-Toast的提示信息：" class="headerlink" title="1.4 Toast的提示信息："></a>1.4 Toast的提示信息：</h4><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">Toast</span><span class="selector-class">.makeText</span>(<span class="selector-tag">CurrentActivity</span><span class="selector-class">.this</span>, <span class="selector-tag">R</span><span class="selector-class">.string</span><span class="selector-class">.xxx</span>, <span class="selector-tag">Toast</span><span class="selector-class">.LENGTH_SHORT</span>)<span class="selector-class">.show</span>();</div></pre></td></tr></table></figure>
-<h4 id="1-5-生命周期"><a href="#1-5-生命周期" class="headerlink" title="1.5 生命周期"></a>1.5 生命周期</h4><ol>
-<li>不存在 -&gt;(onCreate)-&gt; 停止（不可见）-&gt;(onStart)-&gt;暂停（可见）-&gt; (onResume) 运行（可见 &amp; 在前台）</li>
-<li>运行（可见 &amp; 在前台）-&gt;(onPause)-&gt; 暂停（可见 -&gt;(onStop)-&gt; 停止（不可见 -&gt;(onDestory)-&gt; 不存在</li>
-</ol>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line">   * 插入排序</div><div class="line">   */</div><div class="line">  func insertionSort(sources: [Int]) -&gt; [Int] &#123;</div><div class="line">      </div><div class="line">      <span class="selector-tag">var</span> sources = sources</div><div class="line">      </div><div class="line">      <span class="keyword">for</span> <span class="selector-tag">i</span> <span class="keyword">in</span> <span class="number">1</span>..&lt;sources<span class="selector-class">.count</span> &#123;</div><div class="line"></div><div class="line">          let e = sources[i]</div><div class="line">          <span class="selector-tag">var</span> j = <span class="selector-tag">i</span> - <span class="number">1</span></div><div class="line">          </div><div class="line">          while ( j &gt;= <span class="number">0</span> &amp;&amp; sources[j] &gt; e) &#123;</div><div class="line">              </div><div class="line">              sources[j + <span class="number">1</span>] = sources[j]</div><div class="line">              </div><div class="line">              j = j - <span class="number">1</span></div><div class="line">          &#125;</div><div class="line">          </div><div class="line">          sources[j+<span class="number">1</span>] = e</div><div class="line">      </div><div class="line">      &#125;</div><div class="line">      </div><div class="line">      return sources</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
+<h4 id="1-3-测试："><a href="#1-3-测试：" class="headerlink" title="1.3 测试："></a>1.3 测试：</h4><ul>
+<li>如何调用：</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">viewDidLoad</span><span class="params">()</span></span> &#123;</div><div class="line">    <span class="keyword">super</span>.viewDidLoad()</div><div class="line">    </div><div class="line">    <span class="keyword">let</span> arr = <span class="type">Helper</span>.generateSources(<span class="built_in">count</span>: <span class="number">1_000</span>)</div><div class="line">    <span class="keyword">let</span> arr1 = arr</div><div class="line">    </div><div class="line">    <span class="type">Helper</span>.executeTime(whichFunctionName: <span class="string">"插入排序"</span>, testSources: arr, operation: <span class="built_in">insertionSort</span>)</div><div class="line">    <span class="type">Helper</span>.executeTime(whichFunctionName: <span class="string">"选择排序"</span>, testSources: arr1, operation: selectionSort)</div><div class="line">    </div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <ul>
-<li><p>在创建了Activity之后，并且此实例出现在屏幕之前会调用<code>onCreate</code>的方法</p>
-</li>
-<li><p>转屏幕的时候，生命周期的改变：</p>
-</li>
+<li>控制台的打印：</li>
 </ul>
-<ol>
-<li>当屏幕发生转动的时候，Activity的生命周期会从新再走一遍，也就是 上面的会先按照 2 -&gt; 1,每次转屏都会这样。</li>
-</ol>
-<ul>
-<li>想要在转屏的时候，保存数据，可以调用下面<code>onSaveInstanceState</code>的方法来保存数据，下次在需要的时候，可以获取数据：</li>
-</ul>
-<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="keyword">protected</span> <span class="function"><span class="keyword">void</span> <span class="title">onSaveInstanceState</span><span class="params">(Bundle outState)</span> </span>&#123;</div><div class="line">     <span class="keyword">super</span>.onSaveInstanceState(outState);</div><div class="line">     outState.putInt(KEY_INDEX, mCurrentIndex);</div><div class="line">&#125;</div><div class="line">   </div><div class="line">   </div><div class="line">  <span class="meta">@Override</span></div><div class="line">   <span class="keyword">protected</span> <span class="function"><span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">       <span class="keyword">super</span>.onCreate(savedInstanceState); </div><div class="line">   	   <span class="keyword">if</span> (savedInstanceState != <span class="keyword">null</span>) &#123;</div><div class="line">           mCurrentIndex = savedInstanceState.getInt(KEY_INDEX);</div><div class="line">       &#125;</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>但是转屏并且保存数据的生命周期方法的调用顺序为：</li>
-</ul>
-<ol>
-<li><code>onPause()</code> -&gt; <code>onSaveInstanceState()</code> -&gt; <code>onStop()</code> -&gt; <code>onDestory()</code></li>
-</ol>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">执行插入排序花费0<span class="selector-class">.016882956s</span></div><div class="line">执行选择排序花费0<span class="selector-class">.023320019s</span></div></pre></td></tr></table></figure>
 
       
     </div>
@@ -490,7 +459,7 @@ LinearLayout是布局组件，可以从继承关系上看出关系, 继承自Vie
       
         <div class="post-tags">
           
-            <a href="/tags/Android/" rel="tag"># Android</a>
+            <a href="/tags/算法/" rel="tag"># 算法</a>
           
         </div>
       
@@ -503,8 +472,8 @@ LinearLayout是布局组件，可以从继承关系上看出关系, 继承自Vie
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/05/25/20170525/" rel="next" title="学习爬虫Scrapy[官网教程]">
-                <i class="fa fa-chevron-left"></i> 学习爬虫Scrapy[官网教程]
+              <a href="/2017/05/31/20170531/" rel="next" title="学习Android开发基础笔记Tips">
+                <i class="fa fa-chevron-left"></i> 学习Android开发基础笔记Tips
               </a>
             
           </div>
@@ -512,10 +481,6 @@ LinearLayout是布局组件，可以从继承关系上看出关系, 继承自Vie
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/06/20/20170620/" rel="prev" title="学习算法">
-                学习算法 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -681,9 +646,9 @@ LinearLayout是布局组件，可以从继承关系上看出关系, 继承自Vie
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://www.ghcoder.com/2017/05/31/20170531/';
-          this.page.identifier = '2017/05/31/20170531/';
-          this.page.title = '学习Android开发基础笔记Tips';
+          this.page.url = 'http://www.ghcoder.com/2017/06/20/20170620/';
+          this.page.identifier = '2017/06/20/20170620/';
+          this.page.title = '学习算法';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://ghcoder1024.disqus.com/embed.js';
