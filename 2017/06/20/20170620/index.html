@@ -97,8 +97,6 @@
 
 
 
-  
-
 
   <link rel="alternate" href="/atom.xml" title="Ghcoder" type="application/atom+xml" />
 
@@ -126,7 +124,7 @@
 
 1.1 准备工作
 首先写算法，我需要有准备为我产生测试用例的方法，因此我定义了了一">
-<meta property="og:updated_time" content="2017-07-04T01:31:56.000Z">
+<meta property="og:updated_time" content="2017-07-04T02:33:28.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="学习算法">
 <meta name="twitter:description" content="前两天闲来无事有重新温习了一下算法，用Swift3重写了一下算法：今天先写一下O(n^2)的两种算法：选择排序、插入排序，以及算法复杂度为O(nlogn)的：递归排序
@@ -380,6 +378,7 @@
 <li>首先写算法，我需要有准备为我产生测试用例的方法，因此我定义了了一个类<code>Helper</code>,并且写静态方法：</li>
 </ul>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">static</span> <span class="function"><span class="keyword">func</span> <span class="title">generateSources</span><span class="params">(<span class="built_in">count</span>: Int)</span></span> -&gt; [<span class="type">Int</span>] &#123;</div><div class="line">      <span class="keyword">var</span> sources: [<span class="type">Int</span>] = [<span class="type">Int</span>]()</div><div class="line">      <span class="keyword">for</span> <span class="number">_</span> <span class="keyword">in</span> <span class="number">1</span>...<span class="built_in">count</span> &#123;</div><div class="line">          <span class="keyword">let</span> randomNum: <span class="type">UInt32</span> = arc4random_uniform(<span class="number">1_000_000</span>)</div><div class="line">          sources.append(<span class="type">Int</span>(randomNum))</div><div class="line">      &#125;</div><div class="line">      <span class="keyword">return</span> sources</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
+<a id="more"></a>
 <ul>
 <li>学习算法必不可少的，就是需要去验证我的算法，是否正确，这里我写了一个静态方法去验证我的算法是否排序正确：</li>
 </ul>
@@ -459,6 +458,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/07/04/20170704/" rel="prev" title="学习《iOS Animations》">
+                学习《iOS Animations》 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>

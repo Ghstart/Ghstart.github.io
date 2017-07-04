@@ -260,6 +260,163 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://www.ghcoder.com/2017/07/04/20170704/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ghcoder">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars3.githubusercontent.com/u/5730023?v=3&s=460">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ghcoder">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/07/04/20170704/" itemprop="url">学习《iOS Animations》</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-04T17:55:12+08:00">
+                2017-07-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/日志/" itemprop="url" rel="index">
+                    <span itemprop="name">日志</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/07/04/20170704/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/07/04/20170704/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="最近一直在学习《iOS-Animations》这本书，记录一下学习到知识点："><a href="#最近一直在学习《iOS-Animations》这本书，记录一下学习到知识点：" class="headerlink" title="最近一直在学习《iOS Animations》这本书，记录一下学习到知识点："></a>最近一直在学习《iOS Animations》这本书，记录一下学习到知识点：</h2><ul>
+<li>这本都快看完了，一直觉得没啥可做笔记的，以为UI动画的一些用法，你知道就是知道，不知道就是不知道，知道了 就觉得很容易，所以觉得这是一个熟能生巧的技能，但是想想，这本书都快看完了，还是要留下一些什么，所以觉得记些东西。</li>
+</ul>
+<h3 id="Animating-Constraints-如何在动画中修改约束"><a href="#Animating-Constraints-如何在动画中修改约束" class="headerlink" title="Animating Constraints 如何在动画中修改约束"></a>Animating Constraints 如何在动画中修改约束</h3><ul>
+<li>最简单的就是获取<code>NSLayoutConstraint!</code>的属性值，直接修改对象的<code>constant</code>可以直接实现约束值的改变。官方的api解释如下：</li>
+</ul>
+<blockquote>
+<p> Unlike the other properties, the constant may be modified after constraint creation.  Setting the constant on an existing constraint performs much better than removing the constraint and adding a new one that’s just like the old but for having a new constant.</p>
+</blockquote>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/07/04/20170704/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://www.ghcoder.com/2017/06/20/20170620/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -360,44 +517,20 @@
 
       
         
-          
-            <h3 id="前两天闲来无事有重新温习了一下算法，用Swift3重写了一下算法：今天先写一下O-n-2-的两种算法：选择排序、插入排序，以及算法复杂度为O-nlogn-的：递归排序"><a href="#前两天闲来无事有重新温习了一下算法，用Swift3重写了一下算法：今天先写一下O-n-2-的两种算法：选择排序、插入排序，以及算法复杂度为O-nlogn-的：递归排序" class="headerlink" title="前两天闲来无事有重新温习了一下算法，用Swift3重写了一下算法：今天先写一下O(n^2)的两种算法：选择排序、插入排序，以及算法复杂度为O(nlogn)的：递归排序"></a>前两天闲来无事有重新温习了一下算法，用<code>Swift3</code>重写了一下算法：今天先写一下<code>O(n^2)</code>的两种算法：<code>选择排序</code>、<code>插入排序</code>，以及算法复杂度为<code>O(nlogn)</code>的：<code>递归排序</code></h3><ul>
-<li>项目我已经丢到github上了，可以自己去下载： [<a href="https://github.com/Ghstart/play_with_algorithm" target="_blank" rel="external">https://github.com/Ghstart/play_with_algorithm</a>]</li>
+          <h3 id="前两天闲来无事有重新温习了一下算法，用Swift3重写了一下算法：今天先写一下O-n-2-的两种算法：选择排序、插入排序，以及算法复杂度为O-nlogn-的：递归排序"><a href="#前两天闲来无事有重新温习了一下算法，用Swift3重写了一下算法：今天先写一下O-n-2-的两种算法：选择排序、插入排序，以及算法复杂度为O-nlogn-的：递归排序" class="headerlink" title="前两天闲来无事有重新温习了一下算法，用Swift3重写了一下算法：今天先写一下O(n^2)的两种算法：选择排序、插入排序，以及算法复杂度为O(nlogn)的：递归排序"></a>前两天闲来无事有重新温习了一下算法，用<code>Swift3</code>重写了一下算法：今天先写一下<code>O(n^2)</code>的两种算法：<code>选择排序</code>、<code>插入排序</code>，以及算法复杂度为<code>O(nlogn)</code>的：<code>递归排序</code></h3><ul>
+<li>项目我已经丢到github上了，可以自己去下载： [<a href="https://github.com/Ghstart/play_with_algorithm">https://github.com/Ghstart/play_with_algorithm</a>]</li>
 </ul>
 <h4 id="1-1-准备工作"><a href="#1-1-准备工作" class="headerlink" title="1.1 准备工作"></a>1.1 准备工作</h4><ul>
 <li>首先写算法，我需要有准备为我产生测试用例的方法，因此我定义了了一个类<code>Helper</code>,并且写静态方法：</li>
 </ul>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">static</span> <span class="function"><span class="keyword">func</span> <span class="title">generateSources</span><span class="params">(<span class="built_in">count</span>: Int)</span></span> -&gt; [<span class="type">Int</span>] &#123;</div><div class="line">      <span class="keyword">var</span> sources: [<span class="type">Int</span>] = [<span class="type">Int</span>]()</div><div class="line">      <span class="keyword">for</span> <span class="number">_</span> <span class="keyword">in</span> <span class="number">1</span>...<span class="built_in">count</span> &#123;</div><div class="line">          <span class="keyword">let</span> randomNum: <span class="type">UInt32</span> = arc4random_uniform(<span class="number">1_000_000</span>)</div><div class="line">          sources.append(<span class="type">Int</span>(randomNum))</div><div class="line">      &#125;</div><div class="line">      <span class="keyword">return</span> sources</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>学习算法必不可少的，就是需要去验证我的算法，是否正确，这里我写了一个静态方法去验证我的算法是否排序正确：</li>
-</ul>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">static</span> <span class="function"><span class="keyword">func</span> <span class="title">isSorted</span><span class="params">(testSources: [Int])</span></span> -&gt; <span class="type">Bool</span> &#123;</div><div class="line">       </div><div class="line">       <span class="keyword">if</span> testSources.<span class="built_in">count</span> &lt; <span class="number">3</span> &#123;</div><div class="line">           <span class="built_in">assert</span>(<span class="literal">true</span>, <span class="string">"你逗我呢？？就几个自己数"</span>)</div><div class="line">           <span class="keyword">return</span> <span class="literal">false</span></div><div class="line">       &#125;</div><div class="line">       </div><div class="line">       </div><div class="line">       <span class="keyword">for</span> i <span class="keyword">in</span> <span class="number">0</span>...testSources.<span class="built_in">count</span> - <span class="number">2</span> &#123;</div><div class="line">           <span class="keyword">if</span> testSources[i] &gt; testSources[i + <span class="number">1</span>] &#123;</div><div class="line">               <span class="keyword">return</span> <span class="literal">false</span></div><div class="line">           &#125;</div><div class="line">       &#125;</div><div class="line">       </div><div class="line">       <span class="keyword">return</span> <span class="literal">true</span></div><div class="line">   &#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>写算法，我必须要去计算每个算法所执行的时间，通过<code>Unit Test</code>的<code>measure</code>可以来看出每个方法执行的时间，这里我也写了一个静态方法：</li>
-</ul>
-<figure class="highlight livescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">static func executeTime<span class="function"><span class="params">(whichFunctionName: String, testSources: [Int], operation: ([Int]) -&gt; ([Int]))</span> &#123;</span></div><div class="line">      <span class="title">let</span> <span class="title">methodStart</span> = <span class="title">Date</span><span class="params">()</span></div><div class="line">      <span class="title">let</span> <span class="title">tt</span> = <span class="title">operation</span><span class="params">(testSources)</span></div><div class="line">      <span class="title">let</span> <span class="title">methodFinished</span> = <span class="title">Date</span><span class="params">()</span></div><div class="line">      <span class="title">let</span> <span class="title">executionTime</span> = <span class="title">methodFinished</span>.<span class="title">timeIntervalSince</span><span class="params">(methodStart)</span></div><div class="line">      <span class="title">print</span><span class="params">(String(format:<span class="string">"执行%@花费%.9fs"</span>, whichFunctionName, executionTime))</span></div><div class="line">      <span class="title">assert</span><span class="params">(Helper.isSorted(testSources: tt), <span class="string">"排序后还是存在问题！！"</span>)</span></div><div class="line">  &#125;</div></pre></td></tr></table></figure>
-<h4 id="1-2-开始coding"><a href="#1-2-开始coding" class="headerlink" title="1.2 开始coding"></a>1.2 开始coding</h4><ul>
-<li>选择排序，其实说白了，就找<code>索引</code>, 从当前位置一直往后找，并且判断，如果小，就找出他的索引，再继续往后找，直到到最后一位, <code>这里注意，它是不能提前结束的，所以这就是为什么说他会比插入排序慢了</code>：</li>
-</ul>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line">     * 选择排序</div><div class="line">     */</div><div class="line">    func selectionSort(sources: [Int]) -&gt; [Int] &#123;</div><div class="line">        </div><div class="line">        <span class="selector-tag">var</span> sources = sources</div><div class="line">        </div><div class="line">        <span class="keyword">for</span> <span class="selector-tag">i</span> <span class="keyword">in</span> <span class="number">0</span>..&lt;sources<span class="selector-class">.count</span> &#123;</div><div class="line">            </div><div class="line">            <span class="selector-tag">var</span> minIndex = <span class="selector-tag">i</span></div><div class="line">            </div><div class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> i+<span class="number">1</span>..&lt;sources<span class="selector-class">.count</span>  &#123;</div><div class="line">                </div><div class="line">                <span class="keyword">if</span> sources[j] &lt; sources[minIndex] &#123;</div><div class="line">                    </div><div class="line">                    minIndex = j</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            </div><div class="line">            <span class="keyword">if</span> minIndex != <span class="selector-tag">i</span> &#123;</div><div class="line">                swap(&amp;sources[minIndex], &amp;sources[i])</div><div class="line">            &#125;</div><div class="line">           </div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        return sources</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>插入排序，是从第二个位置开始往前找，判断前面的是否比他大，比他大的话，就将前面的数字往后挪，因此类推：</li>
-</ul>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line">   * 插入排序</div><div class="line">   */</div><div class="line">  func insertionSort(sources: [Int]) -&gt; [Int] &#123;</div><div class="line">      </div><div class="line">      <span class="selector-tag">var</span> sources = sources</div><div class="line">      </div><div class="line">      <span class="keyword">for</span> <span class="selector-tag">i</span> <span class="keyword">in</span> <span class="number">1</span>..&lt;sources<span class="selector-class">.count</span> &#123;</div><div class="line"></div><div class="line">          let e = sources[i]</div><div class="line">          <span class="selector-tag">var</span> j = <span class="selector-tag">i</span> - <span class="number">1</span></div><div class="line">          </div><div class="line">          while ( j &gt;= <span class="number">0</span> &amp;&amp; sources[j] &gt; e) &#123;</div><div class="line">              </div><div class="line">              sources[j + <span class="number">1</span>] = sources[j]</div><div class="line">              </div><div class="line">              j = j - <span class="number">1</span></div><div class="line">          &#125;</div><div class="line">          </div><div class="line">          sources[j+<span class="number">1</span>] = e</div><div class="line">      </div><div class="line">      &#125;</div><div class="line">      </div><div class="line">      return sources</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>递归排序</li>
-</ul>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line">   * 归并排序</div><div class="line">   */</div><div class="line">  func mergeSort(sources: [Int]) -&gt; [Int] &#123;</div><div class="line">      </div><div class="line">      <span class="selector-tag">var</span> sources = sources</div><div class="line">      </div><div class="line">      __mergeSort(sources: &amp;sources, l: <span class="number">0</span>, r: sources<span class="selector-class">.count</span> - <span class="number">1</span>)</div><div class="line">      </div><div class="line">      return sources</div><div class="line">  &#125;</div><div class="line">  </div><div class="line">  func __mergeSort( sources: inout [Int], l: Int, r: Int) &#123;</div><div class="line">      </div><div class="line">      <span class="keyword">if</span> l &gt;= r &#123;</div><div class="line">          return</div><div class="line">      &#125;</div><div class="line">      </div><div class="line">      let mid: Int = (l + r) / <span class="number">2</span></div><div class="line">      __mergeSort(sources: &amp;sources, l: l, r: mid)</div><div class="line">      __mergeSort(sources: &amp;sources, l: mid+<span class="number">1</span>, r: r)</div><div class="line">      __merge(sources: &amp;sources, l: l, mid: mid, r: r)</div><div class="line">      </div><div class="line">  &#125;</div><div class="line">  </div><div class="line">  <span class="comment">// [l...mid]  [mid+1...r]</span></div><div class="line">  func __merge(sources: inout [Int], l: Int, mid: Int, r: Int) &#123;</div><div class="line">      </div><div class="line">      <span class="selector-tag">var</span> aux = [Int]()</div><div class="line">      <span class="keyword">for</span> <span class="selector-tag">i</span> <span class="keyword">in</span> l..<span class="selector-class">.r</span> &#123;</div><div class="line">          aux.insert(sources[i], at: i-l)</div><div class="line">      &#125;</div><div class="line">      </div><div class="line">      <span class="selector-tag">var</span> <span class="selector-tag">i</span>: Int = l</div><div class="line">      <span class="selector-tag">var</span> j: Int = mid + <span class="number">1</span></div><div class="line">      <span class="keyword">for</span> k <span class="keyword">in</span> l..<span class="selector-class">.r</span> &#123;</div><div class="line">          </div><div class="line">          <span class="keyword">if</span> <span class="selector-tag">i</span> &gt; mid &#123;</div><div class="line">              </div><div class="line">              sources[k] = aux[j-l]</div><div class="line">              j = j + <span class="number">1</span></div><div class="line">              </div><div class="line">          &#125; <span class="keyword">else</span> <span class="keyword">if</span> j &gt; r &#123;</div><div class="line">              </div><div class="line">              sources[k] = aux[i-l]</div><div class="line">              <span class="selector-tag">i</span> = <span class="selector-tag">i</span> + <span class="number">1</span></div><div class="line">              </div><div class="line">          &#125; <span class="keyword">else</span> <span class="keyword">if</span> aux[i-l] &lt; aux[j-l] &#123;</div><div class="line">              </div><div class="line">              sources[k] = aux[i-l]</div><div class="line">              <span class="selector-tag">i</span> = <span class="selector-tag">i</span> + <span class="number">1</span></div><div class="line">              </div><div class="line">          &#125; <span class="keyword">else</span> &#123;</div><div class="line">              </div><div class="line">              sources[k] = aux[j-l]</div><div class="line">              j = j + <span class="number">1</span></div><div class="line">          &#125;</div><div class="line">          </div><div class="line">      &#125;</div><div class="line">      </div><div class="line">  &#125;</div></pre></td></tr></table></figure>
-<h4 id="1-3-测试："><a href="#1-3-测试：" class="headerlink" title="1.3 测试："></a>1.3 测试：</h4><ul>
-<li>如何调用：</li>
-</ul>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">viewDidLoad</span><span class="params">()</span></span> &#123;</div><div class="line">    <span class="keyword">super</span>.viewDidLoad()</div><div class="line">    </div><div class="line">    <span class="keyword">let</span> arr = <span class="type">Helper</span>.generateSources(<span class="built_in">count</span>: <span class="number">1_000</span>)</div><div class="line">    <span class="keyword">let</span> arr1 = arr</div><div class="line">    </div><div class="line">    <span class="type">Helper</span>.executeTime(whichFunctionName: <span class="string">"插入排序"</span>, testSources: arr, operation: <span class="built_in">insertionSort</span>)</div><div class="line">    <span class="type">Helper</span>.executeTime(whichFunctionName: <span class="string">"选择排序"</span>, testSources: arr1, operation: selectionSort)</div><div class="line">    </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>控制台的打印：</li>
-</ul>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">执行插入排序花费0<span class="selector-class">.016882956s</span></div><div class="line">执行选择排序花费0<span class="selector-class">.023320019s</span></div></pre></td></tr></table></figure>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/06/20/20170620/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
