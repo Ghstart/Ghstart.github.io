@@ -112,19 +112,28 @@
 
 
 
-<meta name="description" content="前两天闲来无事有重新温习了一下算法，用Swift3重写了一下算法：今天先写一下O(n^2)的两种算法：选择排序、插入排序
-项目我已经丢到github上了，可以自己去下载： [https://github.com/Ghstart/play_with_algorithm]">
+<meta name="description" content="前两天闲来无事有重新温习了一下算法，用Swift3重写了一下算法：今天先写一下O(n^2)的两种算法：选择排序、插入排序，以及算法复杂度为O(nlogn)的：递归排序
+项目我已经丢到github上了，可以自己去下载： [https://github.com/Ghstart/play_with_algorithm]
+
+1.1 准备工作
+首先写算法，我需要有准备为我产生测试用例的方法，因此我定义了了一">
 <meta property="og:type" content="article">
 <meta property="og:title" content="学习算法">
 <meta property="og:url" content="http://www.ghcoder.com/2017/06/20/20170620/index.html">
 <meta property="og:site_name" content="Ghcoder">
-<meta property="og:description" content="前两天闲来无事有重新温习了一下算法，用Swift3重写了一下算法：今天先写一下O(n^2)的两种算法：选择排序、插入排序
-项目我已经丢到github上了，可以自己去下载： [https://github.com/Ghstart/play_with_algorithm]">
-<meta property="og:updated_time" content="2017-06-20T04:11:31.000Z">
+<meta property="og:description" content="前两天闲来无事有重新温习了一下算法，用Swift3重写了一下算法：今天先写一下O(n^2)的两种算法：选择排序、插入排序，以及算法复杂度为O(nlogn)的：递归排序
+项目我已经丢到github上了，可以自己去下载： [https://github.com/Ghstart/play_with_algorithm]
+
+1.1 准备工作
+首先写算法，我需要有准备为我产生测试用例的方法，因此我定义了了一">
+<meta property="og:updated_time" content="2017-07-04T01:31:56.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="学习算法">
-<meta name="twitter:description" content="前两天闲来无事有重新温习了一下算法，用Swift3重写了一下算法：今天先写一下O(n^2)的两种算法：选择排序、插入排序
-项目我已经丢到github上了，可以自己去下载： [https://github.com/Ghstart/play_with_algorithm]">
+<meta name="twitter:description" content="前两天闲来无事有重新温习了一下算法，用Swift3重写了一下算法：今天先写一下O(n^2)的两种算法：选择排序、插入排序，以及算法复杂度为O(nlogn)的：递归排序
+项目我已经丢到github上了，可以自己去下载： [https://github.com/Ghstart/play_with_algorithm]
+
+1.1 准备工作
+首先写算法，我需要有准备为我产生测试用例的方法，因此我定义了了一">
 
 
 
@@ -364,10 +373,9 @@
       
 
       
-        <h3 id="前两天闲来无事有重新温习了一下算法，用Swift3重写了一下算法：今天先写一下O-n-2-的两种算法：选择排序、插入排序"><a href="#前两天闲来无事有重新温习了一下算法，用Swift3重写了一下算法：今天先写一下O-n-2-的两种算法：选择排序、插入排序" class="headerlink" title="前两天闲来无事有重新温习了一下算法，用Swift3重写了一下算法：今天先写一下O(n^2)的两种算法：选择排序、插入排序"></a>前两天闲来无事有重新温习了一下算法，用<code>Swift3</code>重写了一下算法：今天先写一下<code>O(n^2)</code>的两种算法：<code>选择排序</code>、<code>插入排序</code></h3><ul>
+        <h3 id="前两天闲来无事有重新温习了一下算法，用Swift3重写了一下算法：今天先写一下O-n-2-的两种算法：选择排序、插入排序，以及算法复杂度为O-nlogn-的：递归排序"><a href="#前两天闲来无事有重新温习了一下算法，用Swift3重写了一下算法：今天先写一下O-n-2-的两种算法：选择排序、插入排序，以及算法复杂度为O-nlogn-的：递归排序" class="headerlink" title="前两天闲来无事有重新温习了一下算法，用Swift3重写了一下算法：今天先写一下O(n^2)的两种算法：选择排序、插入排序，以及算法复杂度为O(nlogn)的：递归排序"></a>前两天闲来无事有重新温习了一下算法，用<code>Swift3</code>重写了一下算法：今天先写一下<code>O(n^2)</code>的两种算法：<code>选择排序</code>、<code>插入排序</code>，以及算法复杂度为<code>O(nlogn)</code>的：<code>递归排序</code></h3><ul>
 <li>项目我已经丢到github上了，可以自己去下载： [<a href="https://github.com/Ghstart/play_with_algorithm" target="_blank" rel="external">https://github.com/Ghstart/play_with_algorithm</a>]</li>
 </ul>
-<a id="more"></a>
 <h4 id="1-1-准备工作"><a href="#1-1-准备工作" class="headerlink" title="1.1 准备工作"></a>1.1 准备工作</h4><ul>
 <li>首先写算法，我需要有准备为我产生测试用例的方法，因此我定义了了一个类<code>Helper</code>,并且写静态方法：</li>
 </ul>
@@ -388,6 +396,10 @@
 <li>插入排序，是从第二个位置开始往前找，判断前面的是否比他大，比他大的话，就将前面的数字往后挪，因此类推：</li>
 </ul>
 <figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line">   * 插入排序</div><div class="line">   */</div><div class="line">  func insertionSort(sources: [Int]) -&gt; [Int] &#123;</div><div class="line">      </div><div class="line">      <span class="selector-tag">var</span> sources = sources</div><div class="line">      </div><div class="line">      <span class="keyword">for</span> <span class="selector-tag">i</span> <span class="keyword">in</span> <span class="number">1</span>..&lt;sources<span class="selector-class">.count</span> &#123;</div><div class="line"></div><div class="line">          let e = sources[i]</div><div class="line">          <span class="selector-tag">var</span> j = <span class="selector-tag">i</span> - <span class="number">1</span></div><div class="line">          </div><div class="line">          while ( j &gt;= <span class="number">0</span> &amp;&amp; sources[j] &gt; e) &#123;</div><div class="line">              </div><div class="line">              sources[j + <span class="number">1</span>] = sources[j]</div><div class="line">              </div><div class="line">              j = j - <span class="number">1</span></div><div class="line">          &#125;</div><div class="line">          </div><div class="line">          sources[j+<span class="number">1</span>] = e</div><div class="line">      </div><div class="line">      &#125;</div><div class="line">      </div><div class="line">      return sources</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>递归排序</li>
+</ul>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line">   * 归并排序</div><div class="line">   */</div><div class="line">  func mergeSort(sources: [Int]) -&gt; [Int] &#123;</div><div class="line">      </div><div class="line">      <span class="selector-tag">var</span> sources = sources</div><div class="line">      </div><div class="line">      __mergeSort(sources: &amp;sources, l: <span class="number">0</span>, r: sources<span class="selector-class">.count</span> - <span class="number">1</span>)</div><div class="line">      </div><div class="line">      return sources</div><div class="line">  &#125;</div><div class="line">  </div><div class="line">  func __mergeSort( sources: inout [Int], l: Int, r: Int) &#123;</div><div class="line">      </div><div class="line">      <span class="keyword">if</span> l &gt;= r &#123;</div><div class="line">          return</div><div class="line">      &#125;</div><div class="line">      </div><div class="line">      let mid: Int = (l + r) / <span class="number">2</span></div><div class="line">      __mergeSort(sources: &amp;sources, l: l, r: mid)</div><div class="line">      __mergeSort(sources: &amp;sources, l: mid+<span class="number">1</span>, r: r)</div><div class="line">      __merge(sources: &amp;sources, l: l, mid: mid, r: r)</div><div class="line">      </div><div class="line">  &#125;</div><div class="line">  </div><div class="line">  <span class="comment">// [l...mid]  [mid+1...r]</span></div><div class="line">  func __merge(sources: inout [Int], l: Int, mid: Int, r: Int) &#123;</div><div class="line">      </div><div class="line">      <span class="selector-tag">var</span> aux = [Int]()</div><div class="line">      <span class="keyword">for</span> <span class="selector-tag">i</span> <span class="keyword">in</span> l..<span class="selector-class">.r</span> &#123;</div><div class="line">          aux.insert(sources[i], at: i-l)</div><div class="line">      &#125;</div><div class="line">      </div><div class="line">      <span class="selector-tag">var</span> <span class="selector-tag">i</span>: Int = l</div><div class="line">      <span class="selector-tag">var</span> j: Int = mid + <span class="number">1</span></div><div class="line">      <span class="keyword">for</span> k <span class="keyword">in</span> l..<span class="selector-class">.r</span> &#123;</div><div class="line">          </div><div class="line">          <span class="keyword">if</span> <span class="selector-tag">i</span> &gt; mid &#123;</div><div class="line">              </div><div class="line">              sources[k] = aux[j-l]</div><div class="line">              j = j + <span class="number">1</span></div><div class="line">              </div><div class="line">          &#125; <span class="keyword">else</span> <span class="keyword">if</span> j &gt; r &#123;</div><div class="line">              </div><div class="line">              sources[k] = aux[i-l]</div><div class="line">              <span class="selector-tag">i</span> = <span class="selector-tag">i</span> + <span class="number">1</span></div><div class="line">              </div><div class="line">          &#125; <span class="keyword">else</span> <span class="keyword">if</span> aux[i-l] &lt; aux[j-l] &#123;</div><div class="line">              </div><div class="line">              sources[k] = aux[i-l]</div><div class="line">              <span class="selector-tag">i</span> = <span class="selector-tag">i</span> + <span class="number">1</span></div><div class="line">              </div><div class="line">          &#125; <span class="keyword">else</span> &#123;</div><div class="line">              </div><div class="line">              sources[k] = aux[j-l]</div><div class="line">              j = j + <span class="number">1</span></div><div class="line">          &#125;</div><div class="line">          </div><div class="line">      &#125;</div><div class="line">      </div><div class="line">  &#125;</div></pre></td></tr></table></figure>
 <h4 id="1-3-测试："><a href="#1-3-测试：" class="headerlink" title="1.3 测试："></a>1.3 测试：</h4><ul>
 <li>如何调用：</li>
 </ul>
