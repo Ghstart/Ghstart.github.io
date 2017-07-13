@@ -1,0 +1,672 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="OC," />
+
+
+
+
+  
+
+
+  <link rel="alternate" href="/atom.xml" title="Ghcoder" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="代码写多了，就想把代码写好，将代码写好，就必然要学习设计模式，今天重点学习一下迭代器模式和组合模式。这里我参照的学习是以JAVA为参照的《Header First》设计模式，我这里会以Object-c的格式来重写，最后以一个我项目中的实例来说明一下。1.1 迭代器设计模式：
+问题：这里有两个类：一个是煎饼餐厅菜类PancakeHouseMenu(这里假设代码中是以数组的形式来存储),一个是普通餐厅">
+<meta property="og:type" content="article">
+<meta property="og:title" content="学习设计模式-迭代器模式">
+<meta property="og:url" content="http://www.ghcoder.com/2017/07/13/20170713/index.html">
+<meta property="og:site_name" content="Ghcoder">
+<meta property="og:description" content="代码写多了，就想把代码写好，将代码写好，就必然要学习设计模式，今天重点学习一下迭代器模式和组合模式。这里我参照的学习是以JAVA为参照的《Header First》设计模式，我这里会以Object-c的格式来重写，最后以一个我项目中的实例来说明一下。1.1 迭代器设计模式：
+问题：这里有两个类：一个是煎饼餐厅菜类PancakeHouseMenu(这里假设代码中是以数组的形式来存储),一个是普通餐厅">
+<meta property="og:updated_time" content="2017-07-13T02:31:25.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="学习设计模式-迭代器模式">
+<meta name="twitter:description" content="代码写多了，就想把代码写好，将代码写好，就必然要学习设计模式，今天重点学习一下迭代器模式和组合模式。这里我参照的学习是以JAVA为参照的《Header First》设计模式，我这里会以Object-c的格式来重写，最后以一个我项目中的实例来说明一下。1.1 迭代器设计模式：
+问题：这里有两个类：一个是煎饼餐厅菜类PancakeHouseMenu(这里假设代码中是以数组的形式来存储),一个是普通餐厅">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"remove","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.ghcoder.com/2017/07/13/20170713/"/>
+
+
+
+
+
+  <title>学习设计模式-迭代器模式 | Ghcoder</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Ghcoder</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            列表
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://www.ghcoder.com/2017/07/13/20170713/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ghcoder">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars3.githubusercontent.com/u/5730023?v=3&s=460">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ghcoder">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">学习设计模式-迭代器模式</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-13T10:31:12+08:00">
+                2017-07-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/日志/" itemprop="url" rel="index">
+                    <span itemprop="name">日志</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/07/13/20170713/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/07/13/20170713/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="代码写多了，就想把代码写好，将代码写好，就必然要学习设计模式，今天重点学习一下迭代器模式和组合模式。这里我参照的学习是以JAVA为参照的《Header-First》设计模式，我这里会以Object-c的格式来重写，最后以一个我项目中的实例来说明一下。"><a href="#代码写多了，就想把代码写好，将代码写好，就必然要学习设计模式，今天重点学习一下迭代器模式和组合模式。这里我参照的学习是以JAVA为参照的《Header-First》设计模式，我这里会以Object-c的格式来重写，最后以一个我项目中的实例来说明一下。" class="headerlink" title="代码写多了，就想把代码写好，将代码写好，就必然要学习设计模式，今天重点学习一下迭代器模式和组合模式。这里我参照的学习是以JAVA为参照的《Header First》设计模式，我这里会以Object-c的格式来重写，最后以一个我项目中的实例来说明一下。"></a>代码写多了，就想把代码写好，将代码写好，就必然要学习设计模式，今天重点学习一下迭代器模式和组合模式。这里我参照的学习是以JAVA为参照的《Header First》设计模式，我这里会以Object-c的格式来重写，最后以一个我项目中的实例来说明一下。</h3><h3 id="1-1-迭代器设计模式："><a href="#1-1-迭代器设计模式：" class="headerlink" title="1.1 迭代器设计模式："></a>1.1 迭代器设计模式：</h3><ol>
+<li>问题：这里有两个类：一个是煎饼餐厅菜类<code>PancakeHouseMenu</code>(这里假设代码中是以数组的形式来存储),一个是普通餐厅类<code>DinerMenu</code>(这里假设是以字典的形式来存储),他们都有自己原有的代码，以及逻辑，现在如何将这两个菜单类合并成一个类更好给用户调用。</li>
+</ol>
+<a id="more"></a>
+<ul>
+<li>这个是PancakeHouseMenu的代码</li>
+</ul>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#import <span class="meta-string">"PancakeHouseMenu.h"</span></span></div><div class="line"><span class="meta">#import <span class="meta-string">"Pancak.h"</span></span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">PancakeHouseMenu</span> ()</span></div><div class="line"></div><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">strong</span>) <span class="built_in">NSMutableArray</span> *items;</div><div class="line"></div><div class="line"><span class="keyword">@end</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">PancakeHouseMenu</span></span></div><div class="line"></div><div class="line">- (<span class="keyword">instancetype</span>)init &#123;</div><div class="line">    <span class="keyword">if</span> (<span class="keyword">self</span> = [<span class="keyword">super</span> init]) &#123;        </div><div class="line">        [<span class="keyword">self</span> addItem:<span class="string">@"cake_A"</span> isVege:<span class="literal">YES</span> price:<span class="number">0.23</span>];</div><div class="line">        [<span class="keyword">self</span> addItem:<span class="string">@"cake_B"</span> isVege:<span class="literal">NO</span> price:<span class="number">0.53</span>];</div><div class="line">        [<span class="keyword">self</span> addItem:<span class="string">@"cake_C"</span> isVege:<span class="literal">YES</span> price:<span class="number">1.2</span>];</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">self</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (<span class="keyword">void</span>)addItem:(<span class="built_in">NSString</span> *)itemName isVege:(<span class="built_in">BOOL</span>)isVege price:(<span class="built_in">CGFloat</span>)price &#123;</div><div class="line">    Pancak *cake  = [Pancak pancakName:itemName isVege:isVege price:price];</div><div class="line">    <span class="keyword">if</span> (cake != <span class="literal">nil</span>) [<span class="keyword">self</span>.items addObject:cake];</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (<span class="built_in">NSArray</span> &lt;Pancak *&gt;*) menuItems; &#123;</div><div class="line">    <span class="keyword">return</span> [<span class="keyword">self</span>.items <span class="keyword">copy</span>];</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="meta">#pragma mark - Getter Methods</span></div><div class="line"></div><div class="line">- (<span class="built_in">NSMutableArray</span> *)items &#123;</div><div class="line">    <span class="keyword">if</span> (_items == <span class="literal">nil</span>) _items = [<span class="built_in">NSMutableArray</span> new];</div><div class="line">    <span class="keyword">return</span> _items;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">@end</span></div></pre></td></tr></table></figure>
+<ul>
+<li>这个是DinerMenu的代码</li>
+</ul>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#import <span class="meta-string">"DinerMenu.h"</span></span></div><div class="line"><span class="meta">#import <span class="meta-string">"Diner.h"</span></span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">DinerMenu</span> ()</span></div><div class="line"></div><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">strong</span>) <span class="built_in">NSMutableDictionary</span> *items;</div><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">assign</span>) <span class="built_in">NSInteger</span>            numberOfItems;</div><div class="line"></div><div class="line"><span class="keyword">@end</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">DinerMenu</span></span></div><div class="line"></div><div class="line">- (<span class="keyword">instancetype</span>)init &#123;</div><div class="line">    <span class="keyword">if</span> (<span class="keyword">self</span> = [<span class="keyword">super</span> init]) &#123;</div><div class="line">        </div><div class="line">        <span class="keyword">self</span>.numberOfItems = <span class="number">0</span>;</div><div class="line">        </div><div class="line">        [<span class="keyword">self</span> addItem:<span class="string">@"Diner_A"</span> isVege:<span class="literal">YES</span> price:<span class="number">2.32</span>];</div><div class="line">        [<span class="keyword">self</span> addItem:<span class="string">@"Diner_B"</span> isVege:<span class="literal">NO</span> price:<span class="number">5.33</span>];</div><div class="line">        [<span class="keyword">self</span> addItem:<span class="string">@"Diner_C"</span> isVege:<span class="literal">YES</span> price:<span class="number">1.27</span>];</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">self</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (<span class="built_in">NSDictionary</span> *) menuItems &#123;</div><div class="line">    <span class="keyword">return</span> [<span class="keyword">self</span>.items <span class="keyword">copy</span>];</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (<span class="keyword">void</span>)addItem:(<span class="built_in">NSString</span> *)itemName isVege:(<span class="built_in">BOOL</span>)isVege price:(<span class="built_in">CGFloat</span>)price &#123;</div><div class="line">    Diner *diner = [Diner DinerName:itemName isVege:isVege price:price];</div><div class="line">    <span class="keyword">if</span> (diner != <span class="literal">nil</span> &amp;&amp; itemName != <span class="literal">nil</span>) &#123;</div><div class="line">        [<span class="keyword">self</span>.items setObject:diner forKey:@(<span class="keyword">self</span>.numberOfItems)];</div><div class="line">        <span class="keyword">self</span>.numberOfItems ++;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (<span class="built_in">NSMutableDictionary</span> *)items &#123;</div><div class="line">    <span class="keyword">if</span> (_items == <span class="literal">nil</span>) _items = [<span class="built_in">NSMutableDictionary</span> new];</div><div class="line">    <span class="keyword">return</span> _items;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">@end</span></div></pre></td></tr></table></figure>
+<ul>
+<li>通过比较就可以看出这两个的区别。存储数据分别用的是<code>NSMutableArray</code>和<code>NSMutableDictionary</code></li>
+<li>如果此时我需要分别打印响应的数据的时候的，就需要这样：</li>
+</ul>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">- (void)printMenu &#123;</div><div class="line">    </div><div class="line">    self.pancakeMenu = [PancakeHouseMenu new]<span class="comment">;</span></div><div class="line">    NSArray *pancakeItems = self.pancakeMenu.menuItems<span class="comment">;</span></div><div class="line">    </div><div class="line">    self.<span class="keyword">dinerMenu </span>= [<span class="keyword">DinerMenu </span>new]<span class="comment">;</span></div><div class="line">    NSDictionary *<span class="keyword">dinerItems </span>= self.<span class="keyword">dinerMenu.menuItems;</span></div><div class="line">    </div><div class="line">    for (int i = <span class="number">0</span> <span class="comment">; i &lt; pancakeItems.count ; i++) &#123;</span></div><div class="line">        Pancak *pancake = pancakeItems[i]<span class="comment">;</span></div><div class="line">        NSLog(@<span class="string">"%@"</span>, pancake)<span class="comment">;</span></div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    NSLog(@<span class="string">"--------------------"</span>)<span class="comment">;</span></div><div class="line">    </div><div class="line">    for (int i = <span class="number">0</span> <span class="comment">; i &lt; dinerItems.count; i ++ ) &#123;</span></div><div class="line">        <span class="keyword">Diner </span>*<span class="keyword">diner </span>= <span class="keyword">dinerItems[@(i)];</span></div><div class="line">        NSLog(@<span class="string">"%@"</span>, <span class="keyword">diner);</span></div><div class="line">    &#125;</div><div class="line">    </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>结果如下：</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">2017<span class="selector-tag">-07-12</span> 16<span class="selector-pseudo">:54</span><span class="selector-pseudo">:00.992</span> <span class="selector-tag">Learn_Iterator_Composite_Pattern</span><span class="selector-attr">[6245:186657]</span> <span class="selector-tag">pancake</span>:<span class="selector-attr">[name:cake_A--isvege:1--price:0.23]</span></div><div class="line">2017<span class="selector-tag">-07-12</span> 16<span class="selector-pseudo">:54</span><span class="selector-pseudo">:00.992</span> <span class="selector-tag">Learn_Iterator_Composite_Pattern</span><span class="selector-attr">[6245:186657]</span> <span class="selector-tag">pancake</span>:<span class="selector-attr">[name:cake_B--isvege:0--price:0.53]</span></div><div class="line">2017<span class="selector-tag">-07-12</span> 16<span class="selector-pseudo">:54</span><span class="selector-pseudo">:00.992</span> <span class="selector-tag">Learn_Iterator_Composite_Pattern</span><span class="selector-attr">[6245:186657]</span> <span class="selector-tag">pancake</span>:<span class="selector-attr">[name:cake_C--isvege:1--price:1.20]</span></div><div class="line">2017<span class="selector-tag">-07-12</span> 16<span class="selector-pseudo">:54</span><span class="selector-pseudo">:00.992</span> <span class="selector-tag">Learn_Iterator_Composite_Pattern</span><span class="selector-attr">[6245:186657]</span> <span class="selector-tag">--------------------</span></div><div class="line">2017<span class="selector-tag">-07-12</span> 16<span class="selector-pseudo">:54</span><span class="selector-pseudo">:00.993</span> <span class="selector-tag">Learn_Iterator_Composite_Pattern</span><span class="selector-attr">[6245:186657]</span> <span class="selector-tag">diner</span>:<span class="selector-attr">[name:Diner_A--isvege:1--price:2.32]</span></div><div class="line">2017<span class="selector-tag">-07-12</span> 16<span class="selector-pseudo">:54</span><span class="selector-pseudo">:00.993</span> <span class="selector-tag">Learn_Iterator_Composite_Pattern</span><span class="selector-attr">[6245:186657]</span> <span class="selector-tag">diner</span>:<span class="selector-attr">[name:Diner_B--isvege:0--price:5.33]</span></div><div class="line">2017<span class="selector-tag">-07-12</span> 16<span class="selector-pseudo">:54</span><span class="selector-pseudo">:00.993</span> <span class="selector-tag">Learn_Iterator_Composite_Pattern</span><span class="selector-attr">[6245:186657]</span> <span class="selector-tag">diner</span>:<span class="selector-attr">[name:Diner_C--isvege:1--price:1.27]</span></div></pre></td></tr></table></figure>
+<ul>
+<li>这样第一个问题就出现了，<code>这里两家餐厅的菜单存储的数据结构没法控制，这里需要打印菜单的时候，就需要分别遍历两个数据</code></li>
+<li>解决版本：<code>封装变化的部分</code>（这里变化的部分就是循环遍历的地方）</li>
+<li>这里创建一个<code>protocol</code>,代码如下：</li>
+</ul>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">@protocol</span> <span class="title">Iterator</span> &lt;<span class="title">NSObject</span>&gt;</span></div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> 是否这个聚合中存在更多的元素</div><div class="line"> </div><div class="line"> @return 返回bool值</div><div class="line"> */</div><div class="line">- (<span class="built_in">BOOL</span>)hasNext;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> 返回下一个对象</div><div class="line"> </div><div class="line"> @return 下一个对象</div><div class="line"> */</div><div class="line">- (<span class="keyword">id</span>)next;</div><div class="line"></div><div class="line"><span class="keyword">@end</span></div></pre></td></tr></table></figure>
+<ul>
+<li>创建一个新的类<code>DinerMenuIterator</code>,这个类是<code>Iterator</code>具体实现的类，具体实现：</li>
+</ul>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#import <span class="meta-string">"DinerMenuIterator.h"</span></span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">DinerMenuIterator</span> ()</span></div><div class="line"></div><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">strong</span>) <span class="built_in">NSDictionary</span> *items;</div><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">assign</span>) <span class="built_in">NSInteger</span>    position;</div><div class="line"></div><div class="line"><span class="keyword">@end</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">DinerMenuIterator</span></span></div><div class="line"></div><div class="line">- (<span class="keyword">instancetype</span>)initWithItems:(<span class="built_in">NSDictionary</span> *)items &#123;</div><div class="line">    <span class="keyword">if</span> (<span class="keyword">self</span> = [<span class="keyword">super</span> init]) &#123;</div><div class="line">        <span class="keyword">self</span>.position   = <span class="number">0</span>;</div><div class="line">        <span class="keyword">self</span>.items      = items;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">self</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (<span class="built_in">BOOL</span>)hasNext &#123;</div><div class="line">    <span class="keyword">if</span> (<span class="keyword">self</span>.position &gt;= <span class="keyword">self</span>.items.count) <span class="keyword">return</span> <span class="literal">NO</span>;</div><div class="line">    <span class="keyword">return</span> <span class="literal">YES</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (<span class="keyword">id</span>)next &#123;</div><div class="line">    <span class="keyword">if</span> ([<span class="keyword">self</span> hasNext]) &#123;</div><div class="line">        <span class="keyword">id</span> item = <span class="keyword">self</span>.items[@(<span class="keyword">self</span>.position)];</div><div class="line">        <span class="keyword">self</span>.position ++;</div><div class="line">        <span class="keyword">return</span> item;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="literal">nil</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">@end</span></div></pre></td></tr></table></figure>
+<ul>
+<li>修改<code>DinerMenu</code>的类：</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> 返回菜单项</div><div class="line"> </div><div class="line"> <span class="doctag">@return</span> 菜单总数据</div><div class="line"> */</div><div class="line"><span class="comment">//- (NSDictionary *) menuItems;</span></div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> 迭代器的接口</div><div class="line"> </div><div class="line"> <span class="doctag">@return</span> 迭代器对象</div><div class="line"> */</div><div class="line">- (id&lt;Iterator&gt;)iterator;</div></pre></td></tr></table></figure>
+<ul>
+<li>.m 文件的具体实现：</li>
+</ul>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">- (id&lt;Iterator&gt;)iterator &#123;</div><div class="line">    <span class="keyword">return</span> <span class="string">[[DinerMenuIterator alloc] initWithItems:[self.items copy]]</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line">//- (NSDictionary *) menuItems &#123;</div><div class="line">//    <span class="keyword">return</span> [self.items copy];</div><div class="line">//&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>这样打印代码如下：</li>
+</ul>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">- (<span class="keyword">void</span>)printMenu &#123;</div><div class="line">    </div><div class="line">    <span class="keyword">self</span>.pancakeMenu = [PancakeHouseMenu new];</div><div class="line">    <span class="keyword">id</span> &lt;Iterator&gt;pancakIterator = [<span class="keyword">self</span>.pancakeMenu iterator];</div><div class="line">    </div><div class="line">    <span class="keyword">self</span>.dinerMenu = [DinerMenu new];</div><div class="line">    <span class="keyword">id</span> &lt;Iterator&gt;dinerIterator = [<span class="keyword">self</span>.dinerMenu iterator];</div><div class="line">    </div><div class="line">    </div><div class="line">    [<span class="keyword">self</span> iterate_print_menu:pancakIterator];</div><div class="line">    </div><div class="line">    <span class="built_in">NSLog</span>(<span class="string">@"--------------------"</span>);</div><div class="line">    </div><div class="line">    [<span class="keyword">self</span> iterate_print_menu:dinerIterator];</div><div class="line">    </div><div class="line">&#125;</div><div class="line"></div><div class="line">- (<span class="keyword">void</span>)iterate_print_menu:(<span class="keyword">id</span>&lt;Iterator&gt;)it &#123;</div><div class="line">    <span class="keyword">while</span> (it.hasNext) &#123;</div><div class="line">        <span class="built_in">NSLog</span>(<span class="string">@"%@"</span>, it.next);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>这样就解决了游走于每一个元素内部之间，而不需要暴露内部的实现。</li>
+<li>迭代器模式：提供一种方法顺序访问聚合对象中各个元素，而又不暴露其内部的实现。</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/OC/" rel="tag"># OC</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/07/04/20170704/" rel="next" title="学习《iOS Animations》">
+                <i class="fa fa-chevron-left"></i> 学习《iOS Animations》
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ghcoder</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://ghcoder1024.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://www.ghcoder.com/2017/07/13/20170713/';
+          this.page.identifier = '2017/07/13/20170713/';
+          this.page.title = '学习设计模式-迭代器模式';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://ghcoder1024.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
