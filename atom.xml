@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.ghcoder.com/"/>
-  <updated>2017-07-31T09:13:10.000Z</updated>
+  <updated>2017-07-31T09:17:08.000Z</updated>
   <id>http://www.ghcoder.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://www.ghcoder.com/2017/07/31/20170731/"/>
     <id>http://www.ghcoder.com/2017/07/31/20170731/</id>
     <published>2017-07-31T09:07:12.000Z</published>
-    <updated>2017-07-31T09:13:10.000Z</updated>
+    <updated>2017-07-31T09:17:08.000Z</updated>
     
     <content type="html"><![CDATA[<h3 id="隔了好久，闲来无事，看到自己github上React-Native的项目好久没有更新了，所以想继续搞搞它，但是发现好多坑。"><a href="#隔了好久，闲来无事，看到自己github上React-Native的项目好久没有更新了，所以想继续搞搞它，但是发现好多坑。" class="headerlink" title="隔了好久，闲来无事，看到自己github上React-Native的项目好久没有更新了，所以想继续搞搞它，但是发现好多坑。"></a>隔了好久，闲来无事，看到自己github上React-Native的项目好久没有更新了，所以想继续搞搞它，但是发现好多坑。</h3><ul>
 <li>打开官网 <code>https://facebook.github.io/react-native/</code>，我所用的都是最新的版本<code>0.46</code>, 点击链接到<code>https://facebook.github.io/react-native/docs/getting-started.html</code>,点击<code>Build Projects with Native Code</code>，会有一个<code>Demo</code>，按照这个<code>Demo</code>一步步操作，会遇到很多的坑，这里我记录一下：</li>
@@ -37,15 +37,7 @@
 <ul>
 <li>这里假如你的系统是<code>Android 5.0</code>以上的话，应该就不会有这个问题了，但是如果你的安卓机器和我的一样，都是低于<code>Android 5.0的话</code>：, 以我的手机为例[安卓4.4.4]，解决：</li>
 </ul>
-<ol>
-<li>(Android 5.0以下)通过Wi-Fi连接你的本地开发服务器<br>首先确保你的电脑和手机设备在同一个Wi-Fi环境下。</li>
-<li>在设备上运行你的React Native应用。和打开其它App一样操作。<br>你应该会看到一个“红屏”错误提示。这是正常的，下面的步骤会解决这个报错。</li>
-<li>摇晃设备，或者运行adb shell input keyevent 82，可以打开开发者菜单。</li>
-<li>点击进入Dev Settings。</li>
-<li>点击Debug server host for device。</li>
-<li>输入你电脑的IP地址和端口号（譬如10.0.1.1:8081）。在Mac上，你可以在系统设置/网络里找查询你的IP地址。在Windows上，打开命令提示符并输入ipconfig来查询你的IP地址。在Linux上你可以在终端中输入ifconfig来查询你的IP地址。</li>
-<li>回到开发者菜单然后选择Reload JS。`</li>
-</ol>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="bullet">1. </span>(Android 5.0以下)通过Wi-Fi连接你的本地开发服务器</div><div class="line">首先确保你的电脑和手机设备在同一个Wi-Fi环境下。</div><div class="line"><span class="bullet">2. </span>在设备上运行你的React Native应用。和打开其它App一样操作。</div><div class="line">你应该会看到一个“红屏”错误提示。这是正常的，下面的步骤会解决这个报错。</div><div class="line"><span class="bullet">3. </span>摇晃设备，或者运行adb shell input keyevent 82，可以打开开发者菜单。</div><div class="line"><span class="bullet">4. </span>点击进入Dev Settings。</div><div class="line"><span class="bullet">5. </span>点击Debug server host for device。</div><div class="line"><span class="bullet">6. </span>输入你电脑的IP地址和端口号（譬如10.0.1.1:8081）。在Mac上，你可以在系统设置/网络里找查询你的IP地址。在Windows上，打开命令提示符并输入ipconfig来查询你的IP地址。在Linux上你可以在终端中输入ifconfig来查询你的IP地址。</div><div class="line"><span class="bullet">7. </span>回到开发者菜单然后选择Reload JS。`</div></pre></td></tr></table></figure>
 <p>3.运行<code>react-native run-android</code>的时候，启动模拟器，我这边报这个错误：</p>
 <figure class="highlight subunit"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">Error: </span>No available formula with the name "android-sdk"</div></pre></td></tr></table></figure>
 <ul>
