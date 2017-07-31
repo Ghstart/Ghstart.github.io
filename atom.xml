@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.ghcoder.com/"/>
-  <updated>2017-07-13T02:31:25.000Z</updated>
+  <updated>2017-07-31T09:13:10.000Z</updated>
   <id>http://www.ghcoder.com/</id>
   
   <author>
@@ -14,6 +14,60 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>React-Native 0.46 最新环境配置</title>
+    <link href="http://www.ghcoder.com/2017/07/31/20170731/"/>
+    <id>http://www.ghcoder.com/2017/07/31/20170731/</id>
+    <published>2017-07-31T09:07:12.000Z</published>
+    <updated>2017-07-31T09:13:10.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="隔了好久，闲来无事，看到自己github上React-Native的项目好久没有更新了，所以想继续搞搞它，但是发现好多坑。"><a href="#隔了好久，闲来无事，看到自己github上React-Native的项目好久没有更新了，所以想继续搞搞它，但是发现好多坑。" class="headerlink" title="隔了好久，闲来无事，看到自己github上React-Native的项目好久没有更新了，所以想继续搞搞它，但是发现好多坑。"></a>隔了好久，闲来无事，看到自己github上React-Native的项目好久没有更新了，所以想继续搞搞它，但是发现好多坑。</h3><ul>
+<li>打开官网 <code>https://facebook.github.io/react-native/</code>，我所用的都是最新的版本<code>0.46</code>, 点击链接到<code>https://facebook.github.io/react-native/docs/getting-started.html</code>,点击<code>Build Projects with Native Code</code>，会有一个<code>Demo</code>，按照这个<code>Demo</code>一步步操作，会遇到很多的坑，这里我记录一下：</li>
+</ul>
+<a id="more"></a>
+<p>1.先运行Android的机器，发现会报未找到<code>SDK</code>的问题，具体如下：</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">FAILURE</span>: Build failed with an exception.</div><div class="line"></div><div class="line"><span class="livecodeserver">* What went wrong:</span></div><div class="line">A problem occurred configuring project <span class="string">':app'</span>.</div><div class="line">&gt; SDK location <span class="keyword">not</span> found. Define location <span class="keyword">with</span> sdk.dir <span class="keyword">in</span> <span class="keyword">the</span> <span class="built_in">local</span>.properties <span class="built_in">file</span> <span class="keyword">or</span> <span class="keyword">with</span> <span class="keyword">an</span> ANDROID_HOME environment <span class="built_in">variable</span>.</div></pre></td></tr></table></figure>
+<ul>
+<li>解决：以mac为例子，找到<code>~/.bashrc</code>的文件，也有可能是<code>~/.zshrc</code>的文件</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">1. vim ~/.bashrc</div><div class="line"></div><div class="line"></div><div class="line">2.  <span class="built_in">export</span> ANDROID_HOME=~/Library/Android/sdk</div><div class="line">    <span class="built_in">export</span> PATH=<span class="variable">$&#123;PATH&#125;</span>:<span class="variable">$ANDROID_HOME</span>/tools:<span class="variable">$ANDROID_HOME</span>/platform-tools</div></pre></td></tr></table></figure>
+<p>2.再次运行<code>react-native run-android</code> 想执行真机的话, 报这如下错误：</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Could not run adb <span class="string">reverse:</span> Command <span class="string">failed:</span> <span class="regexp">/Users/</span>gonghuan<span class="regexp">/Library/</span>Android<span class="regexp">/sdk/</span>platform-tools/adb -s K21GAMN590201150 reverse <span class="string">tcp:</span><span class="number">8081</span> <span class="string">tcp:</span><span class="number">8081</span></div></pre></td></tr></table></figure>
+<ul>
+<li>这里假如你的系统是<code>Android 5.0</code>以上的话，应该就不会有这个问题了，但是如果你的安卓机器和我的一样，都是低于<code>Android 5.0的话</code>：, 以我的手机为例[安卓4.4.4]，解决：</li>
+</ul>
+<ol>
+<li>(Android 5.0以下)通过Wi-Fi连接你的本地开发服务器<br>首先确保你的电脑和手机设备在同一个Wi-Fi环境下。</li>
+<li>在设备上运行你的React Native应用。和打开其它App一样操作。<br>你应该会看到一个“红屏”错误提示。这是正常的，下面的步骤会解决这个报错。</li>
+<li>摇晃设备，或者运行adb shell input keyevent 82，可以打开开发者菜单。</li>
+<li>点击进入Dev Settings。</li>
+<li>点击Debug server host for device。</li>
+<li>输入你电脑的IP地址和端口号（譬如10.0.1.1:8081）。在Mac上，你可以在系统设置/网络里找查询你的IP地址。在Windows上，打开命令提示符并输入ipconfig来查询你的IP地址。在Linux上你可以在终端中输入ifconfig来查询你的IP地址。</li>
+<li>回到开发者菜单然后选择Reload JS。`</li>
+</ol>
+<p>3.运行<code>react-native run-android</code>的时候，启动模拟器，我这边报这个错误：</p>
+<figure class="highlight subunit"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">Error: </span>No available formula with the name "android-sdk"</div></pre></td></tr></table></figure>
+<ul>
+<li>解决途径：1. 如果你已经按照官网 [<a href="https://facebook.github.io/react-native/docs/getting-started.html" target="_blank" rel="external">https://facebook.github.io/react-native/docs/getting-started.html</a>] 的教程，走完，但是还是报错的话就执行下面的命令：</li>
+</ul>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">brew </span>tap caskroom/cask</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">brew </span>cask install <span class="keyword">android-sdk</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">brew </span>cask install <span class="keyword">android-platform-tools</span></div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;隔了好久，闲来无事，看到自己github上React-Native的项目好久没有更新了，所以想继续搞搞它，但是发现好多坑。&quot;&gt;&lt;a href=&quot;#隔了好久，闲来无事，看到自己github上React-Native的项目好久没有更新了，所以想继续搞搞它，但是发现好多坑。&quot; class=&quot;headerlink&quot; title=&quot;隔了好久，闲来无事，看到自己github上React-Native的项目好久没有更新了，所以想继续搞搞它，但是发现好多坑。&quot;&gt;&lt;/a&gt;隔了好久，闲来无事，看到自己github上React-Native的项目好久没有更新了，所以想继续搞搞它，但是发现好多坑。&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;打开官网 &lt;code&gt;https://facebook.github.io/react-native/&lt;/code&gt;，我所用的都是最新的版本&lt;code&gt;0.46&lt;/code&gt;, 点击链接到&lt;code&gt;https://facebook.github.io/react-native/docs/getting-started.html&lt;/code&gt;,点击&lt;code&gt;Build Projects with Native Code&lt;/code&gt;，会有一个&lt;code&gt;Demo&lt;/code&gt;，按照这个&lt;code&gt;Demo&lt;/code&gt;一步步操作，会遇到很多的坑，这里我记录一下：&lt;/li&gt;
+&lt;/ul&gt;
+    
+    </summary>
+    
+      <category term="日志" scheme="http://www.ghcoder.com/categories/%E6%97%A5%E5%BF%97/"/>
+    
+    
+      <category term="React-Native" scheme="http://www.ghcoder.com/tags/React-Native/"/>
+    
+  </entry>
   
   <entry>
     <title>学习设计模式-迭代器模式</title>
@@ -1487,65 +1541,6 @@
     <summary type="html">
     
       &lt;h2 id=&quot;实战-React-Native-重写红狮物流App的项目。下面的的几次博客我会以完成一个现有的项目，将它整体都用React重写。项目我已经上传到github-https-github-com-Ghstart-HongshiWuliuRN&quot;&gt;&lt;a href=&quot;#实战-React-Native-重写红狮物流App的项目。下面的的几次博客我会以完成一个现有的项目，将它整体都用React重写。项目我已经上传到github-https-github-com-Ghstart-HongshiWuliuRN&quot; class=&quot;headerlink&quot; title=&quot;实战(-) React-Native 重写红狮物流App的项目。下面的的几次博客我会以完成一个现有的项目，将它整体都用React重写。项目我已经上传到github[https://github.com/Ghstart/HongshiWuliuRN]&quot;&gt;&lt;/a&gt;实战(-) React-Native 重写红狮物流App的项目。下面的的几次博客我会以完成一个现有的项目，将它整体都用React重写。项目我已经上传到github[&lt;a href=&quot;https://github.com/Ghstart/HongshiWuliuRN&quot;&gt;https://github.com/Ghstart/HongshiWuliuRN&lt;/a&gt;]&lt;/h2&gt;&lt;h3 id=&quot;首先找到index-ios-js文件，由于我们的app的架构就是主流的tab的这种，所以我这里用到了TabBarIOS的主件，代码如下：&quot;&gt;&lt;a href=&quot;#首先找到index-ios-js文件，由于我们的app的架构就是主流的tab的这种，所以我这里用到了TabBarIOS的主件，代码如下：&quot; class=&quot;headerlink&quot; title=&quot;首先找到index.ios.js文件，由于我们的app的架构就是主流的tab的这种，所以我这里用到了TabBarIOS的主件，代码如下：&quot;&gt;&lt;/a&gt;首先找到&lt;code&gt;index.ios.js&lt;/code&gt;文件，由于我们的app的架构就是主流的tab的这种，所以我这里用到了TabBarIOS的主件，代码如下：&lt;/h3&gt;
-    
-    </summary>
-    
-      <category term="日志" scheme="http://www.ghcoder.com/categories/%E6%97%A5%E5%BF%97/"/>
-    
-    
-      <category term="学习" scheme="http://www.ghcoder.com/tags/%E5%AD%A6%E4%B9%A0/"/>
-    
-      <category term="React Native" scheme="http://www.ghcoder.com/tags/React-Native/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>学习React Native中</title>
-    <link href="http://www.ghcoder.com/2016/08/24/20160824/"/>
-    <id>http://www.ghcoder.com/2016/08/24/20160824/</id>
-    <published>2016-08-24T06:53:12.000Z</published>
-    <updated>2017-05-10T10:06:27.000Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="其实从去年我就一直看学习并看React-Native-开始学习只是为了兴趣，现在项目中用到了有些更新的功能，我就是用React-native-来做的。其实还是蛮好的，但是我发现更新实在是太快了，现在官网的稳定版本是0-31版本"><a href="#其实从去年我就一直看学习并看React-Native-开始学习只是为了兴趣，现在项目中用到了有些更新的功能，我就是用React-native-来做的。其实还是蛮好的，但是我发现更新实在是太快了，现在官网的稳定版本是0-31版本" class="headerlink" title="其实从去年我就一直看学习并看React Native,开始学习只是为了兴趣，现在项目中用到了有些更新的功能，我就是用React native 来做的。其实还是蛮好的，但是我发现更新实在是太快了，现在官网的稳定版本是0.31版本"></a>其实从去年我就一直看学习并看React Native,开始学习只是为了兴趣，现在项目中用到了有些更新的功能，我就是用React native 来做的。其实还是蛮好的，但是我发现更新实在是太快了，现在官网的稳定版本是<a href="https://facebook.github.io/react-native/" target="_blank" rel="external">0.31版本</a></h2><a id="more"></a>
-<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><blockquote>
-<p>打开terminal, cd到某个路径下，执行命令 <code>react-native init helloworld</code>[^这里的helloword就是你创建的项目名字]<br>如果出现这样的代码就代码创建成功。</p>
-</blockquote>
-<figure class="highlight applescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">To <span class="built_in">run</span> your app <span class="keyword">on</span> iOS:</div><div class="line">   cd /Users/gonghuan/Desktop/helloworld</div><div class="line">   react-native <span class="built_in">run</span>-ios</div><div class="line">   - <span class="keyword">or</span> -</div><div class="line">   Open /Users/gonghuan/Desktop/helloworld/ios/helloworld.xcodeproj <span class="keyword">in</span> Xcode</div><div class="line">   Hit <span class="keyword">the</span> Run button</div><div class="line">To <span class="built_in">run</span> your app <span class="keyword">on</span> Android:</div><div class="line">   Have an Android emulator <span class="built_in">running</span> (quickest way <span class="keyword">to</span> <span class="keyword">get</span> started), <span class="keyword">or</span> a device connected</div><div class="line">   cd /Users/gonghuan/Desktop/helloworld</div><div class="line">   react-native <span class="built_in">run</span>-android</div></pre></td></tr></table></figure>
-<blockquote>
-<p>此时你可以通过类似<code>react-native run-ios</code>可以直接调起iOS模拟器，此时你可以看到你的终端不断在解析，然后就可以成功运行了。</p>
-<h2 id="说到这里，应该你已经可以运行你的app了，至于之前要安装-brew-node等等，我这里就不再多说了，你可以去官网上走一遍，很简单。"><a href="#说到这里，应该你已经可以运行你的app了，至于之前要安装-brew-node等等，我这里就不再多说了，你可以去官网上走一遍，很简单。" class="headerlink" title="说到这里，应该你已经可以运行你的app了，至于之前要安装 brew node等等，我这里就不再多说了，你可以去官网上走一遍，很简单。"></a>说到这里，应该你已经可以运行你的app了，至于之前要安装 brew node等等，我这里就不再多说了，你可以去官网上走一遍，很简单。</h2></blockquote>
-<h3 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h3><blockquote>
-<p>我这里我选用的是atom，这里说一个我遇到的小问题，也许你也会遇到，在我们使用atom的时候，需要安装一些插件来帮助我们能够更加高效的写代码，就比如facebook开发的<a href="https://nuclide.io/docs/editor/setup/#quick-install" target="_blank" rel="external">Nuclide</a></p>
-</blockquote>
-<ol>
-<li>按照官方install的说明，我们可以知道有两种安装的方式，一种就是通过直接在终端输入<code>apm install nuclide</code>,但是说实话，我就成功过一次，而且还是要挂vpn，之后就一直没有成功过了，这我就呵呵了。</li>
-<li>官方建议第二种方式：直接在atom-&gt;Setting Views-&gt;Manage Packages,搜索Nuclide，直接安装。</li>
-<li><p>第三种：通过这种方式你可以安装Themes、packages</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"> <span class="built_in">cd</span> ~/.atom/packages</div><div class="line">git <span class="built_in">clone</span> [packgae-url] <span class="comment"># git clone https://github.com/facebook/nuclide</span></div><div class="line"><span class="built_in">cd</span> [package] <span class="comment">#nuclide</span></div><div class="line">npm install</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<hr>
-<p>###好了，到目前为止，你已经可以，我们已经可以开始运行，并且可以安装自己喜欢的插件，已经修改自己喜欢的主题了。下面我们开始coding,我们先通过atom打开我们之前创建的helloworld的项目，并且找到<code>index.ios.js</code>,删除里面所有的代码，不要着急，我们会慢慢的添加进去所有的代码。</p>
-<figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">firstRN</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</div><div class="line">  render() &#123;</div><div class="line">    <span class="keyword">return</span>(</div><div class="line">      &lt;<span class="type">Text</span>&gt;</div><div class="line">        <span class="type">Hello</span> world</div><div class="line">      &lt;/<span class="type">Text</span>&gt;</div><div class="line">    );</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="type">AppRegistry</span>.registerComponent(<span class="symbol">'helloworl</span>d', ()=&gt;firstRN);</div></pre></td></tr></table></figure>
-<ol>
-<li>这里我们先创建一个firstRN的类，继承自Component对象，这里你先不要管，我们后面都会解释的。</li>
-<li>第二步，我们用AppRegistry这个注册一个对象，这个对象的名字是我们应用的名字‘helloworld’，第二个参数指向的是我们刚才创建的firstRN类。</li>
-<li>我们点击模拟器，发现报错，<code>Unhandled JS Exception:xxxx: Can&#39;t find variable: Component</code>,在文件头部添加</li>
-</ol>
-<figure class="highlight gradle"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</div><div class="line"><span class="keyword">import</span> &#123; AppRegistry, Text &#125; <span class="keyword">from</span> <span class="string">'react-native'</span>;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>The AppRegistry just tells React Native which component is the root one for the whole application. You won’t be thinking about AppRegistry a lot - there will probably just be one call to AppRegistry.registerComponent in your whole app. It’s included in these examples so you can paste the whole thing into your index.ios.js or index.android.js file and get it running.—-这里是官方给的AppRegistry，其实AppRegistry只做了一件事情，就是告诉这个应用，谁是整个应用的根控制器，这样你可以通过修改index.ios.js来修改iOS的根控制器是啥？安卓也是一样，修改的index.android.js<br>再次刷新模拟器，就会发现左上角会出现我们写的Hello world的文字。<br>这里我们觉得样式好丑，那该怎么办，没事，RN也是可以做到修改的。</p>
-</blockquote>
-<figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> <span class="type">React</span>, &#123; <span class="type">Component</span> &#125; from <span class="symbol">'reac</span>t';</div><div class="line"><span class="keyword">import</span> &#123; <span class="type">AppRegistry</span>, <span class="type">Text</span> , <span class="type">StyleSheet</span> &#125; from <span class="symbol">'react</span>-native';</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">firstRN</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</div><div class="line">  render() &#123;</div><div class="line">    <span class="keyword">return</span>(</div><div class="line">      &lt;<span class="type">Text</span> style = &#123;styles.helloWorldStyle&#125;&gt;</div><div class="line">        <span class="type">Hello</span> world</div><div class="line">      &lt;/<span class="type">Text</span>&gt;</div><div class="line">    );</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">const styles = <span class="type">StyleSheet</span>.create(&#123;</div><div class="line">  helloWorldStyle: &#123;</div><div class="line">    color:<span class="symbol">'re</span>d',</div><div class="line">    fontSize:<span class="number">30</span>,</div><div class="line">    fontWeight:<span class="symbol">'bol</span>d'</div><div class="line">  &#125;</div><div class="line">&#125;)</div><div class="line"></div><div class="line"></div><div class="line"><span class="type">AppRegistry</span>.registerComponent(<span class="symbol">'helloworl</span>d', ()=&gt;firstRN);</div></pre></td></tr></table></figure>
-<blockquote>
-<p>这里我们需要在import中导读 StyleSheet,因为我们需要在后面的设置样式的时候，用到这个类。<br>直接在text后面添加style的样式熟悉<br>直接在后面创建styles的属性，通过StyleSheet来创建。<br>再次刷新模拟器，你就可以看到效果了。</p>
-</blockquote>
-<hr>
-<h3 id="先说这么多，后期我们还会说到很多在app开发中遇到的各种问题，导航栏，网络请求，传值等等。"><a href="#先说这么多，后期我们还会说到很多在app开发中遇到的各种问题，导航栏，网络请求，传值等等。" class="headerlink" title="先说这么多，后期我们还会说到很多在app开发中遇到的各种问题，导航栏，网络请求，传值等等。"></a>先说这么多，后期我们还会说到很多在app开发中遇到的各种问题，导航栏，网络请求，传值等等。</h3>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;其实从去年我就一直看学习并看React-Native-开始学习只是为了兴趣，现在项目中用到了有些更新的功能，我就是用React-native-来做的。其实还是蛮好的，但是我发现更新实在是太快了，现在官网的稳定版本是0-31版本&quot;&gt;&lt;a href=&quot;#其实从去年我就一直看学习并看React-Native-开始学习只是为了兴趣，现在项目中用到了有些更新的功能，我就是用React-native-来做的。其实还是蛮好的，但是我发现更新实在是太快了，现在官网的稳定版本是0-31版本&quot; class=&quot;headerlink&quot; title=&quot;其实从去年我就一直看学习并看React Native,开始学习只是为了兴趣，现在项目中用到了有些更新的功能，我就是用React native 来做的。其实还是蛮好的，但是我发现更新实在是太快了，现在官网的稳定版本是0.31版本&quot;&gt;&lt;/a&gt;其实从去年我就一直看学习并看React Native,开始学习只是为了兴趣，现在项目中用到了有些更新的功能，我就是用React native 来做的。其实还是蛮好的，但是我发现更新实在是太快了，现在官网的稳定版本是&lt;a href=&quot;https://facebook.github.io/react-native/&quot;&gt;0.31版本&lt;/a&gt;&lt;/h2&gt;
     
     </summary>
     
