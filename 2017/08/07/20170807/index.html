@@ -1,0 +1,668 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Core Data, Swift," />
+
+
+
+
+  
+
+
+  <link rel="alternate" href="/atom.xml" title="Ghcoder" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="最近在看Core Data这本书，很多人都说这个东西多难用，但是很多细节如果不进去细细看的话，也会存在很多懵逼的地方。不得不承认，这个东西还是挺牛逼的。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="学习CoreData(一)">
+<meta property="og:url" content="http://www.ghcoder.com/2017/08/07/20170807/index.html">
+<meta property="og:site_name" content="Ghcoder">
+<meta property="og:description" content="最近在看Core Data这本书，很多人都说这个东西多难用，但是很多细节如果不进去细细看的话，也会存在很多懵逼的地方。不得不承认，这个东西还是挺牛逼的。">
+<meta property="og:updated_time" content="2017-08-07T03:36:46.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="学习CoreData(一)">
+<meta name="twitter:description" content="最近在看Core Data这本书，很多人都说这个东西多难用，但是很多细节如果不进去细细看的话，也会存在很多懵逼的地方。不得不承认，这个东西还是挺牛逼的。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"remove","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.ghcoder.com/2017/08/07/20170807/"/>
+
+
+
+
+
+  <title>学习CoreData(一) | Ghcoder</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Ghcoder</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            列表
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://www.ghcoder.com/2017/08/07/20170807/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ghcoder">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars3.githubusercontent.com/u/5730023?v=3&s=460">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ghcoder">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">学习CoreData(一)</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-07T11:17:12+08:00">
+                2017-08-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/日志/" itemprop="url" rel="index">
+                    <span itemprop="name">日志</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/08/07/20170807/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/08/07/20170807/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="最近在看Core-Data这本书，很多人都说这个东西多难用，但是很多细节如果不进去细细看的话，也会存在很多懵逼的地方。不得不承认，这个东西还是挺牛逼的。"><a href="#最近在看Core-Data这本书，很多人都说这个东西多难用，但是很多细节如果不进去细细看的话，也会存在很多懵逼的地方。不得不承认，这个东西还是挺牛逼的。" class="headerlink" title="最近在看Core Data这本书，很多人都说这个东西多难用，但是很多细节如果不进去细细看的话，也会存在很多懵逼的地方。不得不承认，这个东西还是挺牛逼的。"></a>最近在看Core Data这本书，很多人都说这个东西多难用，但是很多细节如果不进去细细看的话，也会存在很多懵逼的地方。不得不承认，这个东西还是挺牛逼的。</h3><a id="more"></a>
+<hr>
+<ul>
+<li>如何存入相应的<code>Entity</code>对象? 在回答这个问题之前要先知道，我们是通过什么对象来存入数据的呢？</li>
+<li>答案是：<code>NSManagedObjectContext</code></li>
+</ul>
+<hr>
+<ul>
+<li>那什么是<code>NSManagedObjectContext</code>?</li>
+<li>书上的给的解释我认为很贴切：<code>You can consider a managed object context as an in-memory “scratchpad” for working with managed objects</code>，我的理解是：<code>它其实就相当于内存中的暂存器</code>,那么完成插入数据就分为两步：<code>1. 将数据插入到NSManagedObjectContext</code>，<code>2. 然后将managed object context的变化保存到磁盘中</code></li>
+</ul>
+<hr>
+<ul>
+<li>那现在怎么获取这个所谓的暂存器<code>NSManagedObjectContext</code>?</li>
+<li>如果你的项目创建是通过xcode，勾选创建<code>Use Core Data</code>的话，就可以直接通过下面的代码来获取：</li>
+</ul>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">let managedContext =</div><div class="line">    appDelegate<span class="selector-class">.persistentContainer</span><span class="selector-class">.viewContext</span></div></pre></td></tr></table></figure>
+<hr>
+<ul>
+<li>如何通过<code>NSManagedObjectContext</code>来获取<code>Entity</code>？</li>
+<li>我们通过模板来创建的<code>Entity</code>对象，在CoreData中就好比<code>Class</code>,这些<code>Entity</code>都是继承<code>NSManagedObject</code>类或者为其子类，那这个问题就转化为如何取得我们之前早起定义的<code>Entity</code>，也就是<code>NSManagedObject</code>对象呢？</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">let</span> entity =</div><div class="line">    NSEntityDescription.entity(<span class="keyword">for</span>EntityName: <span class="string">"Person"</span>,</div><div class="line">                               <span class="keyword">in</span>: managedContext)!</div></pre></td></tr></table></figure>
+<hr>
+<ul>
+<li>这里是通过<code>NSEntityDescription</code>对象一个类方法<code>entity</code>,传入相应的<code>Entity</code>字符串，但是这里返回并不是我们之前预料的<code>NSManagedObject</code>,而是<code>NSEntityDescription</code>自己。</li>
+<li>这里是因为<code>NSEntityDescription</code>= <code>数据模型实体定义</code> 与 <code>NSManagedObject</code> 的链接部分</li>
+</ul>
+<hr>
+<ul>
+<li>拿到了<code>Entity</code>,如何来设置值呢？</li>
+<li>因为<code>NSManagedObject</code>是用OC来写的，可以通过<code>KVC</code>的方式来设置，这里一定要注定字符串的书写正确，否则就会发生crash</li>
+</ul>
+<hr>
+<ul>
+<li>之前说了最后还需要<code>commit</code>,那如何<code>commit</code>的？</li>
+<li>直接调用<code>managedContext.save()</code>,这里可能会提交不成功，那就需要catch住相应的错误。</li>
+</ul>
+<hr>
+<h4 id="赋值的代码："><a href="#赋值的代码：" class="headerlink" title="赋值的代码："></a>赋值的代码：</h4><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">save</span><span class="params">(name: String)</span></span> &#123;</div><div class="line">     <span class="keyword">guard</span> <span class="keyword">let</span> appDelegate = <span class="type">UIApplication</span>.shared.delegate <span class="keyword">as</span>? <span class="type">AppDelegate</span> <span class="keyword">else</span> &#123;</div><div class="line">         <span class="keyword">return</span></div><div class="line">     &#125;</div><div class="line"></div><div class="line">     <span class="comment">//1.</span></div><div class="line">     <span class="keyword">let</span> managedContext = appDelegate.persistentContainer.viewContext</div><div class="line"></div><div class="line">     <span class="comment">//2.</span></div><div class="line">     <span class="keyword">let</span> entity = <span class="type">NSEntityDescription</span>.entity(forEntityName: <span class="string">"Person"</span>, <span class="keyword">in</span>: managedContext)!</div><div class="line"></div><div class="line">     <span class="keyword">let</span> person = <span class="type">NSManagedObject</span>(entity: entity, insertInto: managedContext)</div><div class="line"></div><div class="line">     <span class="comment">//3.</span></div><div class="line">     person.setValue(name, forKeyPath: <span class="string">"name"</span>)</div><div class="line"></div><div class="line">     <span class="comment">//4.</span></div><div class="line">     <span class="keyword">do</span> &#123;</div><div class="line">         <span class="keyword">try</span> managedContext.save()</div><div class="line">         people.append(person)</div><div class="line">     &#125; <span class="keyword">catch</span> <span class="keyword">let</span> error <span class="keyword">as</span> <span class="type">NSError</span> &#123;</div><div class="line">         <span class="built_in">print</span>(<span class="string">"Could not save. <span class="subst">\(error)</span>, <span class="subst">\(error.userInfo)</span>"</span>)</div><div class="line">     &#125;</div><div class="line"> &#125;</div></pre></td></tr></table></figure>
+<h4 id="取值的代码："><a href="#取值的代码：" class="headerlink" title="取值的代码："></a>取值的代码：</h4><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//1</span></div><div class="line">  <span class="keyword">guard</span> <span class="keyword">let</span> appDelegate =</div><div class="line">    <span class="type">UIApplication</span>.shared.delegate <span class="keyword">as</span>? <span class="type">AppDelegate</span> <span class="keyword">else</span> &#123;</div><div class="line"><span class="keyword">return</span></div><div class="line">&#125;</div><div class="line">  <span class="keyword">let</span> managedContext =</div><div class="line">    appDelegate.persistentContainer.viewContext</div><div class="line"><span class="comment">//2</span></div><div class="line">  <span class="keyword">let</span> fetchRequest =</div><div class="line">    <span class="type">NSFetchRequest</span>&lt;<span class="type">NSManagedObject</span>&gt;(entityName: <span class="string">"Person"</span>)</div><div class="line"><span class="comment">//3</span></div><div class="line">  <span class="keyword">do</span> &#123;</div><div class="line">    people = <span class="keyword">try</span> managedContext.fetch(fetchRequest)</div><div class="line">  &#125; <span class="keyword">catch</span> <span class="keyword">let</span> error <span class="keyword">as</span> <span class="type">NSError</span> &#123;</div><div class="line">    <span class="built_in">print</span>(<span class="string">"Could not fetch. <span class="subst">\(error)</span>, <span class="subst">\(error.userInfo)</span>"</span>)</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>其他都和赋值的操作是一样的，那第二部是什么意思呢？</li>
+<li>就如这个<code>NSFetchRequest</code>类名字一样，<code>NSFetchRequest</code>他就是赋值从<code>Core Data中获取数据的东西</code>，这里我们通过传入<code>EntityName</code>来准确告诉<code>context</code>我们需要获取的是什么对象。这里是获取所有符合条件的对象。</li>
+<li>最后调用<code>fetch</code>会直接返回所有数据，同样这里也可能会失败，记住catch住错误。</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Core-Data-Swift/" rel="tag"># Core Data, Swift</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/07/31/20170731/" rel="next" title="React-Native 0.46 最新环境配置">
+                <i class="fa fa-chevron-left"></i> React-Native 0.46 最新环境配置
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ghcoder</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://ghcoder1024.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://www.ghcoder.com/2017/08/07/20170807/';
+          this.page.identifier = '2017/08/07/20170807/';
+          this.page.title = '学习CoreData(一)';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://ghcoder1024.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
