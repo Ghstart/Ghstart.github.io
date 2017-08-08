@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.ghcoder.com/"/>
-  <updated>2017-08-08T02:29:55.000Z</updated>
+  <updated>2017-08-08T02:34:32.000Z</updated>
   <id>http://www.ghcoder.com/</id>
   
   <author>
@@ -20,11 +20,14 @@
     <link href="http://www.ghcoder.com/2017/08/08/20170808/"/>
     <id>http://www.ghcoder.com/2017/08/08/20170808/</id>
     <published>2017-08-08T03:17:12.000Z</published>
-    <updated>2017-08-08T02:29:55.000Z</updated>
+    <updated>2017-08-08T02:34:32.000Z</updated>
     
     <content type="html"><![CDATA[<ul>
 <li>打开xxx.xcdatamodeld文件,添加Entity,例如这里名叫“Person”的类,并且通过类似第一部分的操作就可以编辑了Attributes了。</li>
 <li>这里在给Attribute添加字段的时候需要注意的: 字段类型有<code>Boolean 布尔类型</code>, <code>Date 时间戳</code>, <code>Double 浮点类型</code>,<code>String 字符串类型</code>, <code>Integer Integer 32 Integer 64 整型</code>。</li>
+</ul>
+<a id="more"></a>
+<ul>
 <li>如果Entity中有关联的<code>image</code>或者<code>PDF</code>(任何可以被序列化为0或者任何的东西)类型的话，都可以将它定义为<code>Binary Data 二进制类型</code>, 但是这也会带来一个问题：“如果二进制文件太大,当你每次需要获取这个Entity的时候，就会消耗巨大的内存，从而影响性能”，这里你可以通过勾选<code>Allows External Storage</code>,这样“Core Data会根据你存入数据的大小，来决定是直接存储这个值还是仅仅只是存储一个URI的值，这个值指向的是一个单独的文件数据”,并且如果打开了这个属性值，你将无法通过查询的方式来获取这个值。</li>
 <li>这里的UIColor,NSArray,NSDictionary任何只要遵循了NSCoding协议的都可以定义为: <code>Transformable</code>。</li>
 <li>之前不管是取值还是赋值都是通过KVC的方式来实现的，例如：</li>
@@ -55,7 +58,8 @@
     
       &lt;ul&gt;
 &lt;li&gt;打开xxx.xcdatamodeld文件,添加Entity,例如这里名叫“Person”的类,并且通过类似第一部分的操作就可以编辑了Attributes了。&lt;/li&gt;
-&lt;li&gt;这里在给Attribute添加字段的时候需要注意的: 字段类型有&lt;code&gt;Boole
+&lt;li&gt;这里在给Attribute添加字段的时候需要注意的: 字段类型有&lt;code&gt;Boolean 布尔类型&lt;/code&gt;, &lt;code&gt;Date 时间戳&lt;/code&gt;, &lt;code&gt;Double 浮点类型&lt;/code&gt;,&lt;code&gt;String 字符串类型&lt;/code&gt;, &lt;code&gt;Integer Integer 32 Integer 64 整型&lt;/code&gt;。&lt;/li&gt;
+&lt;/ul&gt;
     
     </summary>
     
