@@ -1,0 +1,659 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Core Data, Swift," />
+
+
+
+
+  
+
+
+  <link rel="alternate" href="/atom.xml" title="Ghcoder" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="这一章主要介绍的了四个组成的类：NSManagedObjectModel,NSPersistentStore,NSPersistentStoreCoordinator,NSManagedObjectContext：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="学习CoreData(三)">
+<meta property="og:url" content="http://www.ghcoder.com/2017/08/09/20170809/index.html">
+<meta property="og:site_name" content="Ghcoder">
+<meta property="og:description" content="这一章主要介绍的了四个组成的类：NSManagedObjectModel,NSPersistentStore,NSPersistentStoreCoordinator,NSManagedObjectContext：">
+<meta property="og:updated_time" content="2017-08-09T03:47:02.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="学习CoreData(三)">
+<meta name="twitter:description" content="这一章主要介绍的了四个组成的类：NSManagedObjectModel,NSPersistentStore,NSPersistentStoreCoordinator,NSManagedObjectContext：">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"remove","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.ghcoder.com/2017/08/09/20170809/"/>
+
+
+
+
+
+  <title>学习CoreData(三) | Ghcoder</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Ghcoder</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            列表
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://www.ghcoder.com/2017/08/09/20170809/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ghcoder">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars3.githubusercontent.com/u/5730023?v=3&s=460">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ghcoder">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">学习CoreData(三)</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-09T09:33:12+08:00">
+                2017-08-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/日志/" itemprop="url" rel="index">
+                    <span itemprop="name">日志</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/08/09/20170809/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/08/09/20170809/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <ul>
+<li>这一章主要介绍的了四个组成的类：<code>NSManagedObjectModel</code>,<code>NSPersistentStore</code>,<code>NSPersistentStoreCoordinator</code>,<code>NSManagedObjectContext</code>：</li>
+</ul>
+<a id="more"></a>
+<ol>
+<li><code>NSManagedObjectModel</code>: 它就相当于数据库的一个表，我的理解就是代表我们创建的一个<code>Entity</code>,里面包含很多我们创建的字段值，当然也包含与其他<code>Entity</code>之前的关系（relationship）。具体<code>NSManagedObjectModel</code>是如何与我们创建的<code>data model</code>产生联系的呢？答案就是：<code>runtime</code>,通过<code>runtime</code>的机制，能够在编译期高效的将我们所创建<code>model data</code>，也就是将<code>xcdatamodel</code>文件的内容编译进<code>momd</code>文件夹中，再将<code>momd</code>文件夹中的内容实例化<code>NSManagedObjectModel</code></li>
+<li><code>NSPersistentStore</code>: 他就是负责读写数据，这里还提到了私有<code>NSPersistentStore</code>类型，三种是原子性的，一种是非原子性的（所谓的原子性和定义属性值用的原子性不是同一个概念，这里指的原子性：在你做读写的时候，需要将所有的相关数据都载入到内存中去，而非原子性可以根据数据的需求而载入），四种Type依次为：<code>NSQLiteStoreType</code>,<code>NSXMLStoreType</code>,<code>NSBinaryStoreType</code>,<code>NSInMemoryStoreType</code>。</li>
+<li><code>NSPersistentStoreCoordinator</code>: 是<code>NSManagedObjectModel</code>和<code>NSPersistentStore</code>的桥接，我的理解是，它就是<code>NSManagedObjectModel</code>和<code>NSPersistentStore</code>上层的实现，core data 主要也是通过它来实现功能，<code>NSPersistentStoreCoordinator</code>隐藏了它内部的实现，因为<code>NSManagedObjectContext</code>并不知道你要存储的是<code>sqlite xml还是其他的格式</code>，如果你有多个持久化存储，而对<code>NSManagedObjectContext</code>也是统一的接口。</li>
+<li><code>NSManagedObjectContext</code>，是<code>managed object</code>的暂存器，它也是最最上层的封装，所有的操作都可以通过它来完成，如果不调用save()的方法的话，所有的<code>NSManagedObjectContext</code>变化均不会生效的。<code>NSManagedObjectContext</code>管理着所有期间创建、获取对象的生命周期，也报错错误信息，以及model的关系，每个<code>managedobjec</code>都必须持有对<code>NSManagedObjectContext</code>的引用，一旦持有了<code>NSManagedObjectContext</code>,在<code>managedobjec</code>的整个生命周期中都会持有，也一个application中，也可以存在多个<code>NSManagedObjectContext</code>，并且<code>NSManagedObjectContext</code>也不是线程安全的。</li>
+</ol>
+<ul>
+<li><p>iOS10 出现了一个新的类<code>NSPersistentContainer</code>，你只需要实例化<code>NSPersistentContainer</code>就可以获得上面所提到的四个重要的类了。</p>
+</li>
+<li><p>通过懒加载的方式，直接生成<code>NSPersistentContainer</code>:</p>
+</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> <span class="built_in">lazy</span> <span class="keyword">var</span> storeContainer: <span class="type">NSPersistentContainer</span> = &#123;</div><div class="line"></div><div class="line">  <span class="keyword">let</span> container = <span class="type">NSPersistentContainer</span>(name: <span class="keyword">self</span>.modelName)</div><div class="line"></div><div class="line">  container.loadPersistentStores &#123;</div><div class="line">    (storeDescription, error) <span class="keyword">in</span></div><div class="line"></div><div class="line">    <span class="keyword">if</span> <span class="keyword">let</span> error = error <span class="keyword">as</span> <span class="type">NSError</span>? &#123;</div><div class="line">      <span class="built_in">print</span>(<span class="string">"Unresolved error <span class="subst">\(error)</span>, <span class="subst">\(error.userInfo)</span>"</span>)</div><div class="line">    &#125;</div><div class="line"></div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">return</span> container</div><div class="line"></div><div class="line">&#125;()</div></pre></td></tr></table></figure>
+<ul>
+<li>那么自然获取<code>NSManagedObjectContext</code>就可以直接通过<code>NSPersistentContainer</code>来获取了：</li>
+<li>虽然这里的<code>NSManagedObjectContext</code>可以直接获取，但是<code>managed model</code>,<code>store coordinator</code> 以及<code>persistent store</code>就需要通过<code>NSPersistentStoreDescription</code></li>
+</ul>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">lazy <span class="selector-tag">var</span> managedContext: NSManagedObjectContext = &#123;</div><div class="line">  return self<span class="selector-class">.storeContainer</span><span class="selector-class">.viewContext</span></div><div class="line">&#125;()</div></pre></td></tr></table></figure>
+<ul>
+<li>这里在保存数据之前可以先进行判断数据是够发生变化，这边变化的东西，<code>NSManagedObjectContext</code>是肯定知道的：</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">saveContext</span> <span class="params">()</span></span> &#123;</div><div class="line">  <span class="keyword">guard</span> managedContext.hasChanges <span class="keyword">else</span> &#123; <span class="keyword">return</span> &#125;</div><div class="line">  <span class="keyword">do</span> &#123;</div><div class="line">    <span class="keyword">try</span> managedContext.save()</div><div class="line">  &#125; <span class="keyword">catch</span> <span class="keyword">let</span> error <span class="keyword">as</span> <span class="type">NSError</span> &#123;</div><div class="line">    <span class="built_in">print</span>(<span class="string">"Unresolved error <span class="subst">\(error)</span>, <span class="subst">\(error.userInfo)</span>"</span>)</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>创建完<code>Entity</code>之后，可以为这个<code>Entity</code>来创建关系，点击关系，可以关联其他的<code>Entity</code>,并且也可以编辑<code>RelationShip</code>的<code>Data Model</code>Inspector: <code>To Many</code>（一对多），并且也可以设置<code>Ordered</code>顺序,这里一旦生成对多有序的对象，那对象就是<code>NSOrderedSet</code>类型。</li>
+</ul>
+<ul>
+<li>可以看到实例化model，对象很简单，只需要传入<code>context</code>就可以了：</li>
+</ul>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">let walk = Walk(<span class="name">context</span>: managedContext)</div></pre></td></tr></table></figure>
+<ul>
+<li>也可以直接通过<code>NSManagedObjectContext</code>直接删除某个对象：</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//2</span></div><div class="line">  managedContext.<span class="keyword">delete</span>(walkToRemove)</div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Core-Data-Swift/" rel="tag"># Core Data, Swift</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/08/08/20170808/" rel="next" title="学习CoreData, 子类化NSManagerObject(二)">
+                <i class="fa fa-chevron-left"></i> 学习CoreData, 子类化NSManagerObject(二)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ghcoder</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://ghcoder1024.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://www.ghcoder.com/2017/08/09/20170809/';
+          this.page.identifier = '2017/08/09/20170809/';
+          this.page.title = '学习CoreData(三)';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://ghcoder1024.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
