@@ -112,16 +112,22 @@
 
 
 
-<meta name="description" content="这一章主要介绍的了四个组成的类：NSManagedObjectModel,NSPersistentStore,NSPersistentStoreCoordinator,NSManagedObjectContext：">
+<meta name="description" content="这一章主要介绍的了四个组成的类
+
+1`NSManagedObjectModel`,`NSPersistentStore`,`NSPersistentStoreCoordinator`,`NSManagedObjectContext`">
 <meta property="og:type" content="article">
 <meta property="og:title" content="学习CoreData(三)">
 <meta property="og:url" content="http://www.ghcoder.com/2017/08/09/20170809/index.html">
 <meta property="og:site_name" content="Ghcoder">
-<meta property="og:description" content="这一章主要介绍的了四个组成的类：NSManagedObjectModel,NSPersistentStore,NSPersistentStoreCoordinator,NSManagedObjectContext：">
-<meta property="og:updated_time" content="2017-08-09T03:47:02.000Z">
+<meta property="og:description" content="这一章主要介绍的了四个组成的类
+
+1`NSManagedObjectModel`,`NSPersistentStore`,`NSPersistentStoreCoordinator`,`NSManagedObjectContext`">
+<meta property="og:updated_time" content="2017-08-09T03:49:18.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="学习CoreData(三)">
-<meta name="twitter:description" content="这一章主要介绍的了四个组成的类：NSManagedObjectModel,NSPersistentStore,NSPersistentStoreCoordinator,NSManagedObjectContext：">
+<meta name="twitter:description" content="这一章主要介绍的了四个组成的类
+
+1`NSManagedObjectModel`,`NSPersistentStore`,`NSPersistentStoreCoordinator`,`NSManagedObjectContext`">
 
 
 
@@ -362,8 +368,9 @@
 
       
         <ul>
-<li>这一章主要介绍的了四个组成的类：<code>NSManagedObjectModel</code>,<code>NSPersistentStore</code>,<code>NSPersistentStoreCoordinator</code>,<code>NSManagedObjectContext</code>：</li>
+<li>这一章主要介绍的了四个组成的类</li>
 </ul>
+<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">`NSManagedObjectModel`,`NSPersistentStore`,`NSPersistentStoreCoordinator`,`NSManagedObjectContext`</div></pre></td></tr></table></figure>
 <a id="more"></a>
 <ol>
 <li><code>NSManagedObjectModel</code>: 它就相当于数据库的一个表，我的理解就是代表我们创建的一个<code>Entity</code>,里面包含很多我们创建的字段值，当然也包含与其他<code>Entity</code>之前的关系（relationship）。具体<code>NSManagedObjectModel</code>是如何与我们创建的<code>data model</code>产生联系的呢？答案就是：<code>runtime</code>,通过<code>runtime</code>的机制，能够在编译期高效的将我们所创建<code>model data</code>，也就是将<code>xcdatamodel</code>文件的内容编译进<code>momd</code>文件夹中，再将<code>momd</code>文件夹中的内容实例化<code>NSManagedObjectModel</code></li>
