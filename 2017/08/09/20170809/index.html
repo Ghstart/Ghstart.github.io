@@ -122,7 +122,7 @@
 <meta property="og:description" content="这一章主要介绍的了四个组成的类
 
 1`NSManagedObjectModel`,`NSPersistentStore`,`NSPersistentStoreCoordinator`,`NSManagedObjectContext`">
-<meta property="og:updated_time" content="2017-08-09T03:49:18.000Z">
+<meta property="og:updated_time" content="2017-08-09T03:51:17.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="学习CoreData(三)">
 <meta name="twitter:description" content="这一章主要介绍的了四个组成的类
@@ -374,7 +374,7 @@
 <a id="more"></a>
 <ol>
 <li><code>NSManagedObjectModel</code>: 它就相当于数据库的一个表，我的理解就是代表我们创建的一个<code>Entity</code>,里面包含很多我们创建的字段值，当然也包含与其他<code>Entity</code>之前的关系（relationship）。具体<code>NSManagedObjectModel</code>是如何与我们创建的<code>data model</code>产生联系的呢？答案就是：<code>runtime</code>,通过<code>runtime</code>的机制，能够在编译期高效的将我们所创建<code>model data</code>，也就是将<code>xcdatamodel</code>文件的内容编译进<code>momd</code>文件夹中，再将<code>momd</code>文件夹中的内容实例化<code>NSManagedObjectModel</code></li>
-<li><code>NSPersistentStore</code>: 他就是负责读写数据，这里还提到了私有<code>NSPersistentStore</code>类型，三种是原子性的，一种是非原子性的（所谓的原子性和定义属性值用的原子性不是同一个概念，这里指的原子性：在你做读写的时候，需要将所有的相关数据都载入到内存中去，而非原子性可以根据数据的需求而载入），四种Type依次为：<code>NSQLiteStoreType</code>,<code>NSXMLStoreType</code>,<code>NSBinaryStoreType</code>,<code>NSInMemoryStoreType</code>。</li>
+<li><code>NSPersistentStore</code>: 他就是负责读写数据，这里还提到了私有<code>NSPersistentStore</code>类型，三种是原子性的，一种是非原子性的（所谓的原子性和定义属性值用的原子性不是同一个概念，这里指的原子性：在你做读写的时候，需要将所有的相关数据都载入到内存中去，而非原子性可以根据数据的需求而载入）,四种Type依次为:<code>NSQLiteStoreType</code>,<code>NSXMLStoreType</code>,<code>NSBinaryStoreType</code>,<code>NSInMemoryStoreType</code>。</li>
 <li><code>NSPersistentStoreCoordinator</code>: 是<code>NSManagedObjectModel</code>和<code>NSPersistentStore</code>的桥接，我的理解是，它就是<code>NSManagedObjectModel</code>和<code>NSPersistentStore</code>上层的实现，core data 主要也是通过它来实现功能，<code>NSPersistentStoreCoordinator</code>隐藏了它内部的实现，因为<code>NSManagedObjectContext</code>并不知道你要存储的是<code>sqlite xml还是其他的格式</code>，如果你有多个持久化存储，而对<code>NSManagedObjectContext</code>也是统一的接口。</li>
 <li><code>NSManagedObjectContext</code>，是<code>managed object</code>的暂存器，它也是最最上层的封装，所有的操作都可以通过它来完成，如果不调用save()的方法的话，所有的<code>NSManagedObjectContext</code>变化均不会生效的。<code>NSManagedObjectContext</code>管理着所有期间创建、获取对象的生命周期，也报错错误信息，以及model的关系，每个<code>managedobjec</code>都必须持有对<code>NSManagedObjectContext</code>的引用，一旦持有了<code>NSManagedObjectContext</code>,在<code>managedobjec</code>的整个生命周期中都会持有，也一个application中，也可以存在多个<code>NSManagedObjectContext</code>，并且<code>NSManagedObjectContext</code>也不是线程安全的。</li>
 </ol>
