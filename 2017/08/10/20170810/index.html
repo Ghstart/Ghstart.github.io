@@ -1,0 +1,680 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Core Data, Swift," />
+
+
+
+
+  
+
+
+  <link rel="alternate" href="/atom.xml" title="Ghcoder" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="前面三章都是一些很基础的操作以及概念，之前我们取数据，用的最多的也就是使用NSFetchRequest中的NSPredicate,我们通过修改相应的NSPredicate值来获取到我们想要的数据。所有这一章主要讲解的是获取数据的相关操作以及技巧。
+之前用到的操作是：创建一个NSFetchRequest的实例，然后通过NSManagedObjectContext这个对象来直接修改NSFetchReq">
+<meta property="og:type" content="article">
+<meta property="og:title" content="学习CoreData, 获取数据部分(四)">
+<meta property="og:url" content="http://www.ghcoder.com/2017/08/10/20170810/index.html">
+<meta property="og:site_name" content="Ghcoder">
+<meta property="og:description" content="前面三章都是一些很基础的操作以及概念，之前我们取数据，用的最多的也就是使用NSFetchRequest中的NSPredicate,我们通过修改相应的NSPredicate值来获取到我们想要的数据。所有这一章主要讲解的是获取数据的相关操作以及技巧。
+之前用到的操作是：创建一个NSFetchRequest的实例，然后通过NSManagedObjectContext这个对象来直接修改NSFetchReq">
+<meta property="og:updated_time" content="2017-08-10T06:34:23.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="学习CoreData, 获取数据部分(四)">
+<meta name="twitter:description" content="前面三章都是一些很基础的操作以及概念，之前我们取数据，用的最多的也就是使用NSFetchRequest中的NSPredicate,我们通过修改相应的NSPredicate值来获取到我们想要的数据。所有这一章主要讲解的是获取数据的相关操作以及技巧。
+之前用到的操作是：创建一个NSFetchRequest的实例，然后通过NSManagedObjectContext这个对象来直接修改NSFetchReq">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"remove","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.ghcoder.com/2017/08/10/20170810/"/>
+
+
+
+
+
+  <title>学习CoreData, 获取数据部分(四) | Ghcoder</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Ghcoder</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            列表
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://www.ghcoder.com/2017/08/10/20170810/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ghcoder">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars3.githubusercontent.com/u/5730023?v=3&s=460">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ghcoder">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">学习CoreData, 获取数据部分(四)</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-10T09:29:12+08:00">
+                2017-08-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/日志/" itemprop="url" rel="index">
+                    <span itemprop="name">日志</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/08/10/20170810/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/08/10/20170810/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="前面三章都是一些很基础的操作以及概念，之前我们取数据，用的最多的也就是使用NSFetchRequest中的NSPredicate-我们通过修改相应的NSPredicate值来获取到我们想要的数据。所有这一章主要讲解的是获取数据的相关操作以及技巧。"><a href="#前面三章都是一些很基础的操作以及概念，之前我们取数据，用的最多的也就是使用NSFetchRequest中的NSPredicate-我们通过修改相应的NSPredicate值来获取到我们想要的数据。所有这一章主要讲解的是获取数据的相关操作以及技巧。" class="headerlink" title="前面三章都是一些很基础的操作以及概念，之前我们取数据，用的最多的也就是使用NSFetchRequest中的NSPredicate,我们通过修改相应的NSPredicate值来获取到我们想要的数据。所有这一章主要讲解的是获取数据的相关操作以及技巧。"></a>前面三章都是一些很基础的操作以及概念，之前我们取数据，用的最多的也就是使用NSFetchRequest中的NSPredicate,我们通过修改相应的NSPredicate值来获取到我们想要的数据。所有这一章主要讲解的是获取数据的相关操作以及技巧。</h4><ul>
+<li>之前用到的操作是：创建一个<code>NSFetchRequest</code>的实例，然后通过<code>NSManagedObjectContext</code>这个对象来直接修改<code>NSFetchRequest</code>就可以实现了。</li>
+<li>仅仅获取<code>NSFetchRequest</code>的方法就有5种:</li>
+</ul>
+<a id="more"></a>
+<figure class="highlight nix"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">// <span class="number">1</span>:通过最普通的NSFetchRequest&lt;Venue&gt;()的方法来实例化NSFetchRequest的对象，紧接着必须使用NSEntityDescription来获取相应的Entity对象，然后直接通过set entity的值。</div><div class="line"></div><div class="line"><span class="keyword">let</span> <span class="attr">fetchRequest1</span> = NSFetchRequest&lt;Venue&gt;()</div><div class="line"><span class="keyword">let</span> <span class="attr">entity</span> =</div><div class="line">  NSEntityDescription.entity(forEntityName: <span class="string">"Venue"</span>,</div><div class="line">                             <span class="keyword">in</span>: managedContext)!</div><div class="line">fetchRequest1.<span class="attr">entity</span> = entity</div><div class="line"></div><div class="line"></div><div class="line">// <span class="number">2</span>:这里直接通过NSFetchRequest的实例化方法传入entityName值，直接将上面的步骤省略了，避免使用NSEntityDescription的对象。</div><div class="line"></div><div class="line"><span class="keyword">let</span> <span class="attr">fetchRequest2</span> = NSFetchRequest&lt;Venue&gt;(entityName: <span class="string">"Venue"</span>)</div><div class="line"></div><div class="line"></div><div class="line">// <span class="number">3</span>: 这个又在第二部的上面做出了相应的省略，当你生成NSManagedObject subclass 的对象，同时你这个对象也会生成一个类方法，直接返回NSFetchRequest，通过这样能够直接与相应的Entity产生联系。</div><div class="line"></div><div class="line"><span class="keyword">let</span> fetchRequest3: NSFetchRequest&lt;Venue&gt; = Venue.fetchRequest()</div><div class="line"></div><div class="line"></div><div class="line">// <span class="number">4</span>: 在三章里分析managedObjectModel就说过，这里可以直接通过managedObjectModel来获取NSFetchRequest。这里在xCode回有个可视化的操作，就是可以添加Request的操作。</div><div class="line"></div><div class="line"><span class="keyword">let</span> <span class="attr">fetchRequest4</span> =</div><div class="line">  managedObjectModel.fetchRequestTemplate(forName: <span class="string">"venueFR"</span>)</div><div class="line"></div><div class="line"></div><div class="line">// <span class="number">5</span>: 这里第五个方法其实与第四个很相近的，都是通过managedObjectModel来获取NSFetchRequest，不同的是这里多穿了一个substitutionVariables，这个值是用在predicate中的，从而进一步来获取你想要的值。</div><div class="line"></div><div class="line"><span class="keyword">let</span> <span class="attr">fetchRequest5</span> =</div><div class="line">  managedObjectModel.fetchRequestFromTemplate(</div><div class="line">    withName: <span class="string">"venueFR"</span>,</div><div class="line">    substitutionVariables: [<span class="string">"NAME"</span> : <span class="string">"Vivi Bubble Tea"</span>])</div></pre></td></tr></table></figure>
+<ul>
+<li>其实<code>NSFetchRequest</code>是一个很普通的类，但是如果你仔细研究一下<code>NSFetchRequest</code>的实例化，你就会发现<code>&lt;ResultType : NSFetchRequestResult&gt;</code>这个参数，这个参数的作用就是准备具体说明了你想要获取数据的格式:例如之前你获取的是<code>[Venue]</code>而不是<code>[AnyObject]</code>。</li>
+<li>点击<code>xxx.xcdatamodeld</code>,并且长按<code>Add Entity</code>,选择<code>Add Fetch Request</code>，这样就创建了一个<code>NSFetchRequest</code>的对象。但是通过这样创建的<code>NSFetchRequest</code>的<strong>对象是无法修改的。这里需要注意一下</strong>，并且通过修改这里<code>Fetch all</code>选择相应的model，当然这里也可以通过添加另外的<code>predicate</code>的值，来对我们需要的数据进行操作。</li>
+<li>那么如何来获取我们之前在模板中创建的<code>NSFetchRequest</code>对象呢？这里我们用到是通过<code>managedObjectModel</code>来获取相应的<code>Request</code>:</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">guard</span> <span class="keyword">let</span> model =</div><div class="line">  coreDataStack.managedContext</div><div class="line">    .persistentStoreCoordinator?.managedObjectModel,</div><div class="line">  <span class="keyword">let</span> fetchRequest = model</div><div class="line">    .fetchRequestTemplate(forName: <span class="string">"FetchRequest"</span>)</div><div class="line">    <span class="keyword">as</span>? <span class="type">NSFetchRequest</span>&lt;<span class="type">Venue</span>&gt; <span class="keyword">else</span> &#123;</div><div class="line"><span class="keyword">return</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li><code>NSFetchRequest</code>有一个<code>resultType</code>的属性值，之前我们使用的都是它的默认值<code>NSManagedObjectResultType</code>,其实它是一个枚举值，一共可以获取四中不同的类型：</li>
+</ul>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.managedObjectResultType</span>: 返回的响应的数据(默认的值)</div><div class="line"><span class="selector-class">.countResultType</span>: 返回的匹配数据的个数</div><div class="line"><span class="selector-class">.dictionaryResultType</span>: 以字典的形式来返回相应的数据，包括count，匹配的数据。</div><div class="line"><span class="selector-class">.managedObjectIDResultType</span>: 返回匹配数据的唯一标示符</div></pre></td></tr></table></figure>
+<ul>
+<li>这里创建<code>Predicate</code>的方式之前我们也已经看到了,这里的#keyPath, 这个在编译的时候，编译器就会一级级的找相应的属性值，是否存在写错的情况：</li>
+</ul>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">lazy <span class="selector-tag">var</span> cheapVenuePredicate: NSPredicate = &#123;</div><div class="line">  return NSPredicate(format: <span class="string">"%K == %@"</span>,</div><div class="line">    #keyPath(Venue<span class="selector-class">.priceInfo</span><span class="selector-class">.priceCategory</span>), <span class="string">"$"</span>)</div><div class="line">&#125;()</div></pre></td></tr></table></figure>
+<ul>
+<li>获取count：</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"> <span class="function"><span class="keyword">func</span> <span class="title">populateCheapVenueCountLabel</span><span class="params">()</span></span> &#123;</div><div class="line">    <span class="keyword">let</span> fetchRequest =</div><div class="line">      <span class="type">NSFetchRequest</span>&lt;<span class="type">NSNumber</span>&gt;(entityName: <span class="string">"Venue"</span>)</div><div class="line">    fetchRequest.resultType = .countResultType</div><div class="line">    fetchRequest.predicate = cheapVenuePredicate</div><div class="line">    <span class="keyword">do</span> &#123;</div><div class="line">      <span class="keyword">let</span> countResult =</div><div class="line">        <span class="keyword">try</span> coreDataStack.managedContext.fetch(fetchRequest)</div><div class="line">      <span class="keyword">let</span> <span class="built_in">count</span> = countResult.first!.intValue</div><div class="line">      firstPriceCategoryLabel.text =</div><div class="line">        <span class="string">"<span class="subst">\(<span class="built_in">count</span>)</span> bubble tea places"</span></div><div class="line">    &#125; <span class="keyword">catch</span> <span class="keyword">let</span> error <span class="keyword">as</span> <span class="type">NSError</span> &#123;</div><div class="line">      <span class="built_in">print</span>(<span class="string">"Count not fetch <span class="subst">\(error)</span>, <span class="subst">\(error.userInfo)</span>"</span>)</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    -----------------</div><div class="line"></div><div class="line"></div><div class="line">     <span class="keyword">let</span> fetchRequest: <span class="type">NSFetchRequest</span>&lt;<span class="type">Venue</span>&gt; = <span class="type">Venue</span>.fetchRequest()</div><div class="line">  fetchRequest.predicate = expensiveVenuePredicate</div><div class="line">  <span class="keyword">do</span> &#123;</div><div class="line">    <span class="keyword">let</span> <span class="built_in">count</span> =</div><div class="line">      <span class="keyword">try</span> coreDataStack.managedContext.<span class="built_in">count</span>(<span class="keyword">for</span>: fetchRequest)</div><div class="line">    thirdPriceCategoryLabel.text = <span class="string">"<span class="subst">\(<span class="built_in">count</span>)</span> bubble tea places"</span></div><div class="line">  &#125; <span class="keyword">catch</span> <span class="keyword">let</span> error <span class="keyword">as</span> <span class="type">NSError</span> &#123;</div><div class="line">    <span class="built_in">print</span>(<span class="string">"Count not fetch <span class="subst">\(error)</span>, <span class="subst">\(error.userInfo)</span>"</span>)</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>上面所有的操作都是需要把所有的相关数据载入到内存中去，然后再去计算个数，core data 能够快速找到数据的“总和、平均值、最大、最小”：</li>
+</ul>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line">func populateDealsCountLabel() &#123;</div><div class="line"><span class="comment">// 1</span></div><div class="line">  let fetchRequest =</div><div class="line">    NSFetchRequest&lt;NSDictionary&gt;(entityName: <span class="string">"Venue"</span>)</div><div class="line">  fetchRequest<span class="selector-class">.resultType</span> = <span class="selector-class">.dictionaryResultType</span></div><div class="line"></div><div class="line"></div><div class="line">  <span class="comment">// 2: 这边你为了获取总和生成了一个NSExpressionDescription的对象，并且set了一个name的值，便于自己能够从字典中找到自己想要的那个值：</span></div><div class="line">  let sumExpressionDesc = NSExpressionDescription()</div><div class="line">  sumExpressionDesc<span class="selector-class">.name</span> = <span class="string">"sumDeals"</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">// 3: 首先你生成了一个NSExpression的变量来确定你需要哪个字段来计算总和，其次生成了一个NSExpression来变量来确定你要运行的函数，最后定义了返回数据的类型是int32位：</span></div><div class="line">  let specialCountExp =</div><div class="line">    NSExpression(forKeyPath: #keyPath(Venue.specialCount))</div><div class="line">  sumExpressionDesc<span class="selector-class">.expression</span> =</div><div class="line">    NSExpression(forFunction: <span class="string">"sum:"</span>,</div><div class="line">                 arguments: [specialCountExp])</div><div class="line">  sumExpressionDesc<span class="selector-class">.expressionResultType</span> =</div><div class="line">    <span class="selector-class">.integer32AttributeType</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">// 4：将自己设置的东西都告诉给FetchRequest</span></div><div class="line">  fetchRequest<span class="selector-class">.propertiesToFetch</span> = [sumExpressionDesc]</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">// 5:根据上面的定义，我们需要调用的是sum函数，将我们Venue.specialCount所有的字段都加起来，丢在一个字典中，字典的key为sumDeals:</span></div><div class="line"></div><div class="line">  do &#123;</div><div class="line">    let results =</div><div class="line">      try coreDataStack<span class="selector-class">.managedContext</span><span class="selector-class">.fetch</span>(fetchRequest)</div><div class="line">    let resultDict = results.first!</div><div class="line">    let numDeals = resultDict[<span class="string">"sumDeals"</span>]!</div><div class="line">    numDealsLabel<span class="selector-class">.text</span> = <span class="string">"\(numDeals) total deals"</span></div><div class="line">  &#125; catch let error as NSError &#123;</div><div class="line">    print(<span class="string">"Count not fetch \(error), \(error.userInfo)"</span>)</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li><p>这里除了支持sum，还有其他函数支持吗？<strong>count,min,max,median,mode,absolute</strong></p>
+</li>
+<li><p>这里我们运用的都是些一个单独的NSPredicate，来进行过滤数据，但是我们其实还可以运用多个Predicate来实现类似<code>AND</code>,<code>OR</code>,<code>NOT</code>，可以通过<strong>NSCompoundPredicate</strong>将两个单独<code>NSPredicate</code>组合成一个。</p>
+</li>
+</ul>
+<h4 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h4><ul>
+<li>另一个很牛逼的地方，就是可以对获取的数据进行排序，这里运用的函数是<code>NSSortDescriptor</code>,其实这个函数在我们版本号比较的时候就可以运用，但是Core Data中的排序，它是发生在SQLite层面的，而不是内存层面的。</li>
+</ul>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">lazy <span class="keyword">var</span> nameSortDescriptor: NSSortDescriptor = &#123;</div><div class="line">  <span class="keyword">let</span> compareSelector =</div><div class="line">    <span class="meta">#selector(NSString.localizedStandardCompare(_:))</span></div><div class="line">  <span class="keyword">return</span> NSSortDescriptor(key: <span class="meta">#keyPath(Venue.name),</span></div><div class="line">&#125;()</div><div class="line"><span class="keyword">ascending</span>: <span class="literal">true</span>,</div><div class="line">selector: compareSelector)</div><div class="line">lazy <span class="keyword">var</span> distanceSortDescriptor: NSSortDescriptor = &#123;</div><div class="line">  <span class="keyword">return</span> NSSortDescriptor(</div><div class="line">    key: <span class="meta">#keyPath(Venue.location.distance),</span></div><div class="line">    <span class="keyword">ascending</span>: <span class="literal">true</span>)</div><div class="line">&#125;()</div><div class="line">lazy <span class="keyword">var</span> priceSortDescriptor: NSSortDescriptor = &#123;</div><div class="line">  <span class="keyword">return</span> NSSortDescriptor(</div><div class="line">    key: <span class="meta">#keyPath(Venue.priceInfo.priceCategory),</span></div><div class="line">    <span class="keyword">ascending</span>: <span class="literal">true</span>)</div><div class="line">&#125;()</div></pre></td></tr></table></figure>
+<ul>
+<li>上面需要解释一下的是Venue.name 的排序，需要三个字段：1:属性的字段名。2：升序还是降序，3: 执行比较的函数。<strong>这里需要重点说一下，我之前比较的都是用的compare的函数，但是apple这里建议使用的是NSString.localizedStandardCompare</strong>，因为这个函数对一些特殊的字符也做了相应的操作。</li>
+</ul>
+<h4 id="异步操作："><a href="#异步操作：" class="headerlink" title="异步操作："></a>异步操作：</h4><ul>
+<li>现在我们所有获取数据的操作其实都是在主线程操作的，所以在我们操作大量数据的时候，就会生卡顿，在iOS8的时候，CoreData可以在后台长期高效的运行。</li>
+</ul>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">var</span> asyncFetchRequest: NSAsynchronousFetchRequest&lt;Venue&gt;!</div></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">viewDidLoad</span><span class="params">()</span></span> &#123;</div><div class="line">  <span class="keyword">super</span>.viewDidLoad()</div><div class="line"><span class="comment">// 1</span></div><div class="line">  fetchRequest = <span class="type">Venue</span>.fetchRequest()</div><div class="line"><span class="comment">// 2</span></div><div class="line">  asyncFetchRequest =</div><div class="line">    <span class="type">NSAsynchronousFetchRequest</span>&lt;<span class="type">Venue</span>&gt;(</div><div class="line">      fetchRequest: fetchRequest) &#123;</div><div class="line">        [<span class="keyword">unowned</span> <span class="keyword">self</span>] (result: <span class="type">NSAsynchronousFetchResult</span>) <span class="keyword">in</span></div><div class="line">        <span class="keyword">guard</span> <span class="keyword">let</span> venues = result.finalResult <span class="keyword">else</span> &#123;</div><div class="line"><span class="keyword">return</span></div><div class="line">&#125;</div><div class="line">      <span class="keyword">self</span>.venues = venues</div><div class="line">      <span class="keyword">self</span>.tableView.reloadData()</div><div class="line">  &#125;</div><div class="line"><span class="comment">// 3</span></div><div class="line">  <span class="keyword">do</span> &#123;</div><div class="line">    <span class="keyword">try</span> coreDataStack.managedContext.execute(asyncFetchRequest)</div><div class="line">    <span class="comment">// Returns immediately, cancel here if you want</span></div><div class="line">  &#125; <span class="keyword">catch</span> <span class="keyword">let</span> error <span class="keyword">as</span> <span class="type">NSError</span> &#123;</div><div class="line">    <span class="built_in">print</span>(<span class="string">"Could not fetch <span class="subst">\(error)</span>, <span class="subst">\(error.userInfo)</span>"</span>)</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>这里可以看到<code>NSAsyncchronousFetchRequest</code>并没有取代<code>NSFetchRequest</code>,这里可以把<code>异步操作</code>是<code>普通操作的一个封装</code>。</li>
+<li>并且这里<code>NSManagedObjectContext</code>执行的是<code>execute(_:)</code>而不是<code>fetch(_:)</code></li>
+<li>当然这里你可以可以通过调用<code>cancel()</code>来取消查询。</li>
+</ul>
+<h4 id="批量操作，无需获取数据。"><a href="#批量操作，无需获取数据。" class="headerlink" title="批量操作，无需获取数据。"></a>批量操作，无需获取数据。</h4><ul>
+<li>在iOS8的时候，提供了一个新的接口可以批量操作，并且也不需要将数据载入到内存中去<code>NSBatchUpdateRequest</code>，</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 1. 通过传入EntityName 实例化了一个NSBatchUpdateRequest对象</span></div><div class="line"><span class="keyword">let</span> batchUpdate = <span class="type">NSBatchUpdateRequest</span>(entityName: <span class="string">"Venue"</span>)</div><div class="line"></div><div class="line"><span class="comment">// 2. 设置了需要修改的字段，以及值</span></div><div class="line">batchUpdate.propertiesToUpdate =</div><div class="line">  [#keyPath(<span class="type">Venue</span>.favorite) : <span class="literal">true</span>]</div><div class="line"></div><div class="line"><span class="comment">// 3. 这个批量操作需要影响哪些数据</span></div><div class="line">batchUpdate.affectedStores =</div><div class="line">  coreDataStack.managedContext</div><div class="line">    .persistentStoreCoordinator?.persistentStores</div><div class="line"></div><div class="line"><span class="comment">// 4. 设置了返回结果的类型，我们这里定义为返回批量更新的count值</span></div><div class="line">batchUpdate.resultType = .updatedObjectsCountResultType</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">do</span> &#123;</div><div class="line">  <span class="keyword">let</span> batchResult =</div><div class="line">    <span class="keyword">try</span> coreDataStack.managedContext.execute(batchUpdate)</div><div class="line">      <span class="keyword">as</span>! <span class="type">NSBatchUpdateResult</span></div><div class="line">  <span class="built_in">print</span>(<span class="string">"Records updated <span class="subst">\(batchResult.result!)</span>"</span>)</div><div class="line">&#125; <span class="keyword">catch</span> <span class="keyword">let</span> error <span class="keyword">as</span> <span class="type">NSError</span> &#123;</div><div class="line">  <span class="built_in">print</span>(<span class="string">"Could not update <span class="subst">\(error)</span>, <span class="subst">\(error.userInfo)</span>"</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Core-Data-Swift/" rel="tag"># Core Data, Swift</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/08/09/20170809/" rel="next" title="学习CoreData(三)">
+                <i class="fa fa-chevron-left"></i> 学习CoreData(三)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ghcoder</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://ghcoder1024.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://www.ghcoder.com/2017/08/10/20170810/';
+          this.page.identifier = '2017/08/10/20170810/';
+          this.page.title = '学习CoreData, 获取数据部分(四)';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://ghcoder1024.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
