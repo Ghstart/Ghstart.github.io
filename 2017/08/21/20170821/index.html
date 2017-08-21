@@ -1,0 +1,671 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Core Data, Swift," />
+
+
+
+
+  
+
+
+  <link rel="alternate" href="/atom.xml" title="Ghcoder" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="上一周一直在忙着写项目，书虽然看完了，但是还是想写写笔记，加深一下记忆，在第四章的时候，其实通过NSFetchReques一些值的修改，其实我们已经可以开始正常的使用core data, 并且可以按照我们的意愿来过滤数据，并且进行排序。这一章重点讲的是NSFetchedResultsController。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="学习NSFetchedResultsController, 获取数据部分(五)">
+<meta property="og:url" content="http://www.ghcoder.com/2017/08/21/20170821/index.html">
+<meta property="og:site_name" content="Ghcoder">
+<meta property="og:description" content="上一周一直在忙着写项目，书虽然看完了，但是还是想写写笔记，加深一下记忆，在第四章的时候，其实通过NSFetchReques一些值的修改，其实我们已经可以开始正常的使用core data, 并且可以按照我们的意愿来过滤数据，并且进行排序。这一章重点讲的是NSFetchedResultsController。">
+<meta property="og:updated_time" content="2017-08-21T11:08:26.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="学习NSFetchedResultsController, 获取数据部分(五)">
+<meta name="twitter:description" content="上一周一直在忙着写项目，书虽然看完了，但是还是想写写笔记，加深一下记忆，在第四章的时候，其实通过NSFetchReques一些值的修改，其实我们已经可以开始正常的使用core data, 并且可以按照我们的意愿来过滤数据，并且进行排序。这一章重点讲的是NSFetchedResultsController。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"remove","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.ghcoder.com/2017/08/21/20170821/"/>
+
+
+
+
+
+  <title>学习NSFetchedResultsController, 获取数据部分(五) | Ghcoder</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Ghcoder</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            列表
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://www.ghcoder.com/2017/08/21/20170821/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ghcoder">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars3.githubusercontent.com/u/5730023?v=3&s=460">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ghcoder">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">学习NSFetchedResultsController, 获取数据部分(五)</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-21T11:39:12+08:00">
+                2017-08-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/日志/" itemprop="url" rel="index">
+                    <span itemprop="name">日志</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/08/21/20170821/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/08/21/20170821/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="上一周一直在忙着写项目，书虽然看完了，但是还是想写写笔记，加深一下记忆，在第四章的时候，其实通过NSFetchReques一些值的修改，其实我们已经可以开始正常的使用core-data-并且可以按照我们的意愿来过滤数据，并且进行排序。这一章重点讲的是NSFetchedResultsController。"><a href="#上一周一直在忙着写项目，书虽然看完了，但是还是想写写笔记，加深一下记忆，在第四章的时候，其实通过NSFetchReques一些值的修改，其实我们已经可以开始正常的使用core-data-并且可以按照我们的意愿来过滤数据，并且进行排序。这一章重点讲的是NSFetchedResultsController。" class="headerlink" title="上一周一直在忙着写项目，书虽然看完了，但是还是想写写笔记，加深一下记忆，在第四章的时候，其实通过NSFetchReques一些值的修改，其实我们已经可以开始正常的使用core data, 并且可以按照我们的意愿来过滤数据，并且进行排序。这一章重点讲的是NSFetchedResultsController。"></a>上一周一直在忙着写项目，书虽然看完了，但是还是想写写笔记，加深一下记忆，在第四章的时候，其实通过NSFetchReques一些值的修改，其实我们已经可以开始正常的使用core data, 并且可以按照我们的意愿来过滤数据，并且进行排序。这一章重点讲的是<strong>NSFetchedResultsController</strong>。</h4><a id="more"></a>
+<ul>
+<li>什么是NSFetchedResultsController? 干什么用的？</li>
+<li>其实操作Core Data,我们做的最多的操作其实就是，从Core Data中获取数据，然后放入到Array中，然后设置DataSource，然后刷新TableView, Apple就是为了解决这种麻烦，所以才产生了<code>NSFetchedResultsController</code>，但是<code>NSFetchedResultsController</code>不同于其他的<code>ViewController</code>,因为它是没有界面的，他主要的目的是为了异步获取的数据用的。说白了，<code>NSFetchedResultsController</code>其实就是<code>NSFetchRequest Result</code>数据的封装。从继承关系上也可以看出来：</li>
+</ul>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">open</span> <span class="class"><span class="keyword">class</span> <span class="title">NSFetchedResultsController</span>&lt;<span class="type">ResultType</span>&gt; : <span class="type">NSObject where ResultType : NSFetchRequestResult &#123;&#125;</span></span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">ViewController</span>: <span class="type">UIViewController &#123;&#125;</span></span></div></pre></td></tr></table></figure>
+<ul>
+<li>和<code>NSFetchRequest</code>很用法很类似的：</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 1</span></div><div class="line"><span class="keyword">let</span> fetchRequest: <span class="type">NSFetchRequest</span>&lt;<span class="type">Team</span>&gt; = <span class="type">Team</span>.fetchRequest()</div><div class="line"><span class="keyword">let</span> <span class="built_in">sort</span> = <span class="type">NSSortDescriptor</span>(key: #keyPath(<span class="type">Team</span>.teamName),</div><div class="line">  ascending: <span class="literal">true</span>)</div><div class="line">fetchRequest.sortDescriptors = [<span class="built_in">sort</span>]</div><div class="line"></div><div class="line"><span class="comment">// 2</span></div><div class="line">fetchedResultsController = <span class="type">NSFetchedResultsController</span>(</div><div class="line">  fetchRequest: fetchRequest,</div><div class="line">  managedObjectContext: coreDataStack.managedContext,</div><div class="line">  sectionNameKeyPath: <span class="literal">nil</span>,</div><div class="line">  cacheName: <span class="literal">nil</span>)</div><div class="line"><span class="comment">// 3</span></div><div class="line"><span class="keyword">do</span> &#123;</div><div class="line">  <span class="keyword">try</span> fetchedResultsController.performFetch()</div><div class="line">&#125; <span class="keyword">catch</span> <span class="keyword">let</span> error <span class="keyword">as</span> <span class="type">NSError</span> &#123;</div><div class="line">  <span class="built_in">print</span>(<span class="string">"Fetching error: <span class="subst">\(error)</span>, <span class="subst">\(error.userInfo)</span>"</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>NSFetchedResultsController主要是为了协调Core Data和TableView,但是仍然需要传递NSFetchRequest, 记住NSFetchRequest是可以高度自定义的，可以传递<code>descriptiors</code>/ <code>predicate</code></li>
+<li><p>实例化NSFetchedResultsController需要四个参数，第二个参数就是<code>NSManagedObjectContext</code>，需要这个<code>managedContext</code>来进行搜索 ,剩下的<code>sectionNameKeyPath</code>,<code>cacheName</code></p>
+</li>
+<li><p><strong>NSFetchedResultsController里面必须至少要有一个sort descriptor</strong>否则会直接crash</p>
+</li>
+</ul>
+<h4 id="如何获取数据"><a href="#如何获取数据" class="headerlink" title="如何获取数据"></a>如何获取数据</h4><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">numberOfSections</span><span class="params">(<span class="keyword">in</span> tableView: UITableView)</span></span> -&gt; <span class="type">Int</span> &#123;</div><div class="line">  <span class="keyword">guard</span> <span class="keyword">let</span> sections = fetchedResultsController.sections <span class="keyword">else</span> &#123;</div><div class="line"><span class="keyword">return</span> <span class="number">0</span> &#125;</div><div class="line">  <span class="keyword">return</span> sections.<span class="built_in">count</span></div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">tableView</span><span class="params">(<span class="number">_</span> tableView: UITableView,</span></span></div><div class="line">               numberOfRowsInSection section: Int)</div><div class="line">-&gt; <span class="type">Int</span> &#123;</div><div class="line">  <span class="keyword">guard</span> <span class="keyword">let</span> sectionInfo =</div><div class="line">    fetchedResultsController.sections?[section] <span class="keyword">else</span> &#123;</div><div class="line"><span class="keyword">return</span> <span class="number">0</span> &#125;</div><div class="line">  <span class="keyword">return</span> sectionInfo.numberOfObjects</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>通过调用<code>sections</code>的属性，返回的数组中，包含的Object中，都遵循了<code>NSFetchedResultsSectionInfo</code>的协议，这个轻量级的协议，能够调用<code>title</code>/<code>number</code></li>
+<li>如果获取相应的对象呢？</li>
+</ul>
+<figure class="highlight ceylon"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> team = fetchedResultsController.<span class="keyword">object</span>(at: indexPath)</div></pre></td></tr></table></figure>
+<h4 id="如何更改数据"><a href="#如何更改数据" class="headerlink" title="如何更改数据"></a>如何更改数据</h4><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">let team = fetchedResultsController.object(at: indexPath)</div><div class="line">  team<span class="selector-class">.wins</span> = team<span class="selector-class">.wins</span> + <span class="number">1</span></div><div class="line">  coreDataStack.saveContext()</div></pre></td></tr></table></figure>
+<h4 id="如何将数据分组"><a href="#如何将数据分组" class="headerlink" title="如何将数据分组"></a>如何将数据分组</h4><ul>
+<li>可以根据我们之前创建的Entity对象中的字段，任意进行分组，例如我们的Entity中存在一个名为<code>qualifyingZone</code>的String的字段,来进行分组，只需要如下的修改：</li>
+</ul>
+<figure class="highlight dts"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">fetchedResultsController = NSFetchedResultsController(</div><div class="line"><span class="symbol">  fetchRequest:</span> fetchRequest,</div><div class="line"><span class="symbol">  managedObjectContext:</span> coreDataStack.managedContext,</div><div class="line"><span class="symbol">  sectionNameKeyPath:</span> <span class="meta">#keyPath(Team.qualifyingZone),</span></div><div class="line"><span class="symbol">  cacheName:</span> nil)</div></pre></td></tr></table></figure>
+<ul>
+<li>这里我们只是传入了一个#keyPath(),根据之前的知识，这个字段的意思会在编译的时候，去寻找Team下面的qualifyingZone。</li>
+<li>这个字段又是如何分组的呢？首先它是先讲这些最为Key的字段放在一个Section中（数组中），然后在回更加每个不同的字段去生成不同的数据。</li>
+<li><strong>通过#keyPath,可以深入到Core Data中的relationship来查询属性值</strong></li>
+<li>虽然当时<code>sectionNameKeyPath</code>但是发现，数据的排序还是更加首字母的？这是因为我没有设置<code>NSSortDescriptor</code>，修改代码如下：</li>
+</ul>
+<figure class="highlight lasso"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> zoneSort = NSSortDescriptor(</div><div class="line">  key: #keyPath(Team.qualifyingZone), <span class="keyword">ascending</span>: <span class="literal">true</span>)</div><div class="line"><span class="keyword">let</span> scoreSort = NSSortDescriptor(</div><div class="line">  key: #keyPath(Team.wins), <span class="keyword">ascending</span>: <span class="literal">false</span>)</div><div class="line"><span class="keyword">let</span> nameSort = NSSortDescriptor(</div><div class="line">  key: #keyPath(Team.teamName), <span class="keyword">ascending</span>: <span class="literal">true</span>)</div><div class="line">fetchRequest.sortDescriptors = <span class="meta">[</span>zoneSort, scoreSort, nameSort<span class="meta">]</span></div></pre></td></tr></table></figure>
+<ul>
+<li>根据数组的排序，先根据<code>Team.qualifyingZone</code>排序，然后根据<code>Team.wins</code>排序，最后根据<code>Team.teamName</code>来排序。</li>
+</ul>
+<h4 id="缓存数据"><a href="#缓存数据" class="headerlink" title="缓存数据"></a>缓存数据</h4><figure class="highlight dts"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">fetchedResultsController = NSFetchedResultsController(</div><div class="line"><span class="symbol">  fetchRequest:</span> fetchRequest,</div><div class="line"><span class="symbol">  managedObjectContext:</span> coreDataStack.managedContext,</div><div class="line"><span class="symbol">  sectionNameKeyPath:</span> <span class="meta">#keyPath(Team.qualifyingZone),</span></div><div class="line"><span class="symbol">  cacheName:</span> <span class="string">"worldCup"</span>)</div></pre></td></tr></table></figure>
+<ul>
+<li>数据分类是很耗性能，避免每次都去分类数据，可以通过缓存，如何通过缓存呢？</li>
+<li>直接添加一个字符串的key，这样就可以将数据缓存到磁盘中去了。</li>
+</ul>
+<h4 id="监听数据变化"><a href="#监听数据变化" class="headerlink" title="监听数据变化"></a>监听数据变化</h4><ul>
+<li>NSFetchedResultsController可以监听数据集的变化，并且通知他的代理，通过实现代理方法，可以做响应的操作。</li>
+<li><strong>这里代理的触发还是需要通过设置NSManagedObjectContext,如果在项目中存在多个Managed Object Context的话，那么代理的方法是不会触发的，除非我们保存数据，并且合并context</strong></li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// MARK: - NSFetchedResultsControllerDelegate</span></div><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">ViewController</span>: <span class="title">NSFetchedResultsControllerDelegate</span> </span>&#123;</div><div class="line">  <span class="function"><span class="keyword">func</span> <span class="title">controllerWillChangeContent</span><span class="params">(<span class="number">_</span> controller: NSFetchedResultsController&lt;NSFetchRequestResult&gt;)</span></span> &#123;</div><div class="line">    tableView.beginUpdates()</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">func</span> <span class="title">controller</span><span class="params">(<span class="number">_</span> controller: NSFetchedResultsController&lt;NSFetchRequestResult&gt;,</span></span></div><div class="line">                  didChange anObject: Any,</div><div class="line">                  at indexPath: IndexPath?,</div><div class="line">                  <span class="keyword">for</span> type: NSFetchedResultsChangeType,</div><div class="line">                  newIndexPath: IndexPath?) &#123;</div><div class="line"></div><div class="line">    <span class="keyword">switch</span> type &#123;</div><div class="line">    <span class="keyword">case</span> .insert:</div><div class="line">      tableView.insertRows(at: [newIndexPath!], with: .automatic)</div><div class="line">    <span class="keyword">case</span> .delete:</div><div class="line">      tableView.deleteRows(at: [indexPath!], with: .automatic)</div><div class="line">    <span class="keyword">case</span> .update:</div><div class="line">      <span class="keyword">let</span> cell = tableView.cellForRow(at: indexPath!) <span class="keyword">as</span>! <span class="type">TeamCell</span></div><div class="line">      configure(cell: cell, <span class="keyword">for</span>: indexPath!)</div><div class="line">    <span class="keyword">case</span> .move:</div><div class="line">      tableView.deleteRows(at: [indexPath!], with: .automatic)</div><div class="line">      tableView.insertRows(at: [newIndexPath!], with: .automatic)</div><div class="line">  &#125;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">func</span> <span class="title">controller</span><span class="params">(<span class="number">_</span> controller: NSFetchedResultsController&lt;NSFetchRequestResult&gt;,</span></span></div><div class="line">                  didChange sectionInfo: NSFetchedResultsSectionInfo,</div><div class="line">                  atSectionIndex sectionIndex: Int,</div><div class="line">                  <span class="keyword">for</span> type: NSFetchedResultsChangeType) &#123;</div><div class="line"></div><div class="line">    <span class="keyword">let</span> indexSet = <span class="type">IndexSet</span>(integer: sectionIndex)</div><div class="line"></div><div class="line">    <span class="keyword">switch</span> type &#123;</div><div class="line">    <span class="keyword">case</span> .insert:</div><div class="line">      tableView.insertSections(indexSet, with: .automatic)</div><div class="line">    <span class="keyword">case</span> .delete:</div><div class="line">      tableView.deleteSections(indexSet, with: .automatic)</div><div class="line">    <span class="keyword">default</span>:</div><div class="line">      <span class="keyword">break</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">func</span> <span class="title">controllerDidChangeContent</span><span class="params">(<span class="number">_</span> controller: NSFetchedResultsController&lt;NSFetchRequestResult&gt;)</span></span> &#123;</div><div class="line">    tableView.endUpdates()</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="添加Entity"><a href="#添加Entity" class="headerlink" title="添加Entity"></a>添加Entity</h4><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">let team = Team(</div><div class="line">    context: self<span class="selector-class">.coreDataStack</span><span class="selector-class">.managedContext</span>)</div><div class="line">  team<span class="selector-class">.teamName</span> = nameTextField<span class="selector-class">.text</span></div><div class="line">  team<span class="selector-class">.qualifyingZone</span> = zoneTextField<span class="selector-class">.text</span></div><div class="line">  team<span class="selector-class">.imageName</span> = <span class="string">"wenderland-flag"</span></div><div class="line">  self<span class="selector-class">.coreDataStack</span><span class="selector-class">.saveContext</span>()</div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Core-Data-Swift/" rel="tag"># Core Data, Swift</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/08/10/20170810/" rel="next" title="学习CoreData, 获取数据部分(四)">
+                <i class="fa fa-chevron-left"></i> 学习CoreData, 获取数据部分(四)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ghcoder</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://ghcoder1024.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://www.ghcoder.com/2017/08/21/20170821/';
+          this.page.identifier = '2017/08/21/20170821/';
+          this.page.title = '学习NSFetchedResultsController, 获取数据部分(五)';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://ghcoder1024.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
