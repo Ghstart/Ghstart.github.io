@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.ghcoder.com/"/>
-  <updated>2017-08-21T11:08:26.000Z</updated>
+  <updated>2017-08-22T09:02:37.000Z</updated>
   <id>http://www.ghcoder.com/</id>
   
   <author>
@@ -14,6 +14,71 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Core Data的迁移和合并(五)</title>
+    <link href="http://www.ghcoder.com/2017/08/22/20170822/"/>
+    <id>http://www.ghcoder.com/2017/08/22/20170822/</id>
+    <published>2017-08-22T02:11:12.000Z</published>
+    <updated>2017-08-22T09:02:37.000Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="记得在两年前我去面试的时候，面试官关于Core-data的问题，他们大都只会问你一个问题，基本上你只要能够答出来，就说明还是使用过Core-Data，这个问题就是：“如何迁移Core-Data的数据库”？因为谁都无法预料业务的发展，以及数据库的修改，所以这个问题也是必然会发生的。这里重点列举几个Core-Data数据库迁移的问题："><a href="#记得在两年前我去面试的时候，面试官关于Core-data的问题，他们大都只会问你一个问题，基本上你只要能够答出来，就说明还是使用过Core-Data，这个问题就是：“如何迁移Core-Data的数据库”？因为谁都无法预料业务的发展，以及数据库的修改，所以这个问题也是必然会发生的。这里重点列举几个Core-Data数据库迁移的问题：" class="headerlink" title="记得在两年前我去面试的时候，面试官关于Core data的问题，他们大都只会问你一个问题，基本上你只要能够答出来，就说明还是使用过Core Data，这个问题就是：“如何迁移Core Data的数据库”？因为谁都无法预料业务的发展，以及数据库的修改，所以这个问题也是必然会发生的。这里重点列举几个Core Data数据库迁移的问题："></a>记得在两年前我去面试的时候，面试官关于Core data的问题，他们大都只会问你一个问题，基本上你只要能够答出来，就说明还是使用过Core Data，这个问题就是：“如何迁移Core Data的数据库”？因为谁都无法预料业务的发展，以及数据库的修改，所以这个问题也是必然会发生的。这里重点列举几个Core Data数据库迁移的问题：</h4><ul>
+<li><strong>首先要说一下，如果你的App，只是缓存一些离线数据的话，就没必要考虑什么数据库迁移了，因为你只需要在新版本中，删除之前的core data数据，新建一个就可以了</strong></li>
+</ul>
+<a id="more"></a>
+<hr>
+<ul>
+<li>只是在原有的Entity中添加几个字段,步骤如下：</li>
+</ul>
+<ol>
+<li>点击<code>Editor-&gt;Add Model Version</code>.</li>
+<li>命名新版本的文字就啥：<code>xxx v2</code>.</li>
+<li>如果你有多个Core Data的项目，需要勾选你想要修改的Core Data项目的名字.</li>
+<li>点击创建完成.</li>
+<li>点击<code>File Inspector</code>,在Model Version中勾选你刚才创建的新的Model.</li>
+<li>此时我们就可以勾选进我们新建的Core Data Entity的字段创建表中去，创建你想要修改的字段.</li>
+<li>此时你就可以去想要的xxx.swift的Model Template 的文件中去添加字段了，例如：<code>@NSManaged var image: UIImage?</code></li>
+<li>此时你就可以像使用其他字段一样使用你新建的字段了，例如上面的image<code>xxx.image = xxx</code></li>
+</ol>
+<hr>
+<ul>
+<li>在原有的Entity中删除字段，并且创建新的RelationShip关联到新的Entity对象：</li>
+</ul>
+<ol>
+<li>前面的1-5的操作都是一样的.</li>
+<li>点击Core Data来创建新建的一个Entity,并且设置相应的字段(这里设置Module 为项目的名字).</li>
+<li>然后从我们新建的Entity中建立新的联系去关联到我们之前的Entity(通过设置destination来设置关联).</li>
+<li>并且回到之前的Entity中，删除或者修改我们想要的修改的字段.</li>
+<li>并且在之前的Entity中，建立联系，关联到之前新建的Entity(这里需要设置destination为新建的Entity，并且设置inverse).</li>
+<li>此时已经可以开始准备合并了，在此之前，需要做些修改：</li>
+<li>创建一个新的类，类名和我们新建的Entity的名字一样，并且在里面创建我们新建的字段.</li>
+<li>修改之前Entity对应的Swift类中，增删修改字段.</li>
+<li>下面是最最重要的一步：建立model 映射：</li>
+<li>在<code>New/File</code>中选择<code>Mapping Model</code>,选择你修改的基准的Entity为Source, 选择最新的Entity为Targer Model，名字类似为：<code>UnCloudNotesMappingModel_v2_to_v3</code></li>
+<li>在这个新建的映射的文件中可以看出来，如果是之前就存在Entity的话，那么的它的值<code>Value Expression</code>= <code>$source.xxx</code>，可以看出来这样的数据是没有发生改变的.(<strong>这里的source就是我们开始创建这个文件的时候选择的source是同一个文件，我们可以理解为：v3里面xx字段的值，直接就是取自v2字段的同样的值</strong>).</li>
+<li>刚下已经说了需要新建的一个Entity建立关联，那么必然在这个RelationShip中我们可以看到我们才新建好的Relationship的字段，但是在<code>Value Expression</code>中发现xcode并没有给我们填入什么值，这也是很好理解的，<strong>为这个值，关联的是我们新建Entity值，当然之前的Source不知道啦！！所以你现在要做的就是删除这段关联，因为既然是关联，我可以从a对象关联b对象，那我同样可以从b对象关联到a对象</strong></li>
+<li>勾选新建的Entity对象，发现此时的xode没有给我们勾选Source，这里的理解为：<strong>默认这个新建的Entity的值，所有的值，都是我们自己新建，不需要从之前的Entity中获取值,但是我们这里一旦勾选了source，为某个对象的话，xocde会自动去更加字符创去匹配，获取相应的值，选择了source之后，对应的名字也从xxx改为yyyToxxx</strong>.</li>
+<li>通过之前的理解我们其实可以理解为，每一个note都会关联attachment,但是这里我也可以做一下过滤，如果<code>attachment里的image != nil</code>,才将数据进行关联.</li>
+<li><code>之前xcode为我们创建的Relationship，由于里面的value expression是我们新建的Entity,所以我们将之前的RelationShip删除掉，然后为新建的Entity新建一个relationship关联到之前的旧Entity,并且设置Mapping Name,这里系统就会自动将value expression值填上runtime的函数</code></li>
+<li>最后设置两个属性：</li>
+</ol>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">description</span>.shouldMigrateStoreAutomatically = <span class="keyword">true</span></div><div class="line"><span class="keyword">description</span>.shouldInferMappingModelAutomatically = <span class="keyword">false</span></div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h4 id=&quot;记得在两年前我去面试的时候，面试官关于Core-data的问题，他们大都只会问你一个问题，基本上你只要能够答出来，就说明还是使用过Core-Data，这个问题就是：“如何迁移Core-Data的数据库”？因为谁都无法预料业务的发展，以及数据库的修改，所以这个问题也是必然会发生的。这里重点列举几个Core-Data数据库迁移的问题：&quot;&gt;&lt;a href=&quot;#记得在两年前我去面试的时候，面试官关于Core-data的问题，他们大都只会问你一个问题，基本上你只要能够答出来，就说明还是使用过Core-Data，这个问题就是：“如何迁移Core-Data的数据库”？因为谁都无法预料业务的发展，以及数据库的修改，所以这个问题也是必然会发生的。这里重点列举几个Core-Data数据库迁移的问题：&quot; class=&quot;headerlink&quot; title=&quot;记得在两年前我去面试的时候，面试官关于Core data的问题，他们大都只会问你一个问题，基本上你只要能够答出来，就说明还是使用过Core Data，这个问题就是：“如何迁移Core Data的数据库”？因为谁都无法预料业务的发展，以及数据库的修改，所以这个问题也是必然会发生的。这里重点列举几个Core Data数据库迁移的问题：&quot;&gt;&lt;/a&gt;记得在两年前我去面试的时候，面试官关于Core data的问题，他们大都只会问你一个问题，基本上你只要能够答出来，就说明还是使用过Core Data，这个问题就是：“如何迁移Core Data的数据库”？因为谁都无法预料业务的发展，以及数据库的修改，所以这个问题也是必然会发生的。这里重点列举几个Core Data数据库迁移的问题：&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;首先要说一下，如果你的App，只是缓存一些离线数据的话，就没必要考虑什么数据库迁移了，因为你只需要在新版本中，删除之前的core data数据，新建一个就可以了&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+    
+    </summary>
+    
+      <category term="日志" scheme="http://www.ghcoder.com/categories/%E6%97%A5%E5%BF%97/"/>
+    
+    
+      <category term="Core Data, Swift" scheme="http://www.ghcoder.com/tags/Core-Data-Swift/"/>
+    
+  </entry>
   
   <entry>
     <title>学习NSFetchedResultsController, 获取数据部分(五)</title>
@@ -1497,66 +1562,6 @@
     
     
       <category term="Reveal" scheme="http://www.ghcoder.com/tags/Reveal/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>尝试Swift搭建服务器-建立自己的网站</title>
-    <link href="http://www.ghcoder.com/2017/02/25/20170225/"/>
-    <id>http://www.ghcoder.com/2017/02/25/20170225/</id>
-    <published>2017-02-25T03:20:12.000Z</published>
-    <updated>2017-05-10T12:19:20.000Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="学习Paul大神的swift-server，我也尝试用Swift来搭建自己的网站。这里主要依赖的是IBM开源的Kitura框架。"><a href="#学习Paul大神的swift-server，我也尝试用Swift来搭建自己的网站。这里主要依赖的是IBM开源的Kitura框架。" class="headerlink" title="学习Paul大神的swift-server，我也尝试用Swift来搭建自己的网站。这里主要依赖的是IBM开源的Kitura框架。"></a>学习Paul大神的swift-server，我也尝试用Swift来搭建自己的网站。这里主要依赖的是IBM开源的Kitura框架。</h2><a id="more"></a>
-<h3 id="环境搭建-（Mac下）"><a href="#环境搭建-（Mac下）" class="headerlink" title="环境搭建 （Mac下）"></a>环境搭建 （Mac下）</h3><ol>
-<li>因为我们是在自己的mac上搭建环境，所以需要下载Docker[<a href="https://docs.docker.com/docker-for-mac/" target="_blank" rel="external">https://docs.docker.com/docker-for-mac/</a>] 这个软件，这个软件的作用就相当于一台看不见的虚拟机，能够在mac上运行Linux。</li>
-<li>下载完成之后，建立根目录文件夹。</li>
-</ol>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">cd ~/Desktop</div><div class="line">mkdir server</div><div class="line">cd server</div><div class="line">docker run -itv $(pwd):/projects --name projects -w /projects -<span class="selector-tag">p</span> <span class="number">8089</span>:<span class="number">8089</span> -<span class="selector-tag">p</span> <span class="number">8090</span>:<span class="number">8090</span> -<span class="selector-tag">p</span> <span class="number">5984</span>:<span class="number">5984</span> twostraws/server-side-swift /bin/bash</div></pre></td></tr></table></figure>
-<p>3 . 这里docker开头的命令，是让doker软件来运行的，其中’/projects’ 指的是文件内建立以projects开头的文件默认指向的是当前的文件路径，并且建立的8090、5984这两个端口。</p>
-<p>4 . 建立好之后你就会看到类似如下的返回值：</p>
-<figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">root<span class="variable">@f2429f0045db</span><span class="symbol">:/projects</span><span class="comment">#</span></div></pre></td></tr></table></figure>
-<h3 id="建立第一个文件"><a href="#建立第一个文件" class="headerlink" title="建立第一个文件"></a>建立第一个文件</h3><ol>
-<li>运行如下命令：</li>
-</ol>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">cd</span> ~/Desktop/server</div><div class="line"><span class="built_in">mkdir</span> project1</div><div class="line"><span class="keyword">cd</span> project1</div><div class="line">swift package init --<span class="built_in">type</span> <span class="built_in">executable</span></div></pre></td></tr></table></figure>
-<h4 id="最后一行命令可能比较困惑，其实这行命令就是告诉swift-package（这里的swift-package相当于OC中的cocoapods、或者NodeJS中的npm一样）-我们需要建立一个新的项目，’–type-executable‘的意思是我们希望建立一个独立的部分。看到如下返回值就代表成功了："><a href="#最后一行命令可能比较困惑，其实这行命令就是告诉swift-package（这里的swift-package相当于OC中的cocoapods、或者NodeJS中的npm一样）-我们需要建立一个新的项目，’–type-executable‘的意思是我们希望建立一个独立的部分。看到如下返回值就代表成功了：" class="headerlink" title="最后一行命令可能比较困惑，其实这行命令就是告诉swift package（这里的swift package相当于OC中的cocoapods、或者NodeJS中的npm一样）,我们需要建立一个新的项目，’–type executable‘的意思是我们希望建立一个独立的部分。看到如下返回值就代表成功了："></a>最后一行命令可能比较困惑，其实这行命令就是告诉swift package（这里的swift package相当于OC中的cocoapods、或者NodeJS中的npm一样）,我们需要建立一个新的项目，’–type executable‘的意思是我们希望建立一个独立的部分。看到如下返回值就代表成功了：</h4><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Creating executable package: project1</div><div class="line">Creating Package<span class="selector-class">.swift</span></div><div class="line">Creating <span class="selector-class">.gitignore</span></div><div class="line">Creating Sources/</div><div class="line">Creating Sources/main<span class="selector-class">.swift</span></div><div class="line">Creating Tests/</div></pre></td></tr></table></figure>
-<p>2 .运行：</p>
-<figure class="highlight armasm"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">swift </span><span class="keyword">build</span></div></pre></td></tr></table></figure>
-<p>3 . 再运行</p>
-<figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="title">.build/debug/project1</span></div></pre></td></tr></table></figure>
-<p>当看到”Hello world!”就代表已经成功了。</p>
-<p>4 .再运行</p>
-<figure class="highlight verilog"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">swift <span class="keyword">package</span> <span class="keyword">generate</span>-xcodeproj</div></pre></td></tr></table></figure>
-<p>此时用Xcode打开刚刚生成的project1.xcodeproj,切换project1&gt;Sources&gt;project1,当控制台中打印“Hello world!”</p>
-<p>5 . 找到Main.swift文件，更换内容，我们引入路由模块，并且实例化，并且监听8090端口</p>
-<figure class="highlight nix"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">import</span> Kitura</div><div class="line"></div><div class="line"><span class="keyword">let</span> <span class="attr">router</span> = Router()</div><div class="line"></div><div class="line">Kitura.addHTTPServer(onPort: <span class="number">8090</span>, <span class="keyword">with</span>: router)</div><div class="line">Kitura.run()</div></pre></td></tr></table></figure>
-<p>此时打开浏览器”<a href="http://localhost:8090&quot;,大功告成！！！" target="_blank" rel="external">http://localhost:8090&quot;,大功告成！！！</a></p>
-<h3 id="环境搭建-（Linux下）"><a href="#环境搭建-（Linux下）" class="headerlink" title="环境搭建 （Linux下）"></a>环境搭建 （Linux下）</h3><ol>
-<li><p>先下载适合你Linux版本的Swift的版本[<a href="https://swift.org/download/" target="_blank" rel="external">https://swift.org/download/</a>]</p>
-</li>
-<li><p>其实这里Kitura的官网给出了教程，你也可以按照官方的教程走下去。[<a href="http://www.kitura.io/en/starter/settingup.html" target="_blank" rel="external">http://www.kitura.io/en/starter/settingup.html</a>]</p>
-</li>
-</ol>
-<figure class="highlight q"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ sudo apt-<span class="built_in">get</span> <span class="keyword">update</span></div><div class="line">$ sudo apt-<span class="built_in">get</span> install clang libicu-<span class="built_in">dev</span> libcurl4-openssl-<span class="built_in">dev</span> libssl-<span class="built_in">dev</span></div></pre></td></tr></table></figure>
-<figure class="highlight dos"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ export <span class="built_in">PATH</span>=&lt;<span class="built_in">path</span> to uncompressed tar contents&gt;/usr/bin:$<span class="built_in">PATH</span></div></pre></td></tr></table></figure>
-<p>2 .这里已经介绍解释的很清楚了，就是将&lt;&gt;以及其中的内容替换成你刚才下载并解压下来的Swift包路径，假设我的路径为/home/gh/swift-3.0.2-release/, 那就可以在终端运行：</p>
-<figure class="highlight arduino"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ <span class="keyword">export</span> PATH=/<span class="built_in">home</span>/gh/swift<span class="number">-3.0</span><span class="number">.2</span>-<span class="built_in">release</span>/usr/bin:$PATH</div></pre></td></tr></table></figure>
-<p>3 .紧接着运行,看到正常的返回就代表已经安装正常。</p>
-<figure class="highlight ada"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">swift <span class="comment">--version</span></div></pre></td></tr></table></figure>
-<p>4 .下面的方法步骤就和之前在Mac上的配置是一样的了，你也可以参考Kitura的教程[<a href="http://www.kitura.io/en/starter/gettingstarted.html" target="_blank" rel="external">http://www.kitura.io/en/starter/gettingstarted.html</a>]</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;学习Paul大神的swift-server，我也尝试用Swift来搭建自己的网站。这里主要依赖的是IBM开源的Kitura框架。&quot;&gt;&lt;a href=&quot;#学习Paul大神的swift-server，我也尝试用Swift来搭建自己的网站。这里主要依赖的是IBM开源的Kitura框架。&quot; class=&quot;headerlink&quot; title=&quot;学习Paul大神的swift-server，我也尝试用Swift来搭建自己的网站。这里主要依赖的是IBM开源的Kitura框架。&quot;&gt;&lt;/a&gt;学习Paul大神的swift-server，我也尝试用Swift来搭建自己的网站。这里主要依赖的是IBM开源的Kitura框架。&lt;/h2&gt;
-    
-    </summary>
-    
-      <category term="日志" scheme="http://www.ghcoder.com/categories/%E6%97%A5%E5%BF%97/"/>
-    
-    
-      <category term="Swift" scheme="http://www.ghcoder.com/tags/Swift/"/>
     
   </entry>
   
