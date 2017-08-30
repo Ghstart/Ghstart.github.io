@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.ghcoder.com/"/>
-  <updated>2017-08-24T06:29:57.000Z</updated>
+  <updated>2017-08-30T09:55:14.000Z</updated>
   <id>http://www.ghcoder.com/</id>
   
   <author>
@@ -14,6 +14,84 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>学习YYText(一)</title>
+    <link href="http://www.ghcoder.com/2017/08/30/20170830/"/>
+    <id>http://www.ghcoder.com/2017/08/30/20170830/</id>
+    <published>2017-08-30T08:11:12.000Z</published>
+    <updated>2017-08-30T09:55:14.000Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="YY系列的很多代码都写的很棒，最近很多地方都用到富文本，所以决定用YYText-用之前看了一下里面的代码，觉得还是有很多地方要学习的。代码量非常大，所以可能要分几篇博客分别去写，简单的逻辑就不写了。"><a href="#YY系列的很多代码都写的很棒，最近很多地方都用到富文本，所以决定用YYText-用之前看了一下里面的代码，觉得还是有很多地方要学习的。代码量非常大，所以可能要分几篇博客分别去写，简单的逻辑就不写了。" class="headerlink" title="YY系列的很多代码都写的很棒，最近很多地方都用到富文本，所以决定用YYText,用之前看了一下里面的代码，觉得还是有很多地方要学习的。代码量非常大，所以可能要分几篇博客分别去写，简单的逻辑就不写了。"></a>YY系列的很多代码都写的很棒，最近很多地方都用到富文本，所以决定用<code>YYText</code>,用之前看了一下里面的代码，觉得还是有很多地方要学习的。代码量非常大，所以可能要分几篇博客分别去写，简单的逻辑就不写了。</h4><ul>
+<li>看<code>demo</code>里面，第一行的代码，关于的测试部分就写的很简单，但是深究下去，还是有很多值得学习的地方的：</li>
+</ul>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 这里的self只是一个传入的ViewController的实例</span></div><div class="line">[YYTextExampleHelper <span class="string">addDebugOptionToViewController:</span>self];</div></pre></td></tr></table></figure>
+<a id="more"></a>
+<ul>
+<li>这里传入的vc只是用来设置navigationItem的，这里是设置的一个UISwicher的UI控件，这里存在一个方法：</li>
+</ul>
+<figure class="highlight clojure"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">[switcher addBlockForControlEvents:UIControlEventValueChanged block:^(<span class="name">UISwitch</span> *sender) &#123;</div><div class="line">      [self setDebug:sender.isOn]<span class="comment">;</span></div><div class="line">  &#125;]<span class="comment">;</span></div></pre></td></tr></table></figure>
+<ul>
+<li>仔细一看就会发现问题，UISwich的实例变量可以直接调用<code>addBlockForControlEvents</code>的方法，传入了<code>Event</code>和<code>block</code>:</li>
+</ul>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">UIControl</span> (<span class="title">YYAdd</span>)</span></div><div class="line"></div><div class="line">...</div><div class="line"></div><div class="line">- (<span class="keyword">void</span>)addBlockForControlEvents:(<span class="built_in">UIControlEvents</span>)controlEvents</div><div class="line">                           block:(<span class="keyword">void</span> (^)(<span class="keyword">id</span> sender))block &#123;</div><div class="line">    _YYUIControlBlockTarget *target = [[_YYUIControlBlockTarget alloc]</div><div class="line">                                       initWithBlock:block events:controlEvents];</div><div class="line">    [<span class="keyword">self</span> addTarget:target action:<span class="keyword">@selector</span>(invoke:) forControlEvents:controlEvents];</div><div class="line">    <span class="built_in">NSMutableArray</span> *targets = [<span class="keyword">self</span> _yy_allUIControlBlockTargets];</div><div class="line">    [targets addObject:target];</div><div class="line">&#125;</div><div class="line"></div><div class="line">...</div><div class="line"></div><div class="line">- (<span class="built_in">NSMutableArray</span> *)_yy_allUIControlBlockTargets &#123;</div><div class="line">    <span class="built_in">NSMutableArray</span> *targets = objc_getAssociatedObject(<span class="keyword">self</span>, &amp;block_key);</div><div class="line">    <span class="keyword">if</span> (!targets) &#123;</div><div class="line">        targets = [<span class="built_in">NSMutableArray</span> array];</div><div class="line">        objc_setAssociatedObject(<span class="keyword">self</span>, &amp;block_key, targets, OBJC_ASSOCIATION_RETAIN_NONATOMIC);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> targets;</div><div class="line">&#125;</div><div class="line"></div><div class="line">...</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">_YYUIControlBlockTarget</span> : <span class="title">NSObject</span></span></div><div class="line"></div><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">copy</span>) <span class="keyword">void</span> (^block)(<span class="keyword">id</span> sender);</div><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">assign</span>) <span class="built_in">UIControlEvents</span> events;</div><div class="line"></div><div class="line">- (<span class="keyword">id</span>)initWithBlock:(<span class="keyword">void</span> (^)(<span class="keyword">id</span> sender))block events:(<span class="built_in">UIControlEvents</span>)events;</div><div class="line">- (<span class="keyword">void</span>)invoke:(<span class="keyword">id</span>)sender;</div><div class="line"></div><div class="line"><span class="keyword">@end</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">_YYUIControlBlockTarget</span></span></div><div class="line"></div><div class="line">- (<span class="keyword">id</span>)initWithBlock:(<span class="keyword">void</span> (^)(<span class="keyword">id</span> sender))block events:(<span class="built_in">UIControlEvents</span>)events &#123;</div><div class="line">    <span class="keyword">self</span> = [<span class="keyword">super</span> init];</div><div class="line">    <span class="keyword">if</span> (<span class="keyword">self</span>) &#123;</div><div class="line">        _block = [block <span class="keyword">copy</span>];</div><div class="line">        _events = events;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">self</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (<span class="keyword">void</span>)invoke:(<span class="keyword">id</span>)sender &#123;</div><div class="line">    <span class="keyword">if</span> (_block) _block(sender);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">@end</span></div><div class="line"></div><div class="line">...</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">@end</span></div></pre></td></tr></table></figure>
+<ul>
+<li>这里点到源码里面可以看到，YY作者写了一个<code>UIControl</code>的category，来作了拓展，提供了<code>addBlockForControlEvents</code>这个方法，这也就解释了上面可以调用这个方法。</li>
+<li>发现作者拿到<code>UIControlEvents</code>和<code>block</code>，直接生成了一个<code>_YYUIControlBlockTarget</code>实例。发现生成的这个实例，也做什么特别的事情，就是把block copy保存下来，events也保存下来。</li>
+<li>然后它还是调用了系统的<code>addTarget:action:forControlEvents</code>，直接调用<code>invoke:</code>的方法，其实就是调用了我传入进来的<code>block</code>。</li>
+<li>下面可以看到作者通过<code>runtime</code>给这个category生成了一个<code>NSMutableArry</code>的属性值，并且把我的target对象保存起来。</li>
+<li>其实通过看源码就可以发现作者这么写这个category，就做了两件事情，第一可以用block, 第二可以方便直接remove掉相关对象上事件。</li>
+</ul>
+<hr>
+<ul>
+<li>在事件成功触发的时候，就会调用下面的方法：</li>
+</ul>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">+ (<span class="keyword">void</span>)<span class="string">setDebug:</span>(BOOL)debug &#123;</div><div class="line">    YYTextDebugOption *debugOptions = [YYTextDebugOption <span class="keyword">new</span>];</div><div class="line">    <span class="keyword">if</span> (debug) &#123;</div><div class="line">        debugOptions.baselineColor = [UIColor redColor];</div><div class="line">        debugOptions.CTFrameBorderColor = [UIColor redColor];</div><div class="line">        debugOptions.CTLineFillColor = [UIColor <span class="string">colorWithRed:</span><span class="number">0.000</span> <span class="string">green:</span><span class="number">0.463</span> <span class="string">blue:</span><span class="number">1.000</span> <span class="string">alpha:</span><span class="number">0.180</span>];</div><div class="line">        debugOptions.CGGlyphBorderColor = [UIColor <span class="string">colorWithRed:</span><span class="number">1.000</span> <span class="string">green:</span><span class="number">0.524</span> <span class="string">blue:</span><span class="number">0.000</span> <span class="string">alpha:</span><span class="number">0.200</span>];</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        [debugOptions clear];</div><div class="line">    &#125;</div><div class="line">    [YYTextDebugOption <span class="string">setSharedDebugOption:</span>debugOptions];</div><div class="line">    DebugEnabled = debug;</div><div class="line">&#125;</div><div class="line"></div><div class="line">...</div><div class="line"></div><div class="line"><span class="meta">@interface</span> <span class="string">YYTextDebugOption :</span> NSObject &lt;NSCopying&gt;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> Set a debug option as shared debug option.</div><div class="line"> This method must be called on main thread.</div><div class="line"></div><div class="line"> <span class="doctag">@discussion</span> When call this method, the new option will set to all debug target</div><div class="line"> which is added by `addDebugTarget:`.</div><div class="line"></div><div class="line"> <span class="doctag">@param</span> option  A new debug option (nil is valid).</div><div class="line"> */</div><div class="line">+ (<span class="keyword">void</span>)<span class="string">setSharedDebugOption:</span>(nullable YYTextDebugOption *)option;</div><div class="line"></div><div class="line">...</div></pre></td></tr></table></figure>
+<ul>
+<li>在这个类方法中主要涉及到的一个对象为<code>YYTextDebugOption</code>,这个对象只是一个继承自NSObject的对象，这里没毛病。</li>
+<li><p>生成实例对象之后，我们需要设置不同的值，然后还是通过自己的类方法，将上面的生成的这个对象通过参数出入进去。</p>
+</li>
+<li><p>在<code>YYTextDebugOption</code>里面：</p>
+</li>
+</ul>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line">+ (void)setSharedDebugOption:(YYTextDebugOption *)option &#123;</div><div class="line">    NSAssert([NSThread isMainThread], @<span class="string">"This method must be called on the main thread"</span>)<span class="comment">;</span></div><div class="line">    _setSharedDebugOption(option)<span class="comment">;</span></div><div class="line">&#125;</div><div class="line">...</div><div class="line"></div><div class="line">static void _setSharedDebugOption(YYTextDebugOption *option) &#123;</div><div class="line">    _initSharedDebug()<span class="comment">;</span></div><div class="line">    pthread_mutex_lock(&amp;_sharedDebugLock)<span class="comment">;</span></div><div class="line">    _sharedDebugOption = option.copy<span class="comment">;</span></div><div class="line">    CFSetApplyFunction(_sharedDebugTargets, _sharedDebugSetFunction, NULL)<span class="comment">;</span></div><div class="line">    pthread_mutex_unlock(&amp;_sharedDebugLock)<span class="comment">;</span></div><div class="line">&#125;</div><div class="line"></div><div class="line">....</div><div class="line"></div><div class="line">static void _initSharedDebug() &#123;</div><div class="line">    static <span class="keyword">dispatch_once_t </span>onceToken<span class="comment">;</span></div><div class="line">    <span class="keyword">dispatch_once(&amp;onceToken, </span>^&#123;</div><div class="line">        pthread_mutex_init(&amp;_sharedDebugLock, NULL)<span class="comment">;</span></div><div class="line">        CFSetCallBacks callbacks = kCFTypeSetCallBacks<span class="comment">;</span></div><div class="line">        callbacks.retain = _sharedDebugSetRetain<span class="comment">;</span></div><div class="line">        callbacks.release = _sharedDebugSetRelease<span class="comment">;</span></div><div class="line">        _sharedDebugTargets = CFSetCreateMutable(CFAllocatorGetDefault(), <span class="number">0</span>, &amp;callbacks)<span class="comment">;</span></div><div class="line">    &#125;)<span class="comment">;</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>这里首页确保了设置的的时候，必须是要主线程去调用，其实这里这样写，和后面通过锁来存储对象效果是一致的。</li>
+<li>这里发现作者都是些的c函数，这里我不太确定，为什么不用oc呢？</li>
+<li>这里作者写了一个单例，并且初始化了<code>pthread_mutex_init(&amp;_sharedDebugLock, NULL);</code>锁的值</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">//1：pthread_mutex_init(pthread_mutex_t * mutex,const pthread_mutexattr_t *attr);</span></div><div class="line">初始化锁变量mutex。attr为锁属性，<span class="literal">NULL</span>值为默认属性。</div><div class="line"><span class="comment">//2：pthread_mutex_lock(pthread_mutex_t *mutex);加锁</span></div><div class="line"><span class="comment">//3：pthread_mutex_tylock(pthread_mutex_t *mutex);加锁，但是与2不一样的是当锁已经在使用的时候，返回为EBUSY，而不是挂起等待。</span></div><div class="line"><span class="comment">//4：pthread_mutex_unlock(pthread_mutex_t *mutex);释放锁</span></div><div class="line"><span class="comment">//5：pthread_mutex_destroy(pthread_mutex_t *mutex);使用完后释放</span></div><div class="line"></div><div class="line">...</div><div class="line">__OSX_AVAILABLE_STARTING(__MAC_10_4, __IPHONE_2_0)</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">pthread_mutex_init</span><span class="params">(<span class="keyword">pthread_mutex_t</span> * __restrict,</span></span></div><div class="line">		<span class="keyword">const</span> <span class="keyword">pthread_mutexattr_t</span> * _Nullable __restrict);</div><div class="line">...</div></pre></td></tr></table></figure>
+<ul>
+<li>看代码可以发现，这里需要传入两个值，第一个值是用来表示这个锁的标记，同样第二只默认为Null</li>
+</ul>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">CFSetCallBacks callbacks = kCFTypeSetCallBacks<span class="comment">;</span></div><div class="line">   callbacks.retain = _sharedDebugSetRetain<span class="comment">;</span></div><div class="line">   callbacks.release = _sharedDebugSetRelease<span class="comment">;</span></div><div class="line">   _sharedDebugTargets = CFSetCreateMutable(CFAllocatorGetDefault(), <span class="number">0</span>, &amp;callbacks)<span class="comment">;</span></div></pre></td></tr></table></figure>
+<ul>
+<li>这里的几行代码，其实是通过c的方法是，来生成一个容器属性，类似<code>NSArray,NSDictionary,NSSet</code>,通过源码就可以发现其实就是一个结构体，结构体里面定义的属性值，就是我们需要定义这个容器变量的值，可以猜出来，<code>release</code>/<code>retain</code>是设置对象的内存管理的，<code>equal</code>/<code>hash</code>是对象存储的方式，当然啦，通过c生成的函数，我们可以转化为<code>Foundation</code>的属性值,可以通过类似这样的方式来生成<code>return (NSMutableSet *)CFBridgingRelease(CFSetCreateMutable(0, 0, &amp;callbacks));</code></li>
+</ul>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> &#123;</div><div class="line">    <span class="built_in">CFIndex</span>				version;</div><div class="line">    <span class="built_in">CFSetRetainCallBack</span>			<span class="keyword">retain</span>;</div><div class="line">    <span class="built_in">CFSetReleaseCallBack</span>		release;</div><div class="line">    <span class="built_in">CFSetCopyDescriptionCallBack</span>	copyDescription;</div><div class="line">    <span class="built_in">CFSetEqualCallBack</span>			equal;</div><div class="line">    <span class="built_in">CFSetHashCallBack</span>			hash;</div><div class="line">&#125; <span class="built_in">CFSetCallBacks</span>;</div></pre></td></tr></table></figure>
+<ul>
+<li>通过代码可以看出来，其实作者就是想保证，始终只有一个<code>YYTextDebugOption *option</code>的存在。通过获取这个<code>option</code>的值，就知道你的设置了。</li>
+</ul>
+<ul>
+<li>这两篇文章至少还点东西: [<a href="http://www.jianshu.com/p/f0c33d6c39bb" target="_blank" rel="external">http://www.jianshu.com/p/f0c33d6c39bb</a>, <a href="http://blog.csdn.net/wypblog/article/details/7264315" target="_blank" rel="external">http://blog.csdn.net/wypblog/article/details/7264315</a>]</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h4 id=&quot;YY系列的很多代码都写的很棒，最近很多地方都用到富文本，所以决定用YYText-用之前看了一下里面的代码，觉得还是有很多地方要学习的。代码量非常大，所以可能要分几篇博客分别去写，简单的逻辑就不写了。&quot;&gt;&lt;a href=&quot;#YY系列的很多代码都写的很棒，最近很多地方都用到富文本，所以决定用YYText-用之前看了一下里面的代码，觉得还是有很多地方要学习的。代码量非常大，所以可能要分几篇博客分别去写，简单的逻辑就不写了。&quot; class=&quot;headerlink&quot; title=&quot;YY系列的很多代码都写的很棒，最近很多地方都用到富文本，所以决定用YYText,用之前看了一下里面的代码，觉得还是有很多地方要学习的。代码量非常大，所以可能要分几篇博客分别去写，简单的逻辑就不写了。&quot;&gt;&lt;/a&gt;YY系列的很多代码都写的很棒，最近很多地方都用到富文本，所以决定用&lt;code&gt;YYText&lt;/code&gt;,用之前看了一下里面的代码，觉得还是有很多地方要学习的。代码量非常大，所以可能要分几篇博客分别去写，简单的逻辑就不写了。&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;看&lt;code&gt;demo&lt;/code&gt;里面，第一行的代码，关于的测试部分就写的很简单，但是深究下去，还是有很多值得学习的地方的：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&quot;highlight groovy&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;// 这里的self只是一个传入的ViewController的实例&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;[YYTextExampleHelper &lt;span class=&quot;string&quot;&gt;addDebugOptionToViewController:&lt;/span&gt;self];&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+    
+    </summary>
+    
+      <category term="日志" scheme="http://www.ghcoder.com/categories/%E6%97%A5%E5%BF%97/"/>
+    
+    
+      <category term="Core Data, Swift" scheme="http://www.ghcoder.com/tags/Core-Data-Swift/"/>
+    
+  </entry>
   
   <entry>
     <title>Core Data的迁移和合并(五)</title>
@@ -1556,49 +1634,6 @@
     
     
       <category term="PHP" scheme="http://www.ghcoder.com/tags/PHP/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>更新Reveal2的一些问题</title>
-    <link href="http://www.ghcoder.com/2017/03/15/20170315/"/>
-    <id>http://www.ghcoder.com/2017/03/15/20170315/</id>
-    <published>2017-03-15T01:27:12.000Z</published>
-    <updated>2017-05-10T12:19:01.000Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="最近任务也不是很多，尽量逼自己把每天学的一些的东西都记录下来。"><a href="#最近任务也不是很多，尽量逼自己把每天学的一些的东西都记录下来。" class="headerlink" title="最近任务也不是很多，尽量逼自己把每天学的一些的东西都记录下来。"></a>最近任务也不是很多，尽量逼自己把每天学的一些的东西都记录下来。</h3><h2 id=""><a href="#" class="headerlink" title=""></a><a id="more"></a></h2><img src="http://ohhvhrib5.bkt.clouddn.com/images/103.jpeg">
-<blockquote>
-<p>这张图来自<code>简书</code>APP，也是一个朋友闻起来来的，他说这是在无数据、无网络的状态下就会出现这样的界面，这个是怎么做到的呢？</p>
-</blockquote>
-<p>1 . 我当时想了一下，还是觉得要用collectionView来实现吧，其实<code>热门文章</code>的内容，其实自己看就会发现，他就一种cell格式，而<code>热门专题</code>应该就是用collectionview来做的吧。</p>
-<p>2 .后来一拍脑子觉得不对啊，这tm得多烦啊，而且这个仅仅只是无数据的一种页面的展示啊，要我做，那就直接一张image遮罩着不就行了。</p>
-<h3 id="猜想了半天还是用Reveal来看一下吧。"><a href="#猜想了半天还是用Reveal来看一下吧。" class="headerlink" title="猜想了半天还是用Reveal来看一下吧。"></a>猜想了半天还是用Reveal来看一下吧。</h3><p>1 .由于很长时间不用Reveal了，而且我之前的Reveal还是1.x的版本，然后用越狱机器一看，一直导入失败，一直在报这个错误(❌)</p>
-<blockquote>
-<p>The operation couldn’t be completed. The app is linked against an older version of the Reveal library. You may need to update the Reveal library in your app. </p>
-</blockquote>
-<p>2 .后来发现之前导入到机器中的一个<code>libReveal.dylib</code>的文件以及找不到了，这下，我tm傻眼了，我一直以为让我更新一下这个所谓的动态库呢！ 后来google了一下，发现了官方的回复：</p>
-<blockquote>
-<p>We no longer ship a dynamic library starting with Reveal 2, we include an iOS 8+ framework instead. The good news is that you should be able to make a copy of, and rename the framework’s binary (RevealServer.framework/ReveaServer) to libReveal.dylib and then follow the instructions as before</p>
-</blockquote>
-<h3 id="最后还发现几个好玩的东西："><a href="#最后还发现几个好玩的东西：" class="headerlink" title="最后还发现几个好玩的东西："></a>最后还发现几个好玩的东西：</h3><hr>
-<img src="http://ohhvhrib5.bkt.clouddn.com/images/104.jpeg">
-<hr>
-<img src="http://ohhvhrib5.bkt.clouddn.com/images/105.jpeg">
-<blockquote>
-<p>可以发现真的就如我的猜想，他其实这些都是之前就定死的一个image，遮罩在上面的，其他也就不用说了。</p>
-</blockquote>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;最近任务也不是很多，尽量逼自己把每天学的一些的东西都记录下来。&quot;&gt;&lt;a href=&quot;#最近任务也不是很多，尽量逼自己把每天学的一些的东西都记录下来。&quot; class=&quot;headerlink&quot; title=&quot;最近任务也不是很多，尽量逼自己把每天学的一些的东西都记录下来。&quot;&gt;&lt;/a&gt;最近任务也不是很多，尽量逼自己把每天学的一些的东西都记录下来。&lt;/h3&gt;&lt;h2 id=&quot;&quot;&gt;&lt;a href=&quot;#&quot; class=&quot;headerlink&quot; title=&quot;&quot;&gt;&lt;/a&gt;
-    
-    </summary>
-    
-      <category term="日志" scheme="http://www.ghcoder.com/categories/%E6%97%A5%E5%BF%97/"/>
-    
-    
-      <category term="Reveal" scheme="http://www.ghcoder.com/tags/Reveal/"/>
     
   </entry>
   
