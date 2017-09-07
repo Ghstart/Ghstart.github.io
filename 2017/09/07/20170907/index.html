@@ -1,0 +1,664 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Object-C," />
+
+
+
+
+  
+
+
+  <link rel="alternate" href="/atom.xml" title="Ghcoder" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="最近看到很多人都在转一篇博客，博客的链接为：[http://tutuge.me/2015/05/23/autolayout-example-with-masonry/], 其实文章的知识点不是很多，重点就是讲如何运用Masonry来实现一些东西，但是不得不承认这篇文章很使用，我在平时开发的时候，很多细节的地方，我也没有注意到，然后看了一下他的四篇博客，记录一下：
+第一部分重点讲的是两个属性: Co">
+<meta property="og:type" content="article">
+<meta property="og:title" content="学习Masonry Autolayout布局实例">
+<meta property="og:url" content="http://www.ghcoder.com/2017/09/07/20170907/index.html">
+<meta property="og:site_name" content="Ghcoder">
+<meta property="og:description" content="最近看到很多人都在转一篇博客，博客的链接为：[http://tutuge.me/2015/05/23/autolayout-example-with-masonry/], 其实文章的知识点不是很多，重点就是讲如何运用Masonry来实现一些东西，但是不得不承认这篇文章很使用，我在平时开发的时候，很多细节的地方，我也没有注意到，然后看了一下他的四篇博客，记录一下：
+第一部分重点讲的是两个属性: Co">
+<meta property="og:updated_time" content="2017-09-07T08:04:51.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="学习Masonry Autolayout布局实例">
+<meta name="twitter:description" content="最近看到很多人都在转一篇博客，博客的链接为：[http://tutuge.me/2015/05/23/autolayout-example-with-masonry/], 其实文章的知识点不是很多，重点就是讲如何运用Masonry来实现一些东西，但是不得不承认这篇文章很使用，我在平时开发的时候，很多细节的地方，我也没有注意到，然后看了一下他的四篇博客，记录一下：
+第一部分重点讲的是两个属性: Co">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"remove","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.ghcoder.com/2017/09/07/20170907/"/>
+
+
+
+
+
+  <title>学习Masonry Autolayout布局实例 | Ghcoder</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Ghcoder</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            列表
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://www.ghcoder.com/2017/09/07/20170907/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ghcoder">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars3.githubusercontent.com/u/5730023?v=3&s=460">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ghcoder">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">学习Masonry Autolayout布局实例</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-07T11:33:12+08:00">
+                2017-09-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/日志/" itemprop="url" rel="index">
+                    <span itemprop="name">日志</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/09/07/20170907/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/09/07/20170907/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="最近看到很多人都在转一篇博客，博客的链接为：-http-tutuge-me-2015-05-23-autolayout-example-with-masonry-其实文章的知识点不是很多，重点就是讲如何运用Masonry来实现一些东西，但是不得不承认这篇文章很使用，我在平时开发的时候，很多细节的地方，我也没有注意到，然后看了一下他的四篇博客，记录一下："><a href="#最近看到很多人都在转一篇博客，博客的链接为：-http-tutuge-me-2015-05-23-autolayout-example-with-masonry-其实文章的知识点不是很多，重点就是讲如何运用Masonry来实现一些东西，但是不得不承认这篇文章很使用，我在平时开发的时候，很多细节的地方，我也没有注意到，然后看了一下他的四篇博客，记录一下：" class="headerlink" title="最近看到很多人都在转一篇博客，博客的链接为：[http://tutuge.me/2015/05/23/autolayout-example-with-masonry/], 其实文章的知识点不是很多，重点就是讲如何运用Masonry来实现一些东西，但是不得不承认这篇文章很使用，我在平时开发的时候，很多细节的地方，我也没有注意到，然后看了一下他的四篇博客，记录一下："></a>最近看到很多人都在转一篇博客，博客的链接为：[<a href="http://tutuge.me/2015/05/23/autolayout-example-with-masonry/" target="_blank" rel="external">http://tutuge.me/2015/05/23/autolayout-example-with-masonry/</a>], 其实文章的知识点不是很多，重点就是讲如何运用Masonry来实现一些东西，但是不得不承认这篇文章很使用，我在平时开发的时候，很多细节的地方，我也没有注意到，然后看了一下他的四篇博客，记录一下：</h4><ul>
+<li>第一部分重点讲的是两个属性: <code>Content Compression Resistance</code>、<code>Content Hugging</code>,这里我觉得作者的解释还是形象的：</li>
+</ul>
+<a id="more"></a>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">Content Compression Resistance = 不许挤我</div><div class="line">值越高，内容越不容易被压缩</div><div class="line">当内容放不下的时候，优先挤压那些优先级低的元素</div><div class="line"></div><div class="line">Content Hugging = 抱紧</div><div class="line">子元素设置的属性值越高，子元素越不会随着父视图的变化而变化</div><div class="line"></div><div class="line"><span class="comment">//设置label1的content hugging 为1000</span></div><div class="line">[_label1 setContentHuggingPriority:<span class="built_in">UILayoutPriorityRequired</span></div><div class="line">                               forAxis:<span class="built_in">UILayoutConstraintAxisHorizontal</span>];</div><div class="line"></div><div class="line"><span class="comment">//设置label1的content compression 为1000</span></div><div class="line">[_label1 setContentCompressionResistancePriority:<span class="built_in">UILayoutPriorityRequired</span></div><div class="line">                                             forAxis:<span class="built_in">UILayoutConstraintAxisHorizontal</span>];</div></pre></td></tr></table></figure>
+<ul>
+<li>居中显示四个元素:</li>
+</ul>
+<figure class="highlight gauss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">UIView __block *lastView = nil;</div><div class="line"> MASConstraint __block *widthConstraint = nil;</div><div class="line"> NSUInteger arrayCount = _imageViews.count;</div><div class="line"> [_imageViews enumerateObjectsUsingBlock:^(UIView *<span class="built_in">view</span>, NSUInteger idx, <span class="keyword">BOOL</span> *<span class="keyword">stop</span>) &#123;</div><div class="line">     [<span class="built_in">view</span> mas_makeConstraints:^(MASConstraintMaker *<span class="built_in">make</span>) &#123;</div><div class="line">         <span class="comment">//宽高固定</span></div><div class="line">         widthConstraint = <span class="built_in">make</span>.width.equalTo(<span class="comment">@(imageViewSize.width));</span></div><div class="line">         make.height.equalTo(@(imageViewSize.height));</div><div class="line">         <span class="comment">//左边约束</span></div><div class="line">         <span class="built_in">make</span>.left.equalTo(lastView ? lastView.mas_right : <span class="built_in">view</span>.superview.mas_left);</div><div class="line">         <span class="comment">//垂直中心对齐</span></div><div class="line">         <span class="built_in">make</span>.centerY.equalTo(<span class="built_in">view</span>.superview.mas_centerY);</div><div class="line">         <span class="comment">//设置最右边的imageView的右边与父view的最有对齐</span></div><div class="line">         <span class="keyword">if</span> (idx == arrayCount - <span class="number">1</span>) &#123;</div><div class="line">             <span class="built_in">make</span>.right.equalTo(<span class="built_in">view</span>.superview.mas_right);</div><div class="line">         &#125;</div><div class="line"></div><div class="line">         [_widthConstraints addObject:widthConstraint];</div><div class="line">         lastView = <span class="built_in">view</span>;</div><div class="line">     &#125;];</div><div class="line"> &#125;];</div><div class="line"></div><div class="line"> ...</div><div class="line"></div><div class="line"> <span class="comment">// 隐藏元素的时候，就可以直接来修改约束</span></div><div class="line"></div><div class="line">     <span class="keyword">if</span> (sender.on) &#123;</div><div class="line">     width.equalTo(<span class="comment">@(IMAGE_SIZE));</span></div><div class="line"> &#125; else &#123;</div><div class="line">     width.equalTo(@<span class="number">0</span>);</div><div class="line"> &#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>a视图是b视图的倍数关系的：</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">make</span><span class="selector-class">.width</span><span class="selector-class">.equalTo</span>(_<span class="selector-tag">containerView</span><span class="selector-class">.mas_width</span>)<span class="selector-class">.multipliedBy</span>(0<span class="selector-class">.5</span>);</div></pre></td></tr></table></figure>
+<ul>
+<li><p><code>UITableViewCell</code>高度的问题：</p>
+</li>
+<li><p>首先如果是在<code>iOS8以及以后的版本的话</code>，那就不需要考虑这个问题了，直接使用新特性</p>
+</li>
+</ul>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">_tableView.estimatedRowHeight = <span class="number">80.0</span>f;</div><div class="line"></div><div class="line">...</div><div class="line">- (<span class="built_in">CGFloat</span>)tableView:(<span class="built_in">UITableView</span> *)tableView heightForRowAtIndexPath:(<span class="built_in">NSIndexPath</span> *)indexPath &#123;</div><div class="line"></div><div class="line"></div><div class="line"><span class="meta">#ifdef IOS_8_NEW_FEATURE_SELF_SIZING</span></div><div class="line">    <span class="comment">// iOS 8 的Self-sizing特性</span></div><div class="line">    <span class="keyword">return</span> <span class="built_in">UITableViewAutomaticDimension</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>如果是在旧版本<code>iOS7上的话</code>:</li>
+</ul>
+ <figure class="highlight arduino"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"> <span class="comment">// 根据当前数据，计算Cell的高度，注意+1</span></div><div class="line">dataEntity.cellHeight = [_templateCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].<span class="built_in">height</span> + <span class="number">0.5</span>f;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">// 计算UILabel的preferredMaxLayoutWidth值，多行时必须设置这个值，否则系统无法决定Label的宽度</span></div><div class="line">    CGFloat preferredMaxWidth = [UIScreen mainScreen].bounds.<span class="built_in">size</span>.<span class="built_in">width</span> - <span class="number">44</span> - <span class="number">4</span> * <span class="number">3</span>; <span class="comment">// 44 = avatar宽度，4 * 3为padding</span></div><div class="line"></div><div class="line">    <span class="comment">// Content - 多行</span></div><div class="line">    _contentLabel.preferredMaxLayoutWidth = preferredMaxWidth; <span class="comment">// 多行时必须设置</span></div></pre></td></tr></table></figure>
+<ul>
+<li><p>为了避免在转屏的时候，Header、Bottom差一截的问题，这里我们头，尾视图不需要根据父视图来设定约束，而是根据<code>topLayoutGuide</code>、<code>bottomLayoutGuide</code>来设定:</p>
+<figure class="highlight scheme"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"> [<span class="name">_topView</span> mas_updateConstraints:^(<span class="name">MASConstraintMaker</span> *make) &#123;</div><div class="line">    // 直接利用其length属性，避免iOS、SDK版本升级后topLayoutGuide不再是UIView</div><div class="line">    make.top.equalTo(<span class="name">self.view.mas_top</span>).with.offset(<span class="name">self.topLayoutGuide.length</span>)<span class="comment">;</span></div><div class="line">&#125;]<span class="comment">;</span></div><div class="line"></div><div class="line">// 根据新的length值更新约束</div><div class="line">[<span class="name">_bottomView</span> mas_updateConstraints:^(<span class="name">MASConstraintMaker</span> *make) &#123;</div><div class="line">    // 直接利用其length属性，避免iOS、SDK版本升级后topLayoutGuide不再是UIView</div><div class="line">    make.bottom.equalTo(<span class="name">self.view.mas_bottom</span>).with.offset(<span class="name"><span class="builtin-name">-</span></span>(<span class="name">self.bottomLayoutGuide.length</span>))<span class="comment">;</span></div><div class="line">&#125;]<span class="comment">;</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>自定义<code>baseline</code>的属性值：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"> <span class="comment">// 返回自定义的baseline的view</span></div><div class="line">- (UIView *)viewForBaselineLayout &#123;</div><div class="line">    <span class="keyword">return</span> _baseView;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>可拉伸的<code>UITableView</code></p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"> _tableView.contentInset = <span class="built_in">UIEdgeInsetsMake</span>(ParallaxHeaderHeight, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>);</div><div class="line"></div><div class="line"> ...</div><div class="line"></div><div class="line"> - (<span class="keyword">void</span>)initView &#123;</div><div class="line">    _parallaxHeaderView = [<span class="built_in">UIImageView</span> new];</div><div class="line">    [<span class="keyword">self</span>.view insertSubview:_parallaxHeaderView belowSubview:_tableView];</div><div class="line">    _parallaxHeaderView.contentMode = <span class="built_in">UIViewContentModeScaleAspectFill</span>;</div><div class="line">    _parallaxHeaderView.image = [<span class="built_in">UIImage</span> imageNamed:<span class="string">@"parallax_header_back"</span>];</div><div class="line"></div><div class="line">    [_parallaxHeaderView mas_makeConstraints:^(MASConstraintMaker *make) &#123;</div><div class="line">        make.left.and.right.equalTo(<span class="keyword">self</span>.view);</div><div class="line">        make.top.equalTo(<span class="keyword">self</span>.mas_topLayoutGuideBottom);</div><div class="line">        _parallaxHeaderHeightConstraint = make.height.equalTo(@(ParallaxHeaderHeight));</div><div class="line">    &#125;];</div><div class="line"></div><div class="line">    <span class="comment">// Add KVO</span></div><div class="line">    [_tableView addObserver:<span class="keyword">self</span> forKeyPath:<span class="string">@"contentOffset"</span> options:<span class="built_in">NSKeyValueObservingOptionNew</span> context:<span class="literal">nil</span>];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li>KVO的回调</li>
+</ul>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 方法2：利用KVO</span></div><div class="line">- (<span class="keyword">void</span>)observeValueForKeyPath:(<span class="built_in">NSString</span> *)keyPath ofObject:(<span class="keyword">id</span>)object</div><div class="line">                        change:(<span class="built_in">NSDictionary</span>&lt;<span class="built_in">NSString</span> *,<span class="keyword">id</span>&gt; *)change</div><div class="line">                       context:(<span class="keyword">void</span> *)context &#123;</div><div class="line">    <span class="keyword">if</span> ([keyPath isEqualToString:<span class="string">@"contentOffset"</span>]) &#123;</div><div class="line">        <span class="built_in">CGPoint</span> contentOffset = ((<span class="built_in">NSValue</span> *)change[<span class="built_in">NSKeyValueChangeNewKey</span>]).CGPointValue;</div><div class="line">        <span class="keyword">if</span> (contentOffset.y &lt; -ParallaxHeaderHeight) &#123;</div><div class="line">            _parallaxHeaderHeightConstraint.equalTo(@(-contentOffset.y));</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Object-C/" rel="tag"># Object-C</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/09/01/20170901/" rel="next" title="学习Swift Tips">
+                <i class="fa fa-chevron-left"></i> 学习Swift Tips
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ghcoder</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://ghcoder1024.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://www.ghcoder.com/2017/09/07/20170907/';
+          this.page.identifier = '2017/09/07/20170907/';
+          this.page.title = '学习Masonry Autolayout布局实例';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://ghcoder1024.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
