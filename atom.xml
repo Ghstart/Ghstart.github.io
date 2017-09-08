@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.ghcoder.com/"/>
-  <updated>2017-09-07T08:04:51.000Z</updated>
+  <updated>2017-09-08T09:25:10.000Z</updated>
   <id>http://www.ghcoder.com/</id>
   
   <author>
@@ -14,6 +14,74 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>学习Swift Tips(二)</title>
+    <link href="http://www.ghcoder.com/2017/09/08/20170908/"/>
+    <id>http://www.ghcoder.com/2017/09/08/20170908/</id>
+    <published>2017-09-08T02:53:12.000Z</published>
+    <updated>2017-09-08T09:25:10.000Z</updated>
+    
+    <content type="html"><![CDATA[<ul>
+<li>在介绍（Tuple）的时候，说了交换输入的方法书写，在Object-C中，有很多方法，我们传入的是指针，这个问题主要的来源就是因为受制约C语言，单一返回，有了Tuple的时候，我们就可以方便的调用了。</li>
+</ul>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">let rect = CGRect(<span class="string">x:</span> <span class="number">0</span>, <span class="string">y:</span> <span class="number">0</span>, <span class="string">width:</span> <span class="number">100</span>, <span class="string">height:</span> <span class="number">100</span>)</div><div class="line">let (small, large) = rect.divided(<span class="string">atDistance:</span> <span class="number">20</span>, <span class="string">from:</span> .minXEdge)</div></pre></td></tr></table></figure>
+<a id="more"></a>
+<hr>
+<ul>
+<li>在写swift的时候，我们常常需要和Optional打交道，这时候我们就需要常常用到解包，这里就提到了一个快速解包的方式<code>??</code>,首先看一下如何使用：</li>
+</ul>
+<figure class="highlight excel"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">var</span> lev<span class="symbol">el:</span> <span class="built_in">Int</span>?</div><div class="line"><span class="built_in">var</span> startLevel = <span class="number">1</span></div><div class="line"></div><div class="line"><span class="built_in">var</span> currentLevel = level ?? startLevel</div></pre></td></tr></table></figure>
+<ul>
+<li>这里很简单，但是还是要说一下，这里的<code>??</code>判断左边的值，如果是非nil的<code>optional</code>的值，那就直接返回左边的value值，否则就返回右边的值,但是细细往下看一下源码的定义会发现：</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">func</span> ??&lt;T&gt;<span class="params">(<span class="keyword">optional</span>: T?, defaultValue: @autoclosure <span class="params">()</span></span></span> <span class="keyword">throws</span> -&gt; <span class="type">T</span>) <span class="keyword">rethrows</span> -&gt; <span class="type">T</span></div><div class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">func</span> ??&lt;T&gt;<span class="params">(<span class="keyword">optional</span>: T?, defaultValue: @autoclosure <span class="params">()</span></span></span> <span class="keyword">throws</span> -&gt; <span class="type">T</span>?) <span class="keyword">rethrows</span> -&gt; <span class="type">T</span>?</div></pre></td></tr></table></figure>
+<ul>
+<li>看到这里，我就有点疑惑了，这个<code>??</code>其实就是一个函数，那么问题来了，<code>函数的调用方式为什么那么另类呢？</code>,按照我们的理解，这个函数的调用方式不应该是这样的吗？<code>??(optional, xxx)</code>,但是发现这样写，会报错，所以这里我就决定把函数的定义直接copy下来，然后自己去实现，带入如下：</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">th</span>&lt;T&gt;<span class="params">(<span class="number">_</span> <span class="keyword">optional</span>: T?, <span class="number">_</span> defaultValue: @autoclosure <span class="params">()</span></span></span> <span class="keyword">throws</span> -&gt; <span class="type">T</span>) <span class="keyword">rethrows</span> -&gt; <span class="type">T</span> &#123;</div><div class="line">    <span class="keyword">if</span> <span class="keyword">let</span> <span class="keyword">optional</span> = <span class="keyword">optional</span> &#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">optional</span></div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">try</span> defaultValue()</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">var</span> level: <span class="type">Int</span>?</div><div class="line"><span class="keyword">var</span> startLevel = <span class="number">1</span></div><div class="line"></div><div class="line"><span class="keyword">var</span> test = th(level, startLevel)</div></pre></td></tr></table></figure>
+<ul>
+<li>看到这里我就开始猜测了，这或许是<code>swift</code>为了方便的我们的调用，所以它又定义了一个语法糖吧！</li>
+</ul>
+<hr>
+<ul>
+<li>@autoclosure 符号的意思，就是直接将：入参T 转化为 ()-&gt;T</li>
+</ul>
+<hr>
+<ul>
+<li>@escaping 符号的意思就是说明，这个参数是异步的，不是属于这个局部的函数，可以在这个函数执行完成之后再执行这里的回调，不加任何参数的block默认就是同步的，函数执行完成之前，这个block就会被收回。</li>
+</ul>
+<hr>
+<ul>
+<li>optional Chaining 如果某个属性是nil的话，会提前返回回来。</li>
+</ul>
+<hr>
+<ul>
+<li>重载符号的做法，用的比较少：</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">precedencegroup <span class="type">DotProductPrecedence</span> &#123;</div><div class="line">    <span class="keyword">associativity</span>: <span class="keyword">none</span></div><div class="line">    higherThan: <span class="type">MultiplicationPrecedence</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">infix</span> <span class="keyword">operator</span> +*: <span class="type">DotProductPrecedence</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> +*<span class="params">(<span class="keyword">left</span>: Vector2D, <span class="keyword">right</span>: Vector2D)</span></span> -&gt; <span class="type">Double</span> &#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">left</span>.x * <span class="keyword">right</span>.x + <span class="keyword">left</span>.y * <span class="keyword">right</span>.y</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<hr>
+<ul>
+<li>外部传入的参数，如果需要在函数内部修改的话，需要在参数前面加上<code>inout</code>，这样传入参数的时候，就需要将之前传入的值改为地址，类似:</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">incrementor</span><span class="params">(variable: <span class="keyword">inout</span> Int)</span></span> -&gt; <span class="type">Int</span> &#123;</div><div class="line">       variable += <span class="number">1</span></div><div class="line">       <span class="keyword">return</span> variable</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;ul&gt;
+&lt;li&gt;在介绍（Tuple）的时候，说了交换输入的方法书写，在Object-C中，有很多方法，我们传入的是指针，这个问题主要的来源就是因为受制约C语言，单一返回，有了Tuple的时候，我们就可以方便的调用了。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&quot;highlight groovy&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;let rect = CGRect(&lt;span class=&quot;string&quot;&gt;x:&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;y:&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;width:&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;100&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;height:&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;100&lt;/span&gt;)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;let (small, large) = rect.divided(&lt;span class=&quot;string&quot;&gt;atDistance:&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;20&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;from:&lt;/span&gt; .minXEdge)&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+    
+    </summary>
+    
+      <category term="日志" scheme="http://www.ghcoder.com/categories/%E6%97%A5%E5%BF%97/"/>
+    
+    
+      <category term="Swift" scheme="http://www.ghcoder.com/tags/Swift/"/>
+    
+  </entry>
   
   <entry>
     <title>学习Masonry Autolayout布局实例</title>
@@ -1698,74 +1766,6 @@
     <summary type="html">
     
       &lt;h3 id=&quot;学习Django的第二部分-对官网Demo教程的翻译，以及自己的一些认识&quot;&gt;&lt;a href=&quot;#学习Django的第二部分-对官网Demo教程的翻译，以及自己的一些认识&quot; class=&quot;headerlink&quot; title=&quot;学习Django的第二部分[对官网Demo教程的翻译，以及自己的一些认识]&quot;&gt;&lt;/a&gt;学习Django的第二部分[对官网Demo教程的翻译，以及自己的一些认识]&lt;/h3&gt;&lt;h4 id=&quot;第一部分，已经使用了Django写了一个简单View，并且配置了我们的url，是的我们能够正常访问到我们新建的View页面。今天开始第二部分：&quot;&gt;&lt;a href=&quot;#第一部分，已经使用了Django写了一个简单View，并且配置了我们的url，是的我们能够正常访问到我们新建的View页面。今天开始第二部分：&quot; class=&quot;headerlink&quot; title=&quot;第一部分，已经使用了Django写了一个简单View，并且配置了我们的url，是的我们能够正常访问到我们新建的View页面。今天开始第二部分：&quot;&gt;&lt;/a&gt;第一部分，已经使用了Django写了一个简单View，并且配置了我们的url，是的我们能够正常访问到我们新建的View页面。今天开始第二部分：&lt;/h4&gt;
-    
-    </summary>
-    
-      <category term="日志" scheme="http://www.ghcoder.com/categories/%E6%97%A5%E5%BF%97/"/>
-    
-    
-      <category term="Python、Django" scheme="http://www.ghcoder.com/tags/Python%E3%80%81Django/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>用Python的Django框架搭建前后台[官网教程]</title>
-    <link href="http://www.ghcoder.com/2017/05/09/20170509/"/>
-    <id>http://www.ghcoder.com/2017/05/09/20170509/</id>
-    <published>2017-05-09T07:36:12.000Z</published>
-    <updated>2017-05-25T06:14:20.000Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="人生苦短，我用Python–不管你之前写过多少其他语言，当你有一天回来写python的时候，你就会觉得“世界是那么的美好！”"><a href="#人生苦短，我用Python–不管你之前写过多少其他语言，当你有一天回来写python的时候，你就会觉得“世界是那么的美好！”" class="headerlink" title="人生苦短，我用Python–不管你之前写过多少其他语言，当你有一天回来写python的时候，你就会觉得“世界是那么的美好！”"></a>人生苦短，我用Python–不管你之前写过多少其他语言，当你有一天回来写python的时候，你就会觉得“世界是那么的美好！”</h3><h4 id="今天我就来讲讲我是如何用Python的django-https-docs-djangoproject-com-来搭建后台的："><a href="#今天我就来讲讲我是如何用Python的django-https-docs-djangoproject-com-来搭建后台的：" class="headerlink" title="今天我就来讲讲我是如何用Python的django[https://docs.djangoproject.com] 来搭建后台的："></a>今天我就来讲讲我是如何用<code>Python</code>的<code>django</code>[<a href="https://docs.djangoproject.com" target="_blank" rel="external">https://docs.djangoproject.com</a>] 来搭建后台的：</h4><a id="more"></a>
-<ol>
-<li>我是在mac的环境下搭建的，linux也试过，其实搭建环境来说，都差不多,这里就以mac为例子</li>
-<li>首先mac或者linux的话，应该是自带python的，如果是win系统的话，你可以自己去下载[<a href="https://www.python.org/" target="_blank" rel="external">https://www.python.org/</a>]</li>
-<li>数据库（database）也是很重要的，因为我们想做的是一个健全的前后台系统、后期还需要给移动端提供数据来源，所以我这里选用mysql，我这里偷懒就用了<code>MAMP</code>一键安装，在linux下也有相应的叫<code>LAMP</code>,一步步点击下一步之后就完成了，这里我用的是<code>Apache+Mysql</code>。安装完成之后，你就可以看到mysql的端口、密码、用户名啥的（这里可能有些坑，需要自己去踩，这里就不说了，自行google),这里要弄好，因为我们后续在配置django的时候需要配置。</li>
-<li>下面进入正式安装jdango，官方建议通过pip去安装。</li>
-</ol>
-<figure class="highlight cmake"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pip <span class="keyword">install</span> -U pip</div></pre></td></tr></table></figure>
-<h5 id="如果报错就执行下面的命令："><a href="#如果报错就执行下面的命令：" class="headerlink" title="如果报错就执行下面的命令："></a>如果报错就执行下面的命令：</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pip <span class="keyword">install</span> <span class="comment">--upgrade pip</span></div></pre></td></tr></table></figure>
-<h5 id="不出意外的话，此时你的pip，应该已经安装好了。下面来安装环境，这里环境，官方的意见是安装virtualenv或者virtualenvwrapper-这里其实我都试过，你也可以试试，这里就用virtualenv-https-virtualenv-pypa-io-en-stable-你也可以自己参考一下virtualenv的官方介绍-https-virtualenv-pypa-io-en-stable-installation"><a href="#不出意外的话，此时你的pip，应该已经安装好了。下面来安装环境，这里环境，官方的意见是安装virtualenv或者virtualenvwrapper-这里其实我都试过，你也可以试试，这里就用virtualenv-https-virtualenv-pypa-io-en-stable-你也可以自己参考一下virtualenv的官方介绍-https-virtualenv-pypa-io-en-stable-installation" class="headerlink" title="不出意外的话，此时你的pip，应该已经安装好了。下面来安装环境，这里环境，官方的意见是安装virtualenv或者virtualenvwrapper,这里其实我都试过，你也可以试试，这里就用virtualenv [https://virtualenv.pypa.io/en/stable/] , 你也可以自己参考一下virtualenv的官方介绍 [https://virtualenv.pypa.io/en/stable/installation/] :"></a>不出意外的话，此时你的pip，应该已经安装好了。下面来安装环境，这里环境，官方的意见是安装<code>virtualenv</code>或者<code>virtualenvwrapper</code>,这里其实我都试过，你也可以试试，这里就用<code>virtualenv</code> [<a href="https://virtualenv.pypa.io/en/stable/" target="_blank" rel="external">https://virtualenv.pypa.io/en/stable/</a>] , 你也可以自己参考一下virtualenv的官方介绍 [<a href="https://virtualenv.pypa.io/en/stable/installation/" target="_blank" rel="external">https://virtualenv.pypa.io/en/stable/installation/</a>] :</h5><figure class="highlight accesslog"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="string">[sudo]</span> pip install virtualenv</div></pre></td></tr></table></figure>
-<h5 id="最后执行安装django的命令："><a href="#最后执行安装django的命令：" class="headerlink" title="最后执行安装django的命令："></a>最后执行安装<code>django</code>的命令：</h5><figure class="highlight cmake"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pip <span class="keyword">install</span> Django</div></pre></td></tr></table></figure>
-<h5 id="官方给出了严重你是否安装成功，以及安装的版本-当成功打印的时候，就代表已经成功安装了。"><a href="#官方给出了严重你是否安装成功，以及安装的版本-当成功打印的时候，就代表已经成功安装了。" class="headerlink" title="官方给出了严重你是否安装成功，以及安装的版本,当成功打印的时候，就代表已经成功安装了。"></a>官方给出了严重你是否安装成功，以及安装的版本,当成功打印的时候，就代表已经成功安装了。</h5><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;</span>&gt; import django</div><div class="line"><span class="meta">&gt;&gt;</span>&gt; print(django.get_version())</div><div class="line"><span class="number">1.11</span></div></pre></td></tr></table></figure>
-<h5 id="也可以直接在终端输入"><a href="#也可以直接在终端输入" class="headerlink" title="也可以直接在终端输入"></a>也可以直接在终端输入</h5><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">python</span> -<span class="keyword">m</span> django --<span class="keyword">version</span></div></pre></td></tr></table></figure>
-<h4 id="直接开始项目："><a href="#直接开始项目：" class="headerlink" title="直接开始项目："></a>直接开始项目：</h4><ol>
-<li>直接在终端输入：此时在当前路径下就会看到我们创建的<code>GhCoder_Site</code>文件夹：</li>
-</ol>
-<figure class="highlight nsis"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">django-<span class="literal">admin</span> startproject GhCoder_Site</div></pre></td></tr></table></figure>
-<ol>
-<li>文件夹的结构：</li>
-</ol>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">├── GhCoder_Site</div><div class="line">│   ├── __init__<span class="selector-class">.py</span></div><div class="line">│   ├── settings<span class="selector-class">.py</span></div><div class="line">│   ├── urls<span class="selector-class">.py</span></div><div class="line">│   └── wsgi<span class="selector-class">.py</span></div><div class="line">└── manage.py</div></pre></td></tr></table></figure>
-<h4 id="这里官方给了一些解释，我觉得很好，有助于我们的理解-其实我之前都是写php的，深有感触–note"><a href="#这里官方给了一些解释，我觉得很好，有助于我们的理解-其实我之前都是写php的，深有感触–note" class="headerlink" title="这里官方给了一些解释，我觉得很好，有助于我们的理解, 其实我之前都是写php的，深有感触–note:"></a>这里官方给了一些解释，我觉得很好，有助于我们的理解, 其实我之前都是写php的，深有感触–note:</h4><blockquote>
-<p>If your background is in plain old PHP (with no use of modern frameworks), you’re probably used to putting code under the Web server’s document root (in a place such as /var/www). With Django, you don’t do that. It’s not a good idea to put any of this Python code within your Web server’s document root, because it risks the possibility that people may be able to view your code over the Web. That’s not good for security.<br>Put your code in some directory outside of the document root, such as /home/mycode.</p>
-</blockquote>
-<h4 id="官方对于每个文件夹以及文件的作用都做了一定的解释，这里我就不解释了很通俗易懂："><a href="#官方对于每个文件夹以及文件的作用都做了一定的解释，这里我就不解释了很通俗易懂：" class="headerlink" title="官方对于每个文件夹以及文件的作用都做了一定的解释，这里我就不解释了很通俗易懂："></a>官方对于每个文件夹以及文件的作用都做了一定的解释，这里我就不解释了很通俗易懂：</h4><ul>
-<li>The outer GhCoder_Site/ root directory is just a container for your project. Its name doesn’t matter to Django; you can rename it to anything you like.</li>
-<li>manage.py: A command-line utility that lets you interact with this Django project in various ways. You can read all the details about manage.py in django-admin and manage.py.</li>
-<li>The inner GhCoder_Site/ directory is the actual Python package for your project. Its name is the Python package name you’ll need to use to import anything inside it (e.g. GhCoder_Site.urls).</li>
-<li>GhCoder_Site/<strong>init</strong>.py: An empty file that tells Python that this directory should be considered a Python package. If you’re a Python beginner, read more about packages in the official Python docs.</li>
-<li>GhCoder_Site/settings.py: Settings/configuration for this Django project. Django settings will tell you all about how settings work.</li>
-<li>GhCoder_Site/urls.py: The URL declarations for this Django project; a “table of contents” of your Django-powered site. You can read more about URLs in URL dispatcher.</li>
-<li>GhCoder_Site/wsgi.py: An entry-point for WSGI-compatible web servers to serve your project. See How to deploy with WSGI for more details.</li>
-</ul>
-<h4 id="下面直接运行下面的命令："><a href="#下面直接运行下面的命令：" class="headerlink" title="下面直接运行下面的命令："></a>下面直接运行下面的命令：</h4><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">python manage<span class="selector-class">.py</span> runserver</div></pre></td></tr></table></figure>
-<h4 id="你会得到这样的反馈："><a href="#你会得到这样的反馈：" class="headerlink" title="你会得到这样的反馈："></a>你会得到这样的反馈：</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">Performing system checks...</div><div class="line"></div><div class="line">System <span class="keyword">check</span> <span class="keyword">identified</span> <span class="keyword">no</span> issues (<span class="number">0</span> silenced).</div><div class="line"></div><div class="line">//请忽略这里</div><div class="line">You have <span class="number">13</span> unapplied <span class="keyword">migration</span>(s). Your <span class="keyword">project</span> may <span class="keyword">not</span> <span class="keyword">work</span> properly <span class="keyword">until</span> you <span class="keyword">apply</span> the migrations <span class="keyword">for</span> app(s): <span class="keyword">admin</span>, auth, contenttypes, sessions.</div><div class="line">Run <span class="string">'python manage.py migrate'</span> <span class="keyword">to</span> <span class="keyword">apply</span> them.</div><div class="line"></div><div class="line">May <span class="number">09</span>, <span class="number">2017</span> - <span class="number">07</span>:<span class="number">08</span>:<span class="number">16</span></div><div class="line">Django <span class="keyword">version</span> <span class="number">1.11</span>, <span class="keyword">using</span> <span class="keyword">settings</span> <span class="string">'GhCoder_Site.settings'</span></div><div class="line"><span class="keyword">Starting</span> development <span class="keyword">server</span> <span class="keyword">at</span> <span class="keyword">http</span>://<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">8000</span>/</div><div class="line">Quit the <span class="keyword">server</span> <span class="keyword">with</span> CONTROL-C.</div></pre></td></tr></table></figure>
-<h4 id="此时打开浏览器，输入http-127-0-0-1-8000-，你就会看到Welcome-to-Django”-page-in-pleasant-light-blue-pastel-It-worked-，就代表成功了。"><a href="#此时打开浏览器，输入http-127-0-0-1-8000-，你就会看到Welcome-to-Django”-page-in-pleasant-light-blue-pastel-It-worked-，就代表成功了。" class="headerlink" title="此时打开浏览器，输入http://127.0.0.1:8000/，你就会看到Welcome to Django” page, in pleasant, light-blue pastel. It worked!，就代表成功了。"></a>此时打开浏览器，输入<code>http://127.0.0.1:8000/</code>，你就会看到<code>Welcome to Django” page, in pleasant, light-blue pastel. It worked!</code>，就代表成功了。</h4><h4 id="切换端口："><a href="#切换端口：" class="headerlink" title="切换端口："></a>切换端口：</h4><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">python manage<span class="selector-class">.py</span> runserver <span class="number">8080</span></div></pre></td></tr></table></figure>
-<h4 id="切换ip、监听所有的ip"><a href="#切换ip、监听所有的ip" class="headerlink" title="切换ip、监听所有的ip"></a>切换ip、监听所有的ip</h4><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">python</span> <span class="selector-tag">manage</span><span class="selector-class">.py</span> <span class="selector-tag">runserver</span> 0<span class="selector-pseudo">:8000</span></div></pre></td></tr></table></figure>
-<h3 id="Django的开发模式都是依赖于一个个app，这一点我非常喜欢，后期就算项目很大，也不会很乱，创建第一个app"><a href="#Django的开发模式都是依赖于一个个app，这一点我非常喜欢，后期就算项目很大，也不会很乱，创建第一个app" class="headerlink" title="Django的开发模式都是依赖于一个个app，这一点我非常喜欢，后期就算项目很大，也不会很乱，创建第一个app:"></a>Django的开发模式都是依赖于一个个app，这一点我非常喜欢，后期就算项目很大，也不会很乱，创建第一个app:</h3><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">python manage<span class="selector-class">.py</span> startapp polls</div></pre></td></tr></table></figure>
-<h3 id="结构如下："><a href="#结构如下：" class="headerlink" title="结构如下："></a>结构如下：</h3><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">.</div><div class="line">├── db<span class="selector-class">.sqlite3</span></div><div class="line">├── GhCoder_Site</div><div class="line">│   ├── __init__<span class="selector-class">.py</span></div><div class="line">│   ├── __init__<span class="selector-class">.pyc</span></div><div class="line">│   ├── settings<span class="selector-class">.py</span></div><div class="line">│   ├── settings<span class="selector-class">.pyc</span></div><div class="line">│   ├── urls<span class="selector-class">.py</span></div><div class="line">│   ├── urls<span class="selector-class">.pyc</span></div><div class="line">│   ├── wsgi<span class="selector-class">.py</span></div><div class="line">│   └── wsgi<span class="selector-class">.pyc</span></div><div class="line">├── manage<span class="selector-class">.py</span></div><div class="line">└── polls</div><div class="line">    ├── admin<span class="selector-class">.py</span></div><div class="line">    ├── apps<span class="selector-class">.py</span></div><div class="line">    ├── __init__<span class="selector-class">.py</span></div><div class="line">    ├── migrations</div><div class="line">    │   └── __init__<span class="selector-class">.py</span></div><div class="line">    ├── models<span class="selector-class">.py</span></div><div class="line">    ├── tests<span class="selector-class">.py</span></div><div class="line">    └── views.py</div></pre></td></tr></table></figure>
-<h4 id="创建第一个views-打开polls-views-py-输入："><a href="#创建第一个views-打开polls-views-py-输入：" class="headerlink" title="创建第一个views,打开polls/views.py,输入："></a>创建第一个views,打开<code>polls/views.py</code>,输入：</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">index</span><span class="params">(request)</span>:</span></div><div class="line">      <span class="keyword">return</span> HttpResponse(<span class="string">"Hello, world, You are in polls app"</span>)</div></pre></td></tr></table></figure>
-<h4 id="现在配置一下路由-到文件polls-创建一个名为urls-py的文件。将之前写的view和这个url对应上："><a href="#现在配置一下路由-到文件polls-创建一个名为urls-py的文件。将之前写的view和这个url对应上：" class="headerlink" title="现在配置一下路由,到文件polls,创建一个名为urls.py的文件。将之前写的view和这个url对应上："></a>现在配置一下路由,到文件<code>polls</code>,创建一个名为<code>urls.py</code>的文件。将之前写的view和这个url对应上：</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> django.conf.urls <span class="keyword">import</span> url                                                                                                                      </div><div class="line"><span class="keyword">from</span> . <span class="keyword">import</span> views</div><div class="line">   </div><div class="line">urlpatterns = [</div><div class="line">               url(<span class="string">r'^$'</span>, views.index, name=<span class="string">'index'</span>)</div><div class="line">           ]</div></pre></td></tr></table></figure>
-<h4 id="最后将app的url，写到项目中的urls-py的文件里面去，到GhCoder-Site-urls-py文件里面，添加如下代码："><a href="#最后将app的url，写到项目中的urls-py的文件里面去，到GhCoder-Site-urls-py文件里面，添加如下代码：" class="headerlink" title="最后将app的url，写到项目中的urls.py的文件里面去，到GhCoder_Site/urls.py文件里面，添加如下代码："></a>最后将app的url，写到项目中的urls.py的文件里面去，到<code>GhCoder_Site/urls.py</code>文件里面，添加如下代码：</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> django.conf.urls <span class="keyword">import</span> include, url</div><div class="line"><span class="keyword">from</span> django.contrib <span class="keyword">import</span> admin</div><div class="line"></div><div class="line">urlpatterns = [</div><div class="line">    url(<span class="string">r'^polls/'</span>, include(<span class="string">'polls.urls'</span>)),</div><div class="line">    url(<span class="string">r'^admin/'</span>, admin.site.urls),</div><div class="line">]</div></pre></td></tr></table></figure>
-<h4 id="这里关于include的官方介绍："><a href="#这里关于include的官方介绍：" class="headerlink" title="这里关于include的官方介绍："></a>这里关于include的官方介绍：</h4><blockquote>
-<p>The include() function allows referencing other URLconfs. Note that the regular expressions for the include() function doesn’t have a $ (end-of-string match character) but rather a trailing slash. Whenever Django encounters include(), it chops off whatever part of the URL matched up to that point and sends the remaining string to the included URLconf for further processing.</p>
-<p>The idea behind include() is to make it easy to plug-and-play URLs. Since polls are in their own URLconf (polls/urls.py), they can be placed under “/polls/”, or under “/fun_polls/”, or under “/content/polls/”, or any other path root, and the app will still work.</p>
-</blockquote>
-<h4 id="此时你访问http-127-0-0-1-8000-polls-就看到你刚才写的view以及url"><a href="#此时你访问http-127-0-0-1-8000-polls-就看到你刚才写的view以及url" class="headerlink" title="此时你访问http://127.0.0.1:8000/polls/就看到你刚才写的view以及url"></a>此时你访问<code>http://127.0.0.1:8000/polls/</code>就看到你刚才写的view以及url</h4>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;人生苦短，我用Python–不管你之前写过多少其他语言，当你有一天回来写python的时候，你就会觉得“世界是那么的美好！”&quot;&gt;&lt;a href=&quot;#人生苦短，我用Python–不管你之前写过多少其他语言，当你有一天回来写python的时候，你就会觉得“世界是那么的美好！”&quot; class=&quot;headerlink&quot; title=&quot;人生苦短，我用Python–不管你之前写过多少其他语言，当你有一天回来写python的时候，你就会觉得“世界是那么的美好！”&quot;&gt;&lt;/a&gt;人生苦短，我用Python–不管你之前写过多少其他语言，当你有一天回来写python的时候，你就会觉得“世界是那么的美好！”&lt;/h3&gt;&lt;h4 id=&quot;今天我就来讲讲我是如何用Python的django-https-docs-djangoproject-com-来搭建后台的：&quot;&gt;&lt;a href=&quot;#今天我就来讲讲我是如何用Python的django-https-docs-djangoproject-com-来搭建后台的：&quot; class=&quot;headerlink&quot; title=&quot;今天我就来讲讲我是如何用Python的django[https://docs.djangoproject.com] 来搭建后台的：&quot;&gt;&lt;/a&gt;今天我就来讲讲我是如何用&lt;code&gt;Python&lt;/code&gt;的&lt;code&gt;django&lt;/code&gt;[&lt;a href=&quot;https://docs.djangoproject.com&quot;&gt;https://docs.djangoproject.com&lt;/a&gt;] 来搭建后台的：&lt;/h4&gt;
     
     </summary>
     
