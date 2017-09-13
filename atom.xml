@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.ghcoder.com/"/>
-  <updated>2017-09-11T05:28:38.000Z</updated>
+  <updated>2017-09-13T06:47:06.000Z</updated>
   <id>http://www.ghcoder.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://www.ghcoder.com/2017/09/08/20170908/"/>
     <id>http://www.ghcoder.com/2017/09/08/20170908/</id>
     <published>2017-09-08T02:53:12.000Z</published>
-    <updated>2017-09-11T05:28:38.000Z</updated>
+    <updated>2017-09-13T06:47:06.000Z</updated>
     
     <content type="html"><![CDATA[<ul>
 <li>在介绍（Tuple）的时候，说了交换输入的方法书写，在Object-C中，有很多方法，我们传入的是指针，这个问题主要的来源就是因为受制约C语言，单一返回，有了Tuple的时候，我们就可以方便的调用了。</li>
@@ -125,6 +125,81 @@
 <li>可以显示的调用<code>super.init()</code>，如果不显示的调用的<code>super.init()</code>的时候，当我们完成子类的实例化方法的时候，就会自己调用<code>super.init()</code>,当然如果存在复写的情况的话，还是需要显示的调用的。</li>
 </ul>
 <hr>
+<ul>
+<li>Designated、Convenience、Required 使用注意点：</li>
+</ul>
+<ol>
+<li>Swift的<code>init</code>只能被调用一次，而且是线程安全的，可以对let属性变量进行赋值。</li>
+<li>在<code>init</code>前面加了<code>convenience</code>的初始化方法必须调用同一个类的<code>init</code>的方法。</li>
+<li><code>convenience</code>的实例化方法不能被重写，并且也不能够被子类通过<code>super</code>的方式调用。</li>
+<li>只要子类重写了<code>convenience</code>方法所需的<code>init</code>的方法后，子类就可以使用<code>convenience</code>的初始化方法。</li>
+<li>当子类含有异于父类的初始化方法时（初始化方法参数类型和数量异于父类），子类必须要实现父类的required初始化方法，并且也要使用required修饰符而不是override。</li>
+<li>当子类没有初始化方法时，可以不用实现父类的required初始化方法。</li>
+</ol>
+<hr>
+<ul>
+<li>对于可以返回nil的初始化方法，我们需要在<code>init?(xxx)</code>，加入<code>?</code></li>
+</ul>
+<hr>
+<ul>
+<li>如果想在protocol 里定义一个类型域上的方法或者计算属性，我们需要在定义的时候用<code>static</code>进行定义。</li>
+</ul>
+<hr>
+<ul>
+<li>在Swift中的集合类型，在定义中可以看出，我们可以将同一种类型的数据存放在集合中，但是如果类型不同呢？我们应该怎么办呢？</li>
+</ul>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Any 类型可以隐式转化</span></div><div class="line"><span class="keyword">let</span> mixed: [CustomStringConvertible] = [<span class="number">1</span>, <span class="string">"two"</span>, <span class="literal">false</span>]</div><div class="line"></div><div class="line"><span class="comment">// 转化为[NSObject]</span></div><div class="line"><span class="keyword">let</span> objectArray = [<span class="number">1</span> <span class="keyword">as</span> NSObject, <span class="string">"two"</span> <span class="keyword">as</span> NSObject, <span class="literal">false</span> <span class="keyword">as</span> NSObject]</div><div class="line"></div><div class="line"><span class="keyword">let</span> any = mixed[<span class="number">2</span>]</div><div class="line"></div><div class="line"><span class="keyword">let</span> nsObject = objectArray[<span class="number">2</span>]</div></pre></td></tr></table></figure>
+<ul>
+<li>这样存储是没啥问题的，但是也会存在一个问题，那就是可能数据会部分丢失，这其实也是不建议的，因为既然你能存放在同一个集合中，那这些元素，就应该存在一定的共同点。</li>
+</ul>
+<figure class="highlight crystal"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">enum</span> <span class="title">IntOrString</span> &#123;</span></div><div class="line">    <span class="keyword">case</span> IntValue(Int)</div><div class="line">    <span class="keyword">case</span> StringValue(String)</div><div class="line">    <span class="keyword">case</span> BoolValue(Bool)</div><div class="line">&#125;</div><div class="line"></div><div class="line">let mixed = [IntOrString.IntValue(<span class="number">1</span>), IntOrString.StringValue(<span class="string">"two"</span>), IntOrString.BoolValue(<span class="literal">false</span>)]</div></pre></td></tr></table></figure>
+<hr>
+<ul>
+<li>默认参数可以在任意的位置:</li>
+</ul>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="symbol">func</span> sayHello1(<span class="keyword">str1: </span><span class="keyword">String </span>= <span class="string">"Hello"</span>, <span class="keyword">str2: </span><span class="keyword">String, </span><span class="keyword">str3: </span><span class="keyword">String) </span>&#123;</div><div class="line">    print(<span class="keyword">str1 </span>+ <span class="keyword">str2 </span>+ <span class="keyword">str3)</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="symbol">func</span> sayHello2(<span class="keyword">str1: </span><span class="keyword">String, </span><span class="keyword">str2: </span><span class="keyword">String, </span><span class="keyword">str3: </span><span class="keyword">String </span>= <span class="string">"World"</span>) &#123;</div><div class="line">    print(<span class="keyword">str1 </span>+ <span class="keyword">str2 </span>+ <span class="keyword">str3)</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="symbol">sayHello1</span>(<span class="keyword">str2: </span><span class="string">" "</span>, <span class="keyword">str3: </span><span class="string">"World"</span>)</div><div class="line"><span class="symbol">sayHello2</span>(<span class="keyword">str1: </span><span class="string">"Hello"</span>, <span class="keyword">str2: </span><span class="string">" "</span>)</div></pre></td></tr></table></figure>
+<hr>
+<ul>
+<li>swift 中没有专门的用来正则匹配的东西，但是围绕<code>NSRegularExpression</code>也是可以在swift上做一下拓展:</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">RegexHelper</span> </span>&#123;</div><div class="line">    <span class="keyword">let</span> regex: <span class="type">NSRegularExpression</span></div><div class="line"></div><div class="line">    <span class="keyword">init</span>(<span class="number">_</span> pattern: <span class="type">String</span>) <span class="keyword">throws</span> &#123;</div><div class="line">        <span class="keyword">try</span> regex = <span class="type">NSRegularExpression</span>(pattern: pattern, options: .caseInsensitive)</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">match</span><span class="params">(<span class="number">_</span> input: String)</span></span> -&gt; <span class="type">Bool</span> &#123;</div><div class="line">        <span class="keyword">let</span> matches = regex.matches(<span class="keyword">in</span>: input,</div><div class="line">                                    options: [],</div><div class="line">                                    range: <span class="type">NSMakeRange</span>(<span class="number">0</span>, input.utf16.<span class="built_in">count</span>))</div><div class="line">        <span class="keyword">return</span> matches.<span class="built_in">count</span> &gt; <span class="number">0</span></div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">let</span> mailPattern = <span class="string">"^([a-z0-9\\.-]+)@([\\da-z\\.-]+)\\.([a-z\\.]&#123;2,6&#125;)$"</span></div><div class="line"></div><div class="line"><span class="keyword">let</span> matcher: <span class="type">RegexHelper</span></div><div class="line"><span class="keyword">do</span> &#123;</div><div class="line">    matcher = <span class="keyword">try</span> <span class="type">RegexHelper</span>(mailPattern)</div><div class="line"></div><div class="line">    <span class="keyword">let</span> maybeMailAddress = <span class="string">"onev@onevcat.com"</span></div><div class="line"></div><div class="line">    <span class="keyword">if</span> matcher.match(maybeMailAddress) &#123;</div><div class="line">        <span class="built_in">print</span>(<span class="string">"有效的邮箱地址"</span>)</div><div class="line">    &#125;</div><div class="line">&#125; <span class="keyword">catch</span> &#123;</div><div class="line">    <span class="built_in">print</span>(error)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<hr>
+<ul>
+<li><code>...</code>(闭区间)和<code>..&lt;</code>(开区间)，除了可以生成一个数字类型的范围外，还是可以生成字符串和ASCII编码：</li>
+</ul>
+<figure class="highlight nix"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> <span class="attr">interval</span> = <span class="string">"a"</span>...<span class="string">"z"</span></div><div class="line"><span class="keyword">let</span> <span class="attr">xx</span> = \<span class="number">0</span>...~</div></pre></td></tr></table></figure>
+<hr>
+<ul>
+<li>任意的类型有：<code>Any/AnyObject/AnyClass</code>, 而 <code>typealias AnyClass = AnyObject.Type</code>, <code>.self</code>用在类型后面取得类型本身，用在某实例后面表示取得实例本事</li>
+<li>通过<code>AnyObject.Type</code>获取得到的是一个元类型， 也就是<code>AnyClass</code>,这时候我们需要调用<code>.self</code>来获取元类。</li>
+</ul>
+<hr>
+<ul>
+<li>在协议中返回值，我们可以返回<code>Self</code>,这个类型的意思是，遵循这个协议的类调用这个方法可以返回一个同样遵循该协议并且相同的类：</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">Copyable</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">copy</span><span class="params">()</span></span> -&gt; <span class="type">Self</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyClass</span>: <span class="title">Copyable</span> </span>&#123;</div><div class="line">    <span class="keyword">var</span> num = <span class="number">1</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">copy</span><span class="params">()</span></span> -&gt; <span class="type">Self</span> &#123;</div><div class="line">        <span class="keyword">let</span> result = type(of: <span class="keyword">self</span>).<span class="keyword">init</span>()</div><div class="line">        result.num = num</div><div class="line">        <span class="keyword">return</span> result</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">required</span> <span class="keyword">init</span>() &#123;</div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>这样书写之后，不管是<code>MyClass</code>还是<code>MyClass</code>的子类都可以同样适用该协议方法。</li>
+<li>并且需要使用<code>required</code>来定义初始化方法，确保该类及其子类都能响应这个初始化方法。</li>
+</ul>
+<hr>
+<ul>
+<li>swift 是不支持动态派发的，所以他不会根据继承的关系，在运行时改变方法的执行：</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Pet</span> </span>&#123;&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Cat</span>: <span class="title">Pet</span> </span>&#123;&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dog</span>: <span class="title">Pet</span> </span>&#123;&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">printPet</span><span class="params">(<span class="number">_</span> pet: Pet)</span></span> &#123;</div><div class="line">    <span class="built_in">print</span>(<span class="string">"Pet"</span>)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">printPet</span><span class="params">(<span class="number">_</span> cat: Cat)</span></span> &#123;</div><div class="line">    <span class="built_in">print</span>(<span class="string">"Meow"</span>)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">printPet</span><span class="params">(<span class="number">_</span> dog: Dog)</span></span> &#123;</div><div class="line">    <span class="built_in">print</span>(<span class="string">"Bark"</span>)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">printThem</span><span class="params">(<span class="number">_</span> pet: Pet, <span class="number">_</span> cat: Cat)</span></span> &#123;</div><div class="line">    printPet(pet) <span class="comment">// Pet</span></div><div class="line">    printPet(cat) <span class="comment">// Meow</span></div><div class="line">&#125;</div><div class="line"></div><div class="line">printThem(<span class="type">Dog</span>(), <span class="type">Cat</span>())</div></pre></td></tr></table></figure>
+<ul>
+<li>虽然我这里传入的是<code>Dog()</code>的实例，但是在函数内部，我们定义的确实它的父类，所以在实际调用的时候，不管你传入的是什么，在编译的时候，就已经决定了，函数调用的入参是<code>pet</code>，如果想要区分的话，只能通过类型的判断去执行：</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">printThem</span><span class="params">(<span class="number">_</span> pet: Pet, <span class="number">_</span> cat: Cat)</span></span> &#123;</div><div class="line">    <span class="keyword">if</span> <span class="keyword">let</span> aCat = pet <span class="keyword">as</span>? <span class="type">Cat</span> &#123;</div><div class="line">        printPet(aCat)</div><div class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> <span class="keyword">let</span> aDog = pet <span class="keyword">as</span>? <span class="type">Dog</span> &#123;</div><div class="line">        printPet(aDog)</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    printPet(cat)</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<hr>
+<ul>
+<li>属性的监听在<code>willSet</code>是将<code>date</code>-&gt;<code>newValue</code>, 而<code>didSet</code>是从<code>oldValue</code>-&gt;<code>date</code>。</li>
+<li>基本上在同一个类中对同一个属性值，不可能存在<code>set</code>/<code>willSet</code>/<code>didSet</code>, 但是如果复写父类的属性值的时候，我们就可以同时实现三个属性值：</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span> </span>&#123;</div><div class="line">    <span class="keyword">var</span> number: <span class="type">Int</span> &#123;</div><div class="line">        <span class="keyword">get</span> &#123;</div><div class="line">            <span class="built_in">print</span>(<span class="string">"get"</span>)</div><div class="line">            <span class="keyword">return</span> <span class="number">1</span></div><div class="line">        &#125;</div><div class="line">        <span class="keyword">set</span> &#123;</div><div class="line">            <span class="built_in">print</span>(<span class="string">"set"</span>)</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span>: <span class="title">A</span> </span>&#123;</div><div class="line">    <span class="keyword">override</span> <span class="keyword">var</span> number: <span class="type">Int</span> &#123;</div><div class="line">        <span class="keyword">willSet</span> &#123; <span class="built_in">print</span>(<span class="string">"willset"</span>) &#125;</div><div class="line">        <span class="keyword">didSet</span>  &#123; <span class="built_in">print</span>(<span class="string">"didSet"</span>) &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">let</span> b = <span class="type">B</span>()</div><div class="line">b.number = <span class="number">0</span></div><div class="line"></div><div class="line"><span class="comment">// 输出</span></div><div class="line"><span class="comment">// get</span></div><div class="line"><span class="comment">// willSet</span></div><div class="line"><span class="comment">// set</span></div><div class="line"><span class="comment">// didSet</span></div></pre></td></tr></table></figure>
+<ul>
+<li>这里首先打印<code>get</code>,是因为这里实现了<code>didSet</code>,在<code>didSet</code>中用到了<code>oldValue</code>, 而这个值需要在整个set动作之前进行获取并存储代用。</li>
+</ul>
 ]]></content>
     
     <summary type="html">
@@ -139,7 +214,7 @@
       <category term="日志" scheme="http://www.ghcoder.com/categories/%E6%97%A5%E5%BF%97/"/>
     
     
-      <category term="Object-C" scheme="http://www.ghcoder.com/tags/Object-C/"/>
+      <category term="Swift" scheme="http://www.ghcoder.com/tags/Swift/"/>
     
   </entry>
   
