@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.ghcoder.com/"/>
-  <updated>2017-09-14T09:34:47.000Z</updated>
+  <updated>2017-09-14T09:39:00.000Z</updated>
   <id>http://www.ghcoder.com/</id>
   
   <author>
@@ -20,12 +20,12 @@
     <link href="http://www.ghcoder.com/2017/09/14/20170914/"/>
     <id>http://www.ghcoder.com/2017/09/14/20170914/</id>
     <published>2017-09-14T06:51:12.000Z</published>
-    <updated>2017-09-14T09:34:47.000Z</updated>
+    <updated>2017-09-14T09:39:00.000Z</updated>
     
     <content type="html"><![CDATA[<ul>
 <li><code>final</code>修饰的<code>class</code>/<code>func</code>/<code>var</code>,表示内容不允许进行继承或者重写</li>
 </ul>
-<p>–</p>
+<hr>
 <ul>
 <li><code>lazy</code>简单赋值：<code>lazy var str1: String = &quot;Hello&quot;</code></li>
 <li><code>lazy</code>计算赋值：</li>
@@ -36,16 +36,16 @@
 <li><code>lazy</code>用在一些<code>map</code>/<code>filter</code>：</li>
 </ul>
 <figure class="highlight livescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> result = data.lazy.map &#123;</div><div class="line">    <span class="function"><span class="params">(i: Int)</span> -&gt;</span> Int <span class="keyword">in</span></div><div class="line"></div><div class="line">    <span class="built_in">print</span>(<span class="string">"正在处理 \(i)"</span>)</div><div class="line"></div><div class="line">    <span class="keyword">return</span> i * <span class="number">2</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>–</p>
+<hr>
 <ul>
 <li>Swift 中的镜像以及反射的问题：我们可以通过<code>Mirror</code>来实现：</li>
 </ul>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> xiaoming = <span class="type">Person</span>(name: <span class="string">"XiaoMing"</span>, age: <span class="number">16</span>)</div><div class="line"><span class="keyword">let</span> r = <span class="type">Mirror</span>(reflecting: xiaoming)</div><div class="line"></div><div class="line"><span class="keyword">if</span> <span class="keyword">let</span> name = valueFrom(xiaoming, key: <span class="string">"name"</span>) <span class="keyword">as</span>? <span class="type">String</span> &#123;</div><div class="line">    <span class="built_in">print</span>(<span class="string">"通过key 得到值:<span class="subst">\(name)</span>"</span>)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="built_in">dump</span>(xiaoming)</div><div class="line"></div><div class="line"><span class="built_in">print</span>(<span class="string">"xiaoming 是<span class="subst">\(r.displayStyle!)</span>"</span>)</div><div class="line"></div><div class="line"><span class="built_in">print</span>(<span class="string">"属性个数:<span class="subst">\(r.children.<span class="built_in">count</span>)</span>"</span>)</div><div class="line"></div><div class="line"><span class="keyword">for</span> child <span class="keyword">in</span> r.children &#123;</div><div class="line">    <span class="built_in">print</span>(<span class="string">"属性名:<span class="subst">\(String(describing: child.label)</span>),值:<span class="subst">\(child.value)</span>"</span>)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">valueFrom</span><span class="params">(<span class="number">_</span> object: Any, key: String)</span></span> -&gt; <span class="type">Any</span>? &#123;</div><div class="line"></div><div class="line">    <span class="keyword">let</span> mirror = <span class="type">Mirror</span>(reflecting: object)</div><div class="line"></div><div class="line">    <span class="keyword">for</span> child <span class="keyword">in</span> mirror.children &#123;</div><div class="line"></div><div class="line">        <span class="keyword">let</span> (targetKey, targetMirror) = (child.label, child.value)</div><div class="line">        <span class="keyword">if</span> key == targetKey &#123;</div><div class="line">            <span class="keyword">return</span> targetMirror</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="literal">nil</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>–</p>
+<hr>
 <ul>
 <li>隐式解包并不能确保属性一定有值，或者一定安全，而是在获取属性值的时候，自动强制解包，如果该值是<code>nil</code>的话，在调用的时候，也是会crash的。</li>
 </ul>
-<p>–</p>
+<hr>
 <ul>
 <li>optional定义其实就是个枚举：</li>
 </ul>
@@ -53,7 +53,7 @@
 <ul>
 <li>打印<code>optional</code>可以通过<code>fr v -R xxx</code></li>
 </ul>
-<p>–</p>
+<hr>
 <ul>
 <li><code>map</code>的使用，我见的最多的就是在数组等集合中的<code>map</code>使用，先来看一下<code>map</code>的定义:</li>
 </ul>
@@ -63,20 +63,24 @@
 <li>除了数组的map外，这里作者还说了一下<code>Optional</code>的<code>map</code>行数，效果一样：</li>
 </ul>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/// Evaluates the given closure when this `Optional` instance is not `nil`,</span></div><div class="line"><span class="comment">/// passing the unwrapped value as a parameter.</span></div><div class="line"><span class="comment">///</span></div><div class="line"><span class="comment">/// Use the `map` method with a closure that returns a nonoptional value.</span></div><div class="line"><span class="comment">/// This example performs an arithmetic operation on an</span></div><div class="line"><span class="comment">/// optional integer.</span></div><div class="line"><span class="comment">///</span></div><div class="line"><span class="comment">///     let possibleNumber: Int? = Int("42")</span></div><div class="line"><span class="comment">///     let possibleSquare = possibleNumber.map &#123; $0 * $0 &#125;</span></div><div class="line"><span class="comment">///     print(possibleSquare)</span></div><div class="line"><span class="comment">///     // Prints "Optional(1746)"</span></div><div class="line"><span class="comment">///</span></div><div class="line"><span class="comment">///     let noNumber: Int? = nil</span></div><div class="line"><span class="comment">///     let noSquare = noNumber.map &#123; $0 * $0 &#125;</span></div><div class="line"><span class="comment">///     print(noSquare)</span></div><div class="line"><span class="comment">///     // Prints "nil"</span></div><div class="line"><span class="comment">///</span></div><div class="line"><span class="comment">/// - Parameter transform: A closure that takes the unwrapped value</span></div><div class="line"><span class="comment">///   of the instance.</span></div><div class="line"><span class="comment">/// - Returns: The result of the given closure. If this instance is `nil`,</span></div><div class="line"><span class="comment">///   returns `nil`.</span></div><div class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">func</span> <span class="title">map</span>&lt;U&gt;<span class="params">(<span class="number">_</span> transform: <span class="params">(Wrapped)</span></span></span> <span class="keyword">throws</span> -&gt; <span class="type">U</span>) <span class="keyword">rethrows</span> -&gt; <span class="type">U</span>?</div><div class="line"></div><div class="line"><span class="comment">// 例子如下：</span></div><div class="line"><span class="keyword">let</span> num: <span class="type">Int</span>? = <span class="number">3</span></div><div class="line"><span class="keyword">let</span> result = num.<span class="built_in">map</span> &#123;</div><div class="line">    $<span class="number">0</span> * <span class="number">2</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="built_in">print</span>(result) <span class="comment">// Optional(6)</span></div></pre></td></tr></table></figure>
-<p>–</p>
+<hr>
 <ul>
 <li><code>protocol</code>的<code>extension</code>的功能，为协议完成了方法的默认实现。这也，即使遵循了协议，你也可以不用写任何实现的代码。</li>
 <li>如果类型推断是实际的类型： 如果类型中没有实现，就会调用拓展中的方法实现。</li>
-<li><p>如果类型推断的是协议：1. 如果在协议中定义过，如果类型中没有实现，那就调用拓展中的实现。 2.如果在协议中没用定义过的话，拓展中的方法默认会被调用。</p>
-<p>–</p>
-</li>
-<li><p><code>where</code>字段的使用，目前已经不能再<code>if</code>/<code>guard</code>中使用<code>where</code>,但是在<code>swich</code>/<code>foreach</code>/<code>for</code>循环中，我们还是可以使用的。</p>
-<p>–</p>
-</li>
+<li>如果类型推断的是协议：1. 如果在协议中定义过，如果类型中没有实现，那就调用拓展中的实现。 2.如果在协议中没用定义过的话，拓展中的方法默认会被调用。</li>
+</ul>
+<hr>
+<ul>
+<li><code>where</code>字段的使用，目前已经不能再<code>if</code>/<code>guard</code>中使用<code>where</code>,但是在<code>swich</code>/<code>foreach</code>/<code>for</code>循环中，我们还是可以使用的。</li>
+</ul>
+<hr>
+<ul>
 <li><p>对于如果需要在<code>enum</code>中循环需要嵌套定义的话，这里我需要用的<code>indirect</code>,例如这样我们就可以这样定义一个单向连边的结构了：</p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">indirect</span> <span class="class"><span class="keyword">enum</span> <span class="title">LinkedList</span>&lt;<span class="title">Element</span>: <span class="title">Comparable</span>&gt; </span>&#123;</div><div class="line"></div><div class="line">   <span class="keyword">case</span> empty</div><div class="line">   <span class="keyword">case</span> node(<span class="type">Element</span>, <span class="type">LinkedList</span>&lt;<span class="type">Element</span>&gt;)</div><div class="line"></div><div class="line">   <span class="comment">// 删除链表中某个元素</span></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">removing</span><span class="params">(<span class="number">_</span> element: Element)</span></span> -&gt; <span class="type">LinkedList</span>&lt;<span class="type">Element</span>&gt; &#123;</div><div class="line">   <span class="keyword">guard</span> <span class="keyword">case</span> <span class="keyword">let</span> .node(value, next) = <span class="keyword">self</span> <span class="keyword">else</span> &#123; <span class="keyword">return</span> .empty &#125;</div><div class="line"></div><div class="line">   <span class="keyword">return</span> value == element ? next : <span class="type">LinkedList</span>.node(value, next.removing(element))</div><div class="line">&#125;    </div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">  <span class="keyword">let</span> linkedList = <span class="type">LinkedList</span>.node(<span class="number">1</span>, .node(<span class="number">2</span>, .node(<span class="number">3</span>, .node(<span class="number">4</span>, .empty))))</div><div class="line">  <span class="keyword">let</span> result = linkedList.removing(<span class="number">2</span>)</div><div class="line">  <span class="built_in">print</span>(result)</div></pre></td></tr></table></figure>
-<p>–</p>
 </li>
+</ul>
+<hr>
+<ul>
 <li><p>在<code>Object-c</code>中，返回<code>SEL</code>，我们会直接调用<code>@selector</code>，但是在<code>Swift</code>中我们已经不能这样调用了，我们需要用到一个字段<code>#selector</code>,使用方法类似：</p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"> <span class="function"><span class="keyword">func</span> <span class="title">callMe</span><span class="params">()</span></span> &#123;&#125;</div><div class="line"></div><div class="line"> <span class="function"><span class="keyword">func</span> <span class="title">callMeWithParam</span><span class="params">(obj: AnyObject!)</span></span> &#123;&#125;</div><div class="line"></div><div class="line"> <span class="function"><span class="keyword">func</span> <span class="title">turn</span><span class="params">(by angle: Int, speed: Int)</span></span> &#123;&#125;</div><div class="line"></div><div class="line"><span class="keyword">let</span> someMethod = #selector(callMe)</div><div class="line"><span class="keyword">let</span> anotherMethod = #selector(callMeWithParam)</div><div class="line"></div><div class="line"><span class="keyword">let</span> method = #selector(turn)</div><div class="line"></div><div class="line"><span class="comment">// 如果名字相同，我们这里需要定义类型：</span></div><div class="line"></div><div class="line"><span class="keyword">let</span> method11 = #selector(comonFunc <span class="keyword">as</span> () -&gt;())</div><div class="line"><span class="keyword">let</span> method22 = #selector(commonFunc(input:) <span class="keyword">as</span> (<span class="type">Int</span>) -&gt; <span class="type">Int</span>)</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"> <span class="function"><span class="keyword">func</span> <span class="title">comonFunc</span><span class="params">()</span></span> &#123;&#125;</div><div class="line"></div><div class="line"> <span class="function"><span class="keyword">func</span> <span class="title">commonFunc</span><span class="params">(input: Int)</span></span> -&gt; <span class="type">Int</span> &#123;</div><div class="line">     <span class="keyword">return</span> input</div><div class="line"> &#125;</div></pre></td></tr></table></figure>
 </li>
@@ -88,7 +92,7 @@
       &lt;ul&gt;
 &lt;li&gt;&lt;code&gt;final&lt;/code&gt;修饰的&lt;code&gt;class&lt;/code&gt;/&lt;code&gt;func&lt;/code&gt;/&lt;code&gt;var&lt;/code&gt;,表示内容不允许进行继承或者重写&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;–&lt;/p&gt;
+&lt;hr&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;code&gt;lazy&lt;/code&gt;简单赋值：&lt;code&gt;lazy var str1: String = &amp;quot;Hello&amp;quot;&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;lazy&lt;/code&gt;计算赋值：&lt;/li&gt;
