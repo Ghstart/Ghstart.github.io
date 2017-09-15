@@ -128,7 +128,7 @@ lazy计算赋值：">
 
 lazy简单赋值：lazy var str1: String = &amp;quot;Hello&amp;quot;
 lazy计算赋值：">
-<meta property="og:updated_time" content="2017-09-14T09:39:00.000Z">
+<meta property="og:updated_time" content="2017-09-15T08:09:45.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="学习Swift Tips(三)">
 <meta name="twitter:description" content="final修饰的class/func/var,表示内容不允许进行继承或者重写
@@ -439,6 +439,64 @@ lazy计算赋值：">
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"> <span class="function"><span class="keyword">func</span> <span class="title">callMe</span><span class="params">()</span></span> &#123;&#125;</div><div class="line"></div><div class="line"> <span class="function"><span class="keyword">func</span> <span class="title">callMeWithParam</span><span class="params">(obj: AnyObject!)</span></span> &#123;&#125;</div><div class="line"></div><div class="line"> <span class="function"><span class="keyword">func</span> <span class="title">turn</span><span class="params">(by angle: Int, speed: Int)</span></span> &#123;&#125;</div><div class="line"></div><div class="line"><span class="keyword">let</span> someMethod = #selector(callMe)</div><div class="line"><span class="keyword">let</span> anotherMethod = #selector(callMeWithParam)</div><div class="line"></div><div class="line"><span class="keyword">let</span> method = #selector(turn)</div><div class="line"></div><div class="line"><span class="comment">// 如果名字相同，我们这里需要定义类型：</span></div><div class="line"></div><div class="line"><span class="keyword">let</span> method11 = #selector(comonFunc <span class="keyword">as</span> () -&gt;())</div><div class="line"><span class="keyword">let</span> method22 = #selector(commonFunc(input:) <span class="keyword">as</span> (<span class="type">Int</span>) -&gt; <span class="type">Int</span>)</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"> <span class="function"><span class="keyword">func</span> <span class="title">comonFunc</span><span class="params">()</span></span> &#123;&#125;</div><div class="line"></div><div class="line"> <span class="function"><span class="keyword">func</span> <span class="title">commonFunc</span><span class="params">(input: Int)</span></span> -&gt; <span class="type">Int</span> &#123;</div><div class="line">     <span class="keyword">return</span> input</div><div class="line"> &#125;</div></pre></td></tr></table></figure>
 </li>
 </ul>
+<hr>
+<ul>
+<li>实例化方法的动态调用：1.通过类获取方法，2.再传入实例得到方法，3.在根据情况传入参数</li>
+</ul>
+<figure class="highlight oxygene"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> MyClass <span class="comment">&#123;</span></div><div class="line">    func method(number: Int) -&gt; Int &#123;</div><div class="line">        return number + 1</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">class</span> func <span class="function"><span class="keyword">method</span><span class="params">(number: Int)</span> -&gt; <span class="title">Int</span> <span class="comment">&#123;</span></span></div><div class="line">        return number</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="title">let</span> <span class="title">f</span> = <span class="title">MyClass</span>.<span class="title">method</span></div><div class="line"><span class="title">let</span> <span class="title">object</span> = <span class="title">MyClass</span><span class="params">()</span></div><div class="line"><span class="title">let</span> <span class="title">result</span> = <span class="title">f</span><span class="params">(object)</span><span class="params">(1)</span></div><div class="line"><span class="title">print</span><span class="params">(<span class="keyword">result</span>)</span></div></pre></td></tr></table></figure>
+<ul>
+<li>如果存在相同名字的函数，可以显示定义类型来区分:</li>
+</ul>
+<figure class="highlight livescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> f1 = MyClass.method</div><div class="line"></div><div class="line"><span class="keyword">let</span> f2: <span class="function"><span class="params">(Int)</span> -&gt;</span> Int = MyClass.method</div><div class="line"></div><div class="line"><span class="keyword">let</span> f3: <span class="function"><span class="params">(MyClass)</span> -&gt;</span> <span class="function"><span class="params">(Int)</span> -&gt;</span> Int = MyClass.method</div></pre></td></tr></table></figure>
+<hr>
+<ul>
+<li>单例：</li>
+</ul>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> <span class="title">Manager</span> &#123;</div><div class="line">	<span class="keyword">static</span> <span class="keyword">let</span> shared = Manager()</div><div class="line">	<span class="function"><span class="keyword">private</span> <span class="title">init</span>(<span class="params"></span>) </span>&#123;&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<hr>
+<ul>
+<li>自定义编译符号，在<code>Build Settings</code>中，找到<code>Swift Compiler - Custom Flag</code>,并且在<code>Other Swift Flags</code>中加上<code>-D FREE_VERSION</code></li>
+</ul>
+<hr>
+<ul>
+<li>编译符号： <code>// MARK:</code>、<code>// TODO:</code>、<code>// FIXME:</code></li>
+</ul>
+<hr>
+<ul>
+<li>app入口文件，这里默认创建app的时候，项目会自动为我们创建main的文件，在<code>swift</code>中，系统自动创建<code>@UIApplicationMain</code>,代表系统会自动将这个类标记为启动文件，但是这里我们可以通过如下的方法，可以将启动的文件指定为我们自定义的类，也可以将事件的接受者指定为我们想要的文件类：</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 创建一个main.swift 的文件</span></div><div class="line"><span class="keyword">import</span> UIKit</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyApplication</span>: <span class="title">UIApplication</span> </span>&#123;</div><div class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">sendEvent</span><span class="params">(<span class="number">_</span> event: UIEvent)</span></span> &#123;</div><div class="line">        <span class="keyword">super</span>.sendEvent(event)</div><div class="line">        <span class="built_in">print</span>(<span class="string">"Event sent: <span class="subst">\(event)</span>"</span>)</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="type">UIApplicationMain</span>(</div><div class="line">    <span class="type">CommandLine</span>.argc,</div><div class="line">    <span class="type">UnsafeMutableRawPointer</span>(<span class="type">CommandLine</span>.unsafeArgv)</div><div class="line">        .bindMemory(</div><div class="line">            to: <span class="type">UnsafeMutablePointer</span>&lt;<span class="type">Int8</span>&gt;.<span class="keyword">self</span>,</div><div class="line">            capacity: <span class="type">Int</span>(<span class="type">CommandLine</span>.argc)),</div><div class="line">    <span class="literal">nil</span>,</div><div class="line">    <span class="type">NSStringFromClass</span>(<span class="type">AppDelegate</span>.<span class="keyword">self</span>)</div><div class="line">)</div></pre></td></tr></table></figure>
+<hr>
+<ul>
+<li>在<code>Swift</code>中的协议默认都是必须要实现的，但是如果用在<code>Object-c</code>中，协议的方法是可选的，我们可以这样实现：</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@objc</span> <span class="class"><span class="keyword">protocol</span> <span class="title">OptionalProtocol</span> </span>&#123;</div><div class="line">    <span class="meta">@objc</span> <span class="keyword">optional</span> <span class="function"><span class="keyword">func</span> <span class="title">optionalMethod</span><span class="params">()</span></span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>但是有了<code>Protocol Extension</code>，我也可以以<code>Swift</code>的方式来实现,对于<code>OC</code>中可选的协议方法，我们可以通过写protocol extension 来实现可选的功能。</li>
+</ul>
+<hr>
+<ul>
+<li><code>Swift</code>中的<code>unowned</code>和以前的<code>unsafe_unretained</code>: 即使它原来引用的内容已经被释放了，它仍然会保持对被释放对象的一个无效引用，它不是optional值，也不能被指向nil,如果调用属性或者方法的时候就会crash。作者建议:</li>
+<li>如果确定在访问的时候，不会被释放的话，就使用<code>unowned</code>，如果存在释放的可能，那就用<code>weak</code></li>
+</ul>
+<hr>
+<ul>
+<li>在<code>swift</code>中，<code>Int</code>/<code>Bool</code>/<code>String</code>/<code>Array</code>/<code>Dictionary</code>都是值类型。</li>
+<li>这些类型只是在简单的赋值的时候，在物理内存上都是同一个东西。</li>
+<li>而当发生一个数据改变的时候，他们的内存地址才会发生变化。</li>
+<li>值类型在赋值的时候，会将储存其中的值类型一并进行复制，而对其中的引用类型，则只是复制了一份引用。</li>
+</ul>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">let myObject = MyObject()</div><div class="line">let <span class="selector-tag">a</span> = [myObject]</div><div class="line"><span class="selector-tag">var</span> <span class="selector-tag">b</span> = <span class="selector-tag">a</span></div><div class="line"></div><div class="line"><span class="selector-tag">b</span>.append(myObject)</div><div class="line"></div><div class="line">myObject<span class="selector-class">.number</span> = <span class="number">100</span></div><div class="line"></div><div class="line"><span class="function"><span class="title">print</span><span class="params">(b[<span class="number">0</span>].number)</span></span> <span class="comment">//100</span></div><div class="line"><span class="function"><span class="title">print</span><span class="params">(b[<span class="number">1</span>].number)</span></span> <span class="comment">//100</span></div></pre></td></tr></table></figure>
+<ul>
+<li>处理大量数据并且频繁操作其中的元素的时候，我们需要使用<code>NSMutableArray</code>、<code>NSMutableDictionary</code>会更好。</li>
+<li>对于容器内条目少、容器本身数目多的情况下，我们需要使用<code>Array</code>、<code>Dictionary</code></li>
+</ul>
+<hr>
+<ul>
+<li><code>swift</code>版本配合<code>range</code>的使用：</li>
+</ul>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">let levels = <span class="string">"ABCDE"</span></div><div class="line"></div><div class="line"></div><div class="line">let nsRange = NSMakeRange(<span class="number">1</span>, <span class="number">4</span>)</div><div class="line"><span class="function"><span class="title">print</span><span class="params">((levels as NSString)</span></span>.replacingCharacters(<span class="keyword">in</span>: nsRange, with: <span class="string">"AAAA"</span>))</div><div class="line"></div><div class="line">let indexPositionOne = levels<span class="selector-class">.characters</span><span class="selector-class">.index</span>(levels<span class="selector-class">.startIndex</span>, offsetBy: <span class="number">1</span>)</div><div class="line">let swiftRange = indexPositionOne ..&lt; levels<span class="selector-class">.characters</span><span class="selector-class">.index</span>(levels<span class="selector-class">.startIndex</span>, offsetBy: <span class="number">5</span>)</div><div class="line"></div><div class="line"><span class="function"><span class="title">print</span><span class="params">(levels.replacingCharacters(in: swiftRange, with: <span class="string">"AAAA"</span>)</span></span>)</div></pre></td></tr></table></figure>
+<hr>
 
       
     </div>
