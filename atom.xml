@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.ghcoder.com/"/>
-  <updated>2017-10-11T09:51:48.000Z</updated>
+  <updated>2017-10-12T09:53:14.000Z</updated>
   <id>http://www.ghcoder.com/</id>
   
   <author>
@@ -20,18 +20,18 @@
     <link href="http://www.ghcoder.com/2017/10/11/20171011/"/>
     <id>http://www.ghcoder.com/2017/10/11/20171011/</id>
     <published>2017-10-11T08:50:12.000Z</published>
-    <updated>2017-10-11T09:51:48.000Z</updated>
+    <updated>2017-10-12T09:53:14.000Z</updated>
     
     <content type="html"><![CDATA[<ul>
 <li>在之前的文章中，已经介绍了一些，过滤、筛选信号量的操作符，现在列举一些复杂操作符。</li>
 </ul>
+<a id="more"></a>
 <hr>
 <ul>
-<li>首先要说的一个操作符叫做<code>Scan</code>，看到在官方文档中，<code>Scan</code>是属于在<code>Transforming</code>，也就可以猜到，这个操作符，其实也是信号转换的部分。</li>
-</ul>
-<a id="more"></a>
-<ul>
-<li>先看一下官方的介绍</li>
+<li><p>首先要说的一个操作符叫做<code>Scan</code>，看到在官方文档中，<code>Scan</code>是属于在<code>Transforming</code>，也就可以猜到，这个操作符，其实也是信号转换的部分。</p>
+</li>
+<li><p>先看一下官方的介绍</p>
+</li>
 </ul>
 <blockquote>
 <p>The Scan operator applies a function to the first item emitted by the source Observable and then emits the result of that function as its own first emission. It also feeds the result of the function back into the function along with the second item emitted by the source Observable in order to generate its second emission. It continues to feed back its own subsequent emissions along with the subsequent emissions from the source Observable in order to create the rest of its sequence.</p>
@@ -86,16 +86,34 @@
 <ul>
 <li>很明显了，index初始值是从0开始，每次都会拿到指针，进行累加，然后回传回去，也就是我们所说的index了。</li>
 </ul>
+<hr>
+<ul>
+<li>下面一个比较难理解的操作符叫做<code>flatMap</code>,看官网上的介绍为是这样的：</li>
+</ul>
+<blockquote>
+<p>transform the items emitted by an Observable into Observables, then flatten the emissions from those into a single Observable</p>
+</blockquote>
+<ul>
+<li>这句话其实非常绕，可能不理解的人可能一直读不懂。首先理解第一句话，<code>transform the items emitted by an Observable into Observables</code>: 我的理解是，由<em>一个</em><code>可被订阅的对象</code>发出的多个值，通过我们传入的<code>block</code>,来变换为多个<code>可订阅的对象</code></li>
+</ul>
+<figure class="highlight ceylon"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> bag = DisposeBag()</div><div class="line"><span class="keyword">let</span> subject = PublishSubject&lt;GHObject&gt;()</div><div class="line">    </div><div class="line"><span class="number">_</span> = subject</div><div class="line">    .flatMap&#123;</div><div class="line">        <span class="number">$0</span>.gh<span class="number">_</span><span class="keyword">value</span>.asObservable()</div><div class="line">    &#125;</div><div class="line">    .subscribe(onNext: &#123;</div><div class="line">        print(type(<span class="keyword">of</span>: <span class="number">$0</span>))</div><div class="line">        dump(<span class="number">$0</span>)</div><div class="line">    &#125;).addDisposableTo(bag)</div><div class="line">    </div><div class="line"><span class="keyword">let</span> gh<span class="number">1</span> = GHObject(gh<span class="number">_</span><span class="keyword">value</span>: Variable(<span class="number">10</span>))</div><div class="line">    </div><div class="line">subject.onNext(gh<span class="number">1</span>)</div><div class="line">gh<span class="number">1</span>.gh<span class="number">_</span><span class="keyword">value</span>.<span class="keyword">value</span> = <span class="number">11</span></div><div class="line"></div><div class="line">...</div><div class="line">struct GHObject &#123;</div><div class="line">    var gh<span class="number">_</span><span class="keyword">value</span>: Variable&lt;Int&gt;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//终端输出</span></div><div class="line">- <span class="number">10</span></div><div class="line">- <span class="number">11</span></div></pre></td></tr></table></figure>
+<ul>
+<li>那第二句话怎么理解呢？<code>then flatten the emissions from those into a single Observable</code>,通过上面的代码已经知道了，我们通过<code>flatMap</code>操作符，已经将<code>GHObject</code>-&gt;<code>Int</code>，如果我存在多个<code>GHObject</code>的对象，同事发出值，此时我们就可以看做是将多个<code>Int</code>的值发送了出来，至于是哪个<code>GHObject</code>发送出来的，我们不需要关心：</li>
+</ul>
+<figure class="highlight ceylon"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> bag = DisposeBag()</div><div class="line"><span class="keyword">let</span> subject = PublishSubject&lt;GHObject&gt;()</div><div class="line">    </div><div class="line"><span class="number">_</span> = subject</div><div class="line">    .flatMap&#123;</div><div class="line">        <span class="number">$0</span>.gh<span class="number">_</span><span class="keyword">value</span>.asObservable()</div><div class="line">    &#125;</div><div class="line">    .subscribe(onNext: &#123;</div><div class="line">        dump(<span class="number">$0</span>)</div><div class="line">    &#125;).addDisposableTo(bag)</div><div class="line">    </div><div class="line"><span class="keyword">let</span> gh<span class="number">1</span> = GHObject(gh<span class="number">_</span><span class="keyword">value</span>: Variable(<span class="number">10</span>))</div><div class="line">    </div><div class="line">subject.onNext(gh<span class="number">1</span>)</div><div class="line">gh<span class="number">1</span>.gh<span class="number">_</span><span class="keyword">value</span>.<span class="keyword">value</span> = <span class="number">11</span></div><div class="line">    </div><div class="line"><span class="keyword">let</span> gh<span class="number">2</span> = GHObject(gh<span class="number">_</span><span class="keyword">value</span>: Variable(<span class="number">100</span>))</div><div class="line">subject.onNext(gh<span class="number">2</span>)</div><div class="line">    </div><div class="line">gh<span class="number">1</span>.gh<span class="number">_</span><span class="keyword">value</span>.<span class="keyword">value</span> = <span class="number">12</span></div><div class="line">gh<span class="number">2</span>.gh<span class="number">_</span><span class="keyword">value</span>.<span class="keyword">value</span> = <span class="number">101</span></div><div class="line">gh<span class="number">2</span>.gh<span class="number">_</span><span class="keyword">value</span>.<span class="keyword">value</span> = <span class="number">102</span></div><div class="line"></div><div class="line"><span class="comment">//终端输出</span></div><div class="line">- <span class="number">10</span></div><div class="line">- <span class="number">11</span></div><div class="line">- <span class="number">100</span></div><div class="line">- <span class="number">12</span></div><div class="line">- <span class="number">101</span></div><div class="line">- <span class="number">102</span></div></pre></td></tr></table></figure>
+<ul>
+<li>至于和<code>flatMap</code>类似的一个操作符,我们叫做<code>flatMapLatest</code>,我是这么李操操作符的：<code>一点接受了一个新的GHObject发的gh_value值之后，之前旧的GHObject_value发出的gh_value我们都会统统过滤掉</code>，Demo:</li>
+</ul>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line">let bag = DisposeBag()</div><div class="line">let subject = PublishSubject&lt;GHObject&gt;()</div><div class="line">    </div><div class="line">_ = subject</div><div class="line">    .flatMapLatest&#123;</div><div class="line">        $<span class="number">0</span><span class="selector-class">.gh_value</span><span class="selector-class">.asObservable</span>()</div><div class="line">    &#125;</div><div class="line">    .subscribe(onNext: &#123;</div><div class="line">        dump($<span class="number">0</span>)</div><div class="line">    &#125;).addDisposableTo(bag)</div><div class="line">    </div><div class="line">let gh1 = GHObject(gh_value: Variable(<span class="number">10</span>))</div><div class="line">    </div><div class="line">subject.onNext(gh1)</div><div class="line">gh1<span class="selector-class">.gh_value</span><span class="selector-class">.value</span> = <span class="number">11</span></div><div class="line">    </div><div class="line">let gh2 = GHObject(gh_value: Variable(<span class="number">100</span>))</div><div class="line"></div><div class="line">subject.onNext(gh2)</div><div class="line">    </div><div class="line">gh1<span class="selector-class">.gh_value</span><span class="selector-class">.value</span> = <span class="number">12</span></div><div class="line">gh2<span class="selector-class">.gh_value</span><span class="selector-class">.value</span> = <span class="number">101</span></div><div class="line">gh2<span class="selector-class">.gh_value</span><span class="selector-class">.value</span> = <span class="number">102</span></div><div class="line">    </div><div class="line">gh1<span class="selector-class">.gh_value</span><span class="selector-class">.value</span> = <span class="number">13</span></div><div class="line">gh1<span class="selector-class">.gh_value</span><span class="selector-class">.value</span> = <span class="number">14</span></div><div class="line">gh1<span class="selector-class">.gh_value</span><span class="selector-class">.value</span> = <span class="number">15</span></div><div class="line"></div><div class="line"><span class="comment">//终端输出</span></div><div class="line">- <span class="number">10</span></div><div class="line">- <span class="number">11</span></div><div class="line">- <span class="number">100</span></div><div class="line">- <span class="number">101</span></div><div class="line">- <span class="number">102</span></div></pre></td></tr></table></figure>
+<ul>
+<li>这个<code>flatMapLatest</code>听上去比较绕，但是一旦拿起笔画画，就会很清晰了。</li>
+</ul>
 ]]></content>
     
     <summary type="html">
     
       &lt;ul&gt;
 &lt;li&gt;在之前的文章中，已经介绍了一些，过滤、筛选信号量的操作符，现在列举一些复杂操作符。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;hr&gt;
-&lt;ul&gt;
-&lt;li&gt;首先要说的一个操作符叫做&lt;code&gt;Scan&lt;/code&gt;，看到在官方文档中，&lt;code&gt;Scan&lt;/code&gt;是属于在&lt;code&gt;Transforming&lt;/code&gt;，也就可以猜到，这个操作符，其实也是信号转换的部分。&lt;/li&gt;
 &lt;/ul&gt;
     
     </summary>
