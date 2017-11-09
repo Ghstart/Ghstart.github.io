@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.ghcoder.com/"/>
-  <updated>2017-11-09T02:17:41.000Z</updated>
+  <updated>2017-11-09T02:19:26.000Z</updated>
   <id>http://www.ghcoder.com/</id>
   
   <author>
@@ -20,17 +20,18 @@
     <link href="http://www.ghcoder.com/2017/10/11/20171011/"/>
     <id>http://www.ghcoder.com/2017/10/11/20171011/</id>
     <published>2017-10-11T08:50:12.000Z</published>
-    <updated>2017-11-09T02:17:41.000Z</updated>
+    <updated>2017-11-09T02:19:26.000Z</updated>
     
     <content type="html"><![CDATA[<ul>
 <li>在之前的文章中，已经介绍了一些，过滤、筛选信号量的操作符，现在列举一些复杂操作符。</li>
 </ul>
 <hr>
 <ul>
-<li><p>首先要说的一个操作符叫做<code>Scan</code>，看到在官方文档中，<code>Scan</code>是属于在<code>Transforming</code>，也就可以猜到，这个操作符，其实也是信号转换的部分。</p>
-</li>
-<li><p>先看一下官方的介绍</p>
-</li>
+<li>首先要说的一个操作符叫做<code>Scan</code>，看到在官方文档中，<code>Scan</code>是属于在<code>Transforming</code>，也就可以猜到，这个操作符，其实也是信号转换的部分。</li>
+</ul>
+<a id="more"></a>
+<ul>
+<li>先看一下官方的介绍</li>
 </ul>
 <blockquote>
 <p>The Scan operator applies a function to the first item emitted by the source Observable and then emits the result of that function as its own first emission. It also feeds the result of the function back into the function along with the second item emitted by the source Observable in order to generate its second emission. It continues to feed back its own subsequent emissions along with the subsequent emissions from the source Observable in order to create the rest of its sequence.</p>
@@ -188,7 +189,8 @@
 &lt;/ul&gt;
 &lt;hr&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;p&gt;首先要说的一个操作符叫做&lt;code&gt;Scan&lt;/code&gt;，看到在官方文档中，&lt;code&gt;Scan&lt;/code&gt;是属于在&lt;
+&lt;li&gt;首先要说的一个操作符叫做&lt;code&gt;Scan&lt;/code&gt;，看到在官方文档中，&lt;code&gt;Scan&lt;/code&gt;是属于在&lt;code&gt;Transforming&lt;/code&gt;，也就可以猜到，这个操作符，其实也是信号转换的部分。&lt;/li&gt;
+&lt;/ul&gt;
     
     </summary>
     
