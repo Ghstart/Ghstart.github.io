@@ -1,0 +1,651 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Swift、Algorithm," />
+
+
+
+
+  
+
+
+  <link rel="alternate" href="/atom.xml" title="Ghcoder" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="这道题是LeetCode上的第2题，难度为Midea的一到题目，这是一道关于链表的题目，原题如下：
+
+
+You are given two non-empty linked lists representing two non-negative integers. The digits are stored in reverse order and each of their nodes con">
+<meta property="og:type" content="article">
+<meta property="og:title" content="每日一刷LeetCode算法">
+<meta property="og:url" content="http://www.ghcoder.com/2018/02/23/20180223/index.html">
+<meta property="og:site_name" content="Ghcoder">
+<meta property="og:description" content="这道题是LeetCode上的第2题，难度为Midea的一到题目，这是一道关于链表的题目，原题如下：
+
+
+You are given two non-empty linked lists representing two non-negative integers. The digits are stored in reverse order and each of their nodes con">
+<meta property="og:updated_time" content="2018-02-23T03:37:11.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="每日一刷LeetCode算法">
+<meta name="twitter:description" content="这道题是LeetCode上的第2题，难度为Midea的一到题目，这是一道关于链表的题目，原题如下：
+
+
+You are given two non-empty linked lists representing two non-negative integers. The digits are stored in reverse order and each of their nodes con">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"remove","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.ghcoder.com/2018/02/23/20180223/"/>
+
+
+
+
+
+  <title>每日一刷LeetCode算法 | Ghcoder</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Ghcoder</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            列表
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://www.ghcoder.com/2018/02/23/20180223/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ghcoder">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars3.githubusercontent.com/u/5730023?v=3&s=460">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ghcoder">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">每日一刷LeetCode算法</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-23T11:22:12+08:00">
+                2018-02-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/日志/" itemprop="url" rel="index">
+                    <span itemprop="name">日志</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/02/23/20180223/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/02/23/20180223/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <ul>
+<li>这道题是LeetCode上的第2题，难度为Midea的一到题目，这是一道关于链表的题目，原题如下：</li>
+</ul>
+<blockquote>
+<p>You are given two non-empty linked lists representing two non-negative integers. The digits are stored in reverse order and each of their nodes contain a single digit. Add the two numbers and return it as a linked list.<br>You may assume the two numbers do not contain any leading zero, except the number 0 itself.</p>
+</blockquote>
+<figure class="highlight coq"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">//<span class="keyword">Example</span></div><div class="line"></div><div class="line">Input: (<span class="number">2</span> -&gt; <span class="number">4</span> -&gt; <span class="number">3</span>) + (<span class="number">5</span> -&gt; <span class="number">6</span> -&gt; <span class="number">4</span>)</div><div class="line">Output: <span class="number">7</span> -&gt; <span class="number">0</span> -&gt; <span class="number">8</span></div><div class="line">Explanation: <span class="number">342</span> + <span class="number">465</span> = <span class="number">807.</span></div></pre></td></tr></table></figure>
+<a id="more"></a>
+<ol>
+<li>看到这道题目我主要的想法就是利用递归循环去遍历链表，并且将数值相加起来，如果超多数值9，相应位置上的数值减10，并且进一位</li>
+<li>循环的遍历条件是Input中两个NodeList只要有一个存在值，就会继续递归。</li>
+</ol>
+<h3 id="如何创建链表"><a href="#如何创建链表" class="headerlink" title="如何创建链表"></a>如何创建链表</h3><ul>
+<li>这个问题我想了一会，最好的创建方式，就是入参就是就是一个Array的数据结构，能够返回一个ListNode?值，函数如下：</li>
+</ul>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">func createList(_ values: [Int]) -&gt; ListNode? &#123;</div><div class="line">    var head: ListNode? = nil</div><div class="line">    var trail: ListNode? = nil</div><div class="line">    values.forEach &#123; (value) <span class="keyword">in</span></div><div class="line">        let <span class="keyword">node</span> <span class="title">= ListNode</span>(value)</div><div class="line">        if head == nil &#123;</div><div class="line">            head = <span class="keyword">node</span></div><div class="line">        <span class="title">&#125; else</span> &#123;</div><div class="line">            trail!.next = <span class="keyword">node</span></div><div class="line">        <span class="title">&#125;</span></div><div class="line">        trail = <span class="keyword">node</span></div><div class="line">    <span class="title">&#125;</span></div><div class="line">    return head</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="如何递归："><a href="#如何递归：" class="headerlink" title="如何递归："></a>如何递归：</h3><ul>
+<li>这里开始第一次提交的时候，错误了，就是入参在<code>[5][5]</code>的时候，我的返回值是<code>[0]</code>,但是应该是<code>[0,1]</code>,是因为我的循环条件忽略了<code>resultNode</code>值的判断。</li>
+</ul>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line">func addTwoNumbers(_ l1: ListNode?, _ l2: ListNode?) -&gt; ListNode? &#123;</div><div class="line">    </div><div class="line">    <span class="keyword">var</span> n1 = l1</div><div class="line">    <span class="keyword">var</span> n2 = l2</div><div class="line">    </div><div class="line">    <span class="keyword">var</span> resultNode: ListNode?</div><div class="line">    <span class="keyword">var</span> arr: [<span class="built_in">Int</span>] = []</div><div class="line"></div><div class="line">    <span class="keyword">while</span> n1?.<span class="keyword">val</span> != nil || n2?.<span class="keyword">val</span> != nil || resultNode?.<span class="keyword">val</span> != nil &#123;</div><div class="line">        </div><div class="line">        <span class="keyword">var</span> temp1: <span class="built_in">Int</span> = <span class="number">0</span></div><div class="line">        <span class="keyword">var</span> temp2: <span class="built_in">Int</span> = <span class="number">0</span></div><div class="line">        <span class="keyword">if</span> let v1 = n1?.<span class="keyword">val</span> &#123; temp1 = v1 &#125;</div><div class="line">        <span class="keyword">if</span> let v2 = n2?.<span class="keyword">val</span> &#123; temp2 = v2 &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">var</span> last: <span class="built_in">Int</span> = temp1 + temp2</div><div class="line">        <span class="keyword">if</span> let resultNode = resultNode &#123;</div><div class="line">            last += resultNode.<span class="keyword">val</span></div><div class="line">        &#125;</div><div class="line">   </div><div class="line">        <span class="keyword">if</span> (last &gt; <span class="number">9</span>) &#123;</div><div class="line">            resultNode = ListNode(last - <span class="number">10</span>)</div><div class="line">            resultNode?.next = ListNode(<span class="number">1</span>)</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            resultNode = ListNode(last)</div><div class="line">        &#125;</div><div class="line">        arr.append(resultNode!.<span class="keyword">val</span>)</div><div class="line">        n1 = n1?.next</div><div class="line">        n2 = n2?.next</div><div class="line">        resultNode = resultNode?.next</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> createList(arr)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Swift、Algorithm/" rel="tag"># Swift、Algorithm</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/12/20/20171221/" rel="next" title="自定义创建UIViewController Transition的动画效果">
+                <i class="fa fa-chevron-left"></i> 自定义创建UIViewController Transition的动画效果
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ghcoder</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://ghcoder1024.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://www.ghcoder.com/2018/02/23/20180223/';
+          this.page.identifier = '2018/02/23/20180223/';
+          this.page.title = '每日一刷LeetCode算法';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://ghcoder1024.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
