@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.ghcoder.com/"/>
-  <updated>2018-02-23T03:37:11.000Z</updated>
+  <updated>2018-11-04T02:35:44.044Z</updated>
   <id>http://www.ghcoder.com/</id>
   
   <author>
@@ -14,6 +14,35 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Swift语法备忘录</title>
+    <link href="http://www.ghcoder.com/2018/11/03/20181103/"/>
+    <id>http://www.ghcoder.com/2018/11/03/20181103/</id>
+    <published>2018-11-03T08:29:12.000Z</published>
+    <updated>2018-11-04T02:35:44.044Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="for-xx-xx-xx-在swift中的写法：-gt-stride-from-to-by-从起始位置开始，每次增加或者减少确定的数量，到终点为止（不包含终点为止）"><a href="#for-xx-xx-xx-在swift中的写法：-gt-stride-from-to-by-从起始位置开始，每次增加或者减少确定的数量，到终点为止（不包含终点为止）" class="headerlink" title="for(xx;xx;xx) 在swift中的写法：-&gt; stride(from:to:by:) 从起始位置开始，每次增加或者减少确定的数量，到终点为止（不包含终点为止）"></a>for(xx;xx;xx) 在swift中的写法：-&gt; stride(from:to:by:) 从起始位置开始，每次增加或者减少确定的数量，到终点为止（不包含终点为止）</h2><blockquote>
+<p>Returns a sequence from a starting value to, but not including, an end value, stepping by the specified amount.</p>
+</blockquote>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> index <span class="keyword">in</span> stride(<span class="string">from:</span> <span class="number">10</span>, <span class="string">to:</span> <span class="number">1</span>, <span class="string">by:</span> <span class="number">-1</span>) &#123;</div><div class="line">    print(<span class="string">"index:\(index)"</span>)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 终端打印</span></div><div class="line"><span class="string">index:</span><span class="number">10</span></div><div class="line"><span class="string">index:</span><span class="number">9</span></div><div class="line"><span class="string">index:</span><span class="number">8</span></div><div class="line"><span class="string">index:</span><span class="number">7</span></div><div class="line"><span class="string">index:</span><span class="number">6</span></div><div class="line"><span class="string">index:</span><span class="number">5</span></div><div class="line"><span class="string">index:</span><span class="number">4</span></div><div class="line"><span class="string">index:</span><span class="number">3</span></div><div class="line"><span class="string">index:</span><span class="number">2</span></div></pre></td></tr></table></figure>
+<h2 id="将一个String用一个Character-String分隔："><a href="#将一个String用一个Character-String分隔：" class="headerlink" title="将一个String用一个Character/String分隔："></a>将一个String用一个Character/String分隔：</h2><figure class="highlight maxima"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">let</span> stringArray = <span class="built_in">string</span>.<span class="built_in">components</span>(separatedBy: <span class="string">"xx"</span>)</div></pre></td></tr></table></figure>
+<h2 id="找到某个subString，并且remove掉-ps-这里只能找到一处并且删除掉-："><a href="#找到某个subString，并且remove掉-ps-这里只能找到一处并且删除掉-：" class="headerlink" title="找到某个subString，并且remove掉(ps: 这里只能找到一处并且删除掉)："></a>找到某个subString，并且remove掉(ps: 这里只能找到一处并且删除掉)：</h2><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var conetent = <span class="string">"Hello World"</span></div><div class="line"><span class="keyword">let</span> <span class="built_in">range</span> = conetent.<span class="built_in">range</span>(of: <span class="string">" "</span>)!</div><div class="line"><span class="keyword">let</span> <span class="built_in">index</span> = conetent.distance(from: conetent.startIndex, <span class="keyword">to</span>: <span class="built_in">range</span>.lowerBound)</div><div class="line">conetent = String(conetent[..&lt;conetent.<span class="built_in">index</span>(conetent.startIndex, offsetBy: <span class="built_in">index</span>)]) + String(conetent[conetent.<span class="built_in">index</span>(conetent.startIndex, offsetBy: <span class="built_in">index</span>+<span class="number">1</span>)..&lt;conetent.endIndex])</div></pre></td></tr></table></figure>
+<h2 id="替换某个字符"><a href="#替换某个字符" class="headerlink" title="替换某个字符"></a>替换某个字符</h2><figure class="highlight nix"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> <span class="attr">conetent</span> = <span class="string">"Hello World"</span></div><div class="line"><span class="keyword">let</span> <span class="attr">newContent</span> = conetent.replacingOccurrences(of: <span class="string">" "</span>, <span class="keyword">with</span>: <span class="string">"&amp;"</span>)</div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;for-xx-xx-xx-在swift中的写法：-gt-stride-from-to-by-从起始位置开始，每次增加或者减少确定的数量，到终点为止（不包含终点为止）&quot;&gt;&lt;a href=&quot;#for-xx-xx-xx-在swift中的写法：-gt-stride-fro
+    
+    </summary>
+    
+      <category term="日志" scheme="http://www.ghcoder.com/categories/%E6%97%A5%E5%BF%97/"/>
+    
+    
+      <category term="Swift" scheme="http://www.ghcoder.com/tags/Swift/"/>
+    
+  </entry>
   
   <entry>
     <title>每日一刷LeetCode算法</title>
@@ -565,7 +594,7 @@
     <link href="http://www.ghcoder.com/2017/10/05/20171005/"/>
     <id>http://www.ghcoder.com/2017/10/05/20171005/</id>
     <published>2017-10-05T05:57:12.000Z</published>
-    <updated>2017-10-05T10:51:56.080Z</updated>
+    <updated>2017-10-05T10:51:56.081Z</updated>
     
     <content type="html"><![CDATA[<ul>
 <li><p>举一个简单的例子，来实现RxSwift的功能：</p>
@@ -1938,74 +1967,6 @@
     
     
       <category term="OC" scheme="http://www.ghcoder.com/tags/OC/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>学习《iOS Animations》</title>
-    <link href="http://www.ghcoder.com/2017/07/04/20170704/"/>
-    <id>http://www.ghcoder.com/2017/07/04/20170704/</id>
-    <published>2017-07-04T09:55:12.000Z</published>
-    <updated>2017-07-04T02:33:34.000Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="最近一直在学习《iOS-Animations》这本书，记录一下学习到知识点："><a href="#最近一直在学习《iOS-Animations》这本书，记录一下学习到知识点：" class="headerlink" title="最近一直在学习《iOS Animations》这本书，记录一下学习到知识点："></a>最近一直在学习《iOS Animations》这本书，记录一下学习到知识点：</h2><ul>
-<li>这本都快看完了，一直觉得没啥可做笔记的，以为UI动画的一些用法，你知道就是知道，不知道就是不知道，知道了 就觉得很容易，所以觉得这是一个熟能生巧的技能，但是想想，这本书都快看完了，还是要留下一些什么，所以觉得记些东西。</li>
-</ul>
-<h3 id="Animating-Constraints-如何在动画中修改约束"><a href="#Animating-Constraints-如何在动画中修改约束" class="headerlink" title="Animating Constraints 如何在动画中修改约束"></a>Animating Constraints 如何在动画中修改约束</h3><ul>
-<li>最简单的就是获取<code>NSLayoutConstraint!</code>的属性值，直接修改对象的<code>constant</code>可以直接实现约束值的改变。官方的api解释如下：</li>
-</ul>
-<blockquote>
-<p> Unlike the other properties, the constant may be modified after constraint creation.  Setting the constant on an existing constraint performs much better than removing the constraint and adding a new one that’s just like the old but for having a new constant.</p>
-</blockquote>
-<a id="more"></a>
-<figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@IBOutlet</span> weak var <span class="string">menuHeightConstraint:</span> NSLayoutConstraint!</div><div class="line">menuHeightConstraint.constant = isMenuOpen ? 200.0 : <span class="number">60.0</span></div></pre></td></tr></table></figure>
-<h4 id="1-1-添加动画"><a href="#1-1-添加动画" class="headerlink" title="1.1 添加动画"></a>1.1 添加动画</h4><ul>
-<li>运用类似这些api<code>animate(withDuration:animations:)</code>就可以实现动画。</li>
-<li>可以在animations的closure里面添加动画的代码，也可以在外面修改完响应的约束代码，然后直接在closure中调用<code>self.view.layoutIfNeeded()</code></li>
-</ul>
-<figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">UIView.animate(<span class="string">withDuration:</span> <span class="number">1.0</span>, <span class="string">delay:</span> <span class="number">0.0</span>, <span class="string">usingSpringWithDamping:</span> <span class="number">0.4</span>, <span class="string">initialSpringVelocity:</span> <span class="number">10.0</span>, <span class="string">options:</span> .curveEaseIn, <span class="string">animations:</span> &#123;</div><div class="line">    self.view.layoutIfNeeded()        </div><div class="line">&#125;, <span class="string">completion:</span> nil)</div></pre></td></tr></table></figure>
-<h4 id="1-2-遍历修改约束"><a href="#1-2-遍历修改约束" class="headerlink" title="1.2 遍历修改约束"></a>1.2 遍历修改约束</h4><figure class="highlight stata"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">titleLabel.superview?.constraints.<span class="keyword">forEach</span> &#123; <span class="keyword">constraint</span> <span class="keyword">in</span></div><div class="line">	 <span class="keyword">if</span> <span class="keyword">constraint</span>.firstItem === titleLabel &amp;&amp;</div><div class="line">     <span class="keyword">constraint</span>.firstAttribute == .centerX &#123;</div><div class="line">    <span class="keyword">constraint</span>.constant = isMenuOpen ? -100.0 : 0.0</div><div class="line">    <span class="built_in">return</span></div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>这里的作用就是遍历<code>titleLabel</code>的父视图的约束.</li>
-<li>表达式<code>firstItem.firstAttribute = secondItem.secondAttribute + constant</code></li>
-<li>删除某个约束，是通过 <code>isActive</code>的属性来设置的，<code>isActive</code>的属性为<code>false</code>的时候，就代表去除约束, 当设置<code>isActive</code>的属性值为<code>false</code>,视图的层级会删除约束，并且如果没有对象引用它，它就会从内存中去除掉。</li>
-</ul>
-<h4 id="1-3-添加新的约束"><a href="#1-3-添加新的约束" class="headerlink" title="1.3 添加新的约束"></a>1.3 添加新的约束</h4><ul>
-<li>1.在刚才枚举中，可以通过循环，并且创建一个新的约束，并且替换掉：</li>
-</ul>
-<figure class="highlight dts"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">let newConstraint = NSLayoutConstraint(</div><div class="line"><span class="symbol">  item:</span> titleLabel,</div><div class="line"><span class="symbol">  attribute:</span> .centerY,</div><div class="line"><span class="symbol">  relatedBy:</span> .equal,</div><div class="line"><span class="symbol">  toItem:</span> titleLabel.superview!,</div><div class="line"><span class="symbol">  attribute:</span> .centerY,</div><div class="line"><span class="symbol">  multiplier:</span> isMenuOpen ? <span class="number">0.67</span> : <span class="number">1.0</span>,</div><div class="line"><span class="symbol">  constant:</span> <span class="number">5.0</span>)</div><div class="line">newConstraint.identifier = <span class="string">"TitleCenterY"</span></div><div class="line">newConstraint.isActive = true</div></pre></td></tr></table></figure>
-<ul>
-<li>通过设置<code>identifier</code>的属性值，来找到视图层级的元素，通过设置<code>isActive</code>来告诉<code>Autolayout</code>将其应用到当前的布局中去。</li>
-<li>如果是手动编写<code>autolayout</code>的代码，创建完新的约束后，需要通过<code>addConstraint</code>,将新的约束添加到视图上去。</li>
-<li>但是系统更偏向于使用<code>NSLayoutConstraint.activate(_:)</code>的类方法,接受一个 constraint的数组，性能更优，官方api的解释如下:</li>
-</ul>
-<blockquote>
-<p>Convenience method that activates each constraint in the contained array, in the same manner as setting active=YES. This is often more efficient than activating each constraint individually.</p>
-</blockquote>
-<ul>
-<li>2.</li>
-</ul>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">let conX = imageView<span class="selector-class">.centerXAnchor</span><span class="selector-class">.constraint</span>(equalTo: view.centerXAnchor)</div><div class="line">let conBottom = imageView<span class="selector-class">.bottomAnchor</span><span class="selector-class">.constraint</span>(equalTo: view<span class="selector-class">.bottomAnchor</span>, constant: imageView<span class="selector-class">.frame</span><span class="selector-class">.height</span>)</div><div class="line">let conWidth  = imageView<span class="selector-class">.widthAnchor</span><span class="selector-class">.constraint</span>(equalTo: view<span class="selector-class">.widthAnchor</span>, multiplier: <span class="number">0.33</span>, constant: -<span class="number">50</span>)</div><div class="line">let conHeight = imageView<span class="selector-class">.heightAnchor</span><span class="selector-class">.constraint</span>(equalTo: imageView.widthAnchor)</div><div class="line">NSLayoutConstraint.activate([conX, conBottom, conWidth, conHeight])</div></pre></td></tr></table></figure>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;最近一直在学习《iOS-Animations》这本书，记录一下学习到知识点：&quot;&gt;&lt;a href=&quot;#最近一直在学习《iOS-Animations》这本书，记录一下学习到知识点：&quot; class=&quot;headerlink&quot; title=&quot;最近一直在学习《iOS Animations》这本书，记录一下学习到知识点：&quot;&gt;&lt;/a&gt;最近一直在学习《iOS Animations》这本书，记录一下学习到知识点：&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;这本都快看完了，一直觉得没啥可做笔记的，以为UI动画的一些用法，你知道就是知道，不知道就是不知道，知道了 就觉得很容易，所以觉得这是一个熟能生巧的技能，但是想想，这本书都快看完了，还是要留下一些什么，所以觉得记些东西。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&quot;Animating-Constraints-如何在动画中修改约束&quot;&gt;&lt;a href=&quot;#Animating-Constraints-如何在动画中修改约束&quot; class=&quot;headerlink&quot; title=&quot;Animating Constraints 如何在动画中修改约束&quot;&gt;&lt;/a&gt;Animating Constraints 如何在动画中修改约束&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;最简单的就是获取&lt;code&gt;NSLayoutConstraint!&lt;/code&gt;的属性值，直接修改对象的&lt;code&gt;constant&lt;/code&gt;可以直接实现约束值的改变。官方的api解释如下：&lt;/li&gt;
-&lt;/ul&gt;
-&lt;blockquote&gt;
-&lt;p&gt; Unlike the other properties, the constant may be modified after constraint creation.  Setting the constant on an existing constraint performs much better than removing the constraint and adding a new one that’s just like the old but for having a new constant.&lt;/p&gt;
-&lt;/blockquote&gt;
-    
-    </summary>
-    
-      <category term="日志" scheme="http://www.ghcoder.com/categories/%E6%97%A5%E5%BF%97/"/>
-    
-    
-      <category term="Swift" scheme="http://www.ghcoder.com/tags/Swift/"/>
     
   </entry>
   

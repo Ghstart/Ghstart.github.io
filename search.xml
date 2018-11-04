@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Swift语法备忘录]]></title>
+    <url>%2F2018%2F11%2F03%2F20181103%2F</url>
+    <content type="text"><![CDATA[for(xx;xx;xx) 在swift中的写法：-&gt; stride(from:to:by:) 从起始位置开始，每次增加或者减少确定的数量，到终点为止（不包含终点为止） Returns a sequence from a starting value to, but not including, an end value, stepping by the specified amount. 1234567891011121314for index in stride(from: 10, to: 1, by: -1) &#123; print("index:\(index)")&#125;// 终端打印index:10index:9index:8index:7index:6index:5index:4index:3index:2 将一个String用一个Character/String分隔：1let stringArray = string.components(separatedBy: "xx") 找到某个subString，并且remove掉(ps: 这里只能找到一处并且删除掉)：1234var conetent = "Hello World"let range = conetent.range(of: " ")!let index = conetent.distance(from: conetent.startIndex, to: range.lowerBound)conetent = String(conetent[..&lt;conetent.index(conetent.startIndex, offsetBy: index)]) + String(conetent[conetent.index(conetent.startIndex, offsetBy: index+1)..&lt;conetent.endIndex]) 替换某个字符12let conetent = "Hello World"let newContent = conetent.replacingOccurrences(of: " ", with: "&amp;")]]></content>
+      <categories>
+        <category>日志</category>
+      </categories>
+      <tags>
+        <tag>Swift</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[每日一刷LeetCode算法]]></title>
     <url>%2F2018%2F02%2F23%2F20180223%2F</url>
     <content type="text"><![CDATA[这道题是LeetCode上的第2题，难度为Midea的一到题目，这是一道关于链表的题目，原题如下： You are given two non-empty linked lists representing two non-negative integers. The digits are stored in reverse order and each of their nodes contain a single digit. Add the two numbers and return it as a linked list.You may assume the two numbers do not contain any leading zero, except the number 0 itself. 12345//ExampleInput: (2 -&gt; 4 -&gt; 3) + (5 -&gt; 6 -&gt; 4)Output: 7 -&gt; 0 -&gt; 8Explanation: 342 + 465 = 807. 看到这道题目我主要的想法就是利用递归循环去遍历链表，并且将数值相加起来，如果超多数值9，相应位置上的数值减10，并且进一位 循环的遍历条件是Input中两个NodeList只要有一个存在值，就会继续递归。 如何创建链表 这个问题我想了一会，最好的创建方式，就是入参就是就是一个Array的数据结构，能够返回一个ListNode?值，函数如下： 1234567891011121314func createList(_ values: [Int]) -&gt; ListNode? &#123; var head: ListNode? = nil var trail: ListNode? = nil values.forEach &#123; (value) in let node = ListNode(value) if head == nil &#123; head = node &#125; else &#123; trail!.next = node &#125; trail = node &#125; return head&#125; 如何递归： 这里开始第一次提交的时候，错误了，就是入参在[5][5]的时候，我的返回值是[0],但是应该是[0,1],是因为我的循环条件忽略了resultNode值的判断。 12345678910111213141516171819202122232425262728293031323334func addTwoNumbers(_ l1: ListNode?, _ l2: ListNode?) -&gt; ListNode? &#123; var n1 = l1 var n2 = l2 var resultNode: ListNode? var arr: [Int] = [] while n1?.val != nil || n2?.val != nil || resultNode?.val != nil &#123; var temp1: Int = 0 var temp2: Int = 0 if let v1 = n1?.val &#123; temp1 = v1 &#125; if let v2 = n2?.val &#123; temp2 = v2 &#125; var last: Int = temp1 + temp2 if let resultNode = resultNode &#123; last += resultNode.val &#125; if (last &gt; 9) &#123; resultNode = ListNode(last - 10) resultNode?.next = ListNode(1) &#125; else &#123; resultNode = ListNode(last) &#125; arr.append(resultNode!.val) n1 = n1?.next n2 = n2?.next resultNode = resultNode?.next &#125; return createList(arr)&#125;]]></content>
