@@ -1,0 +1,701 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="Object-C、加密,">
+
+
+
+
+  
+
+
+  <link rel="alternate" href="/atom.xml" title="Ghcoder" type="application/atom+xml">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1">
+
+
+
+
+
+
+<meta name="description" content="目标：1.修改爱奇艺App2.将这个修改过的App重签名3.安装在未越狱手机上 准备：1.越狱手机和一台未越狱手机2.Mac电脑">
+<meta name="keywords" content="Object-C、加密">
+<meta property="og:type" content="article">
+<meta property="og:title" content="非越狱手机植入动态库">
+<meta property="og:url" content="http://www.ghcoder.com/2018/12/12/20181212/index.html">
+<meta property="og:site_name" content="Ghcoder">
+<meta property="og:description" content="目标：1.修改爱奇艺App2.将这个修改过的App重签名3.安装在未越狱手机上 准备：1.越狱手机和一台未越狱手机2.Mac电脑">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-12-12T02:13:00.825Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="非越狱手机植入动态库">
+<meta name="twitter:description" content="目标：1.修改爱奇艺App2.将这个修改过的App重签名3.安装在未越狱手机上 准备：1.越狱手机和一台未越狱手机2.Mac电脑">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"remove","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.ghcoder.com/2018/12/12/20181212/">
+
+
+
+
+
+  <title>非越狱手机植入动态库 | Ghcoder</title>
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Ghcoder</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            列表
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://www.ghcoder.com/2018/12/12/20181212/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ghcoder">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars3.githubusercontent.com/u/5730023?v=3&s=460">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ghcoder">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">非越狱手机植入动态库</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-12T09:48:12+08:00">
+                2018-12-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/日志/" itemprop="url" rel="index">
+                    <span itemprop="name">日志</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/12/12/20181212/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/12/12/20181212/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="目标："><a href="#目标：" class="headerlink" title="目标："></a>目标：</h3><p>1.修改爱奇艺App<br>2.将这个修改过的App重签名<br>3.安装在未越狱手机上</p>
+<h3 id="准备："><a href="#准备：" class="headerlink" title="准备："></a>准备：</h3><p>1.越狱手机和一台未越狱手机<br>2.Mac电脑</p>
+<a id="more"></a>
+<h4 id="1-修改爱奇艺App"><a href="#1-修改爱奇艺App" class="headerlink" title="1. 修改爱奇艺App"></a>1. 修改爱奇艺App</h4><ul>
+<li>步骤1. 在越狱手机AppStore上下载爱奇艺App.</li>
+<li>步骤2. 在越狱手机上找到爱奇艺的AppID, 这里可以通过<a href="https://github.com/CoderMJLee/MJAppTools" target="_blank" rel="noopener">MJAppTools</a>, 快速查询(这里也可以通过<a href="http://www.cycript.org/" target="_blank" rel="noopener">Cycript</a>来找到)，代码如下：</li>
+</ul>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 终端</span></span><br><span class="line">MJAppTools -l</span><br><span class="line"></span><br><span class="line"><span class="comment">// 显示</span></span><br><span class="line">【爱奇艺】 &lt;com.qiyi.iphone&gt;</span><br><span class="line"><span class="regexp">/private/</span>var<span class="regexp">/mobile/</span>Containers<span class="regexp">/Bundle/</span>Application<span class="regexp">/C8575DD1-889E-4E70-AF66-4E4CC920F6AC/</span>iQiYiPhoneVideo.app</span><br><span class="line"><span class="regexp">/private/</span>var<span class="regexp">/mobile/</span>Containers<span class="regexp">/Data/</span>Application/CD9280DD-C4C3<span class="number">-4</span>CF2<span class="number">-84E0</span><span class="number">-5</span>F484596E211</span><br><span class="line">  arm_64 加壳</span><br></pre></td></tr></table></figure>
+<ul>
+<li>步骤3. 创建一个名叫<strong>libReveal.plist</strong>的文件，将刚才的AppIDcopy进plist中，如下:</li>
+</ul>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line"><span class="built_in">	Filter </span>= &#123;</span><br><span class="line">		Bundles = (</span><br><span class="line">			<span class="string">"com.qiyi.iphone"</span></span><br><span class="line">		);</span><br><span class="line">	&#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>步骤4. 打开Reveal</li>
+</ul>
+<figure class="highlight xl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1. 找到</span></span><br><span class="line">H<span class="function"><span class="title">elpe</span> -&gt;</span> S<span class="function"><span class="title">how</span> Reveal Library <span class="built_in">in</span> Finder -&gt;</span> iOS Library</span><br><span class="line"><span class="comment">//2. 重命名</span></span><br><span class="line">R<span class="function"><span class="title">evealServer</span> -&gt;</span> libReveal</span><br></pre></td></tr></table></figure>
+<ul>
+<li>步骤5. 将libReveal.plist 和 libReveal.dylib 同时上传到越狱机器以下路径（可以通过iFunBox）：</li>
+</ul>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Device<span class="regexp">/Library/</span>MobileSubStrate<span class="regexp">/DynamicLibraries</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>步骤6. 此时打开Reveal和越狱机器上的爱奇艺App，结合<a href="http://www.cycript.org/" target="_blank" rel="noopener">Cycript</a>或者<a href="https://github.com/CoderMJLee/mjcript" target="_blank" rel="noopener">mjcript</a>, 可以找到你想要修改的东西所属的类，这里如果我们需要修改播放的广告。</p>
+</li>
+<li><p>步骤7. 通过Reveal可以找到启动页面相关的广告View是<code>QYStartADView</code>, 它所属的类是<code>QYStartADViewController</code></p>
+</li>
+<li><p>步骤8. 通过<a href="https://github.com/KJCracks/Clutch" target="_blank" rel="noopener">Clutch</a>或<a href="https://github.com/stefanesser/dumpdecrypted" target="_blank" rel="noopener">dumpdecrypted</a>脱壳，得到脱壳后的新App。我用的是Clutch,代码如下:</p>
+</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">// 罗列手机上可以脱壳的App</span><br><span class="line">Clutch -i</span><br><span class="line">// 脱壳指定App</span><br><span class="line">Clutch -d x(爱奇异的前面的数字)</span><br><span class="line">// 返回</span><br><span class="line">com.qiyi.iphone contains watchOS 2 compatible application. It's not possible to dump watchOS 2 apps <span class="keyword">with</span> Clutch <span class="number">2.0</span><span class="number">.4</span> <span class="keyword">at</span> this moment.</span><br><span class="line">Zipping iQiYiPhoneVideo.app</span><br><span class="line">ASLR slide: <span class="number">0x100004000</span></span><br><span class="line">Dumping &lt;QiYiUserNotification&gt; (arm64)</span><br><span class="line">Patched cryptid (<span class="number">64</span><span class="built_in">bit</span> <span class="keyword">segment</span>)</span><br><span class="line">ASLR slide: <span class="number">0x1000dc000</span></span><br><span class="line">Dumping &lt;QYToday&gt; (arm64)</span><br><span class="line">Patched cryptid (<span class="number">64</span><span class="built_in">bit</span> <span class="keyword">segment</span>)</span><br><span class="line">ASLR slide: <span class="number">0x1000bc000</span></span><br><span class="line">Dumping &lt;QYSiriShortCuts&gt; (arm64)</span><br><span class="line">Patched cryptid (<span class="number">64</span><span class="built_in">bit</span> <span class="keyword">segment</span>)</span><br><span class="line">Writing <span class="keyword">new</span> <span class="keyword">checksum</span></span><br><span class="line">Writing <span class="keyword">new</span> <span class="keyword">checksum</span></span><br><span class="line">Writing <span class="keyword">new</span> <span class="keyword">checksum</span></span><br><span class="line">objc[<span class="number">4015</span>]: <span class="keyword">Class</span> ZipArchive <span class="keyword">is</span> implemented <span class="keyword">in</span> <span class="keyword">both</span> /<span class="keyword">var</span>/tmp/clutch/<span class="number">1</span>C8BA028<span class="number">-6</span>FC4<span class="number">-4975</span>-B4E9<span class="number">-644</span>D2935FB55/clutch <span class="keyword">and</span> /<span class="keyword">private</span>/<span class="keyword">var</span>/mobile/Containers/Bundle/Application/C8575DD1<span class="number">-889E-4</span>E70-AF66<span class="number">-4E4</span>CC920F6AC/iQiYiPhoneVideo.app/Frameworks/QYUniversalFramework.framework/QYUniversalFramework. One <span class="keyword">of</span> the two will be used. Which one <span class="keyword">is</span> undefined.</span><br><span class="line">Dumping &lt;QYUniversalFramework&gt; arm64</span><br><span class="line">ASLR slide: <span class="number">0x100054000</span></span><br><span class="line">Dumping &lt;iQiYiPhoneVideo&gt; (arm64)</span><br><span class="line">Patched cryptid (<span class="number">64</span><span class="built_in">bit</span> <span class="keyword">segment</span>)</span><br><span class="line">Successfully dumped framework QYUniversalFramework!</span><br><span class="line"><span class="keyword">Child</span> exited <span class="keyword">with</span> <span class="keyword">status</span> <span class="number">0</span></span><br><span class="line">Zipping QYUniversalFramework.framework</span><br><span class="line">Zipping QYSiriShortCuts.appex</span><br><span class="line">Zipping QYToday.appex</span><br><span class="line">Zipping QiYiUserNotification.appex</span><br><span class="line">Writing <span class="keyword">new</span> <span class="keyword">checksum</span></span><br><span class="line">DONE: /<span class="keyword">private</span>/<span class="keyword">var</span>/mobile/Documents/Dumped/com.qiyi.iphone-iOS9<span class="number">.0</span>-(Clutch<span class="number">-2.0</span><span class="number">.4</span>).ipa</span><br><span class="line">Finished dumping com.qiyi.iphone <span class="keyword">in</span> <span class="number">38.5</span> seconds</span><br></pre></td></tr></table></figure>
+<ul>
+<li>步骤9. copy出来已经脱壳了的App,然后找到包中的Mach-O文件，最后运用<a href="http://stevenygard.com/projects/class-dump/" target="_blank" rel="noopener">class-dump</a>, 执行以下的命令得到相应的头文件：</li>
+</ul>
+<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span>-<span class="title">dump</span> -<span class="title">H</span> -<span class="title">o</span> <span class="title">iqiHeaders</span> <span class="title">iQiYiPhoneVideo</span>.<span class="title">app</span></span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>步骤10. 通过查看类<code>QYStartADView</code>的相关头文件，代码如下:</li>
+</ul>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">//     Generated by class-dump 3.5 (64 bit).</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">//     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2013 by Steve Nygard.</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#import <span class="meta-string">"UIView.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#import <span class="meta-string">"QYStartADViewControllerDelegate.h"</span></span></span><br><span class="line"><span class="meta">#import <span class="meta-string">"QYStartAdPlayerControllerDelegate.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@class</span> <span class="title">AdsClient</span>, <span class="title">CupidAd</span>, <span class="title">NSString</span>, <span class="title">NSTimer</span>, <span class="title">QYStartADViewController</span>, <span class="title">QYStartAdPlayerController</span>, <span class="title">QYWebContainer</span>, <span class="title">UILabel</span>, <span class="title">UIWindow</span>;</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">QYStartADView</span> : <span class="title">UIView</span> &lt;<span class="title">QYStartAdPlayerControllerDelegate</span>, <span class="title">QYStartADViewControllerDelegate</span>&gt;</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">UIWindow</span> *_window;</span><br><span class="line">    <span class="built_in">NSTimer</span> *_adTimer;</span><br><span class="line">    <span class="keyword">float</span> _iAdTime;</span><br><span class="line">    _Bool _shouldRun;</span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> _addedTime;</span><br><span class="line">    <span class="keyword">float</span> _adShowTime;</span><br><span class="line">    _Bool _isFullScreenAd;</span><br><span class="line">    <span class="keyword">int</span> _type;</span><br><span class="line">    <span class="keyword">id</span> &lt;QYPhoneStartADViewDelegate&gt; _delegate;</span><br><span class="line">    <span class="built_in">UILabel</span> *_secords;</span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> _duration;</span><br><span class="line">    <span class="keyword">double</span> _logoBackHeight;</span><br><span class="line">    <span class="keyword">double</span> _needToCut;</span><br><span class="line">    <span class="built_in">UIView</span> *_adImageView;</span><br><span class="line">    QYWebContainer *_webView;</span><br><span class="line">    AdsClient *_adClient;</span><br><span class="line">    CupidAd *_adCupid;</span><br><span class="line">    QYStartAdPlayerController *_player;</span><br><span class="line">    QYStartADViewController *_startAdViewController;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@property</span>(<span class="keyword">retain</span>, <span class="keyword">nonatomic</span>) QYStartADViewController *startAdViewController; <span class="comment">// @synthesize startAdViewController=_startAdViewController;</span></span><br><span class="line"><span class="keyword">@property</span>(<span class="keyword">retain</span>, <span class="keyword">nonatomic</span>) QYStartAdPlayerController *player; <span class="comment">// @synthesize player=_player;</span></span><br><span class="line"><span class="keyword">@property</span>(<span class="keyword">nonatomic</span>) <span class="keyword">int</span> type; <span class="comment">// @synthesize type=_type;</span></span><br><span class="line"><span class="keyword">@property</span>(<span class="keyword">retain</span>, <span class="keyword">nonatomic</span>) CupidAd *adCupid; <span class="comment">// @synthesize adCupid=_adCupid;</span></span><br><span class="line"><span class="keyword">@property</span>(<span class="keyword">retain</span>, <span class="keyword">nonatomic</span>) AdsClient *adClient; <span class="comment">// @synthesize adClient=_adClient;</span></span><br><span class="line"><span class="keyword">@property</span>(<span class="keyword">retain</span>, <span class="keyword">nonatomic</span>) QYWebContainer *webView; <span class="comment">// @synthesize webView=_webView;</span></span><br><span class="line"><span class="keyword">@property</span>(<span class="keyword">retain</span>, <span class="keyword">nonatomic</span>) <span class="built_in">UIView</span> *adImageView; <span class="comment">// @synthesize adImageView=_adImageView;</span></span><br><span class="line"><span class="keyword">@property</span>(<span class="keyword">nonatomic</span>) <span class="keyword">double</span> needToCut; <span class="comment">// @synthesize needToCut=_needToCut;</span></span><br><span class="line"><span class="keyword">@property</span>(<span class="keyword">nonatomic</span>) <span class="keyword">double</span> logoBackHeight; <span class="comment">// @synthesize logoBackHeight=_logoBackHeight;</span></span><br><span class="line"><span class="keyword">@property</span>(<span class="keyword">nonatomic</span>) <span class="keyword">long</span> <span class="keyword">long</span> duration; <span class="comment">// @synthesize duration=_duration;</span></span><br><span class="line"><span class="keyword">@property</span>(<span class="keyword">retain</span>, <span class="keyword">nonatomic</span>) <span class="built_in">UILabel</span> *secords; <span class="comment">// @synthesize secords=_secords;</span></span><br><span class="line"><span class="keyword">@property</span>(<span class="keyword">nonatomic</span>) _Bool isFullScreenAd; <span class="comment">// @synthesize isFullScreenAd=_isFullScreenAd;</span></span><br><span class="line"><span class="keyword">@property</span>(<span class="keyword">nonatomic</span>) __<span class="keyword">weak</span> <span class="keyword">id</span> &lt;QYPhoneStartADViewDelegate&gt; delegate; <span class="comment">// @synthesize delegate=_delegate;</span></span><br><span class="line">- (<span class="keyword">void</span>).cxx_destruct;</span><br><span class="line">- (<span class="keyword">id</span>)imageFromImage:(<span class="keyword">id</span>)arg1 inRect:(<span class="keyword">struct</span> <span class="built_in">CGRect</span>)arg2;</span><br><span class="line">- (<span class="keyword">void</span>)playToEnd;</span><br><span class="line">- (<span class="keyword">void</span>)playError;</span><br><span class="line">- (<span class="keyword">void</span>)h5WillJumpToPage;</span><br><span class="line">- (<span class="keyword">void</span>)userInteractWithHtml;</span><br><span class="line">- (<span class="keyword">void</span>)sendH5AdClickPingback;</span><br><span class="line">- (<span class="keyword">void</span>)finishDisplayHtml;</span><br><span class="line">- (<span class="keyword">void</span>)keyboardDidHide;</span><br><span class="line">- (<span class="keyword">id</span>)labelWithFrame:(<span class="keyword">struct</span> <span class="built_in">CGRect</span>)arg1 backgroundColor:(<span class="keyword">id</span>)arg2 textColor:(<span class="keyword">id</span>)arg3 font:(<span class="keyword">id</span>)arg4 text:(<span class="keyword">id</span>)arg5 textAlignment:(<span class="keyword">long</span> <span class="keyword">long</span>)arg6;</span><br><span class="line">- (<span class="keyword">id</span>)imageViewWithFrame:(<span class="keyword">struct</span> <span class="built_in">CGRect</span>)arg1 image:(<span class="keyword">id</span>)arg2;</span><br><span class="line">- (<span class="keyword">void</span>)delegateCallStartADViewDidEnd;</span><br><span class="line">- (<span class="keyword">void</span>)showEnds;</span><br><span class="line">- (<span class="keyword">void</span>)updateTime;</span><br><span class="line">- (<span class="keyword">void</span>)updateUI:(<span class="keyword">id</span>)arg1;</span><br><span class="line">- (<span class="keyword">void</span>)finishAdShowForHtml;</span><br><span class="line">- (<span class="keyword">void</span>)prepareForEndAd;</span><br><span class="line">- (<span class="keyword">void</span>)secondChange;</span><br><span class="line">- (<span class="keyword">void</span>)timerStart;</span><br><span class="line">- (<span class="keyword">void</span>)showAdDetail;</span><br><span class="line">- (<span class="keyword">void</span>)skipAd;</span><br><span class="line">- (<span class="keyword">id</span>)createTouchScreenPromptView;</span><br><span class="line">- (<span class="keyword">id</span>)createViewWithType:(<span class="keyword">int</span>)arg1 withURL:(<span class="keyword">id</span>)arg2;</span><br><span class="line">- (<span class="keyword">void</span>)addBottomView;</span><br><span class="line">- (<span class="keyword">void</span>)addTimeBg;</span><br><span class="line">- (<span class="keyword">id</span>)initWithType:(<span class="keyword">int</span>)arg1 withURL:(<span class="keyword">id</span>)arg2 withDur:(<span class="keyword">long</span> <span class="keyword">long</span>)arg3 withAdData:(<span class="keyword">id</span>)arg4 withADCupid:(<span class="keyword">id</span>)arg5;</span><br><span class="line">- (<span class="keyword">void</span>)dealloc;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Remaining properties</span></span><br><span class="line"><span class="keyword">@property</span>(<span class="keyword">readonly</span>, <span class="keyword">copy</span>) <span class="built_in">NSString</span> *debugDescription;</span><br><span class="line"><span class="keyword">@property</span>(<span class="keyword">readonly</span>, <span class="keyword">copy</span>) <span class="built_in">NSString</span> *description;</span><br><span class="line"><span class="keyword">@property</span>(<span class="keyword">readonly</span>) <span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> hash;</span><br><span class="line"><span class="keyword">@property</span>(<span class="keyword">readonly</span>) Class superclass;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>这里的代码量不是很多，我们看到这个<code>- (id)initWithType:(int)arg1 withURL:(id)arg2 withDur:(long long)arg3 withAdData:(id)arg4 withADCupid:(id)arg5;</code>有可能就是一个实例化方法，我们可以覆写这个方法来达到取消启动广告的效果（这里只是一个猜测！）</p>
+</blockquote>
+<ul>
+<li>步骤11. 下面通过编写<a href="https://github.com/theos/theos/wiki/Installation-iOS" target="_blank" rel="noopener">theos</a>, 来覆写这个实例化方法，假设你已经按照github上的教程安装好了，此时就可以按照下面的流程开始：</li>
+<li>xxx.xm的相关语法的编写可以参考<a href="http://iphonedevwiki.net/index.php/Logos#File_Extensions_for_Logos" target="_blank" rel="noopener">语法</a></li>
+</ul>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*------1-------*/</span></span><br><span class="line"><span class="comment">// 在合适的位置执行，下面的命令</span></span><br><span class="line">nic.pl</span><br><span class="line"></span><br><span class="line"><span class="comment">/*------2-------*/</span></span><br><span class="line"><span class="comment">// 终端的显示</span></span><br><span class="line">NIC <span class="number">2.0</span> - New Instance Creator</span><br><span class="line">------------------------------</span><br><span class="line">  [<span class="meta">1.</span>] iphone/activator_event</span><br><span class="line">  [<span class="meta">2.</span>] iphone/application_modern</span><br><span class="line">  [<span class="meta">3.</span>] iphone/application_swift</span><br><span class="line">  [<span class="meta">4.</span>] iphone/cydget</span><br><span class="line">  [<span class="meta">5.</span>] iphone/flipswitch_switch</span><br><span class="line">  [<span class="meta">6.</span>] iphone/framework</span><br><span class="line">  [<span class="meta">7.</span>] iphone/ios7_notification_center_widget</span><br><span class="line">  [<span class="meta">8.</span>] iphone/library</span><br><span class="line">  [<span class="meta">9.</span>] iphone/notification_center_widget</span><br><span class="line">  [<span class="meta">10.</span>] iphone/preference_bundle_modern</span><br><span class="line">  [<span class="meta">11.</span>] iphone/tool</span><br><span class="line">  [<span class="meta">12.</span>] iphone/tool_swift</span><br><span class="line">  [<span class="meta">13.</span>] iphone/tweak</span><br><span class="line">  [<span class="meta">14.</span>] iphone/xpc_service</span><br><span class="line"><span class="function">Choose a <span class="title">Template</span> (<span class="params">required</span>):</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="comment">/*------3-------*/</span></span></span><br><span class="line"><span class="function"><span class="comment">// 这里我们选择13，然后回车, 这里唯一需要注意的就是这个AppID,必须要填写爱奇艺的AppID, 其他的可以随便填写、或者直接回车</span></span></span><br><span class="line"><span class="function">Choose a <span class="title">Template</span> (<span class="params">required</span>): 13</span></span><br><span class="line"><span class="function">Project <span class="title">Name</span> (<span class="params">required</span>): ghiqyTest</span></span><br><span class="line"><span class="function">Package Name [com.yourcompany.ghiqytest]: com.ghcoder.ghiqyTest</span></span><br><span class="line"><span class="function">Author/Maintainer Name [龚欢]:</span></span><br><span class="line"><span class="function">[iphone/tweak] MobileSubstrate Bundle filter [com.apple.springboard]: com.qiyi.iphone</span></span><br><span class="line"><span class="function">[iphone/tweak] List of applications to terminate upon <span class="title">installation</span> (<span class="params">space-separated, <span class="string">'-'</span> <span class="keyword">for</span> none</span>) [SpringBoard]:</span></span><br><span class="line"><span class="function">Instantiating iphone/tweak <span class="keyword">in</span> ghiqytest/...</span></span><br><span class="line"><span class="function">Done.</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="comment">/*------4-------*/</span></span></span><br><span class="line"><span class="function"><span class="comment">// 创建完成之后，会发现自动创建了一个名叫ghiqytest的文件夹，里面存在四个文件，依次是:control(相关的配置信息)、ghiqyTest.plist(你需要修改的应用的AppID)、Makefile(配置文件)、Tweak.xm(需要修改的相关类)</span></span></span><br><span class="line"><span class="function"><span class="comment">// 下面是我对Tweak.xm修改的内容如下：</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">%hook QYStartADView</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">- (<span class="params">id</span>)initWithType:(<span class="params"><span class="keyword">int</span></span>)arg1 withURL:(<span class="params">id</span>)arg2 withDur:(<span class="params"><span class="keyword">long</span> <span class="keyword">long</span></span>)arg3 withAdData:(<span class="params">id</span>)arg4 withADCupid:(<span class="params">id</span>)arg5</span> &#123;</span><br><span class="line">	<span class="keyword">return</span> nil;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">%end</span><br><span class="line"></span><br><span class="line"><span class="comment">/*------5-------*/</span></span><br><span class="line"><span class="comment">// ssh到越狱手机，并且要在Makefile的开头加上下面两行配置</span></span><br><span class="line">export THEOS_DEVICE_IP=<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span></span><br><span class="line">export THEOS_DEVICE_PORT=<span class="number">10010</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*------6-------*/</span></span><br><span class="line"><span class="comment">// 如果一切正常的话，执行完成之后，越狱机器就会自动重启了</span></span><br><span class="line">make clean &amp;&amp;  make package &amp;&amp; make install</span><br></pre></td></tr></table></figure>
+<h4 id="2-将这个修改过的App重签名"><a href="#2-将这个修改过的App重签名" class="headerlink" title="2. 将这个修改过的App重签名"></a>2. 将这个修改过的App重签名</h4><ul>
+<li>步骤1. 要完成这个重签名，我们需要有如下几个文件 </li>
+</ul>
+<ol>
+<li>我们刚才编写的xxx.xm文件，其实刚才在我们重启之后，它就生成一个动态库文件，这个文件存放在越狱机的如下路径中：(Device-&gt;Library-&gt;MobileSubstrate-&gt;DynamicLibraries-&gt;ghiqyTest.dylib).</li>
+<li>在越狱机器中加载这个动态库的Framework（CydiaSubstrate) [路径如下Device-&gt;Library-&gt;Frameworks-&gt;CydiaSubstrate.framework-&gt;CydiaSubstrate]</li>
+<li>已经脱壳了的App</li>
+<li>xxx.mobileprovision文件，这个是需要一年99美金才可以，可以通过创建一个空的Xcode项目，编译之后在Target的App中找到这个xxx.mobileprovision文件（或者可以去apple.developer.com后台去下载）</li>
+</ol>
+<ul>
+<li><p>步骤2. 然后将上面提到三个文件<em>ghiqyTest.dylib</em>、<em>CydiaSubstrate</em>、<em>xxx.mobileprovision</em>一起拷贝到已经脱壳了的App中。</p>
+</li>
+<li><p>步骤3. 在脱壳了的App中找到<strong>info.plist</strong>文件，把里面的<strong>UISupportedDevices</strong>这一栏统一删除掉。</p>
+</li>
+<li>步骤4. 此时我们需要查看一些动态库，以及我们的Mach-O文件依赖的库是否配置正确:</li>
+</ul>
+<figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br></pre></td><td class="code"><pre><span class="line">/*------<span class="number">1</span>-------*<span class="regexp">/</span></span><br><span class="line"><span class="regexp">/</span><span class="regexp">/ 查看爱奇艺Mach-O依赖的动态库</span></span><br><span class="line"><span class="regexp">otool -L iQiYiPhoneVideo</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">/</span><span class="regexp">/ 终端显示</span></span><br><span class="line"><span class="regexp">	/usr</span><span class="regexp">/lib/libc</span>++.<span class="number">1</span>.dylib (compatibility version <span class="number">1.0</span>.<span class="number">0</span>, current version <span class="number">400.9</span>.<span class="number">4</span>)</span><br><span class="line">	/usr/<span class="class"><span class="keyword">lib</span>/<span class="title">libresolv</span>.9.<span class="title">dylib</span> (<span class="title">compatibility</span> <span class="title">version</span> 1.0.0, <span class="title">current</span> <span class="title">version</span> 1.0.0)</span></span><br><span class="line">	/usr/<span class="class"><span class="keyword">lib</span>/<span class="title">libsqlite3</span>.<span class="title">dylib</span> (<span class="title">compatibility</span> <span class="title">version</span> 9.0.0, <span class="title">current</span> <span class="title">version</span> 274.20.0)</span></span><br><span class="line">	/usr/<span class="class"><span class="keyword">lib</span>/<span class="title">libxml2</span>.2.<span class="title">dylib</span> (<span class="title">compatibility</span> <span class="title">version</span> 10.0.0, <span class="title">current</span> <span class="title">version</span> 10.9.0)</span></span><br><span class="line">	/usr/<span class="class"><span class="keyword">lib</span>/<span class="title">libz</span>.1.<span class="title">dylib</span> (<span class="title">compatibility</span> <span class="title">version</span> 1.0.0, <span class="title">current</span> <span class="title">version</span> 1.2.11)</span></span><br><span class="line">	/System/Library/Frameworks/AVFoundation.framework/AVFoundation (compatibility version <span class="number">1.0</span>.<span class="number">0</span>, current version <span class="number">2.0</span>.<span class="number">0</span>)</span><br><span class="line">	/System/Library/Frameworks/Accelerate.framework/Accelerate (compatibility version <span class="number">1.0</span>.<span class="number">0</span>, current version <span class="number">4.0</span>.<span class="number">0</span>)</span><br><span class="line">	/System/Library/Frameworks/AdSupport.framework/AdSupport (compatibility version <span class="number">1.0</span>.<span class="number">0</span>, current version <span class="number">1.0</span>.<span class="number">0</span>)</span><br><span class="line">	/System/Library/Frameworks/AssetsLibrary.framework/AssetsLibrary (compatibility version <span class="number">1.0</span>.<span class="number">0</span>, current version <span class="number">1.0</span>.<span class="number">0</span>)</span><br><span class="line">	/System/Library/Frameworks/CFNetwork.framework/CFNetwork (compatibility version <span class="number">1.0</span>.<span class="number">0</span>, current version <span class="number">974.2</span>.<span class="number">1</span>)</span><br><span class="line">	/System/Library/Frameworks/CoreFoundation.framework/CoreFoundation (compatibility version <span class="number">150.0</span>.<span class="number">0</span>, current version <span class="number">1556.0</span>.<span class="number">0</span>)</span><br><span class="line">	/System/Library/Frameworks/CoreGraphics.framework/CoreGraphics (compatibility version <span class="number">64.0</span>.<span class="number">0</span>, current version <span class="number">1245.8</span>.<span class="number">0</span>)</span><br><span class="line">	/System/Library/Frameworks/CoreLocation.framework/CoreLocation (compatibility version <span class="number">1.0</span>.<span class="number">0</span>, current version <span class="number">2245.4</span>.<span class="number">104</span>)</span><br><span class="line">	/System/Library/Frameworks/CoreMotion.framework/CoreMotion (compatibility version <span class="number">1.0</span>.<span class="number">0</span>, current version <span class="number">2245.4</span>.<span class="number">104</span>)</span><br><span class="line">	/System/Library/Frameworks/CoreTelephony.framework/CoreTelephony (compatibility version <span class="number">1.0</span>.<span class="number">0</span>, current version <span class="number">0.0</span>.<span class="number">0</span>)</span><br><span class="line">	/System/Library/Frameworks/Foundation.framework/Foundation (compatibility version <span class="number">300.0</span>.<span class="number">0</span>, current version <span class="number">1556.0</span>.<span class="number">0</span>)</span><br><span class="line">	/System/Library/Frameworks/ImageIO.framework/ImageIO (compatibility version <span class="number">1.0</span>.<span class="number">0</span>, current version <span class="number">0.0</span>.<span class="number">0</span>)</span><br><span class="line">	/System/Library/Frameworks/MapKit.framework/MapKit (compatibility version <span class="number">1.0</span>.<span class="number">0</span>, current version <span class="number">14.0</span>.<span class="number">0</span>)</span><br><span class="line">	/System/Library/Frameworks/MobileCoreServices.framework/MobileCoreServices (compatibility version <span class="number">1.0</span>.<span class="number">0</span>, current version <span class="number">932.2</span>.<span class="number">0</span>)</span><br><span class="line">	/System/Library/Frameworks/OpenAL.framework/OpenAL (compatibility version <span class="number">1.0</span>.<span class="number">0</span>, current version <span class="number">1.0</span>.<span class="number">0</span>)</span><br><span class="line">	@rpath/QYUniversalFramework.framework/QYUniversalFramework (compatibility version <span class="number">1.0</span>.<span class="number">0</span>, current version <span class="number">1.0</span>.<span class="number">0</span>)</span><br><span class="line">	/System/Library/Frameworks/QuartzCore.framework/QuartzCore (compatibility version <span class="number">1.2</span>.<span class="number">0</span>, current version <span class="number">1.11</span>.<span class="number">0</span>)</span><br><span class="line">	/System/Library/Frameworks/SceneKit.framework/SceneKit (compatibility version <span class="number">1.0</span>.<span class="number">0</span>, current version <span class="number">470.0</span>.<span class="number">0</span>)</span><br><span class="line">	/System/Library/Frameworks/Security.framework/Security (compatibility version <span class="number">1.0</span>.<span class="number">0</span>, current version <span class="number">58286.202</span>.<span class="number">3</span>)</span><br><span class="line">	/System/Library/Frameworks/StoreKit.framework/StoreKit (compatibility version <span class="number">1.0</span>.<span class="number">0</span>, current version <span class="number">1.0</span>.<span class="number">0</span>)</span><br><span class="line">	/System/Library/Frameworks/SystemConfiguration.framework/SystemConfiguration (compatibility version <span class="number">1.0</span>.<span class="number">0</span>, current version <span class="number">963.200</span>.<span class="number">27</span>)</span><br><span class="line">	/System/Library/Frameworks/UIKit.framework/UIKit (compatibility version <span class="number">1.0</span>.<span class="number">0</span>, current version <span class="number">61000.0</span>.<span class="number">0</span>)</span><br><span class="line">	/System/Library/Frameworks/WebKit.framework/WebKit (compatibility version <span class="number">1.0</span>.<span class="number">0</span>, current version <span class="number">606.1</span>.<span class="number">36</span>)</span><br><span class="line">	/System/Library/Frameworks/Intents.framework/Intents (compatibility version <span class="number">1.0</span>.<span class="number">0</span>, current version <span class="number">1.0</span>.<span class="number">0</span>)</span><br><span class="line">	/System/Library/Frameworks/IntentsUI.framework/IntentsUI (compatibility version <span class="number">1.0</span>.<span class="number">0</span>, current version <span class="number">1.0</span>.<span class="number">0</span>)</span><br><span class="line">	/System/Library/Frameworks/ReplayKit.framework/ReplayKit (compatibility version <span class="number">1.0</span>.<span class="number">0</span>, current version <span class="number">1.0</span>.<span class="number">0</span>)</span><br><span class="line">	/System/Library/Frameworks/UserNotifications.framework/UserNotifications (compatibility version <span class="number">1.0</span>.<span class="number">0</span>, current version <span class="number">1.0</span>.<span class="number">0</span>)</span><br><span class="line">	/System/Library/Frameworks/Speech.framework/Speech (compatibility version <span class="number">1.0</span>.<span class="number">0</span>, current version <span class="number">1.0</span>.<span class="number">0</span>)</span><br><span class="line">	/System/Library/Frameworks/CoreData.framework/CoreData (compatibility version <span class="number">1.0</span>.<span class="number">0</span>, current version <span class="number">865.0</span>.<span class="number">0</span>)</span><br><span class="line">	/System/Library/Frameworks/EventKit.framework/EventKit (compatibility version <span class="number">1.0</span>.<span class="number">0</span>, current version <span class="number">100.0</span>.<span class="number">0</span>)</span><br><span class="line">	/System/Library/Frameworks/WatchConnectivity.framework/WatchConnectivity (compatibility version <span class="number">1.0</span>.<span class="number">0</span>, current version <span class="number">175.0</span>.<span class="number">0</span>)</span><br><span class="line">	/System/Library/Frameworks/PassKit.framework/PassKit (compatibility version <span class="number">1.0</span>.<span class="number">0</span>, current version <span class="number">1.0</span>.<span class="number">0</span>)</span><br><span class="line">	/System/Library/Frameworks/GLKit.framework/GLKit (compatibility version <span class="number">1.0</span>.<span class="number">0</span>, current version <span class="number">103.2</span>.<span class="number">0</span>)</span><br><span class="line">	/System/Library/Frameworks/Photos.framework/Photos (compatibility version <span class="number">1.0</span>.<span class="number">0</span>, current version <span class="number">1.0</span>.<span class="number">0</span>)</span><br><span class="line">	/System/Library/Frameworks/CoreSpotlight.framework/CoreSpotlight (compatibility version <span class="number">1.0</span>.<span class="number">0</span>, current version <span class="number">1.0</span>.<span class="number">0</span>)</span><br><span class="line">	/System/Library/Frameworks/LocalAuthentication.framework/LocalAuthentication (compatibility version <span class="number">1.0</span>.<span class="number">0</span>, current version <span class="number">425.202</span>.<span class="number">1</span>)</span><br><span class="line">	/System/Library/Frameworks/VideoToolbox.framework/VideoToolbox (compatibility version <span class="number">1.0</span>.<span class="number">0</span>, current version <span class="number">1.0</span>.<span class="number">0</span>)</span><br><span class="line">	/System/Library/Frameworks/AVKit.framework/AVKit (compatibility version <span class="number">1.0</span>.<span class="number">0</span>, current version <span class="number">1.0</span>.<span class="number">0</span>)</span><br><span class="line">	/System/Library/Frameworks/MessageUI.framework/MessageUI (compatibility version <span class="number">1.0</span>.<span class="number">0</span>, current version <span class="number">3445.100</span>.<span class="number">35</span>)</span><br><span class="line">	/usr/<span class="class"><span class="keyword">lib</span>/<span class="title">libiconv</span>.2.<span class="title">dylib</span> (<span class="title">compatibility</span> <span class="title">version</span> 7.0.0, <span class="title">current</span> <span class="title">version</span> 7.0.0)</span></span><br><span class="line">	/System/Library/Frameworks/CoreText.framework/CoreText (compatibility version <span class="number">1.0</span>.<span class="number">0</span>, current version <span class="number">1.0</span>.<span class="number">0</span>)</span><br><span class="line">	/usr/<span class="class"><span class="keyword">lib</span>/<span class="title">libbz2</span>.1.0.<span class="title">dylib</span> (<span class="title">compatibility</span> <span class="title">version</span> 1.0.0, <span class="title">current</span> <span class="title">version</span> 1.0.5)</span></span><br><span class="line">	/System/Library/Frameworks/CoreMedia.framework/CoreMedia (compatibility version <span class="number">1.0</span>.<span class="number">0</span>, current version <span class="number">1.0</span>.<span class="number">0</span>)</span><br><span class="line">	/System/Library/Frameworks/MediaPlayer.framework/MediaPlayer (compatibility version <span class="number">1.0</span>.<span class="number">0</span>, current version <span class="number">1.0</span>.<span class="number">0</span>)</span><br><span class="line">	/System/Library/Frameworks/AudioToolbox.framework/AudioToolbox (compatibility version <span class="number">1.0</span>.<span class="number">0</span>, current version <span class="number">492.0</span>.<span class="number">0</span>)</span><br><span class="line">	/usr/<span class="class"><span class="keyword">lib</span>/<span class="title">libicucore</span>.<span class="title">A</span>.<span class="title">dylib</span> (<span class="title">compatibility</span> <span class="title">version</span> 1.0.0, <span class="title">current</span> <span class="title">version</span> 62.1.0)</span></span><br><span class="line">	/usr/<span class="class"><span class="keyword">lib</span>/<span class="title">libobjc</span>.<span class="title">A</span>.<span class="title">dylib</span> (<span class="title">compatibility</span> <span class="title">version</span> 1.0.0, <span class="title">current</span> <span class="title">version</span> 228.0.0)</span></span><br><span class="line">	/usr/<span class="class"><span class="keyword">lib</span>/<span class="title">libSystem</span>.<span class="title">B</span>.<span class="title">dylib</span> (<span class="title">compatibility</span> <span class="title">version</span> 1.0.0, <span class="title">current</span> <span class="title">version</span> 1252.200.5)</span></span><br><span class="line">	/System/Library/Frameworks/CoreImage.framework/CoreImage (compatibility version <span class="number">1.0</span>.<span class="number">0</span>, current version <span class="number">5.0</span>.<span class="number">0</span>)</span><br><span class="line">	/System/Library/Frameworks/CoreML.framework/CoreML (compatibility version <span class="number">1.0</span>.<span class="number">0</span>, current version <span class="number">1.0</span>.<span class="number">0</span>)</span><br><span class="line">	/System/Library/Frameworks/CoreVideo.framework/CoreVideo (compatibility version <span class="number">1.2</span>.<span class="number">0</span>, current version <span class="number">1.5</span>.<span class="number">0</span>)</span><br><span class="line">	/System/Library/Frameworks/JavaScriptCore.framework/JavaScriptCore (compatibility version <span class="number">1.0</span>.<span class="number">0</span>, current version <span class="number">606.1</span>.<span class="number">36</span>)</span><br><span class="line">	/System/Library/Frameworks/OpenGLES.framework/OpenGLES (compatibility version <span class="number">1.0</span>.<span class="number">0</span>, current version <span class="number">1.0</span>.<span class="number">0</span>)</span><br><span class="line">	/System/Library/Frameworks/SpriteKit.framework/SpriteKit (compatibility version <span class="number">1.0</span>.<span class="number">0</span>, current version <span class="number">2.0</span>.<span class="number">0</span>)</span><br><span class="line">	</span><br><span class="line">/*------<span class="number">2</span>-------*<span class="regexp">/</span></span><br><span class="line"><span class="regexp">/</span><span class="regexp">/ 需要把我们刚才创建的动态库链接进来，执行如下的命令</span></span><br><span class="line"><span class="regexp">insert_dylib @executable_path/ghiqy</span>Test.dylib iQiYiPhoneVideo iQiYiPhoneVideo --all-yes</span><br><span class="line"></span><br><span class="line">/*------<span class="number">3</span>-------*<span class="regexp">/</span></span><br><span class="line"><span class="regexp">/</span><span class="regexp">/ 再次执行第一步的命令，会发现最下多了一行，就代表链接成功</span></span><br><span class="line"><span class="regexp">@executable_path/ghiqy</span>Test.dylib (compatibility version <span class="number">0.0</span>.<span class="number">0</span>, current version <span class="number">0.0</span>.<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">/*------<span class="number">4</span>-------*<span class="regexp">/</span></span><br><span class="line"><span class="regexp">/</span><span class="regexp">/ 此时我们再看一下ghiqyTest.dylib, 这个动态库有没有依赖的其他动态库</span></span><br><span class="line"><span class="regexp">otool -L ghiqyTest.dylib</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">/</span><span class="regexp">/ 终端显示</span></span><br><span class="line"><span class="regexp">ghiqyTest.dylib (architecture arm64):</span></span><br><span class="line"><span class="regexp">	/</span>Library/MobileSubstrate/DynamicLibraries/ghiqyTest.dylib (compatibility version <span class="number">0.0</span>.<span class="number">0</span>, current version <span class="number">0.0</span>.<span class="number">0</span>)</span><br><span class="line">	/usr/<span class="class"><span class="keyword">lib</span>/<span class="title">libobjc</span>.<span class="title">A</span>.<span class="title">dylib</span> (<span class="title">compatibility</span> <span class="title">version</span> 1.0.0, <span class="title">current</span> <span class="title">version</span> 228.0.0)</span></span><br><span class="line">	/System/Library/Frameworks/Foundation.framework/Foundation (compatibility version <span class="number">300.0</span>.<span class="number">0</span>, current version <span class="number">1560.10</span>.<span class="number">0</span>)</span><br><span class="line">	/System/Library/Frameworks/CoreFoundation.framework/CoreFoundation (compatibility version <span class="number">150.0</span>.<span class="number">0</span>, current version <span class="number">1560.10</span>.<span class="number">0</span>)</span><br><span class="line">	/Library/Frameworks/CydiaSubstrate.framework/CydiaSubstrate (compatibility version <span class="number">0.0</span>.<span class="number">0</span>, current version <span class="number">0.0</span>.<span class="number">0</span>)</span><br><span class="line">	/usr/<span class="class"><span class="keyword">lib</span>/<span class="title">libc</span>++.1.<span class="title">dylib</span> (<span class="title">compatibility</span> <span class="title">version</span> 1.0.0, <span class="title">current</span> <span class="title">version</span> 400.9.4)</span></span><br><span class="line">	/usr/<span class="class"><span class="keyword">lib</span>/<span class="title">libSystem</span>.<span class="title">B</span>.<span class="title">dylib</span> (<span class="title">compatibility</span> <span class="title">version</span> 1.0.0, <span class="title">current</span> <span class="title">version</span> 1252.200.5)</span></span><br><span class="line">	</span><br><span class="line">/*------<span class="number">5</span>-------*<span class="regexp">/</span></span><br><span class="line"><span class="regexp">/</span><span class="regexp">/ 这里需要修改/</span>Library/Frameworks/CydiaSubstrate.framework/CydiaSubstrate路径，执行下面的命令就可以修改了</span><br><span class="line">install_name_tool -change /Library/Frameworks/CydiaSubstrate.framework/CydiaSubstrate @loader_path/CydiaSubstrate ghiqyTest.dylib</span><br><span class="line"></span><br><span class="line">/<span class="regexp">/ 再次执行第四部：就会发现之前路径修改了</span></span><br><span class="line"><span class="regexp">ghiqyTest.dylib (architecture arm64):</span></span><br><span class="line"><span class="regexp">	/</span>Library/MobileSubstrate/DynamicLibraries/ghiqyTest.dylib (compatibility version <span class="number">0.0</span>.<span class="number">0</span>, current version <span class="number">0.0</span>.<span class="number">0</span>)</span><br><span class="line">	/usr/<span class="class"><span class="keyword">lib</span>/<span class="title">libobjc</span>.<span class="title">A</span>.<span class="title">dylib</span> (<span class="title">compatibility</span> <span class="title">version</span> 1.0.0, <span class="title">current</span> <span class="title">version</span> 228.0.0)</span></span><br><span class="line">	/System/Library/Frameworks/Foundation.framework/Foundation (compatibility version <span class="number">300.0</span>.<span class="number">0</span>, current version <span class="number">1560.10</span>.<span class="number">0</span>)</span><br><span class="line">	/System/Library/Frameworks/CoreFoundation.framework/CoreFoundation (compatibility version <span class="number">150.0</span>.<span class="number">0</span>, current version <span class="number">1560.10</span>.<span class="number">0</span>)</span><br><span class="line">	@loader_path/CydiaSubstrate (compatibility version <span class="number">0.0</span>.<span class="number">0</span>, current version <span class="number">0.0</span>.<span class="number">0</span>)</span><br><span class="line">	/usr/<span class="class"><span class="keyword">lib</span>/<span class="title">libc</span>++.1.<span class="title">dylib</span> (<span class="title">compatibility</span> <span class="title">version</span> 1.0.0, <span class="title">current</span> <span class="title">version</span> 400.9.4)</span></span><br><span class="line">	/usr/<span class="class"><span class="keyword">lib</span>/<span class="title">libSystem</span>.<span class="title">B</span>.<span class="title">dylib</span> (<span class="title">compatibility</span> <span class="title">version</span> 1.0.0, <span class="title">current</span> <span class="title">version</span> 1252.200.5)</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>步骤5. 我们要先找到我们签名证书的Identity,通过如下的命令可以找到</li>
+</ul>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">security find-identity -v -p codesigning</span><br><span class="line"></span><br><span class="line"><span class="comment">// 终端显示</span></span><br><span class="line"><span class="number">1</span>) E797391C5ABBC9FB40EE04252C5679A6FEC1B351 <span class="string">"iPhone Developer: ******"</span></span><br><span class="line"><span class="number">2</span>) EF3725BCB7AB3C3F12AFC9C3A82C16B84A2925EC <span class="string">"iPhone Developer: *******"</span> (CSSMERR_TP_CERT_REVOKED)</span><br><span class="line">     <span class="number">2</span> valid identities found</span><br></pre></td></tr></table></figure>
+<ul>
+<li>步骤6. 开始签名：</li>
+</ul>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">➜  iQiYiPhoneVideo<span class="selector-class">.app</span> codesign -fs E797391C5ABBC9FB40EE04252C5679A6FEC1B351 ghiqyTest.dylib</span><br><span class="line">ghiqyTest<span class="selector-class">.dylib</span>: replacing existing signature</span><br><span class="line">➜  iQiYiPhoneVideo<span class="selector-class">.app</span> codesign -fs E797391C5ABBC9FB40EE04252C5679A6FEC1B351 CydiaSubstrate</span><br><span class="line">CydiaSubstrate: replacing existing signature</span><br></pre></td></tr></table></figure>
+<ul>
+<li>步骤7. 最后我们对App整体签名，这里可以使用一个方便工具<a href="https://github.com/DanTheMan827/ios-app-signer" target="_blank" rel="noopener">iOSAppSinger</a></li>
+<li>步骤7.1 也可以通过codesign，来完成对App的整体签名:</li>
+</ul>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*------1-------*/</span></span><br><span class="line"><span class="comment">// 先从xxx.mobileprovision导出xxx.entitlements</span></span><br><span class="line">security cms -D -<span class="selector-tag">i</span> embedded<span class="selector-class">.mobileprovision</span> &gt; temp.plist</span><br><span class="line">/usr/libexec/PlistBuddy -x -c <span class="string">'Print:Entitlements'</span> temp<span class="selector-class">.plist</span> &gt; entitlements.plist</span><br><span class="line"></span><br><span class="line"><span class="comment">/*------2-------*/</span></span><br><span class="line"><span class="comment">// 生成完成之后的entitlements.plist，配合codeSign进行重签名</span></span><br><span class="line">codesign -fs E797391C5ABBC9FB40EE04252C5679A6FEC1B351 --entitlements entitlements<span class="selector-class">.plist</span> xxx.app</span><br><span class="line"></span><br><span class="line"><span class="comment">/*------3-------*/</span></span><br><span class="line"><span class="comment">// 生成之后的xxx.app,放到Payload的文件夹中，然后进行压缩，然后再修改后缀名为.ipa</span></span><br></pre></td></tr></table></figure>
+<h3 id="3-安装在未越狱手机上"><a href="#3-安装在未越狱手机上" class="headerlink" title="3. 安装在未越狱手机上"></a>3. 安装在未越狱手机上</h3><ul>
+<li>直接通过iFunbox安装在非越狱机器上。</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Object-C、加密/" rel="tag"># Object-C、加密</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/11/03/20181103/" rel="next" title="Swift语法备忘录">
+                <i class="fa fa-chevron-left"></i> Swift语法备忘录
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ghcoder</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://ghcoder1024.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://www.ghcoder.com/2018/12/12/20181212/';
+          this.page.identifier = '2018/12/12/20181212/';
+          this.page.title = '非越狱手机植入动态库';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://ghcoder1024.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

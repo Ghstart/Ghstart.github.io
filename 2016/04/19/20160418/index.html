@@ -6,18 +6,18 @@
 
 
 <html class="theme-next mist use-motion" lang="zh-Hans">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -35,7 +35,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -87,23 +87,23 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="学习,Obeject-c," />
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css">
 
 
-
-
-
-  <link rel="alternate" href="/atom.xml" title="Ghcoder" type="application/atom+xml" />
+  <meta name="keywords" content="学习,Obeject-c,">
 
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+  <link rel="alternate" href="/atom.xml" title="Ghcoder" type="application/atom+xml">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1">
 
 
 
@@ -111,11 +111,13 @@
 
 
 <meta name="description" content="图片的性能问题，基本上面试的时候，都会被问到，现在在自己的app中，我也是为了解决的性能的问题，所以了解了一些关于图片性能的库，看一下源码, 现在应该有很多这种库了。我看的是这个：https://github.com/CoderJackyHuang/HYBImageCliped">
+<meta name="keywords" content="学习,Obeject-c">
 <meta property="og:type" content="article">
 <meta property="og:title" content="关于图片圆角的功能学习。">
 <meta property="og:url" content="http://www.ghcoder.com/2016/04/19/20160418/index.html">
 <meta property="og:site_name" content="Ghcoder">
 <meta property="og:description" content="图片的性能问题，基本上面试的时候，都会被问到，现在在自己的app中，我也是为了解决的性能的问题，所以了解了一些关于图片性能的库，看一下源码, 现在应该有很多这种库了。我看的是这个：https://github.com/CoderJackyHuang/HYBImageCliped">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2017-05-10T10:06:43.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="关于图片圆角的功能学习。">
@@ -147,7 +149,7 @@
 
 
 
-  <link rel="canonical" href="http://www.ghcoder.com/2016/04/19/20160418/"/>
+  <link rel="canonical" href="http://www.ghcoder.com/2016/04/19/20160418/">
 
 
 
@@ -156,7 +158,7 @@
   <title>关于图片圆角的功能学习。 | Ghcoder</title>
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
 
@@ -181,13 +183,13 @@
   <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">Ghcoder</span>
         <span class="logo-line-after"><i></i></span>
@@ -217,7 +219,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
           </a>
@@ -227,7 +229,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             列表
           </a>
@@ -261,16 +263,16 @@
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://www.ghcoder.com/2016/04/19/20160418/">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Ghcoder">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="https://avatars3.githubusercontent.com/u/5730023?v=3&s=460">
     </span>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="Ghcoder">
     </span>
 
@@ -302,7 +304,7 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -313,7 +315,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
                   <a href="/categories/日志/" itemprop="url" rel="index">
                     <span itemprop="name">日志</span>
                   </a>
@@ -333,8 +335,7 @@
                   <i class="fa fa-comment-o"></i>
                 </span>
                 <a href="/2016/04/19/20160418/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2016/04/19/20160418/" itemprop="commentCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/04/19/20160418/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -359,24 +360,24 @@
       
 
       
-        <h3 id="图片的性能问题，基本上面试的时候，都会被问到，现在在自己的app中，我也是为了解决的性能的问题，所以了解了一些关于图片性能的库，看一下源码-现在应该有很多这种库了。我看的是这个：https-github-com-CoderJackyHuang-HYBImageCliped"><a href="#图片的性能问题，基本上面试的时候，都会被问到，现在在自己的app中，我也是为了解决的性能的问题，所以了解了一些关于图片性能的库，看一下源码-现在应该有很多这种库了。我看的是这个：https-github-com-CoderJackyHuang-HYBImageCliped" class="headerlink" title="图片的性能问题，基本上面试的时候，都会被问到，现在在自己的app中，我也是为了解决的性能的问题，所以了解了一些关于图片性能的库，看一下源码, 现在应该有很多这种库了。我看的是这个：https://github.com/CoderJackyHuang/HYBImageCliped"></a>图片的性能问题，基本上面试的时候，都会被问到，现在在自己的app中，我也是为了解决的性能的问题，所以了解了一些关于图片性能的库，看一下源码, 现在应该有很多这种库了。我看的是这个：<a href="https://github.com/CoderJackyHuang/HYBImageCliped" target="_blank" rel="external">https://github.com/CoderJackyHuang/HYBImageCliped</a></h3><a id="more"></a>
+        <h3 id="图片的性能问题，基本上面试的时候，都会被问到，现在在自己的app中，我也是为了解决的性能的问题，所以了解了一些关于图片性能的库，看一下源码-现在应该有很多这种库了。我看的是这个：https-github-com-CoderJackyHuang-HYBImageCliped"><a href="#图片的性能问题，基本上面试的时候，都会被问到，现在在自己的app中，我也是为了解决的性能的问题，所以了解了一些关于图片性能的库，看一下源码-现在应该有很多这种库了。我看的是这个：https-github-com-CoderJackyHuang-HYBImageCliped" class="headerlink" title="图片的性能问题，基本上面试的时候，都会被问到，现在在自己的app中，我也是为了解决的性能的问题，所以了解了一些关于图片性能的库，看一下源码, 现在应该有很多这种库了。我看的是这个：https://github.com/CoderJackyHuang/HYBImageCliped"></a>图片的性能问题，基本上面试的时候，都会被问到，现在在自己的app中，我也是为了解决的性能的问题，所以了解了一些关于图片性能的库，看一下源码, 现在应该有很多这种库了。我看的是这个：<a href="https://github.com/CoderJackyHuang/HYBImageCliped" target="_blank" rel="noopener">https://github.com/CoderJackyHuang/HYBImageCliped</a></h3><a id="more"></a>
 <ul>
 <li>这个库是通过Category来分别实现这些功能，首先看看UIView的Category,是怎么实现的UIView的圆角。</li>
 </ul>
-<figure class="highlight zephir"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> *	使用指定的图片来填充，但是生成的是圆形图片，背景颜色为白色。</div><div class="line"> *</div><div class="line"> *	<span class="doctag">@param</span> image			图片名称或者图片对象，甚至支持NSData</div><div class="line"> *	<span class="doctag">@param</span> targetSize	生成指定大小的图片</div><div class="line"> *	<span class="doctag">@param</span> isEqualScale	是否等比例缩放图片</div><div class="line"> *  <span class="doctag">@param</span> backgroundColor 默认取最顶层父视图的背景色，若为透明，则取本身背景色，若也为透明，则取白色</div><div class="line"> *  <span class="doctag">@parma</span> callback   只有当图片真正被裁剪成功后，才会回调，返回裁剪后的图片</div><div class="line"> *</div><div class="line"> *	<span class="doctag">@return</span> 裁剪前的图片</div><div class="line"> */</div><div class="line"></div><div class="line">- (UIImage *)hyb_setCircleImage:(id)image</div><div class="line">                           size:(CGSize)targetSize</div><div class="line">                   isEqualScale:(<span class="keyword">BOOL</span>)isEqualScale</div><div class="line">                 backgrounColor:(UIColor *)backgroundColor</div><div class="line">                       onCliped:(HYBClipedCallback)callback;</div></pre></td></tr></table></figure>
+<figure class="highlight zephir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> *	使用指定的图片来填充，但是生成的是圆形图片，背景颜色为白色。</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> *	<span class="doctag">@param</span> image			图片名称或者图片对象，甚至支持NSData</span></span><br><span class="line"><span class="comment"> *	<span class="doctag">@param</span> targetSize	生成指定大小的图片</span></span><br><span class="line"><span class="comment"> *	<span class="doctag">@param</span> isEqualScale	是否等比例缩放图片</span></span><br><span class="line"><span class="comment"> *  <span class="doctag">@param</span> backgroundColor 默认取最顶层父视图的背景色，若为透明，则取本身背景色，若也为透明，则取白色</span></span><br><span class="line"><span class="comment"> *  <span class="doctag">@parma</span> callback   只有当图片真正被裁剪成功后，才会回调，返回裁剪后的图片</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> *	<span class="doctag">@return</span> 裁剪前的图片</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line">- (UIImage *)hyb_setCircleImage:(id)image</span><br><span class="line">                           size:(CGSize)targetSize</span><br><span class="line">                   isEqualScale:(<span class="keyword">BOOL</span>)isEqualScale</span><br><span class="line">                 backgrounColor:(UIColor *)backgroundColor</span><br><span class="line">                       onCliped:(HYBClipedCallback)callback;</span><br></pre></td></tr></table></figure>
 <ul>
 <li>这只是其中一种Public的方法，我是按照Demo来看的。但是无论哪一种Public的方法，最终调用的都是统一的一个Private 的方法。</li>
 </ul>
-<figure class="highlight erlang"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">- <span class="params">(UIImage *)</span>hyb_private_setImage:<span class="params">(id)</span>image</div><div class="line">                             size:<span class="params">(CGSize)</span>targetSize</div><div class="line">                     cornerRadius:<span class="params">(CGFloat)</span>cornerRadius</div><div class="line">                      rectCorener:<span class="params">(UIRectCorner)</span>rectCorner</div><div class="line">                  backgroundColor:<span class="params">(UIColor *)</span>bgColor</div><div class="line">                     isEqualScale:<span class="params">(BOOL)</span>isEqualScale</div><div class="line">                         isCircle:<span class="params">(BOOL)</span>isCircle</div><div class="line">                         onCliped:<span class="params">(HYBClipedCallback)</span>callback</div></pre></td></tr></table></figure>
+<figure class="highlight erlang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">- <span class="params">(UIImage *)</span>hyb_private_setImage:<span class="params">(id)</span>image</span><br><span class="line">                             size:<span class="params">(CGSize)</span>targetSize</span><br><span class="line">                     cornerRadius:<span class="params">(CGFloat)</span>cornerRadius</span><br><span class="line">                      rectCorener:<span class="params">(UIRectCorner)</span>rectCorner</span><br><span class="line">                  backgroundColor:<span class="params">(UIColor *)</span>bgColor</span><br><span class="line">                     isEqualScale:<span class="params">(BOOL)</span>isEqualScale</span><br><span class="line">                         isCircle:<span class="params">(BOOL)</span>isCircle</span><br><span class="line">                         onCliped:<span class="params">(HYBClipedCallback)</span>callback</span><br></pre></td></tr></table></figure>
 <ul>
 <li><p>里面有个这个方法：可以看出来，假如你不设置bgColor这个属性的话，他会遍历循环，一直会找到最顶层的父类，去除父类的颜色。<code>所以我觉得你要是没事话，还是自己设置一下颜色吧！这边假如层级很复杂，并且元素很多的话，这个性能可能会让你哭吧...</code></p>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"> <span class="keyword">if</span> (bgColor == <span class="literal">nil</span> || <span class="built_in">CGColorEqualToColor</span>(bgColor.CGColor, [<span class="built_in">UIColor</span> clearColor].CGColor)) &#123;</div><div class="line">  <span class="built_in">UIView</span> *superview = <span class="keyword">self</span>.superview;</div><div class="line">  <span class="keyword">while</span> (superview.backgroundColor == <span class="literal">nil</span> || <span class="built_in">CGColorEqualToColor</span>(superview.backgroundColor.CGColor, [<span class="built_in">UIColor</span> clearColor].CGColor)) &#123;</div><div class="line">    <span class="keyword">if</span> (!superview) &#123;</div><div class="line">      <span class="keyword">break</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    superview = [superview superview];</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  bgColor = superview.backgroundColor;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">if</span> (bgColor == <span class="literal">nil</span> || <span class="built_in">CGColorEqualToColor</span>(bgColor.CGColor, [<span class="built_in">UIColor</span> clearColor].CGColor)) &#123;</span><br><span class="line">  <span class="built_in">UIView</span> *superview = <span class="keyword">self</span>.superview;</span><br><span class="line">  <span class="keyword">while</span> (superview.backgroundColor == <span class="literal">nil</span> || <span class="built_in">CGColorEqualToColor</span>(superview.backgroundColor.CGColor, [<span class="built_in">UIColor</span> clearColor].CGColor)) &#123;</span><br><span class="line">    <span class="keyword">if</span> (!superview) &#123;</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    superview = [superview superview];</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  bgColor = superview.backgroundColor;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>好吧，下面这段代码又要提到面试宝典中啥经典话题了，<code>如何在category中给现有的类添加属性呢？</code><br><a href="http://nshipster.com/associated-objects/" target="_blank" rel="external">http://nshipster.com/associated-objects/</a>Matt 大神曾经写过，你可以看一下。</p>
+<li><p>好吧，下面这段代码又要提到面试宝典中啥经典话题了，<code>如何在category中给现有的类添加属性呢？</code><br><a href="http://nshipster.com/associated-objects/" target="_blank" rel="noopener">http://nshipster.com/associated-objects/</a>Matt 大神曾经写过，你可以看一下。</p>
 </li>
 </ul>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">__block <span class="built_in">UIImage</span> *clipedImage = <span class="literal">nil</span>;</div><div class="line">	<span class="comment">//1.</span></div><div class="line">  <span class="built_in">dispatch_async</span>(dispatch_get_global_queue(<span class="number">0</span>, <span class="number">0</span>), ^&#123;</div><div class="line">  <span class="comment">//2.</span></div><div class="line">    willBeClipedImage.hyb_pathColor = <span class="keyword">self</span>.hyb_pathColor;</div><div class="line">    willBeClipedImage.hyb_pathWidth = <span class="keyword">self</span>.hyb_pathWidth;</div><div class="line">    willBeClipedImage.hyb_borderColor = <span class="keyword">self</span>.hyb_borderColor;</div><div class="line">    willBeClipedImage.hyb_borderWidth = <span class="keyword">self</span>.hyb_borderWidth;</div><div class="line">  &#125;);</div></pre></td></tr></table></figure>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">这里涉及到的pathColor,pathWidth,borderColor,borderWidth,都是通过在runtime的特性，在已有的类中添加属性的方式来存储和使用的。</div><div class="line">- (<span class="built_in">UIColor</span> *)hyb_pathColor &#123;</div><div class="line">  <span class="built_in">UIColor</span> *color = objc_getAssociatedObject(<span class="keyword">self</span>, s_hyb_image_pathColorKey);</div><div class="line"></div><div class="line">  <span class="keyword">if</span> (color) &#123;</div><div class="line">    <span class="keyword">return</span> color;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">return</span> [<span class="built_in">UIColor</span> whiteColor];</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//...下面都是换汤不换药的。</span></div></pre></td></tr></table></figure>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">__block <span class="built_in">UIImage</span> *clipedImage = <span class="literal">nil</span>;</span><br><span class="line">	<span class="comment">//1.</span></span><br><span class="line">  <span class="built_in">dispatch_async</span>(dispatch_get_global_queue(<span class="number">0</span>, <span class="number">0</span>), ^&#123;</span><br><span class="line">  <span class="comment">//2.</span></span><br><span class="line">    willBeClipedImage.hyb_pathColor = <span class="keyword">self</span>.hyb_pathColor;</span><br><span class="line">    willBeClipedImage.hyb_pathWidth = <span class="keyword">self</span>.hyb_pathWidth;</span><br><span class="line">    willBeClipedImage.hyb_borderColor = <span class="keyword">self</span>.hyb_borderColor;</span><br><span class="line">    willBeClipedImage.hyb_borderWidth = <span class="keyword">self</span>.hyb_borderWidth;</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">这里涉及到的pathColor,pathWidth,borderColor,borderWidth,都是通过在runtime的特性，在已有的类中添加属性的方式来存储和使用的。</span><br><span class="line">- (<span class="built_in">UIColor</span> *)hyb_pathColor &#123;</span><br><span class="line">  <span class="built_in">UIColor</span> *color = objc_getAssociatedObject(<span class="keyword">self</span>, s_hyb_image_pathColorKey);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (color) &#123;</span><br><span class="line">    <span class="keyword">return</span> color;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> [<span class="built_in">UIColor</span> whiteColor];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//...下面都是换汤不换药的。</span></span><br></pre></td></tr></table></figure>
 <p><code>下面涉及到真正的画图部分了</code></p>
 <ol>
 <li>这里另起一个线程来绘制圆角。这里我有个问题：<code>每个图片都创建一个线程，这个是不是有点问题。而且这个dispatch_get_global_queue也有问题，Global Dispatch Queue创建的队列,其线程数目是不定的,是根据XNU内核决定的。我觉得这一点，源码中没有解释。</code></li>
@@ -384,7 +385,7 @@
 <ul>
 <li>绘制圆角的核心函数是这个。</li>
 </ul>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//1.</span></div><div class="line">- (<span class="built_in">UIImage</span> *)hyb_private_clipImageToSize:(<span class="built_in">CGSize</span>)targetSize</div><div class="line">                            cornerRadius:(<span class="built_in">CGFloat</span>)cornerRadius</div><div class="line">                                 corners:(<span class="built_in">UIRectCorner</span>)corners</div><div class="line">                         backgroundColor:(<span class="built_in">UIColor</span> *)backgroundColor</div><div class="line">                            isEqualScale:(<span class="built_in">BOOL</span>)isEqualScale</div><div class="line">                                isCircle:(<span class="built_in">BOOL</span>)isCircle &#123;&#125;</div><div class="line"></div><div class="line">                                <span class="built_in">CGContextRef</span> ctx = <span class="built_in">UIGraphicsGetCurrentContext</span>();</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">//2.</span></div><div class="line">    <span class="keyword">if</span> (isCircle) &#123;</div><div class="line">      <span class="built_in">CGContextAddEllipseInRect</span>(ctx, rect);</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">      <span class="built_in">CGContextAddRect</span>(ctx, rect);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="built_in">CGContextClip</span>(ctx);</div><div class="line">    [<span class="keyword">self</span> drawInRect:rectImage];</div><div class="line"></div><div class="line">    <span class="comment">//3.</span></div><div class="line"></div><div class="line">        <span class="built_in">CGContextSetStrokeColorWithColor</span>(ctx, [borderColor <span class="built_in">CGColor</span>]);</div><div class="line">    <span class="built_in">CGContextSetLineWidth</span>(ctx, borderWidth);</div><div class="line"></div><div class="line">    <span class="keyword">if</span> (isCircle) &#123;</div><div class="line">      <span class="built_in">CGContextStrokeEllipseInRect</span>(ctx, rectImage);</div><div class="line">      <span class="built_in">CGContextStrokeEllipseInRect</span>(ctx, rect);</div><div class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (cornerRadius == <span class="number">0</span>) &#123;</div><div class="line">      <span class="built_in">CGContextStrokeRect</span>(ctx, rectImage);</div><div class="line">      <span class="built_in">CGContextStrokeRect</span>(ctx, rect);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">//4.</span></div><div class="line">     <span class="built_in">UIBezierPath</span> *path2 = [<span class="built_in">UIBezierPath</span> bezierPathWithRoundedRect:rect</div><div class="line">                                                byRoundingCorners:corners</div><div class="line">                                                      cornerRadii:<span class="built_in">CGSizeMake</span>(cornerRadius + minusPath1 ,cornerRadius + minusPath1)];</div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">//5.</span></div><div class="line">    <span class="built_in">UIImage</span> *finalImage = <span class="built_in">UIGraphicsGetImageFromCurrentImageContext</span>();</div><div class="line"></div><div class="line">    <span class="keyword">return</span> finalImage;</div></pre></td></tr></table></figure>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1.</span></span><br><span class="line">- (<span class="built_in">UIImage</span> *)hyb_private_clipImageToSize:(<span class="built_in">CGSize</span>)targetSize</span><br><span class="line">                            cornerRadius:(<span class="built_in">CGFloat</span>)cornerRadius</span><br><span class="line">                                 corners:(<span class="built_in">UIRectCorner</span>)corners</span><br><span class="line">                         backgroundColor:(<span class="built_in">UIColor</span> *)backgroundColor</span><br><span class="line">                            isEqualScale:(<span class="built_in">BOOL</span>)isEqualScale</span><br><span class="line">                                isCircle:(<span class="built_in">BOOL</span>)isCircle &#123;&#125;</span><br><span class="line"></span><br><span class="line">                                <span class="built_in">CGContextRef</span> ctx = <span class="built_in">UIGraphicsGetCurrentContext</span>();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">//2.</span></span><br><span class="line">    <span class="keyword">if</span> (isCircle) &#123;</span><br><span class="line">      <span class="built_in">CGContextAddEllipseInRect</span>(ctx, rect);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="built_in">CGContextAddRect</span>(ctx, rect);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">CGContextClip</span>(ctx);</span><br><span class="line">    [<span class="keyword">self</span> drawInRect:rectImage];</span><br><span class="line"></span><br><span class="line">    <span class="comment">//3.</span></span><br><span class="line"></span><br><span class="line">        <span class="built_in">CGContextSetStrokeColorWithColor</span>(ctx, [borderColor <span class="built_in">CGColor</span>]);</span><br><span class="line">    <span class="built_in">CGContextSetLineWidth</span>(ctx, borderWidth);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (isCircle) &#123;</span><br><span class="line">      <span class="built_in">CGContextStrokeEllipseInRect</span>(ctx, rectImage);</span><br><span class="line">      <span class="built_in">CGContextStrokeEllipseInRect</span>(ctx, rect);</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (cornerRadius == <span class="number">0</span>) &#123;</span><br><span class="line">      <span class="built_in">CGContextStrokeRect</span>(ctx, rectImage);</span><br><span class="line">      <span class="built_in">CGContextStrokeRect</span>(ctx, rect);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//4.</span></span><br><span class="line">     <span class="built_in">UIBezierPath</span> *path2 = [<span class="built_in">UIBezierPath</span> bezierPathWithRoundedRect:rect</span><br><span class="line">                                                byRoundingCorners:corners</span><br><span class="line">                                                      cornerRadii:<span class="built_in">CGSizeMake</span>(cornerRadius + minusPath1 ,cornerRadius + minusPath1)];</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">//5.</span></span><br><span class="line">    <span class="built_in">UIImage</span> *finalImage = <span class="built_in">UIGraphicsGetImageFromCurrentImageContext</span>();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> finalImage;</span><br></pre></td></tr></table></figure>
 <ol>
 <li>里面更新size做了一些文章。是到底要做截成一个正圆，还是只截在哪个角的圆。</li>
 <li>如果是正圆、并且不带圆角的话，就用core graphic来画。</li>
@@ -495,7 +496,7 @@ A bitmask value that identifies the corners that you want rounded. You can use t
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright" >
+        <div class="copyright">
   
   &copy; 
   <span itemprop="copyrightYear">2018</span>

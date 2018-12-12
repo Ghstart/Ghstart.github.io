@@ -6,18 +6,18 @@
 
 
 <html class="theme-next mist use-motion" lang="zh-Hans">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -35,7 +35,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -87,42 +87,41 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="Object-c," />
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css">
 
 
-
-
-
-  <link rel="alternate" href="/atom.xml" title="Ghcoder" type="application/atom+xml" />
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+  <meta name="keywords" content="Object-c,">
 
 
 
 
 
+  <link rel="alternate" href="/atom.xml" title="Ghcoder" type="application/atom+xml">
 
-<meta name="description" content="昨天将最新版1.9.5发布上线。总结一下这一版本中踩过的坑。产品的需求：
-app中默认是游客身份，随着不同身份的切换，可能需要切换不同的网管。(假如请求的url为: http://www.siji.com/a.php,那么随着身份的切换的话，可能 http://www.siji.com需要修改为http://www.chengke.com)，并且有些请求，是不需要依赖身份的：(比如登录部分请求就是">
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1">
+
+
+
+
+
+
+<meta name="description" content="昨天将最新版1.9.5发布上线。总结一下这一版本中踩过的坑。产品的需求： app中默认是游客身份，随着不同身份的切换，可能需要切换不同的网管。(假如请求的url为: http://www.siji.com/a.php,那么随着身份的切换的话，可能 http://www.siji.com需要修改为http://www.chengke.com)，并且有些请求，是不需要依赖身份的：(比如登录部分请求就是">
+<meta name="keywords" content="Object-c">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Object-C 网管、以及切换AppDelegate的RootViewCtroller">
 <meta property="og:url" content="http://www.ghcoder.com/2017/05/05/20170505/index.html">
 <meta property="og:site_name" content="Ghcoder">
-<meta property="og:description" content="昨天将最新版1.9.5发布上线。总结一下这一版本中踩过的坑。产品的需求：
-app中默认是游客身份，随着不同身份的切换，可能需要切换不同的网管。(假如请求的url为: http://www.siji.com/a.php,那么随着身份的切换的话，可能 http://www.siji.com需要修改为http://www.chengke.com)，并且有些请求，是不需要依赖身份的：(比如登录部分请求就是">
+<meta property="og:description" content="昨天将最新版1.9.5发布上线。总结一下这一版本中踩过的坑。产品的需求： app中默认是游客身份，随着不同身份的切换，可能需要切换不同的网管。(假如请求的url为: http://www.siji.com/a.php,那么随着身份的切换的话，可能 http://www.siji.com需要修改为http://www.chengke.com)，并且有些请求，是不需要依赖身份的：(比如登录部分请求就是">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2017-05-10T12:17:45.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Object-C 网管、以及切换AppDelegate的RootViewCtroller">
-<meta name="twitter:description" content="昨天将最新版1.9.5发布上线。总结一下这一版本中踩过的坑。产品的需求：
-app中默认是游客身份，随着不同身份的切换，可能需要切换不同的网管。(假如请求的url为: http://www.siji.com/a.php,那么随着身份的切换的话，可能 http://www.siji.com需要修改为http://www.chengke.com)，并且有些请求，是不需要依赖身份的：(比如登录部分请求就是">
+<meta name="twitter:description" content="昨天将最新版1.9.5发布上线。总结一下这一版本中踩过的坑。产品的需求： app中默认是游客身份，随着不同身份的切换，可能需要切换不同的网管。(假如请求的url为: http://www.siji.com/a.php,那么随着身份的切换的话，可能 http://www.siji.com需要修改为http://www.chengke.com)，并且有些请求，是不需要依赖身份的：(比如登录部分请求就是">
 
 
 
@@ -150,7 +149,7 @@ app中默认是游客身份，随着不同身份的切换，可能需要切换�
 
 
 
-  <link rel="canonical" href="http://www.ghcoder.com/2017/05/05/20170505/"/>
+  <link rel="canonical" href="http://www.ghcoder.com/2017/05/05/20170505/">
 
 
 
@@ -159,7 +158,7 @@ app中默认是游客身份，随着不同身份的切换，可能需要切换�
   <title>Object-C 网管、以及切换AppDelegate的RootViewCtroller | Ghcoder</title>
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
 
@@ -184,13 +183,13 @@ app中默认是游客身份，随着不同身份的切换，可能需要切换�
   <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">Ghcoder</span>
         <span class="logo-line-after"><i></i></span>
@@ -220,7 +219,7 @@ app中默认是游客身份，随着不同身份的切换，可能需要切换�
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
           </a>
@@ -230,7 +229,7 @@ app中默认是游客身份，随着不同身份的切换，可能需要切换�
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             列表
           </a>
@@ -264,16 +263,16 @@ app中默认是游客身份，随着不同身份的切换，可能需要切换�
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://www.ghcoder.com/2017/05/05/20170505/">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Ghcoder">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="https://avatars3.githubusercontent.com/u/5730023?v=3&s=460">
     </span>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="Ghcoder">
     </span>
 
@@ -305,7 +304,7 @@ app中默认是游客身份，随着不同身份的切换，可能需要切换�
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -316,7 +315,7 @@ app中默认是游客身份，随着不同身份的切换，可能需要切换�
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
                   <a href="/categories/日志/" itemprop="url" rel="index">
                     <span itemprop="name">日志</span>
                   </a>
@@ -336,8 +335,7 @@ app中默认是游客身份，随着不同身份的切换，可能需要切换�
                   <i class="fa fa-comment-o"></i>
                 </span>
                 <a href="/2017/05/05/20170505/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/05/05/20170505/" itemprop="commentCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/05/05/20170505/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -366,15 +364,15 @@ app中默认是游客身份，随着不同身份的切换，可能需要切换�
 <li>app中默认是游客身份，随着不同身份的切换，可能需要切换不同的网管。(假如请求的url为: <code>http://www.siji.com/a.php</code>,那么随着身份的切换的话，可能 <code>http://www.siji.com</code>需要修改为<code>http://www.chengke.com</code>)，并且有些请求，是不需要依赖身份的：(比如登录部分请求就是<code>http://www.login.com/login.php</code>、支付部分的请求就是<code>http://www.pay.com/pay.php</code>)。<a id="more"></a></li>
 <li>app中需要区分两种身份(例如 1.司机身份 2.乘客身份)，未来可能还需要更多身份去切换，伴随着身份切换，可能UI上会发生重大的改变，例如：司机身份是UITabBarController为rootViewController的，乘客身份只是(UIViewController+UISlideViewController)侧滑的样式。</li>
 </ol>
-<p><strong>之前发布的版本，有一点很重的线程安全的问题，我没有考虑到，现在我已经做了响应的修改了。在关于能够修改字典、数组的方法中我都用到了NSRecursiveLock，从而能够保证线程是安全的。属性的相关安全性，我也查了些资料：[<a href="https://zhuanlan.zhihu.com/p/23998703" target="_blank" rel="external">https://zhuanlan.zhihu.com/p/23998703</a>]</strong></p>
+<p><strong>之前发布的版本，有一点很重的线程安全的问题，我没有考虑到，现在我已经做了响应的修改了。在关于能够修改字典、数组的方法中我都用到了NSRecursiveLock，从而能够保证线程是安全的。属性的相关安全性，我也查了些资料：[<a href="https://zhuanlan.zhihu.com/p/23998703]" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/23998703]</a></strong></p>
 <h3 id="解决第一个问题："><a href="#解决第一个问题：" class="headerlink" title="解决第一个问题："></a>解决第一个问题：</h3><ol>
-<li>首先我这里希望我在app刚进来的时候，就配置好，并且我这里希望他是线程安全，并且方便get/set值。这里我选用<code>单例</code>。并且在系统刚进来的时候就配置, 我已经加入cocoapods了：[<a href="https://github.com/Ghstart/GateWayObject]：" target="_blank" rel="external">https://github.com/Ghstart/GateWayObject]：</a></li>
+<li>首先我这里希望我在app刚进来的时候，就配置好，并且我这里希望他是线程安全，并且方便get/set值。这里我选用<code>单例</code>。并且在系统刚进来的时候就配置, 我已经加入cocoapods了：[<a href="https://github.com/Ghstart/GateWayObject]：" target="_blank" rel="noopener">https://github.com/Ghstart/GateWayObject]：</a></li>
 </ol>
-<figure class="highlight mel"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions &#123;</div><div class="line">    self.<span class="keyword">window</span> = [[RootWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];</div><div class="line"></div><div class="line">    <span class="comment">//1.设置默认URL，就是其中一种身份对应的URL</span></div><div class="line">    <span class="comment">//2.设置一些URL的映射，不会根据之前身份设置来修改</span></div><div class="line">    [GateWayObject sharedInstanceWithDefaultURL:@"https:<span class="comment">//cz.redlion56.com/gwcz/"</span></div><div class="line">                                    ReflectURLS:@&#123;</div><div class="line">                                                  @"user/login.<span class="keyword">do</span><span class="string">": @"</span>https:<span class="comment">//login.redlion56.com/gwlogin/user/login.do",</span></div><div class="line">                                                  @"uic/user/logout.<span class="keyword">do</span><span class="string">": @"</span>https:<span class="comment">//cz.redlion56.com/gwcz/uic/user/logout.do"</span></div><div class="line">                                                  &#125;];</div><div class="line">                                                  </div><div class="line">    <span class="comment">// 3. 设置乘客身份对应的网管                          </span></div><div class="line">    [[GateWayObject currentGateWay] setGateWayURL:@"https:<span class="comment">//cz.redlion56.com/gwcz/"</span></div><div class="line">                                     forKeyObject:carownerRole];</div><div class="line">     </div><div class="line">    <span class="comment">// 4.设置乘客对应的网管</span></div><div class="line">    [[GateWayObject currentGateWay] setGateWayURL:@"https:<span class="comment">//sj.redlion56.com/gwsj/"</span></div><div class="line">                                     forKeyObject:driverRole];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 5.并且还可以根据相应的条件来切换网管</span></div><div class="line">  <span class="selector-tag">if</span> (xxx) &#123;</div><div class="line">        </div><div class="line">        <span class="selector-attr">[[GateWayObject currentGateWay]</span> <span class="selector-tag">swichGateWayBaseOn</span><span class="selector-pseudo">:carownerRole</span>];</div><div class="line">        </div><div class="line">    &#125; <span class="selector-tag">else</span> &#123;</div><div class="line">        </div><div class="line">        <span class="selector-attr">[[GateWayObject currentGateWay]</span> <span class="selector-tag">swichGateWayBaseOn</span><span class="selector-pseudo">:driverRole</span>];</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
-<figure class="highlight gams"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 7.直接可以取得次环境下对应的正确URL</span></div><div class="line">[self GET:[[GateWayObject currentGateWay] currentURLBaseOnRelativeURL:url]</div><div class="line">   <span class="keyword">parameters</span>:<span class="keyword">parameters</span></div><div class="line">      success:^(NSURLSessionDataTask <span class="comment">*task, id responseObject) &#123;</span></div><div class="line">          &#125;</div><div class="line">      &#125; failure:^(NSURLSessionDataTask <span class="comment">*task, NSError *error) &#123;</span></div><div class="line">          if <span class="comment">(failure &amp;&amp; error.code != -999 &amp;&amp; ![error.localizedDescription isEqualToString:@</span><span class="comment">"已取消"</span><span class="comment">]) &#123;</span></div><div class="line">              failure(error);</div><div class="line">          &#125;</div><div class="line">      &#125;];</div></pre></td></tr></table></figure>
-<h3 id="下面看一下我的-h文件："><a href="#下面看一下我的-h文件：" class="headerlink" title="下面看一下我的.h文件："></a>下面看一下我的.h文件：</h3><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">GateWayObject</span> : <span class="title">NSObject</span></span></div><div class="line"></div><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">readonly</span>) <span class="built_in">NSString</span>    *currentRelateURL;</div><div class="line"></div><div class="line"><span class="comment">///////////-init-//////////////</span></div><div class="line"><span class="comment">/*</span></div><div class="line"> ** 获得当前的网管</div><div class="line"> */</div><div class="line"></div><div class="line">+ (GateWayObject *)currentGateWay;</div><div class="line"></div><div class="line"><span class="comment">/*</span></div><div class="line"> ** 网管实例化方法</div><div class="line"> ** 默认网关</div><div class="line"> */</div><div class="line">+ (GateWayObject *)sharedInstanceWithDefaultURL:(<span class="built_in">NSString</span> *)url;</div><div class="line"></div><div class="line"><span class="comment">/*</span></div><div class="line"> ** 网关实例化</div><div class="line"> ** 可以配置一些默认的URL对应的一些网关</div><div class="line"> */</div><div class="line">+ (GateWayObject *)sharedInstanceWithDefaultURL:(<span class="built_in">NSString</span> *)url ReflectURLS:(<span class="built_in">NSDictionary</span> *)reflectURLS;</div><div class="line"></div><div class="line"><span class="comment">/*</span></div><div class="line"> ** 设置网关</div><div class="line"> */</div><div class="line">- (<span class="keyword">void</span>)setGateWayURL:(<span class="built_in">NSString</span> *)url forKeyObject:(<span class="keyword">id</span>)keyObject;</div><div class="line"></div><div class="line"><span class="comment">/*</span></div><div class="line"> ** 设置默认的一些网关，优先级仅次于http/https</div><div class="line"> */</div><div class="line">- (<span class="keyword">void</span>)setDefaultRelativeURL:(<span class="built_in">NSString</span> *)relativeURL fullURL:(<span class="built_in">NSString</span> *)fullURL;</div><div class="line"></div><div class="line"><span class="comment">/*</span></div><div class="line"> ** 根据之前的设置的身份切换网管</div><div class="line"> ** 返回值为true则切换成功 false失败</div><div class="line"> */</div><div class="line">- (<span class="built_in">BOOL</span>)swichGateWayBaseOn:(<span class="keyword">id</span>)keyObject;</div><div class="line"></div><div class="line"><span class="comment">/*</span></div><div class="line"> ** 取得当前URL</div><div class="line"> */</div><div class="line">- (<span class="built_in">NSString</span> *)currentURLBaseOnRelativeURL:(<span class="built_in">NSString</span> *)url;</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">@end</span></div></pre></td></tr></table></figure>
-<h3 id="第二个问题的解决方案，自定义RootWindow-让它集成于-UIWindow，并且覆写，然后自己写一套新的stroyboard，每次身份切换的时候，直接切换keyWindow的rootViewController"><a href="#第二个问题的解决方案，自定义RootWindow-让它集成于-UIWindow，并且覆写，然后自己写一套新的stroyboard，每次身份切换的时候，直接切换keyWindow的rootViewController" class="headerlink" title="第二个问题的解决方案，自定义RootWindow,让它集成于 UIWindow，并且覆写，然后自己写一套新的stroyboard，每次身份切换的时候，直接切换keyWindow的rootViewController"></a>第二个问题的解决方案，自定义<code>RootWindow</code>,让它集成于 <code>UIWindow</code>，并且覆写，然后自己写一套新的stroyboard，每次身份切换的时候，直接切换keyWindow的rootViewController</h3><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">- (<span class="keyword">void</span>)setRootViewController:(<span class="built_in">UIViewController</span> *)rootViewController</div><div class="line">&#123;</div><div class="line">	<span class="comment">// 这里我发现在某些设备上由于push、present之后就不能够正常销毁,这里就需要你去判断，做相应的pop、dismiss之后，在去setRootViewController</span></div><div class="line">	<span class="comment">// 但是后来又发现系统的navigation的栈，栈的弹出需要时间才能弹出，不是立刻弹出啊的，这里就很鸡肋了，目前我还没想到啥解决方案。</span></div><div class="line">    [<span class="built_in">UIViewController</span> fastToRootVC];</div><div class="line">    </div><div class="line">    <span class="comment">//remove old rootViewController's sub views</span></div><div class="line">    <span class="keyword">for</span> (<span class="built_in">UIView</span>* subView <span class="keyword">in</span> <span class="keyword">self</span>.rootViewController.view.subviews)</div><div class="line">    &#123;</div><div class="line">        [subView removeFromSuperview];</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="comment">//remove old rootViewController's view</span></div><div class="line">    [<span class="keyword">self</span>.rootViewController.view removeFromSuperview];</div><div class="line">    </div><div class="line">    <span class="comment">//set new rootViewController</span></div><div class="line">    [<span class="keyword">super</span> setRootViewController:rootViewController];</div><div class="line">    </div><div class="line">    <span class="comment">//remove empty UILayoutContainerView(s) remaining on root window</span></div><div class="line">    <span class="keyword">for</span> (<span class="built_in">UIView</span> *subView <span class="keyword">in</span> <span class="keyword">self</span>.subviews)</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">if</span> (subView.subviews.count == <span class="number">0</span>)</div><div class="line">        &#123;</div><div class="line">            [subView removeFromSuperview];</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight mel"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions &#123;</span><br><span class="line">    self.<span class="keyword">window</span> = [[RootWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];</span><br><span class="line"></span><br><span class="line">    <span class="comment">//1.设置默认URL，就是其中一种身份对应的URL</span></span><br><span class="line">    <span class="comment">//2.设置一些URL的映射，不会根据之前身份设置来修改</span></span><br><span class="line">    [GateWayObject sharedInstanceWithDefaultURL:@"https:<span class="comment">//cz.redlion56.com/gwcz/"</span></span><br><span class="line">                                    ReflectURLS:@&#123;</span><br><span class="line">                                                  @"user/login.<span class="keyword">do</span><span class="string">": @"</span>https:<span class="comment">//login.redlion56.com/gwlogin/user/login.do",</span></span><br><span class="line">                                                  @"uic/user/logout.<span class="keyword">do</span><span class="string">": @"</span>https:<span class="comment">//cz.redlion56.com/gwcz/uic/user/logout.do"</span></span><br><span class="line">                                                  &#125;];</span><br><span class="line">                                                  </span><br><span class="line">    <span class="comment">// 3. 设置乘客身份对应的网管                          </span></span><br><span class="line">    [[GateWayObject currentGateWay] setGateWayURL:@"https:<span class="comment">//cz.redlion56.com/gwcz/"</span></span><br><span class="line">                                     forKeyObject:carownerRole];</span><br><span class="line">     </span><br><span class="line">    <span class="comment">// 4.设置乘客对应的网管</span></span><br><span class="line">    [[GateWayObject currentGateWay] setGateWayURL:@"https:<span class="comment">//sj.redlion56.com/gwsj/"</span></span><br><span class="line">                                     forKeyObject:driverRole];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 5.并且还可以根据相应的条件来切换网管</span></span><br><span class="line">  <span class="selector-tag">if</span> (xxx) &#123;</span><br><span class="line">        </span><br><span class="line">        <span class="selector-attr">[[GateWayObject currentGateWay]</span> <span class="selector-tag">swichGateWayBaseOn</span><span class="selector-pseudo">:carownerRole</span>];</span><br><span class="line">        </span><br><span class="line">    &#125; <span class="selector-tag">else</span> &#123;</span><br><span class="line">        </span><br><span class="line">        <span class="selector-attr">[[GateWayObject currentGateWay]</span> <span class="selector-tag">swichGateWayBaseOn</span><span class="selector-pseudo">:driverRole</span>];</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 7.直接可以取得次环境下对应的正确URL</span></span><br><span class="line">[self GET:[[GateWayObject currentGateWay] currentURLBaseOnRelativeURL:url]</span><br><span class="line">   <span class="keyword">parameters</span>:<span class="keyword">parameters</span></span><br><span class="line">      success:^(NSURLSessionDataTask <span class="comment">*task, id responseObject) &#123;</span></span><br><span class="line">          &#125;</span><br><span class="line">      &#125; failure:^(NSURLSessionDataTask <span class="comment">*task, NSError *error) &#123;</span></span><br><span class="line">          if <span class="comment">(failure &amp;&amp; error.code != -999 &amp;&amp; ![error.localizedDescription isEqualToString:@</span><span class="comment">"已取消"</span><span class="comment">]) &#123;</span></span><br><span class="line">              failure(error);</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;];</span><br></pre></td></tr></table></figure>
+<h3 id="下面看一下我的-h文件："><a href="#下面看一下我的-h文件：" class="headerlink" title="下面看一下我的.h文件："></a>下面看一下我的.h文件：</h3><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">GateWayObject</span> : <span class="title">NSObject</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">readonly</span>) <span class="built_in">NSString</span>    *currentRelateURL;</span><br><span class="line"></span><br><span class="line"><span class="comment">///////////-init-//////////////</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> ** 获得当前的网管</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line">+ (GateWayObject *)currentGateWay;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> ** 网管实例化方法</span></span><br><span class="line"><span class="comment"> ** 默认网关</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">+ (GateWayObject *)sharedInstanceWithDefaultURL:(<span class="built_in">NSString</span> *)url;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> ** 网关实例化</span></span><br><span class="line"><span class="comment"> ** 可以配置一些默认的URL对应的一些网关</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">+ (GateWayObject *)sharedInstanceWithDefaultURL:(<span class="built_in">NSString</span> *)url ReflectURLS:(<span class="built_in">NSDictionary</span> *)reflectURLS;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> ** 设置网关</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">- (<span class="keyword">void</span>)setGateWayURL:(<span class="built_in">NSString</span> *)url forKeyObject:(<span class="keyword">id</span>)keyObject;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> ** 设置默认的一些网关，优先级仅次于http/https</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">- (<span class="keyword">void</span>)setDefaultRelativeURL:(<span class="built_in">NSString</span> *)relativeURL fullURL:(<span class="built_in">NSString</span> *)fullURL;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> ** 根据之前的设置的身份切换网管</span></span><br><span class="line"><span class="comment"> ** 返回值为true则切换成功 false失败</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">- (<span class="built_in">BOOL</span>)swichGateWayBaseOn:(<span class="keyword">id</span>)keyObject;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> ** 取得当前URL</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">- (<span class="built_in">NSString</span> *)currentURLBaseOnRelativeURL:(<span class="built_in">NSString</span> *)url;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+<h3 id="第二个问题的解决方案，自定义RootWindow-让它集成于-UIWindow，并且覆写，然后自己写一套新的stroyboard，每次身份切换的时候，直接切换keyWindow的rootViewController"><a href="#第二个问题的解决方案，自定义RootWindow-让它集成于-UIWindow，并且覆写，然后自己写一套新的stroyboard，每次身份切换的时候，直接切换keyWindow的rootViewController" class="headerlink" title="第二个问题的解决方案，自定义RootWindow,让它集成于 UIWindow，并且覆写，然后自己写一套新的stroyboard，每次身份切换的时候，直接切换keyWindow的rootViewController"></a>第二个问题的解决方案，自定义<code>RootWindow</code>,让它集成于 <code>UIWindow</code>，并且覆写，然后自己写一套新的stroyboard，每次身份切换的时候，直接切换keyWindow的rootViewController</h3><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)setRootViewController:(<span class="built_in">UIViewController</span> *)rootViewController</span><br><span class="line">&#123;</span><br><span class="line">	<span class="comment">// 这里我发现在某些设备上由于push、present之后就不能够正常销毁,这里就需要你去判断，做相应的pop、dismiss之后，在去setRootViewController</span></span><br><span class="line">	<span class="comment">// 但是后来又发现系统的navigation的栈，栈的弹出需要时间才能弹出，不是立刻弹出啊的，这里就很鸡肋了，目前我还没想到啥解决方案。</span></span><br><span class="line">    [<span class="built_in">UIViewController</span> fastToRootVC];</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//remove old rootViewController's sub views</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="built_in">UIView</span>* subView <span class="keyword">in</span> <span class="keyword">self</span>.rootViewController.view.subviews)</span><br><span class="line">    &#123;</span><br><span class="line">        [subView removeFromSuperview];</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//remove old rootViewController's view</span></span><br><span class="line">    [<span class="keyword">self</span>.rootViewController.view removeFromSuperview];</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//set new rootViewController</span></span><br><span class="line">    [<span class="keyword">super</span> setRootViewController:rootViewController];</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//remove empty UILayoutContainerView(s) remaining on root window</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="built_in">UIView</span> *subView <span class="keyword">in</span> <span class="keyword">self</span>.subviews)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (subView.subviews.count == <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            [subView removeFromSuperview];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -472,7 +470,7 @@ app中默认是游客身份，随着不同身份的切换，可能需要切换�
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright" >
+        <div class="copyright">
   
   &copy; 
   <span itemprop="copyrightYear">2018</span>

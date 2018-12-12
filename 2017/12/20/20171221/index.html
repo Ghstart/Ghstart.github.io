@@ -6,18 +6,18 @@
 
 
 <html class="theme-next mist use-motion" lang="zh-Hans">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -35,7 +35,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -87,23 +87,23 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="Swift、Animation," />
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css">
 
 
-
-
-
-  <link rel="alternate" href="/atom.xml" title="Ghcoder" type="application/atom+xml" />
+  <meta name="keywords" content="Swift、Animation,">
 
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+  <link rel="alternate" href="/atom.xml" title="Ghcoder" type="application/atom+xml">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1">
 
 
 
@@ -111,11 +111,13 @@
 
 
 <meta name="description" content="这篇文章翻译自raywenderlich上的最新一篇文章，原链接这里[https://www.raywenderlich.com/167198/make-uiviewcontroller-transition-animation-like-ping-app]">
+<meta name="keywords" content="Swift、Animation">
 <meta property="og:type" content="article">
 <meta property="og:title" content="自定义创建UIViewController Transition的动画效果">
 <meta property="og:url" content="http://www.ghcoder.com/2017/12/20/20171221/index.html">
 <meta property="og:site_name" content="Ghcoder">
 <meta property="og:description" content="这篇文章翻译自raywenderlich上的最新一篇文章，原链接这里[https://www.raywenderlich.com/167198/make-uiviewcontroller-transition-animation-like-ping-app]">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://koenig-media.raywenderlich.com/uploads/2017/10/BasicPushPop.gif">
 <meta property="og:image" content="https://koenig-media.raywenderlich.com/uploads/2014/10/mask-diagram-700x381.png">
 <meta property="og:updated_time" content="2017-12-21T04:13:14.000Z">
@@ -150,7 +152,7 @@
 
 
 
-  <link rel="canonical" href="http://www.ghcoder.com/2017/12/20/20171221/"/>
+  <link rel="canonical" href="http://www.ghcoder.com/2017/12/20/20171221/">
 
 
 
@@ -159,7 +161,7 @@
   <title>自定义创建UIViewController Transition的动画效果 | Ghcoder</title>
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
 
@@ -184,13 +186,13 @@
   <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">Ghcoder</span>
         <span class="logo-line-after"><i></i></span>
@@ -220,7 +222,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
           </a>
@@ -230,7 +232,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             列表
           </a>
@@ -264,16 +266,16 @@
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://www.ghcoder.com/2017/12/20/20171221/">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Ghcoder">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="https://avatars3.githubusercontent.com/u/5730023?v=3&s=460">
     </span>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="Ghcoder">
     </span>
 
@@ -305,7 +307,7 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -316,7 +318,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
                   <a href="/categories/日志/" itemprop="url" rel="index">
                     <span itemprop="name">日志</span>
                   </a>
@@ -336,8 +338,7 @@
                   <i class="fa fa-comment-o"></i>
                 </span>
                 <a href="/2017/12/20/20171221/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/12/20/20171221/" itemprop="commentCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/12/20/20171221/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -362,7 +363,7 @@
       
 
       
-        <h3 id="这篇文章翻译自raywenderlich上的最新一篇文章，原链接这里-https-www-raywenderlich-com-167198-make-uiviewcontroller-transition-animation-like-ping-app"><a href="#这篇文章翻译自raywenderlich上的最新一篇文章，原链接这里-https-www-raywenderlich-com-167198-make-uiviewcontroller-transition-animation-like-ping-app" class="headerlink" title="这篇文章翻译自raywenderlich上的最新一篇文章，原链接这里[https://www.raywenderlich.com/167198/make-uiviewcontroller-transition-animation-like-ping-app]"></a>这篇文章翻译自raywenderlich上的最新一篇文章，原链接这里[<a href="https://www.raywenderlich.com/167198/make-uiviewcontroller-transition-animation-like-ping-app" target="_blank" rel="external">https://www.raywenderlich.com/167198/make-uiviewcontroller-transition-animation-like-ping-app</a>]</h3><a id="more"></a>
+        <h3 id="这篇文章翻译自raywenderlich上的最新一篇文章，原链接这里-https-www-raywenderlich-com-167198-make-uiviewcontroller-transition-animation-like-ping-app"><a href="#这篇文章翻译自raywenderlich上的最新一篇文章，原链接这里-https-www-raywenderlich-com-167198-make-uiviewcontroller-transition-animation-like-ping-app" class="headerlink" title="这篇文章翻译自raywenderlich上的最新一篇文章，原链接这里[https://www.raywenderlich.com/167198/make-uiviewcontroller-transition-animation-like-ping-app]"></a>这篇文章翻译自raywenderlich上的最新一篇文章，原链接这里[<a href="https://www.raywenderlich.com/167198/make-uiviewcontroller-transition-animation-like-ping-app]" target="_blank" rel="noopener">https://www.raywenderlich.com/167198/make-uiviewcontroller-transition-animation-like-ping-app]</a></h3><a id="more"></a>
 <ul>
 <li>作者的目标就是开发一个这样的切换样式，主要是实现的是<strong>主页面</strong>与 <strong>menu页面</strong>切换。</li>
 </ul>
@@ -378,7 +379,7 @@
 <li>…</li>
 </ol>
 <h3 id="初始项目"><a href="#初始项目" class="headerlink" title="初始项目"></a>初始项目</h3><ul>
-<li>项目的起始代码在这里[<a href="https://www.raywenderlich.com/170144/custom-uiviewcontroller-transitions-getting-started" target="_blank" rel="external">https://www.raywenderlich.com/170144/custom-uiviewcontroller-transitions-getting-started</a>]</li>
+<li>项目的起始代码在这里[<a href="https://www.raywenderlich.com/170144/custom-uiviewcontroller-transitions-getting-started]" target="_blank" rel="noopener">https://www.raywenderlich.com/170144/custom-uiviewcontroller-transitions-getting-started]</a></li>
 </ul>
 <h3 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h3><h4 id="1-情况介绍"><a href="#1-情况介绍" class="headerlink" title="1.情况介绍"></a>1.情况介绍</h4><ol>
 <li>首先我们要知道我们要做的这个动画效果主要是用在这种情况下： 从一个VC切换到其他的VC时候所发生的动画[这里的VC指的就是ViewController]。</li>
@@ -397,18 +398,18 @@
 <ul>
 <li>新建一个<code>TransitionCoordinator</code>类的文件，继承自<code>NSObject</code>,并且遵循<code>UINavigationControllerDelegate</code>的协议：</li>
 </ul>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">TransitionCoordinator</span>: <span class="type">NSObject</span>, <span class="type">UINavigationControllerDelegate &#123;&#125;</span></span></div></pre></td></tr></table></figure>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TransitionCoordinator</span>: <span class="type">NSObject</span>, <span class="type">UINavigationControllerDelegate &#123;&#125;</span></span></span><br></pre></td></tr></table></figure>
 <ul>
 <li>然后给这个类里面添加一个协议方法，方法名如下, 目前先返回<code>nil</code>，后面会来补充进去：</li>
 <li>这个方法主要确定了进入的VC/离开的VC,并且这个函数返回的是一个<code>animation</code>的对象。</li>
 <li>当<code>navigationController</code>想要知道这个<code>animation</code>的对象的时候，而这里你却返回了一个<code>nil</code>的对象，这样的话，系统就会用默认的<code>push</code>、<code>pop</code>的动画效果。</li>
 </ul>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">navigationController</span><span class="params">(<span class="number">_</span> navigationController: UINavigationController,</span></span></div><div class="line">                      animationControllerFor operation: UINavigationControllerOperation,</div><div class="line">                      from fromVC: UIViewController,</div><div class="line">                      to toVC: UIViewController) -&gt; <span class="type">UIViewControllerAnimatedTransitioning</span>? &#123;</div><div class="line"><span class="keyword">return</span> <span class="literal">nil</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">navigationController</span><span class="params">(<span class="number">_</span> navigationController: UINavigationController,</span></span></span><br><span class="line"><span class="function"><span class="params">                      animationControllerFor operation: UINavigationControllerOperation,</span></span></span><br><span class="line"><span class="function"><span class="params">                      from fromVC: UIViewController,</span></span></span><br><span class="line"><span class="function"><span class="params">                      to toVC: UIViewController)</span></span> -&gt; <span class="type">UIViewControllerAnimatedTransitioning</span>? &#123;</span><br><span class="line"><span class="keyword">return</span> <span class="literal">nil</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>–</p>
 <ul>
 <li>这里我们需要为<code>UINavigationController</code>的代理指定一下，回到<code>Appdelegate</code>的文件里面：</li>
 </ul>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 在文件的Appdelegate.swift的文件头上声明一个变量</span></div><div class="line">let transitionCoordinator = TransitionCoordinator()</div><div class="line"></div><div class="line"><span class="comment">// 并且在didFinishLaunch...</span></div><div class="line"><span class="selector-tag">nav</span><span class="selector-class">.isNavigationBarHidden</span> = true</div><div class="line"><span class="selector-tag">nav</span><span class="selector-class">.delegate</span> = transitionCoordinator</div></pre></td></tr></table></figure>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 在文件的Appdelegate.swift的文件头上声明一个变量</span></span><br><span class="line">let transitionCoordinator = TransitionCoordinator()</span><br><span class="line"></span><br><span class="line"><span class="comment">// 并且在didFinishLaunch...</span></span><br><span class="line"><span class="selector-tag">nav</span><span class="selector-class">.isNavigationBarHidden</span> = true</span><br><span class="line"><span class="selector-tag">nav</span><span class="selector-class">.delegate</span> = transitionCoordinator</span><br></pre></td></tr></table></figure>
 <ul>
 <li>在<code>TransitionCoordinator</code>这个类里面，我们需要返回的是一个遵循<code>UIViewControllerAnimatedTransitioning</code>协议的对象。遵循这个协议也是一件很简单的事情。遵循这个协议需要确定两个函数：</li>
 </ul>
@@ -420,18 +421,18 @@
 <ul>
 <li>在这里，我们新建了一个对象，这个对象名字为<code>CircularTransition</code>,继承自<code>NSObject</code>，同事还需要继承<code>UIViewControllerAnimatedTransitioning</code>协议的对象，实现下面的两个方法：</li>
 </ul>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">transitionDuration</span><span class="params">(using transitionContext: UIViewControllerContextTransitioning?)</span></span> </div><div class="line">  -&gt; <span class="type">TimeInterval</span> &#123;</div><div class="line">  <span class="keyword">return</span> <span class="number">0.5</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 这里先空着，后面会重点来写这里的代码</span></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">animateTransition</span><span class="params">(using transitionContext: UIViewControllerContextTransitioning)</span></span> &#123;</div><div class="line">  <span class="comment">//make some magic happen</span></div><div class="line">  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">transitionDuration</span><span class="params">(using transitionContext: UIViewControllerContextTransitioning?)</span></span> </span><br><span class="line">  -&gt; <span class="type">TimeInterval</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0.5</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 这里先空着，后面会重点来写这里的代码</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">animateTransition</span><span class="params">(using transitionContext: UIViewControllerContextTransitioning)</span></span> &#123;</span><br><span class="line">  <span class="comment">//make some magic happen</span></span><br><span class="line">  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <ul>
 <li>并且将之前的<code>TransitionCoordinator.swift</code>文件里面返回<code>nil</code>的修改为：</li>
 </ul>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">return</span> CircularTransition()</div></pre></td></tr></table></figure>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> CircularTransition()</span><br></pre></td></tr></table></figure>
 <ul>
 <li>这样你就已经完成了一件事情，告诉<code>UINavigationController</code>,现在所有<code>VC</code>之前的切换都需要去询问<code>UIViewControllerAnimatedTransitioning object</code>,这里也就是我们新建的那个对象<code>CircularTransition</code></li>
 </ul>
 <ul>
 <li>首先在<code>CircularTransition.swift</code>的开头，我们需要定义一个协议，协议如下：</li>
 </ul>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">CircleTransitionable</span> </span>&#123;</div><div class="line">  <span class="keyword">var</span> triggerButton: <span class="type">UIButton</span> &#123; <span class="keyword">get</span> &#125;</div><div class="line">  <span class="keyword">var</span> contentTextView: <span class="type">UITextView</span> &#123; <span class="keyword">get</span> &#125;</div><div class="line">  <span class="keyword">var</span> mainView: <span class="type">UIView</span> &#123; <span class="keyword">get</span> &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">CircleTransitionable</span> </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> triggerButton: <span class="type">UIButton</span> &#123; <span class="keyword">get</span> &#125;</span><br><span class="line">  <span class="keyword">var</span> contentTextView: <span class="type">UITextView</span> &#123; <span class="keyword">get</span> &#125;</span><br><span class="line">  <span class="keyword">var</span> mainView: <span class="type">UIView</span> &#123; <span class="keyword">get</span> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <ul>
 <li>首先定义了一个<code>triggerButton</code>,这将是我们VC中需要点击切换的按钮。</li>
 <li>定义了一个<code>contentTextView</code>我们需要动画移入移除的View。</li>
@@ -440,12 +441,12 @@
 <li><p>下面我们切换到<code>ColoredViewController.swift</code>,这个<code>ColoredViewController.swift</code>是<code>BlackViewController</code> <code>WhiteViewController</code>的父类,让这个VC的遵循这个协议，并且这个VC里面已经存在<code>triggerButton</code>和<code>contentTextView</code>，只需要添加下面的代码：</p>
 </li>
 </ul>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> mainView: UIView &#123;</div><div class="line">  <span class="keyword">return</span> view</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> mainView: UIView &#123;</span><br><span class="line">  <span class="keyword">return</span> view</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>–</p>
 <ul>
 <li>下面真正开始动手写动画的代码,切换到<code>CircularTransition.swift</code>里的<code>animateTransition(transitionContext:)</code>的函数，添加如下的代码：</li>
 </ul>
-<figure class="highlight cs"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">guard <span class="keyword">let</span> fromVC = transitionContext.viewController(forKey: .<span class="keyword">from</span>) <span class="keyword">as</span>? CircleTransitionable,</div><div class="line">  <span class="keyword">let</span> toVC = transitionContext.viewController(forKey: .to) <span class="keyword">as</span>? CircleTransitionable,</div><div class="line">  <span class="keyword">let</span> snapshot = fromVC.mainView.snapshotView(afterScreenUpdates: <span class="literal">false</span>) <span class="keyword">else</span> &#123;</div><div class="line">    transitionContext.completeTransition(<span class="literal">false</span>)</div><div class="line">    <span class="keyword">return</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">guard <span class="keyword">let</span> fromVC = transitionContext.viewController(forKey: .<span class="keyword">from</span>) <span class="keyword">as</span>? CircleTransitionable,</span><br><span class="line">  <span class="keyword">let</span> toVC = transitionContext.viewController(forKey: .to) <span class="keyword">as</span>? CircleTransitionable,</span><br><span class="line">  <span class="keyword">let</span> snapshot = fromVC.mainView.snapshotView(afterScreenUpdates: <span class="literal">false</span>) <span class="keyword">else</span> &#123;</span><br><span class="line">    transitionContext.completeTransition(<span class="literal">false</span>)</span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <ul>
 <li>这里要确保你能获得所有的东西，通过<code>transitionContext</code>的对象，可以获取到切换的<code>viewcontrollers</code>,并且将这些vc修饰为<code>CircleTransitionable</code>,这样你就可以获得<code>main views</code>以及<code>text views</code>.</li>
 <li><code>snapshotView(afterScreenUpdates:)</code>能够直接返回<code>fromVC</code>的暂存二进制照片。这是一个视图的副本拷贝。</li>
@@ -456,16 +457,16 @@
 <ul>
 <li><strong>为了移动之前页面，而不会打乱之前的布局，这这里我们实际动画操作的是之前页面的副本</strong>在函数<code>animateTransition(transitionContext:):</code>的结尾添加如下的方法：</li>
 </ul>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">containerView</span><span class="selector-class">.addSubview</span>(<span class="selector-tag">snapshot</span>)</div></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">containerView</span><span class="selector-class">.addSubview</span>(<span class="selector-tag">snapshot</span>)</span><br></pre></td></tr></table></figure>
 <ul>
 <li>而你真正需要移除的当前的view，需要在下面调用如下的方法：</li>
 </ul>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">fromVC<span class="selector-class">.mainView</span><span class="selector-class">.removeFromSuperview</span>()</div></pre></td></tr></table></figure>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fromVC<span class="selector-class">.mainView</span><span class="selector-class">.removeFromSuperview</span>()</span><br></pre></td></tr></table></figure>
 <p>–</p>
 <ul>
 <li>在下面添加如下的方法:</li>
 </ul>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">func animateOldTextOffscreen(fromView: UIView) &#123;</div><div class="line">  <span class="comment">// 1</span></div><div class="line">  UIView.animate(withDuration: <span class="number">0.25</span>, </div><div class="line">                 delay: <span class="number">0.0</span>, </div><div class="line">                 options: [.curveEaseIn], </div><div class="line">                 animations: &#123;</div><div class="line">    <span class="comment">// 2</span></div><div class="line">    fromView<span class="selector-class">.center</span> = CGPoint(x: fromView<span class="selector-class">.center</span><span class="selector-class">.x</span> - <span class="number">1300</span>,</div><div class="line">                              y: fromView<span class="selector-class">.center</span><span class="selector-class">.y</span> + <span class="number">1500</span>)</div><div class="line">    <span class="comment">// 3</span></div><div class="line">    fromView<span class="selector-class">.transform</span> = CGAffineTransform(scaleX: <span class="number">5.0</span>, y: <span class="number">5.0</span>)</div><div class="line">  &#125;, completion: nil)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">func animateOldTextOffscreen(fromView: UIView) &#123;</span><br><span class="line">  <span class="comment">// 1</span></span><br><span class="line">  UIView.animate(withDuration: <span class="number">0.25</span>, </span><br><span class="line">                 delay: <span class="number">0.0</span>, </span><br><span class="line">                 options: [.curveEaseIn], </span><br><span class="line">                 animations: &#123;</span><br><span class="line">    <span class="comment">// 2</span></span><br><span class="line">    fromView<span class="selector-class">.center</span> = CGPoint(x: fromView<span class="selector-class">.center</span><span class="selector-class">.x</span> - <span class="number">1300</span>,</span><br><span class="line">                              y: fromView<span class="selector-class">.center</span><span class="selector-class">.y</span> + <span class="number">1500</span>)</span><br><span class="line">    <span class="comment">// 3</span></span><br><span class="line">    fromView<span class="selector-class">.transform</span> = CGAffineTransform(scaleX: <span class="number">5.0</span>, y: <span class="number">5.0</span>)</span><br><span class="line">  &#125;, completion: nil)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <ul>
 <li>定义了一个0.25秒时间间隔的动画。</li>
 <li>移动view的center的坐标。</li>
@@ -476,34 +477,34 @@
 <ul>
 <li>在<code>animateTransition(transitionContext:):</code>的底部添加如下的代码：</li>
 </ul>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="title">animateOldTextOffscreen</span><span class="params">(fromView: snapshot)</span></span></div></pre></td></tr></table></figure>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">animateOldTextOffscreen</span><span class="params">(fromView: snapshot)</span></span></span><br></pre></td></tr></table></figure>
 <p>–</p>
 <ul>
 <li>此时运行代码的时候，会发现可以正常移动了，但是在以后的时候背景色一直是个黑色背景。</li>
 <li>这个黑色的背景其实就是<code>containerView</code>的背景色，其实这里作者想动画的东西是文本，而不是整个view的动画，这里我们需要添加一个新的背景，并且这个新的背景我们不需要添加动画。切换到<code>CircularTransition.swift</code>里的<code>animateTransition(using:)</code>，在添加<code>snapshotView</code>作为子视图之前添加如下的代码：</li>
 </ul>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">let backgroundView = UIView()</div><div class="line">backgroundView<span class="selector-class">.frame</span> = toVC<span class="selector-class">.mainView</span><span class="selector-class">.frame</span></div><div class="line">backgroundView<span class="selector-class">.backgroundColor</span> = fromVC<span class="selector-class">.mainView</span><span class="selector-class">.backgroundColor</span></div><div class="line">containerView.addSubview(backgroundView)</div></pre></td></tr></table></figure>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let backgroundView = UIView()</span><br><span class="line">backgroundView<span class="selector-class">.frame</span> = toVC<span class="selector-class">.mainView</span><span class="selector-class">.frame</span></span><br><span class="line">backgroundView<span class="selector-class">.backgroundColor</span> = fromVC<span class="selector-class">.mainView</span><span class="selector-class">.backgroundColor</span></span><br><span class="line">containerView.addSubview(backgroundView)</span><br></pre></td></tr></table></figure>
 <p>–</p>
 <ul>
 <li>以此在下面添加如下的代码,这个函数主要完成圆的动画效果:</li>
 </ul>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">animate</span><span class="params">(toView: UIView, fromTriggerButton triggerButton: UIButton)</span></span> &#123;</div><div class="line">  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">animate</span><span class="params">(toView: UIView, fromTriggerButton triggerButton: UIButton)</span></span> &#123;</span><br><span class="line">  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <ul>
 <li>并且在<code>animateTransition(using:)</code>中，在方法<code>animateOldTextOffscreen(fromView:snapshot):</code>之后添加如下的代码：</li>
 </ul>
-<figure class="highlight pf"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">containerView.addSubview(<span class="keyword">to</span>VC.mainView)</div><div class="line">animate(<span class="keyword">to</span>View: <span class="keyword">to</span>VC.mainView, <span class="keyword">from</span>TriggerButton: <span class="keyword">from</span>VC.triggerButton)</div></pre></td></tr></table></figure>
+<figure class="highlight pf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">containerView.addSubview(<span class="keyword">to</span>VC.mainView)</span><br><span class="line">animate(<span class="keyword">to</span>View: <span class="keyword">to</span>VC.mainView, <span class="keyword">from</span>TriggerButton: <span class="keyword">from</span>VC.triggerButton)</span><br></pre></td></tr></table></figure>
 <p>–</p>
 <ul>
 <li>这里其实你已经大概的了解了动画的大体想法了，但是具体这个动画，我们还需要用到一个新的对象，这个对象是<code>CAShapeLayer</code>,<code>CAShapeLayer</code>是<code>CALayer</code>的一个特殊类，他不仅仅总是呈现正方形的图形，而是可以通过定义贝赛尔曲线路径，然后将路径丢给图层的路径，就可以实现自定义的图案了。</li>
 <li>在这种情况下，我们需要定义两种不同的贝赛尔曲线路径。</li>
 <li>在函数<code>animate(toView:triggerButton:):</code>里面添加如下的代码：</li>
 </ul>
-<figure class="highlight arduino"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 1</span></div><div class="line">let <span class="built_in">rect</span> = CGRect(x: triggerButton.frame.origin.x,</div><div class="line">                  y: triggerButton.frame.origin.y,</div><div class="line">                  <span class="built_in">width</span>: triggerButton.frame.<span class="built_in">width</span>,</div><div class="line">                  <span class="built_in">height</span>: triggerButton.frame.<span class="built_in">width</span>)</div><div class="line"><span class="comment">// 2</span></div><div class="line">let circleMaskPathInitial = UIBezierPath(ovalIn: <span class="built_in">rect</span>)</div></pre></td></tr></table></figure>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1</span></span><br><span class="line">let <span class="built_in">rect</span> = CGRect(x: triggerButton.frame.origin.x,</span><br><span class="line">                  y: triggerButton.frame.origin.y,</span><br><span class="line">                  <span class="built_in">width</span>: triggerButton.frame.<span class="built_in">width</span>,</span><br><span class="line">                  <span class="built_in">height</span>: triggerButton.frame.<span class="built_in">width</span>)</span><br><span class="line"><span class="comment">// 2</span></span><br><span class="line">let circleMaskPathInitial = UIBezierPath(ovalIn: <span class="built_in">rect</span>)</span><br></pre></td></tr></table></figure>
 <ul>
 <li>这里创建了一个新的贝赛尔曲线，创建的是一个小小的圆，起始的位置，起始就是<code>triggerButton</code>的坐标。这也就是起始动画的圆的状态。</li>
 <li>下面在创建相应的动画结束状态，由于你看到只是一个圈圈内的东西，圈圈边缘以及外部的东西都是看不到的，因此添加如下的代码：</li>
 </ul>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 1</span></div><div class="line">let fullHeight = toView<span class="selector-class">.bounds</span><span class="selector-class">.height</span></div><div class="line">let extremePoint = CGPoint(x: triggerButton<span class="selector-class">.center</span><span class="selector-class">.x</span>,</div><div class="line">                           y: triggerButton<span class="selector-class">.center</span><span class="selector-class">.y</span> - fullHeight)</div><div class="line"><span class="comment">// 2</span></div><div class="line">let radius = sqrt((extremePoint.x*extremePoint.x) +</div><div class="line">                  (extremePoint.y*extremePoint.y))</div><div class="line"><span class="comment">// 3</span></div><div class="line">let circleMaskPathFinal = UIBezierPath(ovalIn: triggerButton<span class="selector-class">.frame</span><span class="selector-class">.insetBy</span>(dx: -radius,</div><div class="line">                                                                           dy: -radius))</div></pre></td></tr></table></figure>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1</span></span><br><span class="line">let fullHeight = toView<span class="selector-class">.bounds</span><span class="selector-class">.height</span></span><br><span class="line">let extremePoint = CGPoint(x: triggerButton<span class="selector-class">.center</span><span class="selector-class">.x</span>,</span><br><span class="line">                           y: triggerButton<span class="selector-class">.center</span><span class="selector-class">.y</span> - fullHeight)</span><br><span class="line"><span class="comment">// 2</span></span><br><span class="line">let radius = sqrt((extremePoint.x*extremePoint.x) +</span><br><span class="line">                  (extremePoint.y*extremePoint.y))</span><br><span class="line"><span class="comment">// 3</span></span><br><span class="line">let circleMaskPathFinal = UIBezierPath(ovalIn: triggerButton<span class="selector-class">.frame</span><span class="selector-class">.insetBy</span>(dx: -radius,</span><br><span class="line">                                                                           dy: -radius))</span><br></pre></td></tr></table></figure>
 <ul>
 <li>首先定义了界面的总高度。</li>
 <li>通过勾股定理来计算圆的半径。</li>
@@ -513,7 +514,7 @@
 <ul>
 <li>现在已经获得了起始、终点的状态的贝塞尔曲线路径，所以在函数<code>animate(toView:triggerButton:)</code>中添加如下的代码：</li>
 </ul>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">let maskLayer = CAShapeLayer()</div><div class="line">maskLayer<span class="selector-class">.path</span> = circleMaskPathFinal<span class="selector-class">.cgPath</span></div><div class="line">toView<span class="selector-class">.layer</span><span class="selector-class">.mask</span> = maskLayer</div></pre></td></tr></table></figure>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">let maskLayer = CAShapeLayer()</span><br><span class="line">maskLayer<span class="selector-class">.path</span> = circleMaskPathFinal.cgPath</span><br><span class="line">toView<span class="selector-class">.layer</span><span class="selector-class">.mask</span> = maskLayer</span><br></pre></td></tr></table></figure>
 <ul>
 <li>这里创建了一个<code>CAShapeLayer</code>的对象，并且将它的<code>path</code>的属性值设置为我们刚才创建的最终状态的贝塞尔曲线值，并且将这个<code>mask</code>的值赋值给<code>toView.layer.mask</code>。</li>
 </ul>
@@ -527,32 +528,32 @@
 <ul>
 <li>在函数<code>animate(toView:triggerButton:)</code>里创建了一个<code>CABasicAnimation</code>的对象,并且告诉它animation修改<code>path</code>的属性:</li>
 </ul>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">let maskLayerAnimation = CABasicAnimation(keyPath: <span class="string">"path"</span>)</div><div class="line">maskLayerAnimation<span class="selector-class">.fromValue</span> = circleMaskPathInitial<span class="selector-class">.cgPath</span></div><div class="line">maskLayerAnimation<span class="selector-class">.toValue</span> = circleMaskPathFinal<span class="selector-class">.cgPath</span></div><div class="line">maskLayerAnimation<span class="selector-class">.duration</span> = <span class="number">0.15</span></div><div class="line">maskLayerAnimation<span class="selector-class">.delegate</span> = self</div></pre></td></tr></table></figure>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">let maskLayerAnimation = CABasicAnimation(keyPath: <span class="string">"path"</span>)</span><br><span class="line">maskLayerAnimation<span class="selector-class">.fromValue</span> = circleMaskPathInitial.cgPath</span><br><span class="line">maskLayerAnimation<span class="selector-class">.toValue</span> = circleMaskPathFinal.cgPath</span><br><span class="line">maskLayerAnimation<span class="selector-class">.duration</span> = <span class="number">0.15</span></span><br><span class="line">maskLayerAnimation<span class="selector-class">.delegate</span> = self</span><br></pre></td></tr></table></figure>
 <ul>
 <li>然后到文件的最底下，创建如下的代码：</li>
 </ul>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">CircularTransition</span>: <span class="title">CAAnimationDelegate</span> </span>&#123;</div><div class="line">  <span class="function"><span class="keyword">func</span> <span class="title">animationDidStop</span><span class="params">(<span class="number">_</span> anim: CAAnimation, finished flag: Bool)</span></span> &#123;</div><div class="line"></div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">CircularTransition</span>: <span class="title">CAAnimationDelegate</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">func</span> <span class="title">animationDidStop</span><span class="params">(<span class="number">_</span> anim: CAAnimation, finished flag: Bool)</span></span> &#123;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <ul>
 <li>当回调到这个函数的时候，就代表这个动画已经运行成功，并且结束了。在这个回调中，你需要给这个<code>context</code>调用<code>completeTransition()</code>的方法<code>,需要在这个回调的方法中获得</code>context<code>的对象，你需要将这个对象设置为全局的，在</code>CircularTransition`头部，添加如下的代码：</li>
 </ul>
-<figure class="highlight verilog"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">weak</span> <span class="keyword">var</span> <span class="keyword">context</span>: UIViewControllerContextTransitioning?</div></pre></td></tr></table></figure>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">weak</span> <span class="keyword">var</span> <span class="keyword">context</span>: UIViewControllerContextTransitioning?</span><br></pre></td></tr></table></figure>
 <ul>
 <li>并且在函数<code>animateTransition(transitionContext:)</code>中的guard之后添加如下的代码：</li>
 </ul>
-<figure class="highlight ini"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attr">context</span> = transitionContext</div></pre></td></tr></table></figure>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">context</span> = transitionContext</span><br></pre></td></tr></table></figure>
 <ul>
 <li>最后还需要将这个动画效果添加这个<code>Layer</code>上：</li>
 </ul>
-<figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">maskLayer</span><span class="selector-class">.add</span>(maskLayerAnimation, <span class="attribute">forKey</span>: <span class="string">"path"</span>)</div></pre></td></tr></table></figure>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">maskLayer</span><span class="selector-class">.add</span>(maskLayerAnimation, <span class="attribute">forKey</span>: <span class="string">"path"</span>)</span><br></pre></td></tr></table></figure>
 <p>–</p>
 <h4 id="效果的完善"><a href="#效果的完善" class="headerlink" title="效果的完善"></a>效果的完善</h4><ul>
 <li>在<code>CircularTransition</code>类里添加如下的方法：</li>
 </ul>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">func animateToTextView(toTextView: UIView, fromTriggerButton: UIButton) &#123;</div><div class="line">  	let originalCenter = toTextView<span class="selector-class">.center</span></div><div class="line">	toTextView<span class="selector-class">.alpha</span> = <span class="number">0.0</span></div><div class="line">	toTextView<span class="selector-class">.center</span> = fromTriggerButton<span class="selector-class">.center</span></div><div class="line">	toTextView<span class="selector-class">.transform</span> = CGAffineTransform(scaleX: <span class="number">0.1</span>, y: <span class="number">0.1</span>)</div><div class="line">	UIView.animate(withDuration: <span class="number">0.25</span>, delay: <span class="number">0.1</span>, options: 	[.curveEaseOut], animations: &#123;</div><div class="line">  	toTextView<span class="selector-class">.transform</span> = CGAffineTransform(scaleX: <span class="number">1.0</span>, y: 	<span class="number">1.0</span>)</div><div class="line">  		toTextView<span class="selector-class">.center</span> = originalCenter</div><div class="line">  		toTextView<span class="selector-class">.alpha</span> = <span class="number">1.0</span></div><div class="line">	&#125;, completion: nil)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">func animateToTextView(toTextView: UIView, fromTriggerButton: UIButton) &#123;</span><br><span class="line">  	let originalCenter = toTextView.center</span><br><span class="line">	toTextView<span class="selector-class">.alpha</span> = <span class="number">0.0</span></span><br><span class="line">	toTextView<span class="selector-class">.center</span> = fromTriggerButton.center</span><br><span class="line">	toTextView<span class="selector-class">.transform</span> = CGAffineTransform(scaleX: <span class="number">0.1</span>, y: <span class="number">0.1</span>)</span><br><span class="line">	UIView.animate(withDuration: <span class="number">0.25</span>, delay: <span class="number">0.1</span>, options: 	[.curveEaseOut], animations: &#123;</span><br><span class="line">  	toTextView<span class="selector-class">.transform</span> = CGAffineTransform(scaleX: <span class="number">1.0</span>, y: 	<span class="number">1.0</span>)</span><br><span class="line">  		toTextView<span class="selector-class">.center</span> = originalCenter</span><br><span class="line">  		toTextView<span class="selector-class">.alpha</span> = <span class="number">1.0</span></span><br><span class="line">	&#125;, completion: nil)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <ul>
 <li>最后再<code>animateTransition(transitionContext:).</code>方法中添加如下的按钮：</li>
 </ul>
-<figure class="highlight pf"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">animateToTextView(<span class="keyword">to</span>TextView: <span class="keyword">to</span>VC.contentTextView, <span class="keyword">from</span>TriggerButton: <span class="keyword">from</span>VC.triggerButton)</div></pre></td></tr></table></figure>
+<figure class="highlight pf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">animateToTextView(<span class="keyword">to</span>TextView: <span class="keyword">to</span>VC.contentTextView, <span class="keyword">from</span>TriggerButton: <span class="keyword">from</span>VC.triggerButton)</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -650,7 +651,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright" >
+        <div class="copyright">
   
   &copy; 
   <span itemprop="copyrightYear">2018</span>

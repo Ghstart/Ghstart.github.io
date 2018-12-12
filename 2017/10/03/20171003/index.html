@@ -6,18 +6,18 @@
 
 
 <html class="theme-next mist use-motion" lang="zh-Hans">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -35,7 +35,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -87,23 +87,23 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="Swift," />
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css">
 
 
-
-
-
-  <link rel="alternate" href="/atom.xml" title="Ghcoder" type="application/atom+xml" />
+  <meta name="keywords" content="Swift,">
 
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+  <link rel="alternate" href="/atom.xml" title="Ghcoder" type="application/atom+xml">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1">
 
 
 
@@ -111,11 +111,13 @@
 
 
 <meta name="description" content="创建可以订阅的对象，在RxSwift中称之为Observable,我们可以通过系统介绍给我的方法来创建(我们称之为Operators)。">
+<meta name="keywords" content="Swift">
 <meta property="og:type" content="article">
 <meta property="og:title" content="学习RxSwift">
 <meta property="og:url" content="http://www.ghcoder.com/2017/10/03/20171003/index.html">
 <meta property="og:site_name" content="Ghcoder">
 <meta property="og:description" content="创建可以订阅的对象，在RxSwift中称之为Observable,我们可以通过系统介绍给我的方法来创建(我们称之为Operators)。">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2017-10-03T13:06:48.967Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="学习RxSwift">
@@ -147,7 +149,7 @@
 
 
 
-  <link rel="canonical" href="http://www.ghcoder.com/2017/10/03/20171003/"/>
+  <link rel="canonical" href="http://www.ghcoder.com/2017/10/03/20171003/">
 
 
 
@@ -156,7 +158,7 @@
   <title>学习RxSwift | Ghcoder</title>
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
 
@@ -181,13 +183,13 @@
   <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">Ghcoder</span>
         <span class="logo-line-after"><i></i></span>
@@ -217,7 +219,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
           </a>
@@ -227,7 +229,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             列表
           </a>
@@ -261,16 +263,16 @@
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://www.ghcoder.com/2017/10/03/20171003/">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Ghcoder">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="https://avatars3.githubusercontent.com/u/5730023?v=3&s=460">
     </span>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="Ghcoder">
     </span>
 
@@ -302,7 +304,7 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -313,7 +315,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
                   <a href="/categories/日志/" itemprop="url" rel="index">
                     <span itemprop="name">日志</span>
                   </a>
@@ -333,8 +335,7 @@
                   <i class="fa fa-comment-o"></i>
                 </span>
                 <a href="/2017/10/03/20171003/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/10/03/20171003/" itemprop="commentCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/10/03/20171003/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -365,7 +366,7 @@
 <a id="more"></a>
 <hr>
 <ul>
-<li>这里我们通过<code>Create</code>的<code>Operators</code>的方法来创建，先看一下官网[<a href="http://reactivex.io/documentation/operators/create.html" target="_blank" rel="external">http://reactivex.io/documentation/operators/create.html</a>] 的介绍:</li>
+<li>这里我们通过<code>Create</code>的<code>Operators</code>的方法来创建，先看一下官网[<a href="http://reactivex.io/documentation/operators/create.html]" target="_blank" rel="noopener">http://reactivex.io/documentation/operators/create.html]</a> 的介绍:</li>
 </ul>
 <blockquote>
 <p>You can create an Observable from scratch by using the Create operator. You pass this operator a function that accepts the observer as its parameter. Write this function so that it behaves as an Observable — by calling the observer’s onNext, onError, and onCompleted methods appropriately.<br>A well-formed finite Observable must attempt to call either the observer’s onCompleted method exactly once or its onError method exactly once, and must not thereafter attempt to call any of the observer’s other methods.</p>
@@ -373,16 +374,16 @@
 <ul>
 <li>再看一下<code>github</code>上源码：</li>
 </ul>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Observable</span> </span>&#123;</div><div class="line">    <span class="comment">// MARK: create</span></div><div class="line">    <span class="comment">/**</span></div><div class="line">     Creates an observable sequence from a specified subscribe method implementation.</div><div class="line">     - seealso: [create operator on reactivex.io](http://reactivex.io/documentation/operators/create.html)</div><div class="line">     - parameter subscribe: Implementation of the resulting observable sequence's `subscribe` method.</div><div class="line">     - returns: The observable sequence with the specified implementation for the `subscribe` method.</div><div class="line">     */</div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">func</span> <span class="title">create</span><span class="params">(<span class="number">_</span> subscribe: @escaping <span class="params">(AnyObserver&lt;E&gt;)</span></span></span> -&gt; <span class="type">Disposable</span>) -&gt; <span class="type">Observable</span>&lt;<span class="type">E</span>&gt; &#123;</div><div class="line">        <span class="keyword">return</span> <span class="type">AnonymousObservable</span>(subscribe)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Observable</span> </span>&#123;</span><br><span class="line">    <span class="comment">// MARK: create</span></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     Creates an observable sequence from a specified subscribe method implementation.</span></span><br><span class="line"><span class="comment">     - seealso: [create operator on reactivex.io](http://reactivex.io/documentation/operators/create.html)</span></span><br><span class="line"><span class="comment">     - parameter subscribe: Implementation of the resulting observable sequence's `subscribe` method.</span></span><br><span class="line"><span class="comment">     - returns: The observable sequence with the specified implementation for the `subscribe` method.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">func</span> <span class="title">create</span><span class="params">(<span class="number">_</span> subscribe: @escaping <span class="params">(AnyObserver&lt;E&gt;)</span></span></span> -&gt; <span class="type">Disposable</span>) -&gt; <span class="type">Observable</span>&lt;<span class="type">E</span>&gt; &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="type">AnonymousObservable</span>(subscribe)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <ul>
 <li>按照官网的介绍，我们就可以通过<code>Create</code>来创建一个可被订阅的对象，这个对象的入参是一个block，任意对象的<code>Observer</code>,他可以发送<code>.onNext()/.onComplete()/.onError()</code></li>
 <li>第二段的注释的意思，就是这个<code>Observer</code>可以发送<code>.onNext()</code>,但是这个对象一旦发送了一次<code>.onComplete()</code>或者<code>.onError()</code>,然后就不能尝试调用任何观察者的其他方法了。看一下Demo：</li>
 </ul>
-<figure class="highlight pf"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">enum CustomeError: Error &#123;</div><div class="line">    case somethingError</div><div class="line">&#125;</div><div class="line"></div><div class="line">	let customOB = Observable<span class="variable">&lt;Int&gt;</span>.create &#123; observer <span class="keyword">in</span></div><div class="line"></div><div class="line">	observer.<span class="keyword">on</span>Next(<span class="number">1</span>)</div><div class="line">	observer.<span class="keyword">on</span>Next(<span class="number">2</span>)</div><div class="line"></div><div class="line">	//observer.<span class="keyword">on</span>Error(CustomeError.somethingError)</div><div class="line"></div><div class="line">	observer.<span class="keyword">on</span>Completed()</div><div class="line"></div><div class="line">	return  Disposables.create()</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">let disposeBag1 = DisposeBag()</div><div class="line">customOB.subscribe(</div><div class="line">    <span class="keyword">on</span>Next: &#123; print(<span class="variable">$0</span>) &#125;,</div><div class="line">    <span class="keyword">on</span>Error: &#123; print(<span class="variable">$0</span>) &#125;,</div><div class="line">    <span class="keyword">on</span>Completed: &#123; print(<span class="string">"onCompleted"</span>) &#125;,</div><div class="line">    <span class="keyword">on</span>Disposed: &#123; print(<span class="string">"onDisposed"</span>) &#125;</div><div class="line">).addDisposableTo(disposeBag1)</div></pre></td></tr></table></figure>
+<figure class="highlight pf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">enum CustomeError: Error &#123;</span><br><span class="line">    case somethingError</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">	let customOB = Observable<span class="variable">&lt;Int&gt;</span>.create &#123; observer <span class="keyword">in</span></span><br><span class="line"></span><br><span class="line">	observer.<span class="keyword">on</span>Next(<span class="number">1</span>)</span><br><span class="line">	observer.<span class="keyword">on</span>Next(<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">	//observer.<span class="keyword">on</span>Error(CustomeError.somethingError)</span><br><span class="line"></span><br><span class="line">	observer.<span class="keyword">on</span>Completed()</span><br><span class="line"></span><br><span class="line">	return  Disposables.create()</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let disposeBag1 = DisposeBag()</span><br><span class="line">customOB.subscribe(</span><br><span class="line">    <span class="keyword">on</span>Next: &#123; print(<span class="variable">$0</span>) &#125;,</span><br><span class="line">    <span class="keyword">on</span>Error: &#123; print(<span class="variable">$0</span>) &#125;,</span><br><span class="line">    <span class="keyword">on</span>Completed: &#123; print(<span class="string">"onCompleted"</span>) &#125;,</span><br><span class="line">    <span class="keyword">on</span>Disposed: &#123; print(<span class="string">"onDisposed"</span>) &#125;</span><br><span class="line">).addDisposableTo(disposeBag1)</span><br></pre></td></tr></table></figure>
 <ul>
 <li>这创建的依旧是一个<code>Observer</code>的对象，也可以调用其他的<code>Operator</code>,这里为了方便的调试，我们可以使用<code>.debug()</code>。使用如下：</li>
 </ul>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> disposeBag1 = DisposeBag()</div><div class="line">customOB</div><div class="line">	.<span class="keyword">debug</span>()</div><div class="line">	.subscribe(</div><div class="line">	    onNex<span class="variable">t:</span> &#123; <span class="keyword">print</span>($<span class="number">0</span>) &#125;,</div><div class="line">	    onError: &#123; <span class="keyword">print</span>($<span class="number">0</span>) &#125;,</div><div class="line">	    onCompleted: &#123; <span class="keyword">print</span>(<span class="string">"onCompleted"</span>) &#125;,</div><div class="line">	    onDisposed: &#123; <span class="keyword">print</span>(<span class="string">"onDisposed"</span>) &#125;</div><div class="line">	).addDisposableTo(disposeBag1)</div><div class="line"></div><div class="line">	// 控制台的打印信息如下：</div><div class="line"><span class="number">2017</span>-<span class="number">10</span>-<span class="number">03</span> <span class="number">13</span>:<span class="number">58</span>:<span class="number">23.488</span>: ViewController.swif<span class="variable">t:35</span> (viewDidLoad()) -&gt; subscribed</div><div class="line"><span class="number">2017</span>-<span class="number">10</span>-<span class="number">03</span> <span class="number">13</span>:<span class="number">58</span>:<span class="number">23.493</span>: ViewController.swif<span class="variable">t:35</span> (viewDidLoad()) -&gt; Event <span class="keyword">next</span>(<span class="number">1</span>)</div><div class="line"><span class="number">1</span></div><div class="line"><span class="number">2017</span>-<span class="number">10</span>-<span class="number">03</span> <span class="number">13</span>:<span class="number">58</span>:<span class="number">23.493</span>: ViewController.swif<span class="variable">t:35</span> (viewDidLoad()) -&gt; Event <span class="keyword">next</span>(<span class="number">2</span>)</div><div class="line"><span class="number">2</span></div><div class="line"><span class="number">2017</span>-<span class="number">10</span>-<span class="number">03</span> <span class="number">13</span>:<span class="number">58</span>:<span class="number">23.493</span>: ViewController.swif<span class="variable">t:35</span> (viewDidLoad()) -&gt; Event completed</div><div class="line">onCompleted</div><div class="line">onDisposed</div><div class="line"><span class="number">2017</span>-<span class="number">10</span>-<span class="number">03</span> <span class="number">13</span>:<span class="number">58</span>:<span class="number">23.493</span>: ViewController.swif<span class="variable">t:35</span> (viewDidLoad()) -&gt; isDisposed</div></pre></td></tr></table></figure>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> disposeBag1 = DisposeBag()</span><br><span class="line">customOB</span><br><span class="line">	.<span class="keyword">debug</span>()</span><br><span class="line">	.subscribe(</span><br><span class="line">	    onNex<span class="variable">t:</span> &#123; <span class="keyword">print</span>($<span class="number">0</span>) &#125;,</span><br><span class="line">	    onError: &#123; <span class="keyword">print</span>($<span class="number">0</span>) &#125;,</span><br><span class="line">	    onCompleted: &#123; <span class="keyword">print</span>(<span class="string">"onCompleted"</span>) &#125;,</span><br><span class="line">	    onDisposed: &#123; <span class="keyword">print</span>(<span class="string">"onDisposed"</span>) &#125;</span><br><span class="line">	).addDisposableTo(disposeBag1)</span><br><span class="line"></span><br><span class="line">	// 控制台的打印信息如下：</span><br><span class="line"><span class="number">2017</span>-<span class="number">10</span>-<span class="number">03</span> <span class="number">13</span>:<span class="number">58</span>:<span class="number">23.488</span>: ViewController.swif<span class="variable">t:35</span> (viewDidLoad()) -&gt; subscribed</span><br><span class="line"><span class="number">2017</span>-<span class="number">10</span>-<span class="number">03</span> <span class="number">13</span>:<span class="number">58</span>:<span class="number">23.493</span>: ViewController.swif<span class="variable">t:35</span> (viewDidLoad()) -&gt; Event <span class="keyword">next</span>(<span class="number">1</span>)</span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="number">2017</span>-<span class="number">10</span>-<span class="number">03</span> <span class="number">13</span>:<span class="number">58</span>:<span class="number">23.493</span>: ViewController.swif<span class="variable">t:35</span> (viewDidLoad()) -&gt; Event <span class="keyword">next</span>(<span class="number">2</span>)</span><br><span class="line"><span class="number">2</span></span><br><span class="line"><span class="number">2017</span>-<span class="number">10</span>-<span class="number">03</span> <span class="number">13</span>:<span class="number">58</span>:<span class="number">23.493</span>: ViewController.swif<span class="variable">t:35</span> (viewDidLoad()) -&gt; Event completed</span><br><span class="line">onCompleted</span><br><span class="line">onDisposed</span><br><span class="line"><span class="number">2017</span>-<span class="number">10</span>-<span class="number">03</span> <span class="number">13</span>:<span class="number">58</span>:<span class="number">23.493</span>: ViewController.swif<span class="variable">t:35</span> (viewDidLoad()) -&gt; isDisposed</span><br></pre></td></tr></table></figure>
 <ul>
 <li>在我们真是的项目中，我们可能需要不仅仅是一个订阅者或者发布者，我们需要的是一个不仅可以订阅、也可以发布的对象，在<code>RxSwift</code>中，我们称之为<code>Subjects</code>:</li>
 </ul>
@@ -390,13 +391,17 @@
 <ul>
 <li>首选我们要说的<code>Subjects</code>对象叫做<code>PublishSubject</code>,看一下github上的源码：</li>
 </ul>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/// Represents an object that is both an observable sequence as well as an observer.</span></div><div class="line"><span class="comment">///</span></div><div class="line"><span class="comment">/// Each notification is broadcasted to all subscribed observers.</span></div><div class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">PublishSubject</span>&lt;<span class="type">Element</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// Represents an object that is both an observable sequence as well as an observer.</span></span><br><span class="line"><span class="comment">///</span></span><br><span class="line"><span class="comment">/// Each notification is broadcasted to all subscribed observers.</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">PublishSubject</span>&lt;<span class="type">Element</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <ul>
 <li>再看官网上对<code>PublishSubject</code>对象的介绍：</li>
 </ul>
 <blockquote>
 <p>PublishSubject emits to an observer only those items that are emitted by the source Observable(s) subsequent to the time of the subscription.</p>
+</blockquote>
+<blockquote>
 <p>Note that a PublishSubject may begin emitting items immediately upon creation (unless you have taken steps to prevent this), and so there is a risk that one or more items may be lost between the time the Subject is created and the observer subscribes to it. If you need to guarantee delivery of all items from the source Observable, you’ll need either to form that Observable with Create so that you can manually reintroduce “cold” Observable behavior (checking to see that all observers have subscribed before beginning to emit items), or switch to using a ReplaySubject instead.</p>
+</blockquote>
+<blockquote>
 <p>If the source Observable terminates with an error, the PublishSubject will not emit any items to subsequent observers, but will simply pass along the error notification from the source Observable.</p>
 </blockquote>
 <ul>
@@ -405,12 +410,12 @@
 <li>而这里还有一点很重要的是，<em>PublishSubject只能够订阅在它之后发送的数据</em>，这一点也就是说，在这个订阅消息之前，不管我们发送了多少数据，在真正订阅之后，这些之前订阅的数据是不会发送的。</li>
 <li>并且在约到失败的时候，这个对象就将被终止，除了在回调的<code>.onError()</code>方法之外，以后所有的数据都将无法接受。看一下Demo：</li>
 </ul>
-<figure class="highlight pf"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">let subject = PublishSubject<span class="variable">&lt;String&gt;</span>()</div><div class="line"></div><div class="line">subject.<span class="keyword">on</span>Next(<span class="string">"Test1"</span>)</div><div class="line">subject.<span class="keyword">on</span>Next(<span class="string">"Test2"</span>)</div><div class="line"></div><div class="line">let sub1 = subject.subscribe(</div><div class="line">    <span class="keyword">on</span>Next: &#123; print(<span class="string">"1:) \($0)"</span>)&#125;</div><div class="line">)</div><div class="line"></div><div class="line">subject.<span class="keyword">on</span>Next(<span class="string">"Test3"</span>)</div><div class="line"></div><div class="line">subject.<span class="keyword">on</span>Next(<span class="string">"Test4"</span>)</div><div class="line"></div><div class="line">sub1.dispose()</div><div class="line"></div><div class="line">subject.<span class="keyword">on</span>Next(<span class="string">"Test5"</span>)</div><div class="line"></div><div class="line">let sub2 = subject.subscribe(</div><div class="line">    <span class="keyword">on</span>Next: &#123; print(<span class="string">"2:) \($0)"</span>)&#125;</div><div class="line">)</div><div class="line"></div><div class="line">subject.<span class="keyword">on</span>Next(<span class="string">"Test6"</span>)</div><div class="line">subject.<span class="keyword">on</span>Next(<span class="string">"Test7"</span>)</div><div class="line"></div><div class="line">sub2.dispose()</div><div class="line"></div><div class="line">// 终端输出为</div><div class="line"><span class="number">1</span>:) Test3</div><div class="line"><span class="number">1</span>:) Test4</div><div class="line"><span class="number">2</span>:) Test6</div><div class="line"><span class="number">2</span>:) Test7</div></pre></td></tr></table></figure>
+<figure class="highlight pf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">let subject = PublishSubject<span class="variable">&lt;String&gt;</span>()</span><br><span class="line"></span><br><span class="line">subject.<span class="keyword">on</span>Next(<span class="string">"Test1"</span>)</span><br><span class="line">subject.<span class="keyword">on</span>Next(<span class="string">"Test2"</span>)</span><br><span class="line"></span><br><span class="line">let sub1 = subject.subscribe(</span><br><span class="line">    <span class="keyword">on</span>Next: &#123; print(<span class="string">"1:) \($0)"</span>)&#125;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">subject.<span class="keyword">on</span>Next(<span class="string">"Test3"</span>)</span><br><span class="line"></span><br><span class="line">subject.<span class="keyword">on</span>Next(<span class="string">"Test4"</span>)</span><br><span class="line"></span><br><span class="line">sub1.dispose()</span><br><span class="line"></span><br><span class="line">subject.<span class="keyword">on</span>Next(<span class="string">"Test5"</span>)</span><br><span class="line"></span><br><span class="line">let sub2 = subject.subscribe(</span><br><span class="line">    <span class="keyword">on</span>Next: &#123; print(<span class="string">"2:) \($0)"</span>)&#125;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">subject.<span class="keyword">on</span>Next(<span class="string">"Test6"</span>)</span><br><span class="line">subject.<span class="keyword">on</span>Next(<span class="string">"Test7"</span>)</span><br><span class="line"></span><br><span class="line">sub2.dispose()</span><br><span class="line"></span><br><span class="line">// 终端输出为</span><br><span class="line"><span class="number">1</span>:) Test3</span><br><span class="line"><span class="number">1</span>:) Test4</span><br><span class="line"><span class="number">2</span>:) Test6</span><br><span class="line"><span class="number">2</span>:) Test7</span><br></pre></td></tr></table></figure>
 <hr>
 <ul>
 <li>第二种同时即可以订阅，也可以发送消息的对象，我们这里叫做<code>BehaviorSubject</code>。这里我们先看一下github中代码:</li>
 </ul>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/// Represents a value that changes over time.</span></div><div class="line"><span class="comment">///</span></div><div class="line"><span class="comment">/// Observers can subscribe to the subject to receive the last (or initial) value and all subsequent notifications.</span></div><div class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">BehaviorSubject</span>&lt;<span class="type">Element</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// Represents a value that changes over time.</span></span><br><span class="line"><span class="comment">///</span></span><br><span class="line"><span class="comment">/// Observers can subscribe to the subject to receive the last (or initial) value and all subsequent notifications.</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">BehaviorSubject</span>&lt;<span class="type">Element</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <ul>
 <li>再看一下官网上的介绍：</li>
 </ul>
@@ -422,31 +427,35 @@
 <li>看到注释以及代码的意思，这种<code>Subject</code>的对象的特点就是，<em>订阅这种对象，它就可以接收到最近的一次值或者是初始化的默认值</em></li>
 <li>同样，这个<code>Subject</code>的对象，，一旦接受到<code>.onError()</code>或者<code>.onComplete()</code>, 这个对象将不会再发送任何值了。看一下Demo：</li>
 </ul>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">let subject = BehaviorSubject&lt;String&gt;(value: <span class="string">"Default Value"</span>)</div><div class="line"></div><div class="line">let sub1 = subject.subscribe(</div><div class="line"><span class="attr">    onNext:</span> &#123; print(<span class="string">"From1:\($0)"</span>) &#125;</div><div class="line">)</div><div class="line"></div><div class="line">subject.onNext(<span class="string">"Test1"</span>)</div><div class="line"></div><div class="line">sub1.dispose()</div><div class="line"></div><div class="line">let sub2 = subject.subscribe(</div><div class="line"><span class="attr">    onNext:</span> &#123;print(<span class="string">"From2:\($0)"</span>)&#125;</div><div class="line">)</div><div class="line"></div><div class="line">subject.onNext(<span class="string">"Test2"</span>)</div><div class="line">subject.onNext(<span class="string">"Test3"</span>)</div><div class="line"></div><div class="line">sub2.dispose()</div><div class="line"></div><div class="line">// 终端输出</div><div class="line"><span class="attr">From1:</span>Default Value</div><div class="line"><span class="attr">From1:</span>Test1</div><div class="line"><span class="meta">---</span></div><div class="line"><span class="attr">From2:</span>Test1</div><div class="line"><span class="attr">From2:</span>Test2</div><div class="line"><span class="attr">From2:</span>Test3</div></pre></td></tr></table></figure>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">let</span> <span class="string">subject</span> <span class="string">=</span> <span class="string">BehaviorSubject&lt;String&gt;(value:</span> <span class="string">"Default Value"</span><span class="string">)</span></span><br><span class="line"></span><br><span class="line"><span class="string">let</span> <span class="string">sub1</span> <span class="string">=</span> <span class="string">subject.subscribe(</span></span><br><span class="line"><span class="attr">    onNext:</span> <span class="string">&#123;</span> <span class="string">print("From1:\($0)")</span> <span class="string">&#125;</span></span><br><span class="line"><span class="string">)</span></span><br><span class="line"></span><br><span class="line"><span class="string">subject.onNext("Test1")</span></span><br><span class="line"></span><br><span class="line"><span class="string">sub1.dispose()</span></span><br><span class="line"></span><br><span class="line"><span class="string">let</span> <span class="string">sub2</span> <span class="string">=</span> <span class="string">subject.subscribe(</span></span><br><span class="line"><span class="attr">    onNext:</span> <span class="string">&#123;print("From2:\($0)")&#125;</span></span><br><span class="line"><span class="string">)</span></span><br><span class="line"></span><br><span class="line"><span class="string">subject.onNext("Test2")</span></span><br><span class="line"><span class="string">subject.onNext("Test3")</span></span><br><span class="line"></span><br><span class="line"><span class="string">sub2.dispose()</span></span><br><span class="line"></span><br><span class="line"><span class="string">//</span> <span class="string">终端输出</span></span><br><span class="line"><span class="attr">From1:</span><span class="string">Default</span> <span class="string">Value</span></span><br><span class="line"><span class="attr">From1:</span><span class="string">Test1</span></span><br><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">From2:</span><span class="string">Test1</span></span><br><span class="line"><span class="attr">From2:</span><span class="string">Test2</span></span><br><span class="line"><span class="attr">From2:</span><span class="string">Test3</span></span><br></pre></td></tr></table></figure>
 <hr>
 <ul>
 <li>这里可以通过<code>BehaviorSubject</code>可以查看最近一次发送数据，如果是第一次，就会接受到默认的数据，但是如果我们想要接受指定数目的历史数据，我们可以使用另外一种subject，我们叫做：<code>ReplaySubject</code>.</li>
 <li>看一下github上代码的：</li>
 </ul>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">/// Each notification <span class="keyword">is</span> broadcasted <span class="keyword">to</span> <span class="keyword">all</span> subscribed <span class="built_in">and</span> future observers, subject <span class="keyword">to</span> <span class="keyword">buffer</span> trimming policies.</div><div class="line">public class ReplaySubject<span class="symbol">&lt;Element&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/// Each notification <span class="keyword">is</span> broadcasted <span class="keyword">to</span> <span class="keyword">all</span> subscribed <span class="built_in">and</span> future observers, subject <span class="keyword">to</span> <span class="keyword">buffer</span> trimming policies.</span><br><span class="line">public class ReplaySubject<span class="symbol">&lt;Element&gt;</span></span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>ReplaySubject emits to any observer all of the items that were emitted by the source Observable(s), regardless of when the observer subscribes.</p>
+</blockquote>
+<blockquote>
 <p>There are also versions of ReplaySubject that will throw away old items once the replay buffer threatens to grow beyond a certain size, or when a specified timespan has passed since the items were originally emitted.</p>
+</blockquote>
+<blockquote>
 <p>If you use a ReplaySubject as an observer, take care not to call its onNext method (or its other on methods) from multiple threads, as this could lead to coincident (non-sequential) calls, which violates the Observable contract and creates an ambiguity in the resulting Subject as to which item or notification should be replayed first.</p>
 </blockquote>
 <ul>
 <li><em>ReplaySubject对象不能初始化默认值、并且每次打印历史数据的值是可以控制的</em>，看一下Demo：</li>
 </ul>
-<figure class="highlight coq"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> subject = ReplaySubject&lt;String&gt;.create(bufferSize: <span class="number">2</span>)</div><div class="line"></div><div class="line"><span class="keyword">let</span> sub1 = subject.subscribe(</div><div class="line">    onNext: &#123; print(<span class="string">"From 1:| \($0)"</span>)&#125;</div><div class="line">)</div><div class="line"></div><div class="line">subject.onNext(<span class="string">"Test1"</span>)</div><div class="line">subject.onNext(<span class="string">"Test2"</span>)</div><div class="line">subject.onNext(<span class="string">"Test3"</span>)</div><div class="line"></div><div class="line">sub1.dispose()</div><div class="line"></div><div class="line"><span class="keyword">let</span> sub2 = subject.subscribe(</div><div class="line">    onNext: &#123; print(<span class="string">"From 2:| \($0)"</span>)&#125;</div><div class="line">)</div><div class="line"></div><div class="line">subject.onNext(<span class="string">"Test4"</span>)</div><div class="line"></div><div class="line">sub2.dispose()</div><div class="line"></div><div class="line">// 终端输出</div><div class="line"><span class="keyword">From</span> <span class="number">1</span>:| <span class="type">Test1</span></div><div class="line"><span class="keyword">From</span> <span class="number">1</span>:| <span class="type">Test2</span></div><div class="line"><span class="keyword">From</span> <span class="number">1</span>:| <span class="type">Test3</span></div><div class="line"><span class="keyword">From</span> <span class="number">2</span>:| <span class="type">Test2</span></div><div class="line"><span class="keyword">From</span> <span class="number">2</span>:| <span class="type">Test3</span></div><div class="line"><span class="keyword">From</span> <span class="number">2</span>:| <span class="type">Test4</span></div></pre></td></tr></table></figure>
+<figure class="highlight coq"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> subject = ReplaySubject&lt;String&gt;.create(bufferSize: <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> sub1 = subject.subscribe(</span><br><span class="line">    onNext: &#123; print(<span class="string">"From 1:| \($0)"</span>)&#125;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">subject.onNext(<span class="string">"Test1"</span>)</span><br><span class="line">subject.onNext(<span class="string">"Test2"</span>)</span><br><span class="line">subject.onNext(<span class="string">"Test3"</span>)</span><br><span class="line"></span><br><span class="line">sub1.dispose()</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> sub2 = subject.subscribe(</span><br><span class="line">    onNext: &#123; print(<span class="string">"From 2:| \($0)"</span>)&#125;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">subject.onNext(<span class="string">"Test4"</span>)</span><br><span class="line"></span><br><span class="line">sub2.dispose()</span><br><span class="line"></span><br><span class="line">// 终端输出</span><br><span class="line"><span class="keyword">From</span> <span class="number">1</span>:| <span class="type">Test1</span></span><br><span class="line"><span class="keyword">From</span> <span class="number">1</span>:| <span class="type">Test2</span></span><br><span class="line"><span class="keyword">From</span> <span class="number">1</span>:| <span class="type">Test3</span></span><br><span class="line"><span class="keyword">From</span> <span class="number">2</span>:| <span class="type">Test2</span></span><br><span class="line"><span class="keyword">From</span> <span class="number">2</span>:| <span class="type">Test3</span></span><br><span class="line"><span class="keyword">From</span> <span class="number">2</span>:| <span class="type">Test4</span></span><br></pre></td></tr></table></figure>
 <hr>
 <ul>
 <li>第三种<code>Subjects</code>, 我们叫做<code>Variable</code>, 看一下github上的注释:</li>
 </ul>
-<figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment"><span class="markdown">/// Variable is </span>a<span class="markdown"> wrapper for <span class="code">`BehaviorSubject`</span>.</span></span></div><div class="line"><span class="comment"><span class="markdown">///</span></span></div><div class="line"><span class="comment"><span class="markdown">/// Unlike <span class="code">`BehaviorSubject`</span> it can't terminate with error, and when variable is deallocated</span></span></div><div class="line"><span class="comment"><span class="markdown">/// it </span>will<span class="markdown"> complete its observable sequence (<span class="code">`asObservable`</span>).</span></span></div><div class="line">public <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">Variable</span>&lt;<span class="title">Element</span>&gt; </span>&#123;</div></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">/// Variable is a wrapper for `BehaviorSubject`.</span><br><span class="line">///</span><br><span class="line">/// Unlike `BehaviorSubject` it can't terminate <span class="keyword">with</span> <span class="keyword">error</span>, <span class="keyword">and</span> <span class="keyword">when</span> <span class="keyword">variable</span> <span class="keyword">is</span> deallocated</span><br><span class="line">/// it will <span class="keyword">complete</span> its observable <span class="keyword">sequence</span> (<span class="string">`asObservable`</span>).</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">class</span> <span class="keyword">Variable</span>&lt;<span class="keyword">Element</span>&gt; &#123;</span><br></pre></td></tr></table></figure>
 <ul>
 <li>特点：<em>1.这个对象是对BehaviorSubject的上层封装。2.对象不能通过发送Error而终止对象发送数据。3.通过调用asObservable，可以转化为Observer对象。</em> Demo:</li>
 </ul>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">let subject = Variable(<span class="string">"Test1"</span>)</div><div class="line"></div><div class="line">let _ = subject.asObservable().subscribe(</div><div class="line">    onNext: &#123;print(<span class="string">"1:\($0)"</span>)&#125;</div><div class="line">)</div><div class="line"></div><div class="line">subject<span class="selector-class">.value</span> = <span class="string">"Changed"</span></div><div class="line"></div><div class="line"><span class="function"><span class="title">print</span><span class="params">(subject.value)</span></span></div><div class="line"></div><div class="line"><span class="comment">// 终端输出</span></div><div class="line"><span class="number">1</span>:Test1</div><div class="line"><span class="number">1</span>:Changed</div><div class="line">Changed</div></pre></td></tr></table></figure>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">let subject = Variable(<span class="string">"Test1"</span>)</span><br><span class="line"></span><br><span class="line">let _ = subject.asObservable().subscribe(</span><br><span class="line">    onNext: &#123;print(<span class="string">"1:\($0)"</span>)&#125;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">subject<span class="selector-class">.value</span> = <span class="string">"Changed"</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">print</span><span class="params">(subject.value)</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 终端输出</span></span><br><span class="line"><span class="number">1</span>:Test1</span><br><span class="line"><span class="number">1</span>:Changed</span><br><span class="line">Changed</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -544,7 +553,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright" >
+        <div class="copyright">
   
   &copy; 
   <span itemprop="copyrightYear">2018</span>

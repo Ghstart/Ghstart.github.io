@@ -6,18 +6,18 @@
 
 
 <html class="theme-next mist use-motion" lang="zh-Hans">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -35,7 +35,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -87,23 +87,23 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="Obeject-c,项目," />
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css">
 
 
-
-
-
-  <link rel="alternate" href="/atom.xml" title="Ghcoder" type="application/atom+xml" />
+  <meta name="keywords" content="Obeject-c,项目,">
 
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+  <link rel="alternate" href="/atom.xml" title="Ghcoder" type="application/atom+xml">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1">
 
 
 
@@ -111,11 +111,13 @@
 
 
 <meta name="description" content="其实开始之前，我找到一篇很不错的文章，想翻译的，但是google了一下，发现已经有好多人翻译过这篇文章了，这里我就不再多说什么了，把原文的链接贴出来。https://www.raywenderlich.com/65964/create-a-framework-for-ios,这里我就说一下，我在搭建sdk的时候，遇到的坑吧。">
+<meta name="keywords" content="Obeject-c,项目">
 <meta property="og:type" content="article">
 <meta property="og:title" content="搭建SDK中所遇到的坑">
 <meta property="og:url" content="http://www.ghcoder.com/2016/05/10/20160510/index.html">
 <meta property="og:site_name" content="Ghcoder">
 <meta property="og:description" content="其实开始之前，我找到一篇很不错的文章，想翻译的，但是google了一下，发现已经有好多人翻译过这篇文章了，这里我就不再多说什么了，把原文的链接贴出来。https://www.raywenderlich.com/65964/create-a-framework-for-ios,这里我就说一下，我在搭建sdk的时候，遇到的坑吧。">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2017-05-10T10:06:36.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="搭建SDK中所遇到的坑">
@@ -147,7 +149,7 @@
 
 
 
-  <link rel="canonical" href="http://www.ghcoder.com/2016/05/10/20160510/"/>
+  <link rel="canonical" href="http://www.ghcoder.com/2016/05/10/20160510/">
 
 
 
@@ -156,7 +158,7 @@
   <title>搭建SDK中所遇到的坑 | Ghcoder</title>
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
 
@@ -181,13 +183,13 @@
   <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">Ghcoder</span>
         <span class="logo-line-after"><i></i></span>
@@ -217,7 +219,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
           </a>
@@ -227,7 +229,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             列表
           </a>
@@ -261,16 +263,16 @@
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://www.ghcoder.com/2016/05/10/20160510/">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Ghcoder">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="https://avatars3.githubusercontent.com/u/5730023?v=3&s=460">
     </span>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="Ghcoder">
     </span>
 
@@ -302,7 +304,7 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -313,7 +315,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
                   <a href="/categories/日志/" itemprop="url" rel="index">
                     <span itemprop="name">日志</span>
                   </a>
@@ -333,8 +335,7 @@
                   <i class="fa fa-comment-o"></i>
                 </span>
                 <a href="/2016/05/10/20160510/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2016/05/10/20160510/" itemprop="commentCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/05/10/20160510/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -359,7 +360,7 @@
       
 
       
-        <h2 id="其实开始之前，我找到一篇很不错的文章，想翻译的，但是google了一下，发现已经有好多人翻译过这篇文章了，这里我就不再多说什么了，把原文的链接贴出来。https-www-raywenderlich-com-65964-create-a-framework-for-ios-这里我就说一下，我在搭建sdk的时候，遇到的坑吧。"><a href="#其实开始之前，我找到一篇很不错的文章，想翻译的，但是google了一下，发现已经有好多人翻译过这篇文章了，这里我就不再多说什么了，把原文的链接贴出来。https-www-raywenderlich-com-65964-create-a-framework-for-ios-这里我就说一下，我在搭建sdk的时候，遇到的坑吧。" class="headerlink" title="其实开始之前，我找到一篇很不错的文章，想翻译的，但是google了一下，发现已经有好多人翻译过这篇文章了，这里我就不再多说什么了，把原文的链接贴出来。https://www.raywenderlich.com/65964/create-a-framework-for-ios,这里我就说一下，我在搭建sdk的时候，遇到的坑吧。"></a>其实开始之前，我找到一篇很不错的文章，想翻译的，但是google了一下，发现已经有好多人翻译过这篇文章了，这里我就不再多说什么了，把原文的链接贴出来。<a href="https://www.raywenderlich.com/65964/create-a-framework-for-ios" target="_blank" rel="external">https://www.raywenderlich.com/65964/create-a-framework-for-ios</a>,这里我就说一下，我在搭建sdk的时候，遇到的坑吧。</h2><a id="more"></a>
+        <h2 id="其实开始之前，我找到一篇很不错的文章，想翻译的，但是google了一下，发现已经有好多人翻译过这篇文章了，这里我就不再多说什么了，把原文的链接贴出来。https-www-raywenderlich-com-65964-create-a-framework-for-ios-这里我就说一下，我在搭建sdk的时候，遇到的坑吧。"><a href="#其实开始之前，我找到一篇很不错的文章，想翻译的，但是google了一下，发现已经有好多人翻译过这篇文章了，这里我就不再多说什么了，把原文的链接贴出来。https-www-raywenderlich-com-65964-create-a-framework-for-ios-这里我就说一下，我在搭建sdk的时候，遇到的坑吧。" class="headerlink" title="其实开始之前，我找到一篇很不错的文章，想翻译的，但是google了一下，发现已经有好多人翻译过这篇文章了，这里我就不再多说什么了，把原文的链接贴出来。https://www.raywenderlich.com/65964/create-a-framework-for-ios,这里我就说一下，我在搭建sdk的时候，遇到的坑吧。"></a>其实开始之前，我找到一篇很不错的文章，想翻译的，但是google了一下，发现已经有好多人翻译过这篇文章了，这里我就不再多说什么了，把原文的链接贴出来。<a href="https://www.raywenderlich.com/65964/create-a-framework-for-ios" target="_blank" rel="noopener">https://www.raywenderlich.com/65964/create-a-framework-for-ios</a>,这里我就说一下，我在搭建sdk的时候，遇到的坑吧。</h2><a id="more"></a>
 <ol>
 <li>其实你要是能够走完上面的流程，你基本上已经完成了80%了，剩下的就是发现问题，再去打包。</li>
 </ol>
@@ -367,9 +368,9 @@
 <ul>
 <li>这个错误可能直接就会导致app起不来，一启动就会crash，这里需要将所有你用到xib，storyboard的文件都统一作出修改。<code>其实这个问题在遇到用xib/SB创建的cell的时候、在xib/SB中添加图片的时候需要将[UIImage imageNamed:@&quot;&quot;] =======&gt; 修改为 [UIImage imageNamed:@&quot;xxxx.bundle/xxxxName&quot;]</code></li>
 </ul>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">UIStoryboard</span> *main = [<span class="built_in">UIStoryboard</span> storyboardWithName:<span class="string">@"xxxxName"</span> bundle:[<span class="built_in">NSBundle</span> mainBundle]];</div><div class="line"></div><div class="line">修改为===============================</div><div class="line"></div><div class="line"><span class="built_in">UIStoryboard</span> *main = [<span class="built_in">UIStoryboard</span> storyboardWithName:<span class="string">@"xxxx.bundle/xxxxName"</span> bundle:[<span class="built_in">NSBundle</span> mainBundle]];</div></pre></td></tr></table></figure>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">UIStoryboard</span> *main = [<span class="built_in">UIStoryboard</span> storyboardWithName:<span class="string">@"xxxxName"</span> bundle:[<span class="built_in">NSBundle</span> mainBundle]];</span><br><span class="line"></span><br><span class="line">修改为===============================</span><br><span class="line"></span><br><span class="line"><span class="built_in">UIStoryboard</span> *main = [<span class="built_in">UIStoryboard</span> storyboardWithName:<span class="string">@"xxxx.bundle/xxxxName"</span> bundle:[<span class="built_in">NSBundle</span> mainBundle]];</span><br></pre></td></tr></table></figure>
 <h3 id="第二个错误"><a href="#第二个错误" class="headerlink" title="第二个错误"></a>第二个错误</h3><p><code>可能会在Iphone4的时候，直接无法build,直接报这个错： dyld: Symbol not found: ___NSDictionary0__</code></p>
-<figure class="highlight armasm"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">需要将项目中的<span class="keyword">build </span>Phases 中的core foundation的stastu的状态 从Required修改为Optional</div></pre></td></tr></table></figure>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">需要将项目中的<span class="keyword">build </span>Phases 中的core foundation的stastu的状态 从Required修改为Optional</span><br></pre></td></tr></table></figure>
 <p><code>后续如果还有其他的bug，我再贴出来吧！</code></p>
 
       
@@ -470,7 +471,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright" >
+        <div class="copyright">
   
   &copy; 
   <span itemprop="copyrightYear">2018</span>

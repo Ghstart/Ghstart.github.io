@@ -6,18 +6,18 @@
 
 
 <html class="theme-next mist use-motion" lang="zh-Hans">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -35,7 +35,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -87,42 +87,41 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="Core Data, Swift," />
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css">
 
 
-
-
-
-  <link rel="alternate" href="/atom.xml" title="Ghcoder" type="application/atom+xml" />
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+  <meta name="keywords" content="Core Data, Swift,">
 
 
 
 
 
+  <link rel="alternate" href="/atom.xml" title="Ghcoder" type="application/atom+xml">
 
-<meta name="description" content="打开xxx.xcdatamodeld文件,添加Entity,例如这里名叫“Person”的类,并且通过类似第一部分的操作就可以编辑了Attributes了。
-这里在给Attribute添加字段的时候需要注意的: 字段类型有Boolean 布尔类型, Date 时间戳, Double 浮点类型,String 字符串类型, Integer Integer 32 Integer 64 整型。">
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1">
+
+
+
+
+
+
+<meta name="description" content="打开xxx.xcdatamodeld文件,添加Entity,例如这里名叫“Person”的类,并且通过类似第一部分的操作就可以编辑了Attributes了。 这里在给Attribute添加字段的时候需要注意的: 字段类型有Boolean 布尔类型, Date 时间戳, Double 浮点类型,String 字符串类型, Integer Integer 32 Integer 64 整型。">
+<meta name="keywords" content="Core Data, Swift">
 <meta property="og:type" content="article">
 <meta property="og:title" content="学习CoreData, 子类化NSManagerObject(二)">
 <meta property="og:url" content="http://www.ghcoder.com/2017/08/08/20170808/index.html">
 <meta property="og:site_name" content="Ghcoder">
-<meta property="og:description" content="打开xxx.xcdatamodeld文件,添加Entity,例如这里名叫“Person”的类,并且通过类似第一部分的操作就可以编辑了Attributes了。
-这里在给Attribute添加字段的时候需要注意的: 字段类型有Boolean 布尔类型, Date 时间戳, Double 浮点类型,String 字符串类型, Integer Integer 32 Integer 64 整型。">
+<meta property="og:description" content="打开xxx.xcdatamodeld文件,添加Entity,例如这里名叫“Person”的类,并且通过类似第一部分的操作就可以编辑了Attributes了。 这里在给Attribute添加字段的时候需要注意的: 字段类型有Boolean 布尔类型, Date 时间戳, Double 浮点类型,String 字符串类型, Integer Integer 32 Integer 64 整型。">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2017-08-08T02:34:32.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="学习CoreData, 子类化NSManagerObject(二)">
-<meta name="twitter:description" content="打开xxx.xcdatamodeld文件,添加Entity,例如这里名叫“Person”的类,并且通过类似第一部分的操作就可以编辑了Attributes了。
-这里在给Attribute添加字段的时候需要注意的: 字段类型有Boolean 布尔类型, Date 时间戳, Double 浮点类型,String 字符串类型, Integer Integer 32 Integer 64 整型。">
+<meta name="twitter:description" content="打开xxx.xcdatamodeld文件,添加Entity,例如这里名叫“Person”的类,并且通过类似第一部分的操作就可以编辑了Attributes了。 这里在给Attribute添加字段的时候需要注意的: 字段类型有Boolean 布尔类型, Date 时间戳, Double 浮点类型,String 字符串类型, Integer Integer 32 Integer 64 整型。">
 
 
 
@@ -150,7 +149,7 @@
 
 
 
-  <link rel="canonical" href="http://www.ghcoder.com/2017/08/08/20170808/"/>
+  <link rel="canonical" href="http://www.ghcoder.com/2017/08/08/20170808/">
 
 
 
@@ -159,7 +158,7 @@
   <title>学习CoreData, 子类化NSManagerObject(二) | Ghcoder</title>
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
 
@@ -184,13 +183,13 @@
   <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">Ghcoder</span>
         <span class="logo-line-after"><i></i></span>
@@ -220,7 +219,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
           </a>
@@ -230,7 +229,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             列表
           </a>
@@ -264,16 +263,16 @@
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://www.ghcoder.com/2017/08/08/20170808/">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Ghcoder">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="https://avatars3.githubusercontent.com/u/5730023?v=3&s=460">
     </span>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="Ghcoder">
     </span>
 
@@ -305,7 +304,7 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -316,7 +315,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
                   <a href="/categories/日志/" itemprop="url" rel="index">
                     <span itemprop="name">日志</span>
                   </a>
@@ -336,8 +335,7 @@
                   <i class="fa fa-comment-o"></i>
                 </span>
                 <a href="/2017/08/08/20170808/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/08/08/20170808/" itemprop="commentCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/08/08/20170808/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -372,26 +370,26 @@
 <li>这里的UIColor,NSArray,NSDictionary任何只要遵循了NSCoding协议的都可以定义为: <code>Transformable</code>。</li>
 <li>之前不管是取值还是赋值都是通过KVC的方式来实现的，例如：</li>
 </ul>
-<figure class="highlight ceylon"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Set the name</span></div><div class="line">person.setValue(aName, forKey: <span class="string">"name"</span>)</div><div class="line"><span class="comment">// Get the name</span></div><div class="line"><span class="keyword">let</span> name = person.<span class="keyword">value</span>(forKey: <span class="string">"name"</span>)</div></pre></td></tr></table></figure>
+<figure class="highlight ceylon"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Set the name</span></span><br><span class="line">person.setValue(aName, forKey: <span class="string">"name"</span>)</span><br><span class="line"><span class="comment">// Get the name</span></span><br><span class="line"><span class="keyword">let</span> name = person.<span class="keyword">value</span>(forKey: <span class="string">"name"</span>)</span><br></pre></td></tr></table></figure>
 <ul>
 <li>我们勾选<code>Codegen</code>值为：<code>Manual/None</code>,然后点击<code>Editor\Create NSManagedObject Subclass....</code>，这样<code>Xcode</code>就可以为我们创建了两个文件。如果修改了响应的<code>Entity</code>的文件的属性，可以重新点击<code>Editor\Create NSManagedObject Subclass....</code></li>
 <li>生成的文件中，属性值前面都写着<code>@NSManaged</code>,这个字段的意思是告诉Swift编译器，这个属性的存储和实现都是在运行时产生的，而不是在编译的时候产生。因为这些属性的存储是需要<code>managed object context</code>,而这个东西在编译的时候，还没有生成。</li>
 <li>测试插入的一个新的数据：</li>
 </ul>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"> <span class="comment">// Save test bow tie</span></div><div class="line">  <span class="keyword">let</span> bowtie = <span class="type">NSEntityDescription</span>.insertNewObject(</div><div class="line">    forEntityName: <span class="string">"Bowtie"</span>,</div><div class="line">    into: <span class="keyword">self</span>.persistentContainer.viewContext) <span class="keyword">as</span>! <span class="type">Bowtie</span></div><div class="line">  bowtie.name = <span class="string">"My bow tie"</span></div><div class="line">  bowtie.lastWorn = <span class="type">NSDate</span>()</div><div class="line">  <span class="comment">// Retrieve test bow tie</span></div><div class="line">  <span class="keyword">do</span> &#123;</div><div class="line">    <span class="keyword">let</span> request = <span class="type">NSFetchRequest</span>&lt;<span class="type">Bowtie</span>&gt;(entityName: <span class="string">"Bowtie"</span>)</div><div class="line">    <span class="keyword">let</span> ties =</div><div class="line">      <span class="keyword">try</span> <span class="keyword">self</span>.persistentContainer.viewContext.fetch(request)</div><div class="line">    <span class="keyword">let</span> sample = ties.first</div><div class="line">    <span class="built_in">print</span>(<span class="string">"Name :<span class="subst">\(sample?.name)</span>, Worn: <span class="subst">\(sample?.lastWorn)</span>"</span>)</div><div class="line">  &#125; <span class="keyword">catch</span> <span class="keyword">let</span> error <span class="keyword">as</span> <span class="type">NSError</span> &#123;</div><div class="line">    <span class="built_in">print</span>(<span class="string">"Fetching error: <span class="subst">\(error)</span>, <span class="subst">\(error.userInfo)</span>"</span>)</div><div class="line">  &#125;</div><div class="line"><span class="keyword">return</span> <span class="literal">true</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">// Save test bow tie</span></span><br><span class="line">  <span class="keyword">let</span> bowtie = <span class="type">NSEntityDescription</span>.insertNewObject(</span><br><span class="line">    forEntityName: <span class="string">"Bowtie"</span>,</span><br><span class="line">    into: <span class="keyword">self</span>.persistentContainer.viewContext) <span class="keyword">as</span>! <span class="type">Bowtie</span></span><br><span class="line">  bowtie.name = <span class="string">"My bow tie"</span></span><br><span class="line">  bowtie.lastWorn = <span class="type">NSDate</span>()</span><br><span class="line">  <span class="comment">// Retrieve test bow tie</span></span><br><span class="line">  <span class="keyword">do</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> request = <span class="type">NSFetchRequest</span>&lt;<span class="type">Bowtie</span>&gt;(entityName: <span class="string">"Bowtie"</span>)</span><br><span class="line">    <span class="keyword">let</span> ties =</span><br><span class="line">      <span class="keyword">try</span> <span class="keyword">self</span>.persistentContainer.viewContext.fetch(request)</span><br><span class="line">    <span class="keyword">let</span> sample = ties.first</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"Name :\(sample?.name), Worn: \(sample?.lastWorn)"</span>)</span><br><span class="line">  &#125; <span class="keyword">catch</span> <span class="keyword">let</span> error <span class="keyword">as</span> <span class="type">NSError</span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"Fetching error: \(error), \(error.userInfo)"</span>)</span><br><span class="line">  &#125;</span><br><span class="line"><span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <ul>
 <li><code>image</code>和<code>UIColor</code>的存取</li>
 </ul>
-<figure class="highlight nix"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line">   <span class="keyword">let</span> <span class="attr">colorDict</span> = btDict[<span class="string">"tintColor"</span>] as! [String: AnyObject]</div><div class="line">    bowtie.<span class="attr">tintColor</span> = UIColor.color(dict: colorDict)</div><div class="line"></div><div class="line">    <span class="keyword">let</span> <span class="attr">image</span> = UIImage(named: imageName!)</div><div class="line">    <span class="keyword">let</span> <span class="attr">photoData</span> = UIImagePNGRepresentation(image!)!</div><div class="line">    bowtie.<span class="attr">photoData</span> = NSData(data: photoData)</div><div class="line">...</div></pre></td></tr></table></figure>
+<figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">   <span class="keyword">let</span> <span class="attr">colorDict</span> = btDict[<span class="string">"tintColor"</span>] as! [String: AnyObject]</span><br><span class="line">    bowtie.<span class="attr">tintColor</span> = UIColor.color(dict: colorDict)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="attr">image</span> = UIImage(named: imageName!)</span><br><span class="line">    <span class="keyword">let</span> <span class="attr">photoData</span> = UIImagePNGRepresentation(image!)!</span><br><span class="line">    bowtie.<span class="attr">photoData</span> = NSData(data: photoData)</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
 <ul>
 <li>如何根据条件查询？运用<code>NSPredicate</code>:</li>
 </ul>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//2</span></div><div class="line">  <span class="keyword">let</span> request = <span class="type">NSFetchRequest</span>&lt;<span class="type">Bowtie</span>&gt;(entityName: <span class="string">"Bowtie"</span>)</div><div class="line">  <span class="keyword">let</span> firstTitle = segmentedControl.titleForSegment(at: <span class="number">0</span>)!</div><div class="line">  request.predicate = <span class="type">NSPredicate</span>(</div><div class="line">    format: <span class="string">"searchKey == %@"</span>, firstTitle)</div><div class="line"><span class="keyword">do</span> &#123; <span class="comment">//3</span></div><div class="line">    <span class="keyword">let</span> results = <span class="keyword">try</span> managedContext.fetch(request)</div><div class="line"><span class="comment">//4</span></div><div class="line">    populate(bowtie: results.first!)</div><div class="line">  &#125; <span class="keyword">catch</span> <span class="keyword">let</span> error <span class="keyword">as</span> <span class="type">NSError</span> &#123;</div><div class="line">    <span class="built_in">print</span>(<span class="string">"Could not fetch <span class="subst">\(error)</span>, <span class="subst">\(error.userInfo)</span>"</span>)</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//2</span></span><br><span class="line">  <span class="keyword">let</span> request = <span class="type">NSFetchRequest</span>&lt;<span class="type">Bowtie</span>&gt;(entityName: <span class="string">"Bowtie"</span>)</span><br><span class="line">  <span class="keyword">let</span> firstTitle = segmentedControl.titleForSegment(at: <span class="number">0</span>)!</span><br><span class="line">  request.predicate = <span class="type">NSPredicate</span>(</span><br><span class="line">    format: <span class="string">"searchKey == %@"</span>, firstTitle)</span><br><span class="line"><span class="keyword">do</span> &#123; <span class="comment">//3</span></span><br><span class="line">    <span class="keyword">let</span> results = <span class="keyword">try</span> managedContext.fetch(request)</span><br><span class="line"><span class="comment">//4</span></span><br><span class="line">    populate(bowtie: results.first!)</span><br><span class="line">  &#125; <span class="keyword">catch</span> <span class="keyword">let</span> error <span class="keyword">as</span> <span class="type">NSError</span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"Could not fetch \(error), \(error.userInfo)"</span>)</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
 <ul>
 <li>CoreData 如何对字段值进行验证？</li>
 <li>勾选需要验证字段，打开<code>data model inspector</code>,然后勾选<code>Validation</code>，可以勾选<code>默认值</code>,<code>最大值</code>,<code>最小值</code>，这样就可以在catch中捕获住Error：</li>
 </ul>
-<figure class="highlight gauss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"> <span class="keyword">if</span> <span class="built_in">error</span>.domain == NSCocoaErrorDomain &amp;&amp;</div><div class="line">      (<span class="built_in">error</span>.<span class="built_in">code</span> == NSValidationNumberTooLargeError ||</div><div class="line">        <span class="built_in">error</span>.<span class="built_in">code</span> == NSValidationNumberTooSmallError) &#123;</div><div class="line">      rate(currentBowtie)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight gauss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">if</span> <span class="built_in">error</span>.domain == NSCocoaErrorDomain &amp;&amp;</span><br><span class="line">      (<span class="built_in">error</span>.<span class="built_in">code</span> == NSValidationNumberTooLargeError ||</span><br><span class="line">        <span class="built_in">error</span>.<span class="built_in">code</span> == NSValidationNumberTooSmallError) &#123;</span><br><span class="line">      rate(currentBowtie)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -489,7 +487,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright" >
+        <div class="copyright">
   
   &copy; 
   <span itemprop="copyrightYear">2018</span>
