@@ -112,18 +112,18 @@
 
 
 
-<meta name="description" content="目的 想通过R.Obj这个工具在编译的时候，去管理图片、字符串、主题的资源文件？？ 可能会存在多个静态库、或者动态库？？ 以及后期如何自定义？？  R.obj 问题： 如果图片不放在Assest中的话，会有问题：例如存在图片 `Test@2x.png、Test@3x.png, 最后编译成的模板会存在两张图片名称Test2x、Test3x`，如果统一将图片统一放入到Assest中，就不会有这个问题。">
+<meta name="description" content="目的 想通过R.Obj这个工具在编译的时候，去管理图片、字符串、主题的资源文件？？ 可能会存在多个静态库、或者动态库？？ 以及后期如何自定义？？">
 <meta name="keywords" content="Object-C">
 <meta property="og:type" content="article">
 <meta property="og:title" content="关于R.Obj工具">
 <meta property="og:url" content="http://www.ghcoder.com/2019/01/09/20190109/index.html">
 <meta property="og:site_name" content="Ghcoder">
-<meta property="og:description" content="目的 想通过R.Obj这个工具在编译的时候，去管理图片、字符串、主题的资源文件？？ 可能会存在多个静态库、或者动态库？？ 以及后期如何自定义？？  R.obj 问题： 如果图片不放在Assest中的话，会有问题：例如存在图片 `Test@2x.png、Test@3x.png, 最后编译成的模板会存在两张图片名称Test2x、Test3x`，如果统一将图片统一放入到Assest中，就不会有这个问题。">
+<meta property="og:description" content="目的 想通过R.Obj这个工具在编译的时候，去管理图片、字符串、主题的资源文件？？ 可能会存在多个静态库、或者动态库？？ 以及后期如何自定义？？">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-09T03:42:45.758Z">
+<meta property="og:updated_time" content="2019-01-09T03:45:18.003Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="关于R.Obj工具">
-<meta name="twitter:description" content="目的 想通过R.Obj这个工具在编译的时候，去管理图片、字符串、主题的资源文件？？ 可能会存在多个静态库、或者动态库？？ 以及后期如何自定义？？  R.obj 问题： 如果图片不放在Assest中的话，会有问题：例如存在图片 `Test@2x.png、Test@3x.png, 最后编译成的模板会存在两张图片名称Test2x、Test3x`，如果统一将图片统一放入到Assest中，就不会有这个问题。">
+<meta name="twitter:description" content="目的 想通过R.Obj这个工具在编译的时候，去管理图片、字符串、主题的资源文件？？ 可能会存在多个静态库、或者动态库？？ 以及后期如何自定义？？">
 
 
 
@@ -367,6 +367,7 @@
 <li>可能会存在多个静态库、或者动态库？？</li>
 <li>以及后期如何自定义？？</li>
 </ul>
+<a id="more"></a>
 <h3 id="R-obj-问题："><a href="#R-obj-问题：" class="headerlink" title="R.obj 问题："></a>R.obj 问题：</h3><ul>
 <li>如果图片不放在Assest中的话，会有问题：例如存在图片 <a href="mailto:`Test@2x.png" target="_blank" rel="noopener">`Test@2x.png</a><code>、</code><a href="mailto:Test@3x.png" target="_blank" rel="noopener">Test@3x.png</a><code>, 最后编译成的模板会存在两张图片名称</code>Test2x<code>、</code>Test3x`，如果统一将图片统一放入到Assest中，就不会有这个问题。❌</li>
 <li>如果图片不放在Assest中的话，它形成的模板的代码如下, 自动会带上图片的后缀，但是放入到Asstet中则正常。❌</li>
