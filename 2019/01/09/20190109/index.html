@@ -92,10 +92,12 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css">
 
 
-  <meta name="keywords" content="Swift,">
+  <meta name="keywords" content="Object-C,">
 
 
 
+
+  
 
 
   <link rel="alternate" href="/atom.xml" title="Ghcoder" type="application/atom+xml">
@@ -110,18 +112,18 @@
 
 
 
-<meta name="description" content="for(xx;xx;xx) 在swift中的写法：-&amp;gt; stride(from:to:by:) 从起始位置开始，每次增加或者减少确定的数量，到终点为止（不包含终点为止） Returns a sequence from a starting value to, but not including, an end value, stepping by the specified amount.">
-<meta name="keywords" content="Swift">
+<meta name="description" content="目的 想通过R.Obj这个工具在编译的时候，去管理图片、字符串、主题的资源文件？？ 可能会存在多个静态库、或者动态库？？ 以及后期如何自定义？？  R.obj 问题： 如果图片不放在Assest中的话，会有问题：例如存在图片 `Test@2x.png、Test@3x.png, 最后编译成的模板会存在两张图片名称Test2x、Test3x`，如果统一将图片统一放入到Assest中，就不会有这个问题。">
+<meta name="keywords" content="Object-C">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Swift语法备忘录">
-<meta property="og:url" content="http://www.ghcoder.com/2018/11/03/20181103/index.html">
+<meta property="og:title" content="关于R.Obj工具">
+<meta property="og:url" content="http://www.ghcoder.com/2019/01/09/20190109/index.html">
 <meta property="og:site_name" content="Ghcoder">
-<meta property="og:description" content="for(xx;xx;xx) 在swift中的写法：-&amp;gt; stride(from:to:by:) 从起始位置开始，每次增加或者减少确定的数量，到终点为止（不包含终点为止） Returns a sequence from a starting value to, but not including, an end value, stepping by the specified amount.">
+<meta property="og:description" content="目的 想通过R.Obj这个工具在编译的时候，去管理图片、字符串、主题的资源文件？？ 可能会存在多个静态库、或者动态库？？ 以及后期如何自定义？？  R.obj 问题： 如果图片不放在Assest中的话，会有问题：例如存在图片 `Test@2x.png、Test@3x.png, 最后编译成的模板会存在两张图片名称Test2x、Test3x`，如果统一将图片统一放入到Assest中，就不会有这个问题。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-11-04T02:38:12.915Z">
+<meta property="og:updated_time" content="2019-01-09T03:41:07.662Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Swift语法备忘录">
-<meta name="twitter:description" content="for(xx;xx;xx) 在swift中的写法：-&amp;gt; stride(from:to:by:) 从起始位置开始，每次增加或者减少确定的数量，到终点为止（不包含终点为止） Returns a sequence from a starting value to, but not including, an end value, stepping by the specified amount.">
+<meta name="twitter:title" content="关于R.Obj工具">
+<meta name="twitter:description" content="目的 想通过R.Obj这个工具在编译的时候，去管理图片、字符串、主题的资源文件？？ 可能会存在多个静态库、或者动态库？？ 以及后期如何自定义？？  R.obj 问题： 如果图片不放在Assest中的话，会有问题：例如存在图片 `Test@2x.png、Test@3x.png, 最后编译成的模板会存在两张图片名称Test2x、Test3x`，如果统一将图片统一放入到Assest中，就不会有这个问题。">
 
 
 
@@ -149,13 +151,13 @@
 
 
 
-  <link rel="canonical" href="http://www.ghcoder.com/2018/11/03/20181103/">
+  <link rel="canonical" href="http://www.ghcoder.com/2019/01/09/20190109/">
 
 
 
 
 
-  <title>Swift语法备忘录 | Ghcoder</title>
+  <title>关于R.Obj工具 | Ghcoder</title>
 </head>
 
 <body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -264,7 +266,7 @@
   
 
   <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://www.ghcoder.com/2018/11/03/20181103/">
+    <link itemprop="mainEntityOfPage" href="http://www.ghcoder.com/2019/01/09/20190109/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Ghcoder">
@@ -281,7 +283,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Swift语法备忘录</h1>
+          <h1 class="post-title" itemprop="name headline">关于R.Obj工具</h1>
         
 
         <div class="post-meta">
@@ -293,8 +295,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-03T16:29:12+08:00">
-                2018-11-03
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-09T19:28:12+08:00">
+                2019-01-09
               </time>
             
 
@@ -334,8 +336,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/11/03/20181103/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/11/03/20181103/" itemprop="commentCount"></span>
+                <a href="/2019/01/09/20190109/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/01/09/20190109/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -360,13 +362,61 @@
       
 
       
-        <h2 id="for-xx-xx-xx-在swift中的写法：-gt-stride-from-to-by-从起始位置开始，每次增加或者减少确定的数量，到终点为止（不包含终点为止）"><a href="#for-xx-xx-xx-在swift中的写法：-gt-stride-from-to-by-从起始位置开始，每次增加或者减少确定的数量，到终点为止（不包含终点为止）" class="headerlink" title="for(xx;xx;xx) 在swift中的写法：-&gt; stride(from:to:by:) 从起始位置开始，每次增加或者减少确定的数量，到终点为止（不包含终点为止）"></a>for(xx;xx;xx) 在swift中的写法：-&gt; stride(from:to:by:) 从起始位置开始，每次增加或者减少确定的数量，到终点为止（不包含终点为止）</h2><blockquote>
-<p>Returns a sequence from a starting value to, but not including, an end value, stepping by the specified amount.</p>
+        <h3 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h3><ul>
+<li>想通过R.Obj这个工具在编译的时候，去管理图片、字符串、主题的资源文件？？</li>
+<li>可能会存在多个静态库、或者动态库？？</li>
+<li>以及后期如何自定义？？</li>
+</ul>
+<h3 id="R-obj-问题："><a href="#R-obj-问题：" class="headerlink" title="R.obj 问题："></a>R.obj 问题：</h3><ul>
+<li>如果图片不放在Assest中的话，会有问题：例如存在图片 <a href="mailto:`Test@2x.png" target="_blank" rel="noopener">`Test@2x.png</a><code>、</code><a href="mailto:Test@3x.png" target="_blank" rel="noopener">Test@3x.png</a><code>, 最后编译成的模板会存在两张图片名称</code>Test2x<code>、</code>Test3x`，如果统一将图片统一放入到Assest中，就不会有这个问题。❌</li>
+<li>如果图片不放在Assest中的话，它形成的模板的代码如下, 自动会带上图片的后缀，但是放入到Asstet中则正常。❌</li>
+</ul>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="built_in">UIImage</span>*)wifiConnectingShowBg &#123; <span class="keyword">return</span> [<span class="built_in">UIImage</span> imageNamed:<span class="string">@"Wifi_connecting_show_bg.png"</span>]; &#125;</span><br></pre></td></tr></table></figure>
+<pre><code>⁃    * 如果主项目中存在`R.obj`,那么存在于主目录中的任意多个`Bundle`，其中图片可能存在重复多个，但是生成的`R.obj`的模板文件是唯一的。但是本质上没有去重。❌  (这里可以通过编写脚本删除，在else的时候执行删除脚本)。
+</code></pre><ul>
+<li>直接替换掉图片，可以同步。✔️ （每次编译的时候，都会每次生成一次模板）</li>
+</ul>
+<p>-</p>
+<h3 id="静态库和R-obj-配合使用的问题："><a href="#静态库和R-obj-配合使用的问题：" class="headerlink" title="静态库和R.obj 配合使用的问题："></a>静态库和R.obj 配合使用的问题：</h3><h4 id="情况一："><a href="#情况一：" class="headerlink" title="情况一："></a>情况一：</h4><blockquote>
+<ol>
+<li>创建了一套<code>.framework</code>、<code>.a</code>的静态库。</li>
+<li>创建了一套<code>.bundle</code>的资源文件。（<strong>静态库没有直接调用bundle里面的资源</strong>）</li>
+<li>经过<code>R.obj</code>编译过后。</li>
+</ol>
 </blockquote>
-<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> index <span class="keyword">in</span> stride(<span class="string">from:</span> <span class="number">10</span>, <span class="string">to:</span> <span class="number">1</span>, <span class="string">by:</span> <span class="number">-1</span>) &#123;</span><br><span class="line">    print(<span class="string">"index:\(index)"</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&lt;!-- more --&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 终端打印</span></span><br><span class="line"><span class="string">index:</span><span class="number">10</span></span><br><span class="line"><span class="string">index:</span><span class="number">9</span></span><br><span class="line"><span class="string">index:</span><span class="number">8</span></span><br><span class="line"><span class="string">index:</span><span class="number">7</span></span><br><span class="line"><span class="string">index:</span><span class="number">6</span></span><br><span class="line"><span class="string">index:</span><span class="number">5</span></span><br><span class="line"><span class="string">index:</span><span class="number">4</span></span><br><span class="line"><span class="string">index:</span><span class="number">3</span></span><br><span class="line"><span class="string">index:</span><span class="number">2</span></span><br></pre></td></tr></table></figure>
-<h2 id="将一个String用一个Character-String分隔："><a href="#将一个String用一个Character-String分隔：" class="headerlink" title="将一个String用一个Character/String分隔："></a>将一个String用一个Character/String分隔：</h2><figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">let</span> stringArray = <span class="built_in">string</span>.<span class="built_in">components</span>(separatedBy: <span class="string">"xx"</span>)</span><br></pre></td></tr></table></figure>
-<h2 id="找到某个subString，并且remove掉-ps-这里只能找到一处并且删除掉-："><a href="#找到某个subString，并且remove掉-ps-这里只能找到一处并且删除掉-：" class="headerlink" title="找到某个subString，并且remove掉(ps: 这里只能找到一处并且删除掉)："></a>找到某个subString，并且remove掉(ps: 这里只能找到一处并且删除掉)：</h2><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var conetent = <span class="string">"Hello World"</span></span><br><span class="line"><span class="keyword">let</span> <span class="built_in">range</span> = conetent.<span class="built_in">range</span>(of: <span class="string">" "</span>)!</span><br><span class="line"><span class="keyword">let</span> <span class="built_in">index</span> = conetent.distance(from: conetent.startIndex, <span class="keyword">to</span>: <span class="built_in">range</span>.lowerBound)</span><br><span class="line">conetent = String(conetent[..&lt;conetent.<span class="built_in">index</span>(conetent.startIndex, offsetBy: <span class="built_in">index</span>)]) + String(conetent[conetent.<span class="built_in">index</span>(conetent.startIndex, offsetBy: <span class="built_in">index</span>+<span class="number">1</span>)..&lt;conetent.endIndex])</span><br></pre></td></tr></table></figure>
-<h2 id="替换某个字符"><a href="#替换某个字符" class="headerlink" title="替换某个字符"></a>替换某个字符</h2><figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="attr">conetent</span> = <span class="string">"Hello World"</span></span><br><span class="line"><span class="keyword">let</span> <span class="attr">newContent</span> = conetent.replacingOccurrences(of: <span class="string">" "</span>, <span class="keyword">with</span>: <span class="string">"&amp;"</span>)</span><br></pre></td></tr></table></figure>
+<h4 id="结果："><a href="#结果：" class="headerlink" title="结果："></a>结果：</h4><ul>
+<li><ol>
+<li>外部可以直接调用静态库中的代码 ✔️</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>图片资源的名称，目前没法制定<code>Bundle</code>的前缀名称 ❌</li>
+</ol>
+</li>
+</ul>
+<p>-</p>
+<h4 id="情况二："><a href="#情况二：" class="headerlink" title="情况二："></a>情况二：</h4><blockquote>
+<ol>
+<li>创建了一套<code>.framework</code>、<code>.a</code>的静态库, 直接通过<code>代码</code>的方式获取外部公用<code>bundle</code>的资源。</li>
+<li>经过<code>R.obj</code>编译过后。代码如下：</li>
+</ol>
+</blockquote>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">icon.<span class="built_in">image</span> = [UIImage imageNamed:@<span class="string">"外部bundle/通过R.obj生成的图片"</span>];</span><br></pre></td></tr></table></figure>
+<h4 id="结果：-1"><a href="#结果：-1" class="headerlink" title="结果："></a>结果：</h4><ol>
+<li>首先自动生成的R.obj会冲突，无不发编译。❌</li>
+<li>在静态库中通过调用<code>R.obj</code>编译后的模板代码，是可以显示正常，并且外部可以通过静态库调起视图。✔️</li>
+</ol>
+<p>-</p>
+<h4 id="情况三："><a href="#情况三：" class="headerlink" title="情况三："></a>情况三：</h4><blockquote>
+<ol>
+<li>创建了一套<code>.framework</code>、<code>.a</code>的静态库。</li>
+<li>多套<code>bundle</code>资源。（这里可能会重复）</li>
+<li>经过<code>R.obj</code>编译过后。</li>
+</ol>
+</blockquote>
+<h4 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h4><ul>
+<li>如果主项目中存在<code>R.obj</code>,那么存在于主目录中的任意多个<code>Bundle</code>，其中图片可能存在重复多个，但是生成的<code>R.obj</code>的模板文件是唯一的。但是本质上没有去重。❌  (这里可以通过编写脚本删除，在else的时候执行删除脚本)</li>
+</ul>
 
       
     </div>
@@ -396,7 +446,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Swift/" rel="tag"># Swift</a>
+            <a href="/tags/Object-C/" rel="tag"># Object-C</a>
           
         </div>
       
@@ -409,8 +459,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/02/23/20180223/" rel="next" title="每日一刷LeetCode算法">
-                <i class="fa fa-chevron-left"></i> 每日一刷LeetCode算法
+              <a href="/2018/12/16/20181216/" rel="next" title="收银台开发-工厂模式-设计模式(3)">
+                <i class="fa fa-chevron-left"></i> 收银台开发-工厂模式-设计模式(3)
               </a>
             
           </div>
@@ -418,10 +468,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/12/12/20181212/" rel="prev" title="非越狱手机植入动态库">
-                非越狱手机植入动态库 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -587,9 +633,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://www.ghcoder.com/2018/11/03/20181103/';
-          this.page.identifier = '2018/11/03/20181103/';
-          this.page.title = 'Swift语法备忘录';
+          this.page.url = 'http://www.ghcoder.com/2019/01/09/20190109/';
+          this.page.identifier = '2019/01/09/20190109/';
+          this.page.title = '关于R.Obj工具';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://ghcoder1024.disqus.com/embed.js';

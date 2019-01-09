@@ -261,6 +261,204 @@
   
 
   <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://www.ghcoder.com/2019/01/09/20190109/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ghcoder">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars3.githubusercontent.com/u/5730023?v=3&s=460">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ghcoder">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/01/09/20190109/" itemprop="url">关于R.Obj工具</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-09T19:28:12+08:00">
+                2019-01-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/日志/" itemprop="url" rel="index">
+                    <span itemprop="name">日志</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/01/09/20190109/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/01/09/20190109/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h3><ul>
+<li>想通过R.Obj这个工具在编译的时候，去管理图片、字符串、主题的资源文件？？</li>
+<li>可能会存在多个静态库、或者动态库？？</li>
+<li>以及后期如何自定义？？</li>
+</ul>
+<h3 id="R-obj-问题："><a href="#R-obj-问题：" class="headerlink" title="R.obj 问题："></a>R.obj 问题：</h3><ul>
+<li>如果图片不放在Assest中的话，会有问题：例如存在图片 <a href="mailto:`Test@2x.png" target="_blank" rel="noopener">`Test@2x.png</a><code>、</code><a href="mailto:Test@3x.png" target="_blank" rel="noopener">Test@3x.png</a><code>, 最后编译成的模板会存在两张图片名称</code>Test2x<code>、</code>Test3x`，如果统一将图片统一放入到Assest中，就不会有这个问题。❌</li>
+<li>如果图片不放在Assest中的话，它形成的模板的代码如下, 自动会带上图片的后缀，但是放入到Asstet中则正常。❌</li>
+</ul>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="built_in">UIImage</span>*)wifiConnectingShowBg &#123; <span class="keyword">return</span> [<span class="built_in">UIImage</span> imageNamed:<span class="string">@"Wifi_connecting_show_bg.png"</span>]; &#125;</span><br></pre></td></tr></table></figure>
+<pre><code>⁃    * 如果主项目中存在`R.obj`,那么存在于主目录中的任意多个`Bundle`，其中图片可能存在重复多个，但是生成的`R.obj`的模板文件是唯一的。但是本质上没有去重。❌  (这里可以通过编写脚本删除，在else的时候执行删除脚本)。
+</code></pre><ul>
+<li>直接替换掉图片，可以同步。✔️ （每次编译的时候，都会每次生成一次模板）</li>
+</ul>
+<p>-</p>
+<h3 id="静态库和R-obj-配合使用的问题："><a href="#静态库和R-obj-配合使用的问题：" class="headerlink" title="静态库和R.obj 配合使用的问题："></a>静态库和R.obj 配合使用的问题：</h3><h4 id="情况一："><a href="#情况一：" class="headerlink" title="情况一："></a>情况一：</h4><blockquote>
+<ol>
+<li>创建了一套<code>.framework</code>、<code>.a</code>的静态库。</li>
+<li>创建了一套<code>.bundle</code>的资源文件。（<strong>静态库没有直接调用bundle里面的资源</strong>）</li>
+<li>经过<code>R.obj</code>编译过后。</li>
+</ol>
+</blockquote>
+<h4 id="结果："><a href="#结果：" class="headerlink" title="结果："></a>结果：</h4><ul>
+<li><ol>
+<li>外部可以直接调用静态库中的代码 ✔️</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>图片资源的名称，目前没法制定<code>Bundle</code>的前缀名称 ❌</li>
+</ol>
+</li>
+</ul>
+<p>-</p>
+<h4 id="情况二："><a href="#情况二：" class="headerlink" title="情况二："></a>情况二：</h4><blockquote>
+<ol>
+<li>创建了一套<code>.framework</code>、<code>.a</code>的静态库, 直接通过<code>代码</code>的方式获取外部公用<code>bundle</code>的资源。</li>
+<li>经过<code>R.obj</code>编译过后。代码如下：</li>
+</ol>
+</blockquote>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">icon.<span class="built_in">image</span> = [UIImage imageNamed:@<span class="string">"外部bundle/通过R.obj生成的图片"</span>];</span><br></pre></td></tr></table></figure>
+<h4 id="结果：-1"><a href="#结果：-1" class="headerlink" title="结果："></a>结果：</h4><ol>
+<li>首先自动生成的R.obj会冲突，无不发编译。❌</li>
+<li>在静态库中通过调用<code>R.obj</code>编译后的模板代码，是可以显示正常，并且外部可以通过静态库调起视图。✔️</li>
+</ol>
+<p>-</p>
+<h4 id="情况三："><a href="#情况三：" class="headerlink" title="情况三："></a>情况三：</h4><blockquote>
+<ol>
+<li>创建了一套<code>.framework</code>、<code>.a</code>的静态库。</li>
+<li>多套<code>bundle</code>资源。（这里可能会重复）</li>
+<li>经过<code>R.obj</code>编译过后。</li>
+</ol>
+</blockquote>
+<h4 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h4><ul>
+<li>如果主项目中存在<code>R.obj</code>,那么存在于主目录中的任意多个<code>Bundle</code>，其中图片可能存在重复多个，但是生成的<code>R.obj</code>的模板文件是唯一的。但是本质上没有去重。❌  (这里可以通过编写脚本删除，在else的时候执行删除脚本)</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://www.ghcoder.com/2018/12/16/20181216/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -7622,7 +7820,7 @@
         <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2018</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
