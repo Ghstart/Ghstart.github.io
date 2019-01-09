@@ -375,7 +375,6 @@
 </code></pre><ul>
 <li>直接替换掉图片，可以同步。✔️ （每次编译的时候，都会每次生成一次模板）</li>
 </ul>
-<p>-</p>
 <h3 id="静态库和R-obj-配合使用的问题："><a href="#静态库和R-obj-配合使用的问题：" class="headerlink" title="静态库和R.obj 配合使用的问题："></a>静态库和R.obj 配合使用的问题：</h3><h4 id="情况一："><a href="#情况一：" class="headerlink" title="情况一："></a>情况一：</h4><blockquote>
 <ol>
 <li>创建了一套<code>.framework</code>、<code>.a</code>的静态库。</li>
@@ -393,7 +392,6 @@
 </ol>
 </li>
 </ul>
-<p>-</p>
 <h4 id="情况二："><a href="#情况二：" class="headerlink" title="情况二："></a>情况二：</h4><blockquote>
 <ol>
 <li>创建了一套<code>.framework</code>、<code>.a</code>的静态库, 直接通过<code>代码</code>的方式获取外部公用<code>bundle</code>的资源。</li>
@@ -405,7 +403,6 @@
 <li>首先自动生成的R.obj会冲突，无不发编译。❌</li>
 <li>在静态库中通过调用<code>R.obj</code>编译后的模板代码，是可以显示正常，并且外部可以通过静态库调起视图。✔️</li>
 </ol>
-<p>-</p>
 <h4 id="情况三："><a href="#情况三：" class="headerlink" title="情况三："></a>情况三：</h4><blockquote>
 <ol>
 <li>创建了一套<code>.framework</code>、<code>.a</code>的静态库。</li>
