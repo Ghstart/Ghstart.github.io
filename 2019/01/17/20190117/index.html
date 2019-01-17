@@ -1,0 +1,678 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="Object-C，Unit-Test,">
+
+
+
+
+  
+
+
+  <link rel="alternate" href="/atom.xml" title="Ghcoder" type="application/atom+xml">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1">
+
+
+
+
+
+
+<meta name="description" content="Kiwi 测试框架安装 通过Cocoapods安装Kiwi，命令如下：  12345target &apos;xxxTests&apos; do  inherit! :search_paths  # Pods for testing  pod &apos;Kiwi&apos;end  安装Kiwi的Xcode Template   下载 Kiwi Template 执行安装脚本 sh ./install-templates.sh">
+<meta name="keywords" content="Object-C，Unit-Test">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关于Kiwi测试">
+<meta property="og:url" content="http://www.ghcoder.com/2019/01/17/20190117/index.html">
+<meta property="og:site_name" content="Ghcoder">
+<meta property="og:description" content="Kiwi 测试框架安装 通过Cocoapods安装Kiwi，命令如下：  12345target &apos;xxxTests&apos; do  inherit! :search_paths  # Pods for testing  pod &apos;Kiwi&apos;end  安装Kiwi的Xcode Template   下载 Kiwi Template 执行安装脚本 sh ./install-templates.sh">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-01-17T04:00:56.632Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="关于Kiwi测试">
+<meta name="twitter:description" content="Kiwi 测试框架安装 通过Cocoapods安装Kiwi，命令如下：  12345target &apos;xxxTests&apos; do  inherit! :search_paths  # Pods for testing  pod &apos;Kiwi&apos;end  安装Kiwi的Xcode Template   下载 Kiwi Template 执行安装脚本 sh ./install-templates.sh">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"remove","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.ghcoder.com/2019/01/17/20190117/">
+
+
+
+
+
+  <title>关于Kiwi测试 | Ghcoder</title>
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Ghcoder</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            列表
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://www.ghcoder.com/2019/01/17/20190117/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ghcoder">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars3.githubusercontent.com/u/5730023?v=3&s=460">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ghcoder">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">关于Kiwi测试</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-17T19:28:12+08:00">
+                2019-01-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/日志/" itemprop="url" rel="index">
+                    <span itemprop="name">日志</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/01/17/20190117/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/01/17/20190117/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="Kiwi-测试框架"><a href="#Kiwi-测试框架" class="headerlink" title="Kiwi 测试框架"></a>Kiwi 测试框架</h3><h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><ul>
+<li>通过<code>Cocoapods</code>安装<code>Kiwi</code>，命令如下：</li>
+</ul>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">target 'xxxTests' do</span><br><span class="line">  inherit! :search_paths</span><br><span class="line">  <span class="meta"># Pods for testing</span></span><br><span class="line">  pod 'Kiwi'</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+<ul>
+<li>安装<code>Kiwi的Xcode Template</code></li>
+</ul>
+<ol>
+<li>下载 <a href="https://github.com/kiwi-bdd/Kiwi/tree/master/Xcode%20Templates" target="_blank" rel="noopener">Kiwi Template</a></li>
+<li>执行安装脚本 <code>sh ./install-templates.sh</code></li>
+</ol>
+<a id="more"></a>
+<h4 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h4><ul>
+<li>通过<code>Xcode</code>-&gt; <code>File</code> -&gt; <code>New</code> -&gt; <code>File...</code></li>
+<li>输入<code>Kiwi</code>过滤出<code>Kiwi Spec</code> -&gt; <code>Next</code> 创建完成 [ <strong>这里输入的文件名就是你要测试的类名</strong> ]</li>
+</ul>
+<h4 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h4><blockquote>
+<p>Kiwi测试中的行为描述：<code>Given</code>、<code>When</code>、<code>Then</code><br>一个测试类中，一个测试类只会存在一个<code>describe</code> (一个测试文件应该专注于一个测试类)<br>一个<code>describe</code>可以存在多个<code>context</code><br>一个<code>context</code>可以存在多个<code>it</code></p>
+</blockquote>
+<h5 id="这里写了一个例子，一个简单的User对象-基本断言测试文档"><a href="#这里写了一个例子，一个简单的User对象-基本断言测试文档" class="headerlink" title="这里写了一个例子，一个简单的User对象, 基本断言测试文档"></a>这里写了一个例子，一个简单的User对象, <a href="https://github.com/kiwi-bdd/Kiwi/wiki/Expectations" target="_blank" rel="noopener">基本断言测试文档</a></h5><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">&lt;Foundation/Foundation.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@class</span> <span class="title">DataBaseManager</span>;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">NS_ASSUME_NONNULL_BEGIN</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">GCTUser</span> : <span class="title">NSObject</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">copy</span>, <span class="keyword">readonly</span>) <span class="built_in">NSString</span> *userName;</span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">assign</span>, <span class="keyword">readonly</span>) <span class="built_in">NSInteger</span> password;</span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">strong</span>, <span class="keyword">readonly</span>) <span class="built_in">NSArray</span> *addressDatas;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">instancetype</span>)initWithUserName:(<span class="built_in">NSString</span> *)userName password:(<span class="built_in">NSInteger</span>)password;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)registerAddressWith:(<span class="built_in">NSString</span> *)addressName;</span><br><span class="line">- (<span class="keyword">void</span>)unregisterAddress;</span><br><span class="line"><span class="comment">// 测试Exception断言</span></span><br><span class="line">- (<span class="keyword">void</span>)forceUnregisterAddress;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 获取用户信息数据</span></span><br><span class="line"><span class="comment">// 1. </span></span><br><span class="line">- (<span class="built_in">NSDictionary</span> *)userInfos;</span><br><span class="line"><span class="comment">// 2. 外部传入</span></span><br><span class="line">- (<span class="built_in">NSDictionary</span> *)getUserInfosFrom:(DataBaseManager *)dataBaseManager;</span><br><span class="line"><span class="keyword">@end</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">NS_ASSUME_NONNULL_END</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><span class="line">describe(<span class="string">@"Given a GCTUser"</span>, ^&#123; <span class="comment">// &lt;--Given</span></span><br><span class="line">    <span class="comment">/* -- 1 -- */</span></span><br><span class="line">    context(<span class="string">@"when user userName is 'Hello world' and password is '123456'"</span>, ^&#123;<span class="comment">// &lt;-- When</span></span><br><span class="line">        </span><br><span class="line">        GCTUser *user = [[GCTUser alloc] initWithUserName:<span class="string">@"Hello world"</span> password:<span class="number">123456</span>];</span><br><span class="line">        </span><br><span class="line">        it(<span class="string">@"user is exists"</span>, ^&#123;</span><br><span class="line">            [[user shouldNot] beNil];</span><br><span class="line">        &#125;);</span><br><span class="line">        </span><br><span class="line">        it(<span class="string">@"userName is 'Hello world'"</span>, ^&#123; <span class="comment">// &lt;-- Then (with description)</span></span><br><span class="line">            [[user.userName should] equal:<span class="string">@"Hello world"</span>];</span><br><span class="line">        &#125;);</span><br><span class="line">        </span><br><span class="line">        specify(^&#123;</span><br><span class="line">            [[theValue(<span class="number">123456</span>) should] equal:theValue(user.password)];  <span class="comment">// &lt;-- Then (without description)</span></span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/* -- 2 -- */</span></span><br><span class="line">    context(<span class="string">@"when user created"</span>, ^&#123;<span class="comment">// &lt;-- When</span></span><br><span class="line">       </span><br><span class="line">        __block GCTUser *user = <span class="literal">nil</span>;</span><br><span class="line">        beforeAll(^&#123;</span><br><span class="line">            user = [GCTUser new];</span><br><span class="line">        &#125;);</span><br><span class="line">        </span><br><span class="line">        afterAll(^&#123;</span><br><span class="line">            user = <span class="literal">nil</span>;</span><br><span class="line">        &#125;);</span><br><span class="line">        </span><br><span class="line">        it(<span class="string">@"when user is created, address data should be empty"</span>, ^&#123; <span class="comment">// &lt;-- Then (with description)</span></span><br><span class="line">            [[user.addressDatas should] beEmpty];</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/* -- 3 -- */</span></span><br><span class="line">    context(<span class="string">@"when register address name"</span>, ^&#123;<span class="comment">// &lt;-- When</span></span><br><span class="line">        GCTUser *user = [GCTUser new];</span><br><span class="line">        beforeEach(^&#123;</span><br><span class="line">            [user registerAddressWith:<span class="string">@"hangzhou"</span>];</span><br><span class="line">        &#125;);</span><br><span class="line">        </span><br><span class="line">        afterEach(^&#123;</span><br><span class="line">            [user unregisterAddress];</span><br><span class="line">        &#125;);</span><br><span class="line">        </span><br><span class="line">        it(<span class="string">@"after user register, then"</span>, ^&#123; <span class="comment">// &lt;-- Then (with description)</span></span><br><span class="line">            [[user.addressDatas.firstObject should] equal:<span class="string">@"hangzhou"</span>];</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/* -- 4 -- */</span></span><br><span class="line">    context(<span class="string">@"when unregister address"</span>, ^&#123;<span class="comment">// &lt;-- When</span></span><br><span class="line">        GCTUser *user = [GCTUser new];</span><br><span class="line">        beforeAll(^&#123;</span><br><span class="line">            [user registerAddressWith:<span class="string">@"beijing"</span>];</span><br><span class="line">        &#125;);</span><br><span class="line">        </span><br><span class="line">        beforeEach(^&#123;</span><br><span class="line">            [user unregisterAddress];</span><br><span class="line">        &#125;);</span><br><span class="line">        </span><br><span class="line">        it(<span class="string">@"after user unregister"</span>, ^&#123;<span class="comment">// &lt;-- Then (with description)</span></span><br><span class="line">            [[user.addressDatas should] beEmpty];</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/* -- 5 -- */</span></span><br><span class="line">    context(<span class="string">@"when user addresses are empty"</span>, ^&#123;</span><br><span class="line">        GCTUser *user = [GCTUser new];</span><br><span class="line">        </span><br><span class="line">        it(<span class="string">@"called force ungister, will throw exception"</span>, ^&#123;</span><br><span class="line">            [[theBlock(^&#123;</span><br><span class="line">                [user forceUnregisterAddress];</span><br><span class="line">            &#125;) should] raiseWithName:<span class="string">@"GCTUserAddressDatasEmptyException"</span>] ;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h5 id="第二个例子，我用MVVM模式，写了一个简单的页面，这里面用到了UITableView-重点测试ViewModel-viewModel代码如下："><a href="#第二个例子，我用MVVM模式，写了一个简单的页面，这里面用到了UITableView-重点测试ViewModel-viewModel代码如下：" class="headerlink" title="第二个例子，我用MVVM模式，写了一个简单的页面，这里面用到了UITableView, 重点测试ViewModel, viewModel代码如下："></a>第二个例子，我用MVVM模式，写了一个简单的页面，这里面用到了<em>UITableView</em>, 重点测试<em>ViewModel</em>, viewModel代码如下：</h5><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">&lt;UIKit/UIKit.h&gt;</span></span></span><br><span class="line"><span class="meta">#import <span class="meta-string">"HttpClient.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">void</span>(^TableViewCellConfigBlock)(<span class="keyword">id</span> cell, <span class="keyword">id</span> item);</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">void</span>(^HomeViewModelSuccessBlock)(<span class="keyword">void</span>);</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">void</span>(^HomeViewModelFailureBlock)(<span class="built_in">NSError</span> *e);</span><br><span class="line"></span><br><span class="line"><span class="built_in">NS_ASSUME_NONNULL_BEGIN</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">HomeViewModel</span> : <span class="title">NSObject</span>&lt;<span class="title">UITableViewDataSource</span>&gt;</span></span><br><span class="line"><span class="comment">//**??**</span></span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">strong</span>, <span class="keyword">nonatomic</span>) HttpClient *httpClient; <span class="comment">// 具体实现网络请求的类</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 实例化方法</span></span><br><span class="line">- (<span class="keyword">instancetype</span>)initWithCellIdentifior:(<span class="built_in">NSString</span> *)cellIdentifior configureCellBlock:(TableViewCellConfigBlock)configureCellBlock;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 网络请求方法</span></span><br><span class="line">- (<span class="keyword">void</span>)requestHomeDatasBasedOn:(<span class="built_in">NSString</span> *)homeID</span><br><span class="line">                        success:(HomeViewModelSuccessBlock)success</span><br><span class="line">                        failure:(HomeViewModelFailureBlock)failure;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">NS_ASSUME_NONNULL_END</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>测试网络请求类：</li>
+<li>这里主要用到了异步断言<code>[[expectFutureValue(theValue(errorOccur)) shouldEventuallyBeforeTimingOutAfter(2.0)] equal:theValue(YES)];</code> <a href="https://github.com/kiwi-bdd/Kiwi/wiki/Asynchronous-Testing" target="_blank" rel="noopener">Asynchronous测试参考文档</a></li>
+</ul>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">describe(<span class="string">@"HomeViewModel"</span>, ^&#123;</span><br><span class="line"></span><br><span class="line">    context(<span class="string">@"Normal Request"</span>, ^&#123;</span><br><span class="line"></span><br><span class="line">        HomeViewModel *viewModel = [HomeViewModel new];</span><br><span class="line">        __block <span class="built_in">NSError</span> *noInputError = <span class="literal">nil</span>;</span><br><span class="line">        __block <span class="built_in">BOOL</span> errorOccur = <span class="literal">NO</span>;</span><br><span class="line">        __block <span class="built_in">BOOL</span> successOccur = <span class="literal">NO</span>;</span><br><span class="line"></span><br><span class="line">        it(<span class="string">@"当入参HomeID为空的时候，将会调用failure的callback, 并且会返回制定的error"</span>, ^&#123;</span><br><span class="line">            [viewModel requestHomeDatasBasedOn:<span class="string">@""</span> success:^&#123;&#125; failure:^(<span class="built_in">NSError</span> * _Nonnull error) &#123;</span><br><span class="line">                noInputError = error;</span><br><span class="line">                errorOccur = <span class="literal">YES</span>;</span><br><span class="line">            &#125;];</span><br><span class="line">            [[expectFutureValue(theValue(errorOccur)) shouldEventuallyBeforeTimingOutAfter(<span class="number">2.0</span>)] equal:theValue(<span class="literal">YES</span>)];</span><br><span class="line">            [[noInputError shouldNot] beNil];</span><br><span class="line">            [[noInputError should] equal:[<span class="built_in">NSError</span> errorWithDomain:<span class="string">@"empty input"</span> code:<span class="number">1011</span> userInfo:<span class="literal">nil</span>]];</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        it(<span class="string">@"当传入HomeID的时候，就会调用success的callBack, 并且会返回数据"</span>, ^&#123;</span><br><span class="line">            [viewModel requestHomeDatasBasedOn:<span class="string">@"HomeID"</span> success:^&#123;</span><br><span class="line">                successOccur = <span class="literal">YES</span>;</span><br><span class="line">            &#125; failure:^(<span class="built_in">NSError</span> * _Nonnull error) &#123;&#125;];</span><br><span class="line">            [[expectFutureValue(theValue(successOccur)) shouldEventuallyBeforeTimingOutAfter(<span class="number">2.0</span>)] equal:theValue(<span class="literal">YES</span>)];</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>这里我可以通过Mock HttpClient的返回数据来测试返回结果</li>
+</ul>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"> context(<span class="string">@"Mock Request"</span>, ^&#123;</span><br><span class="line">        </span><br><span class="line">        HomeViewModel *homeViewModel = [HomeViewModel new];</span><br><span class="line">        <span class="keyword">id</span> mockTableView = [<span class="built_in">UITableView</span> mock];</span><br><span class="line">        </span><br><span class="line">        it(<span class="string">@"如果网络请求返回的是两个数据，则UITableView DataSource的数据源也是两个"</span>, ^&#123;</span><br><span class="line">            HttpClient *client = [HttpClient new];</span><br><span class="line">            <span class="built_in">NSArray</span> *mockDatas = @[[[HomeModel alloc] initWithTitle:<span class="string">@"test-1"</span>], [[HomeModel alloc] initWithTitle:<span class="string">@"test-2"</span>], [[HomeModel alloc] initWithTitle:<span class="string">@"test-2"</span>]];</span><br><span class="line">            [client stub:<span class="keyword">@selector</span>(requestHomeDataBy:success:failure:) withBlock:^<span class="keyword">id</span>(<span class="built_in">NSArray</span> *params) &#123;</span><br><span class="line">                HttpClientSuccessBlock successB = [params objectAtIndex:<span class="number">1</span>];</span><br><span class="line">                successB(mockDatas);</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">nil</span>;</span><br><span class="line">            &#125;];</span><br><span class="line">            </span><br><span class="line">            </span><br><span class="line">            homeViewModel.httpClient = client;</span><br><span class="line">            [homeViewModel requestHomeDatasBasedOn:<span class="string">@"test"</span> success:^&#123;</span><br><span class="line">                <span class="built_in">NSInteger</span> count = [homeViewModel tableView:mockTableView numberOfRowsInSection:<span class="number">0</span>];</span><br><span class="line">                [[theValue(count) should] equal:theValue(<span class="number">3</span>)];</span><br><span class="line">                </span><br><span class="line">                </span><br><span class="line">                </span><br><span class="line">            &#125; failure:^(<span class="built_in">NSError</span> *e) &#123;&#125;];</span><br><span class="line">        &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>测试block的回调代码如下，和上面的mock httpClient雷同</li>
+</ul>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">context(<span class="string">@"Configuration"</span>, ^&#123;</span><br><span class="line">       __block <span class="built_in">UITableViewCell</span> *configuredCell = <span class="literal">nil</span>;</span><br><span class="line">       __block <span class="keyword">id</span> configuredObject = <span class="literal">nil</span>;</span><br><span class="line">       </span><br><span class="line">       TableViewCellConfigBlock block = ^(<span class="built_in">UITableViewCell</span> *a, <span class="keyword">id</span> b)&#123;</span><br><span class="line">           configuredCell = a;</span><br><span class="line">           configuredObject = b;</span><br><span class="line">       &#125;;</span><br><span class="line">       HomeViewModel *homeViewModel = [[HomeViewModel alloc] initWithCellIdentifior:<span class="string">@"HomeTableViewCell"</span> configureCellBlock:block];</span><br><span class="line">       </span><br><span class="line">       <span class="keyword">id</span> mockTableView = [<span class="built_in">UITableView</span> mock];</span><br><span class="line">       <span class="built_in">UITableViewCell</span> *cell = [[<span class="built_in">UITableViewCell</span> alloc] init];</span><br><span class="line">       </span><br><span class="line">       __block <span class="keyword">id</span> result = <span class="literal">nil</span>;</span><br><span class="line">       <span class="built_in">NSIndexPath</span> *indexPath = [<span class="built_in">NSIndexPath</span> indexPathForRow:<span class="number">0</span> inSection:<span class="number">0</span>];</span><br><span class="line">       </span><br><span class="line">       it(<span class="string">@"如果网络请求返回的是两个数据，则UITableView DataSource的数据源也是两个"</span>, ^&#123;</span><br><span class="line">           HttpClient *client = [HttpClient new];</span><br><span class="line">           <span class="built_in">NSArray</span> *mockDatas = @[[[HomeModel alloc] initWithTitle:<span class="string">@"test-1"</span>], [[HomeModel alloc] initWithTitle:<span class="string">@"test-2"</span>], [[HomeModel alloc] initWithTitle:<span class="string">@"test-2"</span>]];</span><br><span class="line">           [client stub:<span class="keyword">@selector</span>(requestHomeDataBy:success:failure:) withBlock:^<span class="keyword">id</span>(<span class="built_in">NSArray</span> *params) &#123;</span><br><span class="line">               HttpClientSuccessBlock successB = [params objectAtIndex:<span class="number">1</span>];</span><br><span class="line">               successB(mockDatas);</span><br><span class="line">               <span class="keyword">return</span> <span class="literal">nil</span>;</span><br><span class="line">           &#125;];</span><br><span class="line">           </span><br><span class="line">           </span><br><span class="line">           homeViewModel.httpClient = client;</span><br><span class="line">           [homeViewModel requestHomeDatasBasedOn:<span class="string">@"test"</span> success:^&#123;</span><br><span class="line">               </span><br><span class="line">               [[mockTableView should] receive:<span class="keyword">@selector</span>(dequeueReusableCellWithIdentifier:forIndexPath:) andReturn:cell withArguments:<span class="string">@"HomeTableViewCell"</span>,indexPath];</span><br><span class="line">               result = [homeViewModel tableView:mockTableView cellForRowAtIndexPath:indexPath];</span><br><span class="line">               </span><br><span class="line">               [[result should] equal:cell];</span><br><span class="line"></span><br><span class="line">               [[configuredCell should] equal:cell];</span><br><span class="line"></span><br><span class="line">               [[configuredObject should] beKindOfClass:[HomeModel <span class="keyword">class</span>]];</span><br><span class="line">               HomeModel *hM = (HomeModel *)configuredObject;</span><br><span class="line">               [[hM.showTitle should] equal:<span class="string">@"test-1"</span>];</span><br><span class="line">               </span><br><span class="line">           &#125; failure:^(<span class="built_in">NSError</span> *e) &#123;&#125;];</span><br><span class="line">       &#125;);</span><br><span class="line">   &#125;);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>这里有点问题：</li>
+</ul>
+<ol>
+<li>首先，测试结果仍旧取决于网络状况，因此我们很难保证多次测试结果的一致性；</li>
+<li>其次，当我们要测试一个REST服务的时候，如果每个URL的测试都基于实际网络访问和超时的机制，将会显著增加测试执行的时间</li>
+</ol>
+<ul>
+<li>我的观点是 <strong>1. 测试过程要不依赖于任何外部条件和系统；2. 在任何环境、测试任意多次，结果应该保持不变；</strong></li>
+</ul>
+<h5 id="页面的跳转测试"><a href="#页面的跳转测试" class="headerlink" title="页面的跳转测试"></a>页面的跳转测试</h5><ul>
+<li>这里主要用到了<code>stub</code>和<code>mock</code></li>
+</ul>
+<blockquote>
+<p>维基百科对<code>stub</code>的解释 : 桩[1]（Stub / Method Stub）是指用来替换一部分功能的程序段。桩程序可以用来模拟已有程序的行为（比如一个远端机器的过程）或是对将要开发的代码的一种临时替代。因此，打桩技术在程序移植、分布式计算、通用软件开发和测试中用处很大<br>维基百科对<code>mock</code>的解释 : 在面向对象程序设计中，模拟对象（英语：mock object，也译作模仿对象）是以可控的方式模拟真实对象行为的假的对象。程序员通常创造模拟对象来测试其他对象的行为，很类似汽车设计者使用碰撞测试假人来模拟车辆碰撞中人的动态行为。</p>
+</blockquote>
+<ul>
+<li>我的理解是这样的，如果你只是需要仿照掉一个方法，就用<code>stub</code>，如果需要仿照的是一个对象，就用<code>mock</code></li>
+</ul>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">describe(@<span class="string">"HomeViewController"</span>, ^&#123;</span><br><span class="line">    <span class="built_in">context</span>(@<span class="string">"when click a cell in table view"</span>, ^&#123;</span><br><span class="line">        it(@<span class="string">"A PushViewController should be pushed"</span>, ^&#123;</span><br><span class="line">            HomeViewController *homeViewController = [[HomeViewController alloc] init]<span class="comment">;</span></span><br><span class="line">            UIView *view = homeViewController.view<span class="comment">;</span></span><br><span class="line">            [[view <span class="keyword">shouldNot] </span><span class="keyword">beNil];</span></span><br><span class="line"><span class="keyword"> </span>           </span><br><span class="line">            UINavigationController *mockNavController = [UINavigationController mock]<span class="comment">;</span></span><br><span class="line">            [homeViewController stub:@selector(navigationController) <span class="keyword">andReturn:mockNavController];</span></span><br><span class="line"><span class="keyword"> </span>           </span><br><span class="line">            [[mockNavController <span class="keyword">should] </span>receive:@selector(pushViewController:animated:)]<span class="comment">;</span></span><br><span class="line">            KWCaptureSpy *spy = [mockNavController captureArgument:@selector(pushViewController:animated:) atIndex:<span class="number">0</span>]<span class="comment">;</span></span><br><span class="line">            [homeViewController tableView:homeViewController.tableView <span class="keyword">didSelectRowAtIndexPath:[NSIndexPath </span>indexPathForRow:<span class="number">0</span> <span class="keyword">inSection:0]];</span></span><br><span class="line"><span class="keyword"> </span>           </span><br><span class="line">            id obj = spy.argument<span class="comment">;</span></span><br><span class="line">            PushViewController *vc = obj<span class="comment">;</span></span><br><span class="line">            [[vc <span class="keyword">should] </span><span class="keyword">beKindOfClass:[PushViewController </span>class]]<span class="comment">;</span></span><br><span class="line">        &#125;)<span class="comment">;</span></span><br><span class="line">    &#125;)<span class="comment">;</span></span><br><span class="line">&#125;)<span class="comment">;</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Object-C，Unit-Test/" rel="tag"># Object-C，Unit-Test</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/01/09/20190109/" rel="next" title="关于R.Obj工具">
+                <i class="fa fa-chevron-left"></i> 关于R.Obj工具
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ghcoder</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://ghcoder1024.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://www.ghcoder.com/2019/01/17/20190117/';
+          this.page.identifier = '2019/01/17/20190117/';
+          this.page.title = '关于Kiwi测试';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://ghcoder1024.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
